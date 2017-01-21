@@ -1,21 +1,17 @@
 module.exports = {
-  "extends": "react-app",
+  "extends": ["standard", "standard-react"],
   "installedESLint": true,
+  "parser": "babel-eslint",
   "plugins": [
+    "react",
+    "standard",
+    "promise",
+    "flowtype",
     "flowtype-errors"
   ],
   "rules": {
     "indent": [
-      "warn",
-      2
-    ],
-    "linebreak-style": [
-      "error",
-      "unix"
-    ],
-    "quotes": [
-      "warn",
-      "single"
+      "warn"
     ],
     "semi": [
       "error",
