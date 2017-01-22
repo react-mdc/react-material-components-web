@@ -6,6 +6,7 @@ module.exports = {
     "react",
     "standard",
     "promise",
+    "import",
     "flowtype",
     "flowtype-errors"
   ],
@@ -25,11 +26,16 @@ module.exports = {
       "warn",
       "always"
     ],
-    "no-unused-vars": ["warn", {
-      "args": "all",
-      "argsIgnorePattern": "^_",
-      "varsIgnorePattern": "^_\\w+"
-    }],
+    "no-duplicate-imports": "off",
+    "import/no-duplicates": "error",
+    "no-unused-vars": [
+      "warn",
+      {
+        "args": "all",
+        "argsIgnorePattern": "^_",
+        "varsIgnorePattern": "^_\\w+"
+      }
+    ],
     "flowtype/boolean-style": [
       "error",
       "boolean"
