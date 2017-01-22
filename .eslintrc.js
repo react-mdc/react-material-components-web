@@ -10,6 +10,10 @@ module.exports = {
     "flowtype-errors"
   ],
   "rules": {
+    "jsx-quotes": [
+      "error",
+      "prefer-double"
+    ],
     "indent": [
       "warn"
     ],
