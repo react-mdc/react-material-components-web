@@ -7,13 +7,13 @@ import type {TextStyle} from './types';
 import {ADJUST_MARGIN_CLASS} from './constants';
 import {classNameForTextStyle} from './helpers';
 
-type BaseProps = {
+export type BaseProps = {
   component?: ReactComponent,
   adjustMargin: boolean,
   [string]: any
 };
 
-type Props = {
+export type Props = {
   textStyle: TextStyle
 } & BaseProps;
 
