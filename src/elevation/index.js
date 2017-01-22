@@ -11,7 +11,7 @@ import {TRANSITION_CLASS} from './constants';
 export type Props = {
   zSpace: ZSpace,
   transition?: boolean,
-  component?: ReactComponent,
+  component: ReactComponent,
   className?: string,
   [string]: any
 };
