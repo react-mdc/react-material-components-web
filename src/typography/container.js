@@ -8,6 +8,7 @@ import {WRAPPER_CLASS} from './constants';
 
 type Props = {
   component: ReactComponent,
+  className?: string,
   [string]: any
 };
 
@@ -21,13 +22,13 @@ export default class Typography extends React.Component {
     component: 'div'
   };
 
-  render(): React.Element<*> {
+  render (): React.Element<*> {
     let {component, className, ...props} = this.props;
     // Inject wrapper class to props
     props = {
       ...props,
       className: classNames(WRAPPER_CLASS, className)
     };
-    return React.createElement(component, props, null);
+    return React.createElement(component, props);
   }
 }

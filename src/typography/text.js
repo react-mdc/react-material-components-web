@@ -49,7 +49,7 @@ export default class Text extends React.Component {
     if (!component) {
       component = defaultComponent(textStyle);
     }
-    return React.createElement(component, props, null);
+    return React.createElement(component, props);
   }
 }
 
