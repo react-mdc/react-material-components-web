@@ -4,8 +4,17 @@ react-material-components-web
 React wrapper for [Material Components Web](
 https://github.com/material-components/material-components-web)
 
+Goals
+-----
+
+*  Making fully-featured, customizable
+
+*  Wrapping material-components-web with react in react way
+
+*  Typing strictly with [flowtype](https://flowtype.org)
+
 Usage
-=====
+-----
 
 ``` javascript
 import React from 'react';
