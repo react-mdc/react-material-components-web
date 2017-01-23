@@ -35,3 +35,26 @@ export default class Example extends React.Component {
   }
 }
 ```
+
+Setup for Development
+---------------------
+
+``` shell
+$ cd path/to/react-material-components-web
+$ npm install
+```
+
+Run Example
+-----------
+
+``` shell
+$ npm run example
+```
+
+Build
+-----
+
+``` shell
+$ npm run build
+```
+
