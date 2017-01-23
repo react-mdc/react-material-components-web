@@ -1,55 +1,72 @@
 /* @flow */
 import React from 'react';
 
-import {Typography, Text} from '../src/typography';
+import {
+  Typography,
+  Text,
+  Display4,
+  Display3,
+  Display2,
+  Display1,
+  Headline,
+  Title,
+  Subheading2,
+  Subheading1,
+  Body2,
+  Body1,
+  Caption
+} from '../src/typography';
 
 export default class TypographyExample extends React.Component {
   render (): React.Element<*> {
     return (
       <Typography>
-        <Text textStyle="title">
+        <Title textStyle="title">
           Typography Examples
-        </Text>
-        <Text textStyle="display4">
-          Hello, World!
-        </Text>
-        <Text textStyle="display3">
-          Hello, World!
-        </Text>
-        <Text textStyle="display2">
-          Hello, World!
-        </Text>
-        <Text textStyle="display1">
-          Hello, World!
-        </Text>
-        <Text textStyle="headline">
+        </Title>
+        <Display4>
+          Display 4
+        </Display4>
+        <Display3>
+          Display 3
+        </Display3>
+        <Display2>
+          Display 2
+        </Display2>
+        <Display1>
+          Display 1
+        </Display1>
+        <Headline>
           Headline
-        </Text>
-        <Text textStyle="headline" adjustMargin>
-          Headline Adjust Margin
-        </Text>
-        <Text textStyle="subheading2">
-          Subheading2
-        </Text>
-        <Text textStyle="subheading1">
-          Subheading1
-        </Text>
-        <Text textStyle="body2">
-          Body2
-        </Text>
+        </Headline>
+        <Headline adjustMargin>
+          Headline with Adjust Margin
+        </Headline>
+        <Subheading2>
+          Subheading 2
+        </Subheading2>
+        <Subheading1>
+          Subheading 1
+        </Subheading1>
+        <Body2>
+          Body 2
+        </Body2>
         <Text textStyle="body2" component="div">
-          Body2 with div
+          Body 2 with div
         </Text>
+        <Body1>
+          Body 1
+        </Body1>
         <ul>
-          <Text textStyle="caption" component="li">
+          <Caption component="li">
             Captions
-          </Text>
-          <Text textStyle="caption" component="li">
+          </Caption>
+          <Caption component="li">
             Captions
-          </Text>
-          <Text textStyle="caption" component="li">
+          </Caption>
+          <Caption component="li">
             Captions
-          </Text>
+          </Caption>
         </ul>
       </Typography>
     );

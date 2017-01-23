@@ -85,6 +85,7 @@ class Container extends React.Component {
         </div>
         <div
           style={{
+            padding: 15
           }}>
           {this.props.children}
         </div>
