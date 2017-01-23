@@ -6,7 +6,7 @@ import '@material/typography/dist/mdc.typography.css';
 import type {ReactComponent} from '../types';
 import {WRAPPER_CLASS} from './constants';
 
-type Props = {
+export type Props = {
   component: ReactComponent,
   className?: string,
   [string]: any

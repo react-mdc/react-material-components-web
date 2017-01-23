@@ -34,7 +34,6 @@ module.exports = {
       // Process JS with Babel.
       {
         test: /\.(js|jsx)$/,
-        exclude: /(node_modules|bower_components)/,
         loader: 'babel'
       },
       {
@@ -58,6 +57,7 @@ module.exports = {
       }
     ]
   },
+  devtool: 'source-map',
   devServer: {
     historyApiFallback: true
   }

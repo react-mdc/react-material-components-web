@@ -1,10 +1,9 @@
 /* @flow */
 import React from 'react';
 import classNames from 'classnames';
-import '@material/drawer/dist/mdc.drawer.css';
 
 import type {ReactComponent} from '../../types';
-import {CONTAINER_CLASS_NAME} from './constants';
+import {CONTENT_CLASS_NAME} from './constants';
 
 export type Props = {
   component: ReactComponent,
@@ -12,11 +11,11 @@ export type Props = {
   [string]: any
 };
 
-export default class Drawer extends React.Component {
+export default class ToolbarSpacer extends React.Component {
   props: Props
 
   static defaultProps = {
-    component: 'nav'
+    component: 'div'
   }
 
   render (): React.Element<*> {
@@ -26,7 +25,7 @@ export default class Drawer extends React.Component {
       ...props
     } = this.props;
     className = classNames(
-      CONTAINER_CLASS_NAME,
+      CONTENT_CLASS_NAME,
       className
     );
     props = {
