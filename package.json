@@ -5,6 +5,7 @@
   "author": "Choi Geonu",
   "license": "MIT",
   "main": "lib/",
+  "repository": "https://github.com/Hardtack/react-mdcw.git",
   "dependencies": {
     "classnames": "^2.2.5",
     "immutable": "^3.8.1",
