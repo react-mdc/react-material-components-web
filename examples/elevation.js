@@ -1,8 +1,8 @@
 /* @flow */
 import React from 'react';
 
-import {Elevation} from 'react-mdcw/elevation';
-import type {Wrappable} from 'react-mdcw/core/types';
+import {Elevation} from 'react-mdcw/lib/elevation';
+import type {Wrappable} from 'react-mdcw/lib/core/types';
 
 function Card<P: *> (props: {wrap?: Wrappable<P>, style?: any} & any): React.Element<*> {
   let {
@@ -22,7 +22,7 @@ function Card<P: *> (props: {wrap?: Wrappable<P>, style?: any} & any): React.Ele
     display: 'inline-block'
   };
 
-  return <Elevation style={style} wrap={<div />} {...p} />;
+  return <Elevation style={style} wrap={wrap} {...p} />;
 }
 
 class TransitionCard extends React.Component {

@@ -3,6 +3,7 @@ import React from 'react';
 import classNames from 'classnames';
 
 import type {Props as WrapperProps} from '../../core/wrapper';
+import type {Wrappable} from '../../core/types';
 import {PropWrapper} from '../../core';
 
 import {HEADER_CONTENT_CLASS_NAME} from './constants';
@@ -16,6 +17,10 @@ export default class HeaderContent<P: any> extends PropWrapper<*, P, *> {
 
   static defaultProps = {
     wrap: <div />
+  }
+
+  renderWrap (): Wrappable<P> {
+    return super.renderWrap();
   }
 
   renderProps (): P {

@@ -1,7 +1,6 @@
 /* @flow */
 import React from 'react';
 import classNames from 'classnames';
-import '@material/drawer/dist/mdc.drawer.css';
 
 import type {Props as WrapperProps} from '../../core/wrapper';
 import {PropWrapper} from '../../core';

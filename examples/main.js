@@ -8,8 +8,9 @@ import {
   Content,
   Header,
   HeaderContent
-} from 'react-mdcw/drawer/temporary';
-import {Typography} from 'react-mdcw/typography';
+} from 'react-mdcw/lib/drawer/temporary';
+import {Typography} from 'react-mdcw/lib/typography';
+import {Themed} from 'react-mdcw/lib/theme';
 
 import TypographyExample from './typography';
 import ElevationExample from './elevation';
@@ -49,7 +50,11 @@ class Container extends React.Component {
           onCloseDrawer={this.handleCloseDrawer}>
           <Drawer>
             <Header>
-              <HeaderContent>
+              <HeaderContent
+                wrap={Themed}
+                textColor="primary"
+                onColor="primary"
+                backgroundColor="primary">
                 Menu
               </HeaderContent>
             </Header>

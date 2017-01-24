@@ -1,15 +1,13 @@
 /* @flow */
 import React from 'react';
 import classNames from 'classnames';
-import {MDCTemporaryDrawerFoundation} from '@material/drawer/temporary';
-import * as drawerConstants from '@material/drawer/temporary/constants';
-import * as drawerUtil from '@material/drawer/util';
+import {MDCTemporaryDrawerFoundation} from '@material/drawer/dist/mdc.drawer';
 import {Set, OrderedSet} from 'immutable';
-import '@material/drawer/dist/mdc.drawer.css';
 
 import type {Props as WrapperProps} from '../../core/wrapper';
 import {PropWrapper} from '../../core';
 
+import * as drawerUtil from './drawerUtil';
 import type {AdapterDrawerDelegate, AdapterDrawerCallback} from './types';
 import {AdapterDrawerDelegatePropType} from './types';
 import {CONTAINER_CLASS_NAME} from './constants';
@@ -39,7 +37,7 @@ const {
   strings: {
     FOCUSABLE_ELEMENTS
   }
-} = drawerConstants;
+} = MDCTemporaryDrawerFoundation;
 
 export default class TemporaryDrawer<P: any> extends PropWrapper<*, P, *> {
   props: Props<P>
