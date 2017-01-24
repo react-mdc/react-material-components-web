@@ -1,43 +1,29 @@
 /* @flow */
 import React from 'react';
 
+import type {Wrappable} from '../src/core/types';
 import type {Props as ElevationProps} from '../src/elevation';
 import {Elevation} from '../src/elevation';
 
-type Props = ElevationProps & {
-  style: {
-    [string]: any
-  }
-};
+function Card<P: *> (props: {wrap?: Wrappable<P>, style?: any} & any): React.Element<*> {
+  let {
+    style,
+    wrap,
+    ...p
+  } = props;
 
-class Card extends React.Component {
-  props: Props
+  style = style || {};
+  style = {
+    ...style,
+    margin: 20,
+    padding: 20,
+    minWidth: 200,
+    maxWidth: 250,
+    textAlign: 'center',
+    display: 'inline-block'
+  };
 
-  static defaultProps = {
-    style: {}
-  }
-  render (): React.Element<*> {
-    let {style, ...props} = this.props;
-
-    style = {
-      ...style,
-      margin: 20,
-      padding: 20,
-      minWidth: 200,
-      maxWidth: 250,
-      textAlign: 'center',
-      display: 'inline-block'
-    };
-
-    props = {
-      style,
-      ...props
-    };
-
-    return (
-      <Elevation {...props} />
-    );
-  }
+  return <Elevation style={style} wrap={<div />} {...p} />;
 }
 
 class TransitionCard extends React.Component {
@@ -162,7 +148,7 @@ export default class ElevationExample extends React.Component {
         <TransitionCard>
           Move mouse cursor on me
         </TransitionCard>
-        <Card zSpace={10} component="div">
+        <Card zSpace={10} wrap={<div />}>
           Elevation with 10 z-space and div component
         </Card>
       </div>

@@ -1,23 +1,193 @@
 /* @flow */
 import React from 'react';
 
-import type {TextStyle} from './types';
-import type {BaseProps} from './text';
+import type {Props as TextProps, BaseProps} from './text';
 import Text from './text';
 
-function wrapWithTextStyle (textStyle: TextStyle): ReactClass<BaseProps> {
-  return (props: BaseProps) => (<Text textStyle={textStyle} {...props} />);
+export function Display4<P: {}> (props: BaseProps<P>): React.Element<TextProps<P>> {
+  let {
+    adjustMargin,
+    className,
+    wrap,
+    ...p
+  } = props;
+  let newProps: TextProps<P> = {
+    textStyle: 'display4',
+    adjustMargin,
+    className,
+    wrap,
+    ...p
+  };
+  return React.createElement(Text, newProps);
 }
 
-export const Display4 = wrapWithTextStyle('display4');
-export const Display3 = wrapWithTextStyle('display3');
-export const Display2 = wrapWithTextStyle('display2');
-export const Display1 = wrapWithTextStyle('display1');
-export const Headline = wrapWithTextStyle('headline');
-export const Title = wrapWithTextStyle('title');
-export const Subheading2 = wrapWithTextStyle('subheading2');
-export const Subheading1 = wrapWithTextStyle('subheading1');
-export const Body2 = wrapWithTextStyle('body2');
-export const Body1 = wrapWithTextStyle('body1');
-export const Caption = wrapWithTextStyle('caption');
+export function Display3<P: {}> (props: BaseProps<P>): React.Element<TextProps<P>> {
+  let {
+    adjustMargin,
+    className,
+    wrap,
+    ...p
+  } = props;
+  let newProps: TextProps<P> = {
+    textStyle: 'display3',
+    adjustMargin,
+    className,
+    wrap,
+    ...p
+  };
+  return React.createElement(Text, newProps);
+}
+
+export function Display2<P: {}> (props: BaseProps<P>): React.Element<TextProps<P>> {
+  let {
+    adjustMargin,
+    className,
+    wrap,
+    ...p
+  } = props;
+  let newProps: TextProps<P> = {
+    textStyle: 'display2',
+    adjustMargin,
+    className,
+    wrap,
+    ...p
+  };
+  return React.createElement(Text, newProps);
+}
+
+export function Display1<P: {}> (props: BaseProps<P>): React.Element<TextProps<P>> {
+  let {
+    adjustMargin,
+    className,
+    wrap,
+    ...p
+  } = props;
+  let newProps: TextProps<P> = {
+    textStyle: 'display1',
+    adjustMargin,
+    className,
+    wrap,
+    ...p
+  };
+  return React.createElement(Text, newProps);
+}
+
+export function Headline<P: {}> (props: BaseProps<P>): React.Element<TextProps<P>> {
+  let {
+    adjustMargin,
+    className,
+    wrap,
+    ...p
+  } = props;
+  let newProps: TextProps<P> = {
+    textStyle: 'headline',
+    adjustMargin,
+    className,
+    wrap,
+    ...p
+  };
+  return React.createElement(Text, newProps);
+}
+
+export function Title<P: {}> (props: BaseProps<P>): React.Element<TextProps<P>> {
+  let {
+    adjustMargin,
+    className,
+    wrap,
+    ...p
+  } = props;
+  let newProps: TextProps<P> = {
+    textStyle: 'title',
+    adjustMargin,
+    className,
+    wrap,
+    ...p
+  };
+  return React.createElement(Text, newProps);
+}
+
+export function Subheading2<P: {}> (props: BaseProps<P>): React.Element<TextProps<P>> {
+  let {
+    adjustMargin,
+    className,
+    wrap,
+    ...p
+  } = props;
+  let newProps: TextProps<P> = {
+    textStyle: 'subheading2',
+    adjustMargin,
+    className,
+    wrap,
+    ...p
+  };
+  return React.createElement(Text, newProps);
+}
+
+export function Subheading1<P: {}> (props: BaseProps<P>): React.Element<TextProps<P>> {
+  let {
+    adjustMargin,
+    className,
+    wrap,
+    ...p
+  } = props;
+  let newProps: TextProps<P> = {
+    textStyle: 'subheading1',
+    adjustMargin,
+    className,
+    wrap,
+    ...p
+  };
+  return React.createElement(Text, newProps);
+}
+
+export function Body2<P: {}> (props: BaseProps<P>): React.Element<TextProps<P>> {
+  let {
+    adjustMargin,
+    className,
+    wrap,
+    ...p
+  } = props;
+  let newProps: TextProps<P> = {
+    textStyle: 'body2',
+    adjustMargin,
+    className,
+    wrap,
+    ...p
+  };
+  return React.createElement(Text, newProps);
+}
+
+export function Body1<P: {}> (props: BaseProps<P>): React.Element<TextProps<P>> {
+  let {
+    adjustMargin,
+    className,
+    wrap,
+    ...p
+  } = props;
+  let newProps: TextProps<P> = {
+    textStyle: 'body1',
+    adjustMargin,
+    className,
+    wrap,
+    ...p
+  };
+  return React.createElement(Text, newProps);
+}
+
+export function Caption<P: {}> (props: BaseProps<P>): React.Element<TextProps<P>> {
+  let {
+    adjustMargin,
+    className,
+    wrap,
+    ...p
+  } = props;
+  let newProps: TextProps<P> = {
+    textStyle: 'caption',
+    adjustMargin,
+    className,
+    wrap,
+    ...p
+  };
+  return React.createElement(Text, newProps);
+}
 

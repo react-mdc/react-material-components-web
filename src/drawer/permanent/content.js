@@ -2,25 +2,25 @@
 import React from 'react';
 import classNames from 'classnames';
 
-import type {ReactComponent} from '../../types';
+import type {Props as WrapperProps} from '../../core/wrapper';
+import {PropWrapper} from '../../core';
+
 import {CONTENT_CLASS_NAME} from './constants';
 
-export type Props = {
-  component: ReactComponent,
-  className?: string,
-  [string]: any
+export type Props<P> = WrapperProps<P> & {
+  className?: string
 };
 
-export default class ToolbarSpacer extends React.Component {
-  props: Props
+export default class Content<P: any> extends PropWrapper<*, P, *> {
+  props: Props<P>
 
   static defaultProps = {
-    component: 'div'
+    wrap: <div />
   }
 
-  render (): React.Element<*> {
+  renderProps (): P {
     let {
-      component,
+      wrap: _wrap,
       className,
       ...props
     } = this.props;
@@ -32,6 +32,6 @@ export default class ToolbarSpacer extends React.Component {
       ...props,
       className
     };
-    return React.createElement(component, props);
+    return props;
   }
 }

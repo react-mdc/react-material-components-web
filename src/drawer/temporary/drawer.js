@@ -3,15 +3,15 @@ import React from 'react';
 import classNames from 'classnames';
 import '@material/drawer/dist/mdc.drawer.css';
 
-import type {ReactComponent} from '../../types';
+import type {Props as WrapperProps} from '../../core/wrapper';
+import {PropWrapper} from '../../core';
+
 import type {AdapterDrawerDelegate, AdapterDrawerCallback} from './types';
 import {AdapterDrawerDelegatePropType} from './types';
 import {DRAWER_CLASS_NAME} from './constants';
 
-export type Props = {
-  component: ReactComponent,
-  className?: string,
-  [string]: any
+export type Props<P> = WrapperProps<P> & {
+  className?: string
 };
 
 type State = {
@@ -22,8 +22,8 @@ type Context = {
   adapterDrawerDelegate: AdapterDrawerDelegate
 };
 
-export default class Drawer extends React.Component {
-  props: Props
+export default class Drawer<P: any> extends PropWrapper<*, P, *> {
+  props: Props<P>
   state: State
   context: Context
 
@@ -32,7 +32,7 @@ export default class Drawer extends React.Component {
   }
 
   static defaultProps = {
-    component: 'nav'
+    wrap: <nav />
   }
 
   adapterCallback: AdapterDrawerCallback = {
@@ -50,9 +50,9 @@ export default class Drawer extends React.Component {
     this.context.adapterDrawerDelegate.removeAdapterDrawerCallback(this.adapterCallback);
   }
 
-  render (): React.Element<*> {
+  renderProps (): P {
     let {
-      component,
+      wrap: _wrap,
       className,
       ...props
     } = this.props;
@@ -65,6 +65,6 @@ export default class Drawer extends React.Component {
       ...props,
       className
     };
-    return React.createElement(component, props);
+    return props;
   }
 }

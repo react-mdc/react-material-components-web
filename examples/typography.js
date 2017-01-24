@@ -51,20 +51,20 @@ export default class TypographyExample extends React.Component {
         <Body2>
           Body 2
         </Body2>
-        <Text textStyle="body2" component="div">
+        <Text textStyle="body2" wrap={<div />}>
           Body 2 with div
         </Text>
         <Body1>
           Body 1
         </Body1>
         <ul>
-          <Caption component="li">
+          <Caption wrap={<li />}>
             Captions
           </Caption>
-          <Caption component="li">
+          <Caption wrap={<li />}>
             Captions
           </Caption>
-          <Caption component="li">
+          <Caption wrap={<li />}>
             Captions
           </Caption>
         </ul>

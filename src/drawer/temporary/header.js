@@ -2,25 +2,25 @@
 import React from 'react';
 import classNames from 'classnames';
 
-import type {ReactComponent} from '../../types';
+import type {Props as WrapperProps} from '../../core/wrapper';
+import {PropWrapper} from '../../core';
+
 import {HEADER_CLASS_NAME} from './constants';
 
-export type Props = {
-  component: ReactComponent,
-  className?: string,
-  [string]: any
+export type Props<P> = WrapperProps<P> & {
+  className?: string
 };
 
-export default class Header extends React.Component {
-  props: Props
+export default class Header<P: any> extends PropWrapper<*, P, *> {
+  props: Props<P>
 
   static defaultProps = {
-    component: 'header'
+    wrap: <header />
   }
 
-  render (): React.Element<*> {
+  renderProps (): P {
     let {
-      component,
+      wrap: _wrap,
       className,
       ...props
     } = this.props;
@@ -32,6 +32,6 @@ export default class Header extends React.Component {
       ...props,
       className
     };
-    return React.createElement(component, props);
+    return props;
   }
 }

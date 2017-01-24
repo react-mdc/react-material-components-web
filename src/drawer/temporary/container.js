@@ -7,20 +7,20 @@ import * as drawerUtil from '@material/drawer/util';
 import {Set, OrderedSet} from 'immutable';
 import '@material/drawer/dist/mdc.drawer.css';
 
-import type {ReactComponent} from '../../types';
+import type {Props as WrapperProps} from '../../core/wrapper';
+import {PropWrapper} from '../../core';
+
 import type {AdapterDrawerDelegate, AdapterDrawerCallback} from './types';
 import {AdapterDrawerDelegatePropType} from './types';
 import {CONTAINER_CLASS_NAME} from './constants';
 
-export type Props = {
-  component: ReactComponent,
+export type Props<P> = WrapperProps<P> & {
   open: boolean,
   className?: string,
   rtl: boolean,
   style: {[string]: any},
-  onOpenDrawer?: (TemporaryDrawer) => void,
-  onCloseDrawer?: (TemporaryDrawer) => void,
-  [string]: any
+  onOpenDrawer?: (TemporaryDrawer<P>) => void,
+  onCloseDrawer?: (TemporaryDrawer<P>) => void
 };
 
 type State = {
@@ -41,8 +41,8 @@ const {
   }
 } = drawerConstants;
 
-export default class TemporaryDrawer extends React.Component {
-  props: Props
+export default class TemporaryDrawer<P: any> extends PropWrapper<*, P, *> {
+  props: Props<P>
   drawer: ?Element
 
   static childContextTypes = {
@@ -50,7 +50,7 @@ export default class TemporaryDrawer extends React.Component {
   }
 
   static defaultProps = {
-    component: 'aside',
+    wrap: <aside />,
     rtl: false,
     style: {}
   }
@@ -189,7 +189,7 @@ export default class TemporaryDrawer extends React.Component {
     };
   }
 
-  getClassNames (props: Props, state: State): Array<string> {
+  getClassNames (props: Props<P>, state: State): Array<string> {
     let {className} = props;
     classNames(
       CONTAINER_CLASS_NAME,
@@ -199,7 +199,7 @@ export default class TemporaryDrawer extends React.Component {
   }
 
   // Sync props and internal state
-  componentWillReceiveProps (props: Props) {
+  componentWillReceiveProps (props: Props<P>) {
     if (props.open !== this.state.open) {
       if (props.open) {
         this.foundation.open();
@@ -213,13 +213,14 @@ export default class TemporaryDrawer extends React.Component {
   componentDidMount () {
     this.foundation.init();
   }
+
   componentWillUnmount () {
     this.foundation.destroy();
   }
 
-  render (): React.Element<*> {
+  renderProps (): P {
     let {
-      component,
+      wrap: _wrap,
       className: _className,
       rtl: _rtl,
       onOpenDrawer: _onOpenDrawer,
@@ -233,6 +234,6 @@ export default class TemporaryDrawer extends React.Component {
       ...props,
       className
     };
-    return React.createElement(component, props);
+    return props;
   }
 }

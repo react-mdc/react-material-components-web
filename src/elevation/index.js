@@ -3,35 +3,35 @@ import React from 'react';
 import classNames from 'classnames';
 import '@material/elevation/dist/mdc.elevation.css';
 
-import type {ReactComponent} from '../types';
+import type {Props as WrapperProps} from '../core/wrapper';
+import {PropWrapper} from '../core';
+
 import type {ZSpace} from './types';
 import {classNameForZSpace} from './helpers';
 import {TRANSITION_CLASS} from './constants';
 
-export type Props = {
+export type Props<P: {}> = WrapperProps<P> & {
   zSpace: ZSpace,
   transition?: boolean,
-  component: ReactComponent,
-  className?: string,
-  [string]: any
+  className?: string
 };
 
 /**
  * Text component decorated by mdc-typography
  */
-export class Elevation extends React.Component {
-  props: Props
+export class Elevation<P: any> extends PropWrapper<*, P, *> {
+  props: Props<P>
 
   static defaultProps = {
     transition: false,
-    component: 'p'
+    wrap: <p />
   }
 
-  render (): React.Element<*> {
+  renderProps (): P {
     let {
+      wrap: _wrap,
       zSpace,
       transition,
-      component,
       className,
       ...props
     } = this.props;
@@ -42,11 +42,10 @@ export class Elevation extends React.Component {
       },
       className
     );
-    props = {
+    return {
       ...props,
       className
     };
-    return React.createElement(component, props);
   }
 }
 
