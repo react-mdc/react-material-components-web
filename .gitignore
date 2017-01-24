@@ -1,5 +1,4 @@
 ### Project ###
-dist/
 # Don't use yarn for library project
 yarn.lock
 # Transpiled source directory
@@ -31,3 +30,17 @@ node_modules
 
 # Yarn Integrity file
 .yarn-integrity
+
+### For Vim Users ###
+# swap
+[._]*.s[a-v][a-z]
+[._]*.sw[a-p]
+[._]s[a-v][a-z]
+[._]sw[a-p]
+# session
+Session.vim
+# temporary
+.netrwhist
+*~
+# auto-generated tag files
+tags

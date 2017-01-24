@@ -1,5 +1,5 @@
-react-material-components-web
-=============================
+react-mdcw
+==========
 
 React wrapper for [Material Components Web](
 https://github.com/material-components/material-components-web)
@@ -40,7 +40,7 @@ Setup for Development
 ---------------------
 
 ``` shell
-$ cd path/to/react-material-components-web
+$ cd path/to/react-mdcw
 $ npm install
 ```
 

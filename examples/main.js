@@ -8,8 +8,8 @@ import {
   Content,
   Header,
   HeaderContent
-} from '../src/drawer/temporary';
-import {Typography} from '../src/typography';
+} from 'react-mdcw/drawer/temporary';
+import {Typography} from 'react-mdcw/typography';
 
 import TypographyExample from './typography';
 import ElevationExample from './elevation';

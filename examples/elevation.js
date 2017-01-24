@@ -1,9 +1,8 @@
 /* @flow */
 import React from 'react';
 
-import type {Wrappable} from '../src/core/types';
-import type {Props as ElevationProps} from '../src/elevation';
-import {Elevation} from '../src/elevation';
+import {Elevation} from 'react-mdcw/elevation';
+import type {Wrappable} from 'react-mdcw/core/types';
 
 function Card<P: *> (props: {wrap?: Wrappable<P>, style?: any} & any): React.Element<*> {
   let {
