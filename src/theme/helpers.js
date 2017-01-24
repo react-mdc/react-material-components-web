@@ -11,7 +11,7 @@ export function classNameForTextColor (textColor: TextColor, onColor: ?OnColor):
   } else {
     on = onColor;
   }
-  return `${CLASS_PREFIX}--${textColor}-on-${on}`;
+  return `${CLASS_PREFIX}--text-${textColor}-on-${on}`;
 }
 
 export function classNameForColor (color: MainColor | ColorTheme): string {
