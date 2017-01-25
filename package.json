@@ -1,6 +1,6 @@
 {
   "name": "react-mdcw",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "React Components for Metarial Component Web",
   "author": "Choi Geonu",
   "license": "MIT",
@@ -35,9 +35,6 @@
     "flow-bin": "^0.37.4",
     "flow-copy-source": "^1.1.0",
     "gh-pages": "^0.12.0"
-  },
-  "peerDependencies": {
-    "eslint-plugin-promise": "^3.3.0"
   },
   "scripts": {
     "build": "babel src -d lib",
