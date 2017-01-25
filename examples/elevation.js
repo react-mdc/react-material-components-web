@@ -2,6 +2,7 @@
 import React from 'react';
 
 import {Elevation} from 'react-mdcw/lib/elevation';
+import {Title, Typography} from 'react-mdcw/lib/typography';
 import type {Wrappable} from 'react-mdcw/lib/core/types';
 
 function Card<P: *> (props: {wrap?: Wrappable<P>, style?: any} & any): React.Element<*> {
@@ -68,7 +69,10 @@ class TransitionCard extends React.Component {
 export default class ElevationExample extends React.Component {
   render (): React.Element<*> {
     return (
-      <div>
+      <Typography>
+        <Title>
+          Elevation Examples
+        </Title>
         <Card zSpace={0}>
           Elevation with 0 z-space
         </Card>
@@ -150,7 +154,7 @@ export default class ElevationExample extends React.Component {
         <Card zSpace={10} wrap={<div />}>
           Elevation with 10 z-space and div component
         </Card>
-      </div>
+      </Typography>
     );
   }
 }
