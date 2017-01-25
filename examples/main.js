@@ -11,6 +11,7 @@ import {
 } from 'react-mdcw/lib/drawer/temporary';
 import {Typography} from 'react-mdcw/lib/typography';
 import {Themed} from 'react-mdcw/lib/theme';
+import {Elevation} from 'react-mdcw/lib/elevation';
 
 import TypographyExample from './typography';
 import ElevationExample from './elevation';
@@ -43,7 +44,11 @@ class Container extends React.Component {
 
   render (): React.Element<*> {
     return (
-      <Typography>
+      <Typography
+        style={{
+          flex: 1,
+          flexDirection: 'column'
+        }}>
         <TemporaryDrawer
           open={this.state.drawerOpen}
           onOpenDrawer={this.handleOpenDrawer}
@@ -74,20 +79,37 @@ class Container extends React.Component {
             </Content>
           </Drawer>
         </TemporaryDrawer>
-        <div
+        <Elevation
+          wrap={<Themed />}
+          zSpace={4}
           style={{
-            width: '100%',
-            height: 64
-          }}>
-          <button
+            display: 'flex',
+            paddingLeft: 16,
+            paddingRight: 16,
+            height: 64,
+            flexDirection: 'row',
+            alignItems: 'center'
+          }}
+          backgroundColor="primary"
+          textColor="primary"
+          onColor="primary">
+          <Themed
+            wrap={<a />}
+            textColor="primary"
+            onColor="primary"
             style={{
+              display: 'flex',
               width: 64,
-              height: 44
+              height: 44,
+              cursor: 'pointer',
+              backgroundColor: 'transparent',
+              justifyContent: 'center',
+              alignItems: 'center'
             }}
             onClick={this.handleMenuButtonPress}>
-            Menu
-          </button>
-        </div>
+            MENU
+          </Themed>
+        </Elevation>
         <div
           style={{
             padding: 15
