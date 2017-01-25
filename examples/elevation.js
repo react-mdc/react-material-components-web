@@ -1,14 +1,19 @@
 /* @flow */
 import React from 'react';
 
+import type {Props as ElevationProps} from 'react-mdcw/lib/elevation';
 import {Elevation} from 'react-mdcw/lib/elevation';
 import {Title, Typography} from 'react-mdcw/lib/typography';
 import type {Wrappable} from 'react-mdcw/lib/core/types';
 
-function Card<P: *> (props: {wrap?: Wrappable<P>, style?: any} & any): React.Element<*> {
+type CardProps<P: {}> =
+  $Diff<typeof Elevation.defaultProps, ElevationProps<P>> & {
+    style?: any
+  };
+
+function Card<P: any> (props: CardProps<P>): React.Element<*> {
   let {
     style,
-    wrap,
     ...p
   } = props;
 
@@ -23,7 +28,10 @@ function Card<P: *> (props: {wrap?: Wrappable<P>, style?: any} & any): React.Ele
     display: 'inline-block'
   };
 
-  return <Elevation style={style} wrap={wrap} {...p} />;
+  return React.createElement(Elevation, {
+    style,
+    ...p
+  });
 }
 
 class TransitionCard extends React.Component {
@@ -60,8 +68,7 @@ class TransitionCard extends React.Component {
         onMouseEnter={this.handleMouseEnter}
         onMouseOut={this.handleMouseOut}
         zSpace={zSpace}
-        transition
-        />
+        transition />
     );
   }
 }

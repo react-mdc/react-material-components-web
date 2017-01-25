@@ -5,16 +5,16 @@ import classNames from 'classnames';
 import type {Props as WrapperProps} from '../core/wrapper';
 import {PropWrapper} from '../core';
 
-import type {MainColor, TextColor, ColorTheme} from './types';
+import type {Color, BackgroundColor, TextColor, OnColor} from './types';
 import * as helpers from './helpers';
 
 export type Props<P> = WrapperProps<P> & {
   className?: string,
-  color?: MainColor,
-  backgroundColor?: MainColor
+  color?: Color,
+  backgroundColor?: BackgroundColor
 } & ({} | {
   textColor: TextColor,
-  onColor?: MainColor | ColorTheme
+  onColor: OnColor
 });
 
 export default class Themed<P: any> extends PropWrapper<*, P, *> {
@@ -39,7 +39,9 @@ export default class Themed<P: any> extends PropWrapper<*, P, *> {
     if (color != null) {
       classes.push(helpers.classNameForColor(color));
     }
-    classes.push(helpers.classNameForBackground(backgroundColor));
+    if (backgroundColor != null) {
+      classes.push(helpers.classNameForBackground(backgroundColor));
+    }
     if (textColor != null) {
       classes.push(helpers.classNameForTextColor(textColor, onColor));
     }
