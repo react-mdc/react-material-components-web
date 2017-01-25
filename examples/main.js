@@ -85,7 +85,7 @@ class Container extends React.Component {
           </Drawer>
         </TemporaryDrawer>
         <Elevation
-          wrap={<Themed />}
+          wrap={Themed}
           zSpace={4}
           style={{
             display: 'flex',

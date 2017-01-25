@@ -4,7 +4,6 @@ import React from 'react';
 import type {Props as ElevationProps} from 'react-mdcw/lib/elevation';
 import {Elevation} from 'react-mdcw/lib/elevation';
 import {Title, Typography} from 'react-mdcw/lib/typography';
-import type {Wrappable} from 'react-mdcw/lib/core/types';
 
 type CardProps<P: {}> =
   $Diff<typeof Elevation.defaultProps, ElevationProps<P>> & {

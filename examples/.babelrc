@@ -1,0 +1,19 @@
+{
+  "presets": [
+    "es2015",
+    "stage-0",
+    "react"
+  ],
+  "plugins": [
+    "transform-flow-strip-types",
+    [
+      "module-resolver",
+      {
+        "alias": {
+          "react-mdcw": "../src/index.js",
+          "react-mdcw/lib": "../src"
+        }
+      }
+    ]
+  ]
+}

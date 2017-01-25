@@ -41,7 +41,6 @@ module.exports = {
           name: 'static/media/[name].[hash:8].[ext]'
         }
       },
-      // Process JS with Babel.
       {
         test: /\.(js|jsx)$/,
         exclude: /(node_modules|bower_components)/,
@@ -50,15 +49,11 @@ module.exports = {
       {
         test: /\.css$/,
         loader: 'style-loader!css?importLoaders=1'
-        // Note: this won't work without `new ExtractTextPlugin()` in `plugins`.
       },
-      // JSON is not enabled by default in Webpack but both Node and Browserify
-      // allow it implicitly so we also enable it.
       {
         test: /\.json$/,
         loader: 'json-loader'
       },
-      // "file" loader for svg
       {
         test: /\.svg$/,
         loader: 'file-loader',
@@ -69,6 +64,17 @@ module.exports = {
     ]
   },
   devtool: 'source-map',
+  resolve: {
+    root: path.join(exampleRoot, 'node_modules'),
+    // Webpack can load duplicate modules from `modulesDirectory`
+    // So we don't use it
+    modulesDirectories: [],
+    // But, we have also to use modules not in examples/node_modules
+    fallback: path.join(projectRoot, "node_modules")
+  },
+  resolveLoader: {
+    root: path.join(exampleRoot, 'node_modules')
+  },
   devServer: {
     historyApiFallback: true
   }
