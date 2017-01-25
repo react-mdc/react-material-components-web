@@ -75,6 +75,11 @@ class Container extends React.Component {
                     Elevation
                   </Link>
                 </li>
+                <li>
+                  <a href="https://github.com/Hardtack/react-mdcw" target="_blank">
+                    GitHub
+                  </a>
+                </li>
               </ul>
             </Content>
           </Drawer>
