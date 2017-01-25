@@ -1,0 +1,10 @@
+[ignore]
+
+[include]
+
+[libs]
+
+[options]
+suppress_comment= \\(.\\|\n\\)*\\@flow-ignore
+module.name_mapper= "^react-mdcs\/lib" -> '../src'
+module.name_mapper= "^react-mdcs$" -> '../src/index'

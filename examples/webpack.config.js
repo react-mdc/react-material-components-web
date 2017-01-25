@@ -70,7 +70,11 @@ module.exports = {
     // So we don't use it
     modulesDirectories: [],
     // But, we have also to use modules not in examples/node_modules
-    fallback: path.join(projectRoot, "node_modules")
+    fallback: path.join(projectRoot, "node_modules"),
+    alias: {
+      "react-mdcw/index": "../src/index",
+      "react-mdcw/lib": "../src"
+    }
   },
   resolveLoader: {
     root: path.join(exampleRoot, 'node_modules')
