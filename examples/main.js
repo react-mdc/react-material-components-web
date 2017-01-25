@@ -98,22 +98,18 @@ class Container extends React.Component {
           backgroundColor="primary"
           textColor="primary"
           onColor="primary">
-          <Themed
-            wrap={<a />}
-            textColor="primary"
-            onColor="primary"
+          <a
             style={{
               display: 'flex',
               width: 64,
               height: 44,
               cursor: 'pointer',
-              backgroundColor: 'transparent',
               justifyContent: 'center',
               alignItems: 'center'
             }}
             onClick={this.handleMenuButtonPress}>
             MENU
-          </Themed>
+          </a>
         </Elevation>
         <div
           style={{
