@@ -13,6 +13,11 @@ Goals
 
 *  Typing strictly with [flowtype](https://flowtype.org)
 
+Demo
+----
+
+You can find live example demo at https://hardtack.github.io/react-mdcw/
+
 Usage
 -----
 

@@ -22,6 +22,7 @@
     "babel-preset-es2015": "^6.18.0",
     "babel-preset-react": "^6.16.0",
     "babel-preset-stage-0": "^6.22.0",
+    "cross-env": "^3.1.4",
     "eslint": "^3.13.1",
     "eslint-config-standard": "^6.2.1",
     "eslint-config-standard-react": "^4.2.0",
@@ -32,7 +33,8 @@
     "eslint-plugin-react": "^6.9.0",
     "eslint-plugin-standard": "^2.0.1",
     "flow-bin": "^0.37.4",
-    "flow-copy-source": "^1.1.0"
+    "flow-copy-source": "^1.1.0",
+    "gh-pages": "^0.12.0"
   },
   "peerDependencies": {
     "eslint-plugin-promise": "^3.3.0"
@@ -41,6 +43,8 @@
     "build": "babel src -d lib",
     "babel-prepublish": "npm run build",
     "flow-prepublish": "flow-copy-source src lib",
-    "prepublish": "npm run babel-prepublish && npm run flow-prepublish"
+    "prepublish": "npm run babel-prepublish && npm run flow-prepublish",
+    "build-examples": "cd examples && npm run clean && npm install",
+    "release-examples": "npm run build-examples && gh-pages -d examples/ -m 'Updates v'$npm_package_version --remove node_modules"
   }
 }

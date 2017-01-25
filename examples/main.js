@@ -1,6 +1,6 @@
 /* @flow */
 import React from 'react';
-import {Router, Route, IndexRedirect, Link, browserHistory} from 'react-router';
+import {Router, Route, IndexRedirect, Link, hashHistory} from 'react-router';
 
 import {
   TemporaryDrawer,
@@ -102,7 +102,7 @@ class Container extends React.Component {
 export default class Main extends React.Component {
   render (): React.Element<*> {
     return (
-      <Router history={browserHistory}>
+      <Router history={hashHistory}>
         <Route path="/" component={Container}>
           <IndexRedirect to="/typography" />
           <Route path="typography" component={TypographyExample} />

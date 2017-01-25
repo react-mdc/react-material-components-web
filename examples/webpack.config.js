@@ -1,17 +1,28 @@
 /* eslint-disable */
 var path = require('path');
+var webpack = require('webpack');
 
 var projectRoot = path.resolve(__dirname, '..');
 var exampleRoot = path.resolve(projectRoot, 'examples');
 var buildPath = path.resolve(exampleRoot, 'build');
 
+var plugins = [];
+if (process.env.NODE_ENV === 'production') {
+  plugins.push(new webpack.DefinePlugin({
+    'process.env': {
+      NODE_ENV: JSON.stringify(process.env.NODE_ENV),
+    },
+  }));
+}
+
 module.exports = {
   entry: {
     app: [path.resolve(exampleRoot, 'app.js')]
   },
+  plugins: plugins,
   output: {
     path: buildPath,
-    publicPath: '/assets/',
+    publicPath: '/build/',
     filename: 'bundle.js'
   },
   module: {
