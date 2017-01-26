@@ -1,7 +1,7 @@
 react-mdcw
 ==========
 
-React wrapper for [Material Components Web](
+React wrapper of [Material Components Web](
 https://github.com/material-components/material-components-web)
 
 Goals
