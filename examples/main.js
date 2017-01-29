@@ -15,6 +15,7 @@ import {Elevation} from 'react-mdcw/lib/elevation';
 
 import TypographyExample from './typography';
 import ElevationExample from './elevation';
+import ButtonExample from './button';
 
 class Container extends React.Component {
   props: {
@@ -76,6 +77,11 @@ class Container extends React.Component {
                   </Link>
                 </li>
                 <li>
+                  <Link to="/button">
+                    Button
+                  </Link>
+                </li>
+                <li>
                   <a href="https://github.com/Hardtack/react-mdcw" target="_blank">
                     GitHub
                   </a>
@@ -130,6 +136,7 @@ export default class Main extends React.Component {
           <IndexRedirect to="/typography" />
           <Route path="typography" component={TypographyExample} />
           <Route path="elevation" component={ElevationExample} />
+          <Route path="button" component={ButtonExample} />
         </Route>
       </Router>
     );
