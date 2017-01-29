@@ -64,20 +64,14 @@ module.exports = {
     ]
   },
   devtool: 'source-map',
+  // Webpack bug: webpack cannot recognize npm link'd module's configurations
+  // and it will be fixed webpack 2.X
+  // See: https://github.com/facebook/flow/issues/1548
   resolve: {
-    root: path.join(exampleRoot, 'node_modules'),
-    // Webpack can load duplicate modules from `modulesDirectory`
-    // So we don't use it
-    modulesDirectories: [],
-    // But, we have also to use modules not in examples/node_modules
-    fallback: path.join(projectRoot, "node_modules"),
-    alias: {
-      "react-mdcw/index": "../src/index",
-      "react-mdcw/lib": "../src"
-    }
+    fallback: path.join(exampleRoot, 'node_modules')
   },
   resolveLoader: {
-    root: path.join(exampleRoot, 'node_modules')
+    fallback: path.join(exampleRoot, 'node_modules')
   },
   devServer: {
     historyApiFallback: true

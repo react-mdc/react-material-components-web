@@ -63,9 +63,10 @@ export function applyPassive(globalObj = window, forceRefresh = false) {
   if (supportsPassive_ === undefined || forceRefresh) {
     let isSupported = false;
     try {
-      globalObj.document.addEventListener('test', null, {get passive() {
-        isSupported = true;
-      }});
+      let checker = {};
+      // $FlowBug: Flow cannot understand get/set property
+      Object.defineProperty(checker, 'passive', { get: () => { isSupported = true } });
+      globalObj.document.addEventListener('test', null, checker);
     } catch (e) { }
 
     supportsPassive_ = isSupported;
