@@ -15,7 +15,6 @@ import {
 } from './constants';
 
 export type Props<P: {}> = WrapperProps<P> & {
-  disabled: boolean,
   dense: boolean,
   raised: boolean,
   compact: boolean,
@@ -30,14 +29,17 @@ export class Button<P: any> extends PropWrapper<*, P, *> {
   props: Props<P>
 
   static defaultProps = {
-    disabled: false,
+    dense: false,
+    raised: false,
+    compact: false,
+    primary: false,
+    accent: false,
     wrap: <button />
   }
 
   renderProps (): P {
     let {
       wrap: _wrap,
-      disabled,
       dense,
       raised,
       compact,
@@ -59,8 +61,7 @@ export class Button<P: any> extends PropWrapper<*, P, *> {
     );
     return {
       ...props,
-      className,
-      disabled
+      className
     };
   }
 }
