@@ -51,6 +51,9 @@ class Container extends React.Component {
           flexDirection: 'column'
         }}>
         <TemporaryDrawer
+          style={{
+            zIndex: 1
+          }}
           open={this.state.drawerOpen}
           onOpenDrawer={this.handleOpenDrawer}
           onCloseDrawer={this.handleCloseDrawer}>
