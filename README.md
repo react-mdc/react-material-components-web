@@ -1,6 +1,10 @@
 react-mdcw
 ==========
 
+[![License: MIT](https://img.shields.io/github/license/mashape/apistatus.svg)](https://opensource.org/licenses/MIT)
+[![npm version](https://badge.fury.io/js/react-mdcw.svg)](https://badge.fury.io/js/react-mdcw)
+
+
 React wrapper of [Material Components Web](
 https://github.com/material-components/material-components-web)
 
