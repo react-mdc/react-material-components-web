@@ -28,7 +28,7 @@ type State = {
   open: boolean
 };
 
-export type Context = {
+export type ChildContext = {
   adapterDrawerDelegate: AdapterDrawerDelegate
 };
 
@@ -43,6 +43,7 @@ const {
 
 export default class TemporaryDrawer<P: any> extends PropWrapper<*, P, *> {
   props: Props<P>
+
   drawer: ?Element
 
   static childContextTypes = {
@@ -183,7 +184,7 @@ export default class TemporaryDrawer<P: any> extends PropWrapper<*, P, *> {
     }
   })
 
-  getChildContext (): Context {
+  getChildContext (): ChildContext {
     return {
       adapterDrawerDelegate: this.adapterDrawerDelegate
     };
@@ -191,8 +192,6 @@ export default class TemporaryDrawer<P: any> extends PropWrapper<*, P, *> {
 
   getClassName (props: Props<P>, state: State): string {
     let {className} = props;
-    className = classNames(
-    );
     return classNames(
       CLASS_NAME,
       className,

@@ -25,7 +25,9 @@ type Context = {
 
 export default class Drawer<P: any> extends PropWrapper<*, P, *> {
   props: Props<P>
+
   state: State
+
   context: Context
 
   static contextTypes = {
@@ -51,6 +53,10 @@ export default class Drawer<P: any> extends PropWrapper<*, P, *> {
     this.context.adapterDrawerDelegate.removeAdapterDrawerCallback(this.adapterCallback);
   }
 
+  handleRef = (el: Element) => {
+    this.context.adapterDrawerDelegate.onDrawerMount(el);
+  }
+
   renderProps (): P {
     let {
       wrap: _wrap,
@@ -62,7 +68,7 @@ export default class Drawer<P: any> extends PropWrapper<*, P, *> {
       className
     );
     props = {
-      ref: (el) => this.context.adapterDrawerDelegate.onDrawerMount(el),
+      ref: this.handleRef,
       ...props,
       className
     };

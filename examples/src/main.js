@@ -21,6 +21,7 @@ import ButtonExample from './button';
 import FabExample from './fab';
 import CardExample from './card';
 import FormFieldExample from './form-field';
+import RadioExample from './radio';
 
 class Container extends React.Component {
   props: {
@@ -125,6 +126,13 @@ class Container extends React.Component {
                   onClick={this.handleClickLink}>
                   Form Field
                 </item.ListItem>
+                <item.ListItem
+                  wrap={Link}
+                  activeClassName={SELECTED_CLASS_NAME}
+                  to="/radio"
+                  onClick={this.handleClickLink}>
+                  Radio
+                </item.ListItem>
                 <Divider wrap={<hr />} />
                 <item.ListItem
                   wrap={<a />}
@@ -186,6 +194,7 @@ export default class Main extends React.Component {
           <Route path="fab" component={FabExample} />
           <Route path="card" component={CardExample} />
           <Route path="form-field" component={FormFieldExample} />
+          <Route path="radio" component={RadioExample} />
         </Route>
       </Router>
     );
