@@ -36,7 +36,8 @@
     "flow-copy-source": "^1.1.0"
   },
   "scripts": {
-    "build": "babel src -d lib",
+    "lint": "eslint src/",
+    "build": "npm run lint && babel src -d lib",
     "babel-prepublish": "npm run build",
     "flow-prepublish": "flow-copy-source src lib",
     "prepublish": "npm run babel-prepublish && npm run flow-prepublish"
