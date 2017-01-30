@@ -9,9 +9,11 @@ import {
   Header,
   HeaderContent
 } from 'react-mdcw/lib/drawer/temporary';
+import {SELECTED_CLASS_NAME} from 'react-mdcw/lib/drawer/temporary/constants';
 import {Typography} from 'react-mdcw/lib/typography';
 import {Themed} from 'react-mdcw/lib/theme';
 import {Elevation} from 'react-mdcw/lib/elevation';
+import {List, Divider, group, item} from 'react-mdcw/lib/list';
 
 import TypographyExample from './typography';
 import ElevationExample from './elevation';
@@ -75,47 +77,62 @@ class Container extends React.Component {
                 textColor="primary"
                 onColor="primary"
                 backgroundColor="primary">
-                Menu
+                React-MDCW
               </HeaderContent>
             </Header>
-            <Content>
-              <ul>
-                <li>
-                  <Link to="/typography" onClick={this.handleClickLink}>
-                    Typography
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/elevation" onClick={this.handleClickLink}>
-                    Elevation
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/button" onClick={this.handleClickLink}>
-                    Button
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/fab" onClick={this.handleClickLink}>
-                    Fab
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/card" onClick={this.handleClickLink}>
-                    Card
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/form-field" onClick={this.handleClickLink}>
-                    Form Field
-                  </Link>
-                </li>
-                <li>
-                  <a href="https://github.com/Hardtack/react-mdcw" target="_blank">
-                    GitHub
-                  </a>
-                </li>
-              </ul>
+            <Content
+              wrap={<group.ListGroup wrap={<div />} />}>
+              <List>
+                <item.ListItem
+                  wrap={Link}
+                  activeClassName={SELECTED_CLASS_NAME}
+                  to="/typography"
+                  onClick={this.handleClickLink}>
+                  Typography
+                </item.ListItem>
+                <item.ListItem
+                  wrap={Link}
+                  activeClassName={SELECTED_CLASS_NAME}
+                  to="/elevation"
+                  onClick={this.handleClickLink}>
+                  Elevation
+                </item.ListItem>
+                <item.ListItem
+                  wrap={Link}
+                  activeClassName={SELECTED_CLASS_NAME}
+                  to="/button"
+                  onClick={this.handleClickLink}>
+                  Button
+                </item.ListItem>
+                <item.ListItem
+                  wrap={Link}
+                  activeClassName={SELECTED_CLASS_NAME}
+                  to="/fab"
+                  onClick={this.handleClickLink}>
+                  Fab
+                </item.ListItem>
+                <item.ListItem
+                  wrap={Link}
+                  activeClassName={SELECTED_CLASS_NAME}
+                  to="/card"
+                  onClick={this.handleClickLink}>
+                  Card
+                </item.ListItem>
+                <item.ListItem
+                  wrap={Link}
+                  activeClassName={SELECTED_CLASS_NAME}
+                  to="/form-field"
+                  onClick={this.handleClickLink}>
+                  Form Field
+                </item.ListItem>
+                <Divider />
+                <item.ListItem
+                  wrap={<a />}
+                  href="https://github.com/Hardtack/react-mdcw"
+                  target="_blank">
+                  GitHub Repository
+                </item.ListItem>
+              </List>
             </Content>
           </Drawer>
         </TemporaryDrawer>
