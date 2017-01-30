@@ -82,7 +82,7 @@ class Container extends React.Component {
             </Header>
             <Content
               wrap={<group.ListGroup wrap={<div />} />}>
-              <List>
+              <List wrap={<div />}>
                 <item.ListItem
                   wrap={Link}
                   activeClassName={SELECTED_CLASS_NAME}
@@ -125,7 +125,7 @@ class Container extends React.Component {
                   onClick={this.handleClickLink}>
                   Form Field
                 </item.ListItem>
-                <Divider />
+                <Divider wrap={<hr />} />
                 <item.ListItem
                   wrap={<a />}
                   href="https://github.com/Hardtack/react-mdcw"
