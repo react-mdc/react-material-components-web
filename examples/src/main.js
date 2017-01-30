@@ -18,6 +18,7 @@ import ElevationExample from './elevation';
 import ButtonExample from './button';
 import FabExample from './fab';
 import CardExample from './card';
+import FormFieldExample from './form-field';
 
 class Container extends React.Component {
   props: {
@@ -105,6 +106,11 @@ class Container extends React.Component {
                   </Link>
                 </li>
                 <li>
+                  <Link to="/form-field" onClick={this.handleClickLink}>
+                    Form Field
+                  </Link>
+                </li>
+                <li>
                   <a href="https://github.com/Hardtack/react-mdcw" target="_blank">
                     GitHub
                   </a>
@@ -162,6 +168,7 @@ export default class Main extends React.Component {
           <Route path="button" component={ButtonExample} />
           <Route path="fab" component={FabExample} />
           <Route path="card" component={CardExample} />
+          <Route path="form-field" component={FormFieldExample} />
         </Route>
       </Router>
     );

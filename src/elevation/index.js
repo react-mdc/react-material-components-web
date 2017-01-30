@@ -15,12 +15,11 @@ export const propertyClassNames = {
 
 export type Props<P: {}> = WrapperProps<P> & {
   zSpace: ZSpace,
-  transition?: boolean,
-  className?: string
+  transition?: boolean
 };
 
 /**
- * Text component decorated by mdc-typography
+ * Elevation component
  */
 export class Elevation<P: any> extends PropWrapper<*, P, *> {
   props: Props<P>
