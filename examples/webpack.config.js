@@ -17,7 +17,7 @@ if (process.env.NODE_ENV === 'production') {
 
 module.exports = {
   entry: {
-    app: [path.resolve(exampleRoot, 'app.js')]
+    app: [path.resolve(exampleRoot, 'src', 'app.js')]
   },
   plugins: plugins,
   output: {
@@ -42,7 +42,7 @@ module.exports = {
         }
       },
       {
-        test: /\.(js|jsx)$/,
+        test: /\.js$/,
         exclude: /(node_modules|bower_components)/,
         loader: 'babel-loader'
       },
