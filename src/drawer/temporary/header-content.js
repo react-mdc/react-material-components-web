@@ -6,7 +6,9 @@ import type {Props as WrapperProps} from '../../core/wrapper';
 import type {Wrappable} from '../../core/types';
 import {PropWrapper} from '../../core';
 
-import {HEADER_CONTENT_CLASS_NAME} from './constants';
+import {BASE_CLASS_NAME} from './constants';
+
+export const CLASS_NAME = `${BASE_CLASS_NAME}__header-content`;
 
 export type Props<P> = WrapperProps<P> & {
   className?: string
@@ -30,7 +32,7 @@ export default class HeaderContent<P: any> extends PropWrapper<*, P, *> {
       ...props
     } = this.props;
     className = classNames(
-      HEADER_CONTENT_CLASS_NAME,
+      CLASS_NAME,
       className
     );
     props = {

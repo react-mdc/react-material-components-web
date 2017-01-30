@@ -5,7 +5,9 @@ import classNames from 'classnames';
 import type {Props as WrapperProps} from '../../core/wrapper';
 import {PropWrapper} from '../../core';
 
-import {DRAWER_CLASS_NAME} from './constants';
+import {BASE_CLASS_NAME} from './constants';
+
+export const CLASS_NAME = `${BASE_CLASS_NAME}__drawer`;
 
 export type Props<P: {}> = WrapperProps<P> & {
   className?: string
@@ -25,7 +27,7 @@ export default class Drawer<P: any> extends PropWrapper<*, P, *> {
       ...props
     } = this.props;
     className = classNames(
-      DRAWER_CLASS_NAME,
+      CLASS_NAME,
       className
     );
     return {

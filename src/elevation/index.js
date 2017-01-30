@@ -7,7 +7,11 @@ import {PropWrapper} from '../core';
 
 import type {ZSpace} from './types';
 import {classNameForZSpace} from './helpers';
-import {TRANSITION_CLASS} from './constants';
+import {BASE_CLASS_NAME} from './constants';
+
+export const propertyClassNames = {
+  TRANSITION: `${BASE_CLASS_NAME}-transition`
+};
 
 export type Props<P: {}> = WrapperProps<P> & {
   zSpace: ZSpace,
@@ -37,7 +41,7 @@ export class Elevation<P: any> extends PropWrapper<*, P, *> {
     className = classNames(
       classNameForZSpace(zSpace),
       {
-        [TRANSITION_CLASS]: transition
+        [propertyClassNames.TRANSITION]: transition
       },
       className
     );

@@ -10,7 +10,9 @@ import {PropWrapper} from '../../core';
 import * as drawerUtil from './drawerUtil';
 import type {AdapterDrawerDelegate, AdapterDrawerCallback} from './types';
 import {AdapterDrawerDelegatePropType} from './types';
-import {CONTAINER_CLASS_NAME} from './constants';
+import {BASE_CLASS_NAME} from './constants';
+
+export const CLASS_NAME = BASE_CLASS_NAME;
 
 export type Props<P> = WrapperProps<P> & {
   open: boolean,
@@ -109,7 +111,7 @@ export default class TemporaryDrawer<P: any> extends PropWrapper<*, P, *> {
       }
     },
     hasClass: (className: string): boolean => {
-      return this.getClassNames(this.props, this.state).includes(className);
+      return this.getClassName(this.props, this.state).split(/\s+/).includes(className);
     },
     hasNecessaryDom: (): boolean => {
       return this.drawer !== null;
@@ -187,13 +189,15 @@ export default class TemporaryDrawer<P: any> extends PropWrapper<*, P, *> {
     };
   }
 
-  getClassNames (props: Props<P>, state: State): Array<string> {
+  getClassName (props: Props<P>, state: State): string {
     let {className} = props;
-    classNames(
-      CONTAINER_CLASS_NAME,
-      className
+    className = classNames(
     );
-    return [CONTAINER_CLASS_NAME].concat(state.foundationClasses.toJS());
+    return classNames(
+      CLASS_NAME,
+      className,
+      state.foundationClasses.toJS()
+    );
   }
 
   // Sync props and internal state
@@ -226,7 +230,7 @@ export default class TemporaryDrawer<P: any> extends PropWrapper<*, P, *> {
       ...props
     } = this.props;
 
-    let className = this.getClassNames(this.props, this.state).join(' ');
+    let className = this.getClassName(this.props, this.state);
     props = {
       ref: 'root',
       ...props,

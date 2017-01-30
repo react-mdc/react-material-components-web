@@ -5,7 +5,9 @@ import classNames from 'classnames';
 import type {Props as WrapperProps} from '../../core/wrapper';
 import {PropWrapper} from '../../core';
 
-import {HEADER_CLASS_NAME} from './constants';
+import {BASE_CLASS_NAME} from './constants';
+
+export const CLASS_NAME = `${BASE_CLASS_NAME}__header`;
 
 export type Props<P> = WrapperProps<P> & {
   className?: string
@@ -25,7 +27,7 @@ export default class Header<P: any> extends PropWrapper<*, P, *> {
       ...props
     } = this.props;
     className = classNames(
-      HEADER_CLASS_NAME,
+      CLASS_NAME,
       className
     );
     props = {

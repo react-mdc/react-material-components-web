@@ -1,2 +1,2 @@
 /* @flow */
-export const CLASS_PREFIX = 'mdc-theme';
+export const BASE_CLASS_NAME = 'mdc-theme';

@@ -1,7 +1,7 @@
 /* @flow */
 import type {TextStyle} from './types';
-import {CLASS_PREFIX} from './constants';
+import {BASE_CLASS_NAME} from './constants';
 
 export function classNameForTextStyle (style: TextStyle): string {
-  return `${CLASS_PREFIX}--${style}`;
+  return `${BASE_CLASS_NAME}--${style}`;
 }

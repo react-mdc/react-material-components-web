@@ -6,13 +6,19 @@ import type {Props as WrapperProps} from '../core/wrapper';
 import {PropWrapper} from '../core';
 
 import {
-  BUTTON_CLASS,
-  DENSE_CLASS_NAME,
-  RAISED_CLASS_NAME,
-  COMPACT_CLASS_NAME,
-  PRIMARY_CLASS_NAME,
-  ACCENT_CLASS_NAME
+  BASE_CLASS_NAME
 } from './constants';
+
+export const CLASS_NAME = BASE_CLASS_NAME;
+
+export const propertyClassNames = {
+  PREFIX: CLASS_NAME,
+  DENSE: `${CLASS_NAME}--dense`,
+  RAISED: `${CLASS_NAME}--raised`,
+  COMPACT: `${CLASS_NAME}--compact`,
+  PRIMARY: `${CLASS_NAME}--primary`,
+  ACCENT: `${CLASS_NAME}--accent`
+};
 
 export type Props<P: {}> = WrapperProps<P> & {
   dense: boolean,
@@ -49,13 +55,13 @@ export class Button<P: any> extends PropWrapper<*, P, *> {
       ...props
     } = this.props;
     className = classNames(
-      BUTTON_CLASS,
+      CLASS_NAME,
       {
-        [DENSE_CLASS_NAME]: dense,
-        [RAISED_CLASS_NAME]: raised,
-        [COMPACT_CLASS_NAME]: compact,
-        [PRIMARY_CLASS_NAME]: primary,
-        [ACCENT_CLASS_NAME]: accent
+        [propertyClassNames.DENSE]: dense,
+        [propertyClassNames.RAISED]: raised,
+        [propertyClassNames.COMPACT]: compact,
+        [propertyClassNames.PRIMARY]: primary,
+        [propertyClassNames.ACCENT]: accent
       },
       className
     );

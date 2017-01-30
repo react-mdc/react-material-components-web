@@ -6,10 +6,15 @@ import type {Props as WrapperProps} from '../core/wrapper';
 import {PropWrapper} from '../core';
 
 import {
-  CONTAINER_CLASS,
-  MINI_CLASS_NAME,
-  PLAIN_CLASS_NAME
+  BASE_CLASS_NAME
 } from './constants';
+
+export const CLASS_NAME = BASE_CLASS_NAME;
+
+export const propertyClassNames = {
+  MINI: `${CLASS_NAME}--mini`,
+  PLAIN: `${CLASS_NAME}--plain`
+};
 
 export type Props<P: {}> = WrapperProps<P> & {
   mini: boolean,
@@ -37,10 +42,10 @@ export default class Fab<P: any> extends PropWrapper<*, P, *> {
       ...props
     } = this.props;
     className = classNames(
-      CONTAINER_CLASS,
+      CLASS_NAME,
       {
-        [MINI_CLASS_NAME]: mini,
-        [PLAIN_CLASS_NAME]: plain
+        [propertyClassNames.MINI]: mini,
+        [propertyClassNames.PLAIN]: plain
       },
       className
     );

@@ -6,8 +6,12 @@ import type {Wrappable} from '../core/types';
 import {Wrapper} from '../core';
 
 import type {TextStyle} from './types';
-import {ADJUST_MARGIN_CLASS} from './constants';
+import {BASE_CLASS_NAME} from './constants';
 import {classNameForTextStyle} from './helpers';
+
+export const propertyClassNames = {
+  ADJUST_MARGIN: `${BASE_CLASS_NAME}--adjust-margin`
+};
 
 export type BaseProps<P: {}> = {
   adjustMargin?: boolean,
@@ -50,7 +54,7 @@ export default class Text<P: any> extends Wrapper<*, Props<P>, *> {
     className = classNames(
       classNameForTextStyle(textStyle),
       {
-        [ADJUST_MARGIN_CLASS]: adjustMargin
+        [propertyClassNames.ADJUST_MARGIN]: adjustMargin
       },
       className
     );
