@@ -14,6 +14,10 @@ if (process.env.NODE_ENV === 'production') {
     },
   }));
 }
+var urlPrefix = '/'
+if (process.env.URL_PREFIX != null) {
+  urlPrefix += process.env.URL_PREFIX;
+}
 
 module.exports = {
   entry: {
@@ -22,7 +26,7 @@ module.exports = {
   plugins: plugins,
   output: {
     path: buildPath,
-    publicPath: '/build/',
+    publicPath: urlPrefix + 'build/',
     filename: 'bundle.js'
   },
   module: {

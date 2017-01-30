@@ -45,6 +45,6 @@
     "build": "cross-env NODE_ENV=production webpack -p --progress",
     "start": "webpack-dev-server",
     "prepublish": "npm run build",
-    "release": "npm run clean && npm run build && gh-pages -d . -m 'Updates v'$npm_package_version --remove node_modules"
+    "release": "npm run clean && cross-env URL_PREFIX=react-mdcw/ npm run build && gh-pages -d . -m 'Updates v'$npm_package_version --remove node_modules"
   }
 }
