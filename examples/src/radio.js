@@ -14,9 +14,9 @@ export default class RadioExample extends React.Component {
     group3Selected: 'radio-1'
   }
 
-  handleGroup3ItemChange = (evt: SyntheticEvent) => {
+  handleGroup3ItemChange = (evt: SyntheticInputEvent) => {
     this.setState({
-      group3Selected: (evt.target: any).value
+      group3Selected: evt.target.value
     });
   }
 

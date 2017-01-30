@@ -11,7 +11,7 @@ export type Props = {
   inputId?: string,
   name?: string,
   value?: any,
-  onChange?: (evt: SyntheticEvent) => void,
+  onChange?: (evt: SyntheticInputEvent) => void,
   checked?: boolean,
   disabled?: boolean
 };
