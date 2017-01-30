@@ -1,0 +1,54 @@
+/* @flow */
+import React from 'react';
+import classNames from 'classnames';
+
+import type {Props as WrapperProps} from '../../core/wrapper';
+import {PropWrapper} from '../../core';
+
+import {
+  BASE_CLASS_NAME
+} from '../constants';
+
+export const CLASS_NAME = `${BASE_CLASS_NAME}__actions`;
+
+export const propertyClassNames = {
+  VERTICAL: `${CLASS_NAME}--vertical`
+};
+
+export type Props<P: {}> = WrapperProps<P> & {
+  vertical: boolean
+};
+
+/**
+ * Actions section component
+ */
+export default class Actions<P: any> extends PropWrapper<*, P, *> {
+  props: Props<P>
+
+  static defaultProps = {
+    vertical: false,
+    wrap: <section />
+  }
+
+  renderProps (): P {
+    let {
+      wrap: _wrap,
+      vertical,
+      className,
+      ...props
+    } = this.props;
+
+    className = classNames(
+      CLASS_NAME,
+      {
+        [propertyClassNames.VERTICAL]: vertical
+      },
+      className
+    );
+
+    return {
+      ...props,
+      className
+    };
+  }
+}

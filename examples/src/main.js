@@ -17,6 +17,7 @@ import TypographyExample from './typography';
 import ElevationExample from './elevation';
 import ButtonExample from './button';
 import FabExample from './fab';
+import CardExample from './card';
 
 class Container extends React.Component {
   props: {
@@ -99,6 +100,11 @@ class Container extends React.Component {
                   </Link>
                 </li>
                 <li>
+                  <Link to="/card" onClick={this.handleClickLink}>
+                    Card
+                  </Link>
+                </li>
+                <li>
                   <a href="https://github.com/Hardtack/react-mdcw" target="_blank">
                     GitHub
                   </a>
@@ -155,6 +161,7 @@ export default class Main extends React.Component {
           <Route path="elevation" component={ElevationExample} />
           <Route path="button" component={ButtonExample} />
           <Route path="fab" component={FabExample} />
+          <Route path="card" component={CardExample} />
         </Route>
       </Router>
     );
