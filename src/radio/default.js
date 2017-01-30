@@ -25,6 +25,7 @@ export default class Radio extends React.Component {
   static defaultProps = {
   }
 
+  // FIXME: set checked, disabled by foundation
   render (): React.Element<*> {
     let {
       inputId,
