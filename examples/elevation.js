@@ -5,12 +5,12 @@ import type {Props as ElevationProps} from 'react-mdcw/lib/elevation';
 import {Elevation} from 'react-mdcw/lib/elevation';
 import {Title, Typography} from 'react-mdcw/lib/typography';
 
-type CardProps<P: {}> =
+type BoxProps<P: {}> =
   $Diff<typeof Elevation.defaultProps, ElevationProps<P>> & {
     style?: any
   };
 
-function Card<P: any> (props: CardProps<P>): React.Element<*> {
+function Box<P: any> (props: BoxProps<P>): React.Element<*> {
   let {
     style,
     ...p
@@ -33,7 +33,7 @@ function Card<P: any> (props: CardProps<P>): React.Element<*> {
   });
 }
 
-class TransitionCard extends React.Component {
+class TransitionBox extends React.Component {
   props: {
     [string]: any
   }
@@ -62,7 +62,7 @@ class TransitionCard extends React.Component {
     const zSpace = this.state.mouseIn ? 20 : 3;
 
     return (
-      <Card
+      <Box
         {...this.props}
         onMouseEnter={this.handleMouseEnter}
         onMouseOut={this.handleMouseOut}
@@ -79,87 +79,87 @@ export default class ElevationExample extends React.Component {
         <Title>
           Elevation Examples
         </Title>
-        <Card zSpace={0}>
+        <Box zSpace={0}>
           Elevation with 0 z-space
-        </Card>
-        <Card zSpace={1}>
+        </Box>
+        <Box zSpace={1}>
           Elevation with 1 z-space
-        </Card>
-        <Card zSpace={2}>
+        </Box>
+        <Box zSpace={2}>
           Elevation with 2 z-space
-        </Card>
-        <Card zSpace={3}>
+        </Box>
+        <Box zSpace={3}>
           Elevation with 3 z-space
-        </Card>
-        <Card zSpace={4}>
+        </Box>
+        <Box zSpace={4}>
           Elevation with 4 z-space
-        </Card>
-        <Card zSpace={5}>
+        </Box>
+        <Box zSpace={5}>
           Elevation with 5 z-space
-        </Card>
-        <Card zSpace={6}>
+        </Box>
+        <Box zSpace={6}>
           Elevation with 6 z-space
-        </Card>
-        <Card zSpace={7}>
+        </Box>
+        <Box zSpace={7}>
           Elevation with 7 z-space
-        </Card>
-        <Card zSpace={8}>
+        </Box>
+        <Box zSpace={8}>
           Elevation with 8 z-space
-        </Card>
-        <Card zSpace={9}>
+        </Box>
+        <Box zSpace={9}>
           Elevation with 9 z-space
-        </Card>
-        <Card zSpace={10}>
+        </Box>
+        <Box zSpace={10}>
           Elevation with 10 z-space
-        </Card>
-        <Card zSpace={11}>
+        </Box>
+        <Box zSpace={11}>
           Elevation with 11 z-space
-        </Card>
-        <Card zSpace={12}>
+        </Box>
+        <Box zSpace={12}>
           Elevation with 12 z-space
-        </Card>
-        <Card zSpace={13}>
+        </Box>
+        <Box zSpace={13}>
           Elevation with 13 z-space
-        </Card>
-        <Card zSpace={14}>
+        </Box>
+        <Box zSpace={14}>
           Elevation with 14 z-space
-        </Card>
-        <Card zSpace={15}>
+        </Box>
+        <Box zSpace={15}>
           Elevation with 15 z-space
-        </Card>
-        <Card zSpace={16}>
+        </Box>
+        <Box zSpace={16}>
           Elevation with 16 z-space
-        </Card>
-        <Card zSpace={17}>
+        </Box>
+        <Box zSpace={17}>
           Elevation with 17 z-space
-        </Card>
-        <Card zSpace={18}>
+        </Box>
+        <Box zSpace={18}>
           Elevation with 18 z-space
-        </Card>
-        <Card zSpace={19}>
+        </Box>
+        <Box zSpace={19}>
           Elevation with 19 z-space
-        </Card>
-        <Card zSpace={20}>
+        </Box>
+        <Box zSpace={20}>
           Elevation with 20 z-space
-        </Card>
-        <Card zSpace={21}>
+        </Box>
+        <Box zSpace={21}>
           Elevation with 21 z-space
-        </Card>
-        <Card zSpace={22}>
+        </Box>
+        <Box zSpace={22}>
           Elevation with 22 z-space
-        </Card>
-        <Card zSpace={23}>
+        </Box>
+        <Box zSpace={23}>
           Elevation with 23 z-space
-        </Card>
-        <Card zSpace={24}>
+        </Box>
+        <Box zSpace={24}>
           Elevation with 24 z-space
-        </Card>
-        <TransitionCard>
+        </Box>
+        <TransitionBox>
           Move mouse cursor on me
-        </TransitionCard>
-        <Card zSpace={10} wrap={<div />}>
+        </TransitionBox>
+        <Box zSpace={10} wrap={<div />}>
           Elevation with 10 z-space and div component
-        </Card>
+        </Box>
       </Typography>
     );
   }
