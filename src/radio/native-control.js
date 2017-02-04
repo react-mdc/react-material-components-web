@@ -83,7 +83,8 @@ export default class NativeControl<P: any> extends PropWrapper<*, P, *> {
     return {
       onChange: eventHandlerDecorator(this.handleChange)(onChange),
       ...props,
-      className
+      className,
+      checked: this.context.adapterNativeControlDelegate.isChecked()
     };
   }
 }

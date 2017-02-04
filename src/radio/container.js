@@ -23,8 +23,8 @@ export const propertyClassNames = {
 
 export type Props<P: {}> = WrapperProps<P> & {
   onChange?: EventHandler,
-  checked: boolean,
-  disabled: boolean
+  checked?: boolean,
+  disabled?: boolean
 };
 
 type State = {
@@ -50,8 +50,6 @@ export default class Container<P: any> extends PropWrapper<*, P, *> {
   }
 
   static defaultProps = {
-    disabled: false,
-    checked: false,
     wrap: <div />
   }
 
@@ -66,6 +64,12 @@ export default class Container<P: any> extends PropWrapper<*, P, *> {
       if (this.drawerCallback === callback) {
         this.drawerCallback = null;
       }
+    },
+    isChecked: (): ?boolean => {
+      if (this.props.checked != null) {
+        return this.props.checked;
+      }
+      return undefined;
     }
   }
 
@@ -106,10 +110,10 @@ export default class Container<P: any> extends PropWrapper<*, P, *> {
   }
 
   syncFoundation (props: Props<P>) {
-    if (this.foundation.isChecked() !== props.checked) {
+    if (props.checked != null && this.foundation.isChecked() !== props.checked) {
       this.foundation.setChecked(props.checked);
     }
-    if (this.foundation.isDisabled() !== props.disabled) {
+    if (props.disabled != null && this.foundation.isDisabled() !== props.disabled) {
       this.foundation.setDisabled(props.disabled);
     }
   }
@@ -117,8 +121,12 @@ export default class Container<P: any> extends PropWrapper<*, P, *> {
   // Foundation lifecycle
   componentDidMount () {
     this.foundation.init();
-    this.foundation.setChecked(this.props.checked);
-    this.foundation.setDisabled(this.props.disabled);
+    if (this.props.checked != null) {
+      this.foundation.setChecked(this.props.checked);
+    }
+    if (this.props.disabled != null) {
+      this.foundation.setDisabled(this.props.disabled);
+    }
   }
 
   componentWillUnmount () {
@@ -132,6 +140,12 @@ export default class Container<P: any> extends PropWrapper<*, P, *> {
 
   // Event handler
   handleChange = (evt: SyntheticInputEvent, ...args: Array<void>) => {
+    if (this.props.checked != null) {
+      if (this.foundation.isChecked() !== this.props.checked) {
+        // Checked state should not be changed by foundation
+        this.foundation.setChecked(this.props.checked);
+      }
+    }
     if (this.props.onChange != null) {
       this.props.onChange(evt, ...args);
     }
