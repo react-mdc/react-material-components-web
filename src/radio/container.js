@@ -4,10 +4,11 @@ import classNames from 'classnames';
 import {MDCRadioFoundation} from '@material/radio/dist/mdc.radio';
 import {Set, OrderedSet} from 'immutable';
 
+import type {EventHandler} from '../core/types';
 import type {Props as WrapperProps} from '../core/wrapper';
 import {PropWrapper} from '../core';
 
-import type {AdapterNativeControlDelegate} from './types';
+import type {AdapterNativeControlDelegate, AdapterNativeControlCallback} from './types';
 import {AdapterNativeControlDelegatePropType} from './types';
 
 import {
@@ -17,11 +18,12 @@ import {
 export const CLASS_NAME = BASE_CLASS_NAME;
 
 export const propertyClassNames = {
-  PREFIX: CLASS_NAME,
-  DISABLED: `${CLASS_NAME}--disabled`
+  PREFIX: CLASS_NAME
 };
 
 export type Props<P: {}> = WrapperProps<P> & {
+  onChange?: EventHandler,
+  checked: boolean,
   disabled: boolean
 };
 
@@ -39,8 +41,6 @@ export type ChildContext = {
 export default class Container<P: any> extends PropWrapper<*, P, *> {
   props: Props<P>
 
-  nativeControl: ?Element
-
   static childContextTypes = {
     adapterNativeControlDelegate: AdapterNativeControlDelegatePropType
   }
@@ -51,15 +51,21 @@ export default class Container<P: any> extends PropWrapper<*, P, *> {
 
   static defaultProps = {
     disabled: false,
+    checked: false,
     wrap: <div />
   }
 
+  drawerCallback: ?AdapterNativeControlCallback
+
   adapterNativeControlDelegate: AdapterNativeControlDelegate = {
-    onNativeControlMount: (el: Element) => {
-      this.nativeControl = el;
+    setCallback: (callback: AdapterNativeControlCallback) => {
+      this.drawerCallback = callback;
+      this.drawerCallback.setDefaultOnChange(this.handleChange);
     },
-    onNativeControlUnmount: () => {
-      this.nativeControl = null;
+    unsetCallback: (callback: AdapterNativeControlCallback) => {
+      if (this.drawerCallback === callback) {
+        this.drawerCallback = null;
+      }
     }
   }
 
@@ -75,7 +81,10 @@ export default class Container<P: any> extends PropWrapper<*, P, *> {
       }));
     },
     getNativeControl: (): ?Element => {
-      return this.nativeControl;
+      if (this.drawerCallback == null) {
+        return null;
+      }
+      return this.drawerCallback.getDOMNode();
     }
   })
 
@@ -87,33 +96,54 @@ export default class Container<P: any> extends PropWrapper<*, P, *> {
 
   getClassName (props: Props<P>, state: State): string {
     let {
-      className,
-      disabled
+      className
     } = props;
     return classNames(
       CLASS_NAME,
-      {
-        [propertyClassNames.DISABLED]: disabled
-      },
       className,
       state.foundationClasses.toJS()
     );
   }
 
+  syncFoundation (props: Props<P>) {
+    if (this.foundation.isChecked() !== props.checked) {
+      this.foundation.setChecked(props.checked);
+    }
+    if (this.foundation.isDisabled() !== props.disabled) {
+      this.foundation.setDisabled(props.disabled);
+    }
+  }
+
   // Foundation lifecycle
   componentDidMount () {
     this.foundation.init();
+    this.foundation.setChecked(this.props.checked);
+    this.foundation.setDisabled(this.props.disabled);
   }
 
   componentWillUnmount () {
     this.foundation.destroy();
   }
 
+  // Sync props and internal state
+  componentWillReceiveProps (props: Props<P>) {
+    this.syncFoundation(props);
+  }
+
+  // Event handler
+  handleChange = (evt: SyntheticInputEvent, ...args: Array<void>) => {
+    if (this.props.onChange != null) {
+      this.props.onChange(evt, ...args);
+    }
+  }
+
   renderProps (): P {
     let {
       wrap: _wrap,
+      checked: _checked,
       disabled: _disabled,
       className: _className,
+      onChange: _onChange,
       ...props
     } = this.props;
 

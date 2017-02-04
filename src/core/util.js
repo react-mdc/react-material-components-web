@@ -2,8 +2,7 @@
 /**
  * Common utilities
  */
-
-type EventHandler = (evt: SyntheticEvent, ...args: Array<void>) => void;
+import type {EventHandler} from './types';
 
 /**
  * Decorate event handler function with default handler.

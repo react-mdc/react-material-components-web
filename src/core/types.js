@@ -13,3 +13,5 @@ export type Wrappable<P> = ReactComponent<P> | React.Element<P>;
 export type WrapperProps<Props> = Props & {
   component: Wrappable<Props>
 };
+
+export type EventHandler = (evt: SyntheticEvent, ...args: Array<void>) => void;

@@ -1,11 +1,14 @@
 /* @flow */
 import React from 'react';
+import ReactDOM from 'react-dom';
 import classNames from 'classnames';
 
+import type {EventHandler} from '../core/types';
 import type {Props as WrapperProps} from '../core/wrapper';
 import {PropWrapper} from '../core';
+import {eventHandlerDecorator} from '../core/util';
 
-import type {AdapterNativeControlDelegate} from './types';
+import type {AdapterNativeControlDelegate, AdapterNativeControlCallback} from './types';
 import {AdapterNativeControlDelegatePropType} from './types';
 import {BASE_CLASS_NAME} from './constants';
 
@@ -37,6 +40,8 @@ export default class NativeControl<P: any> extends PropWrapper<*, P, *> {
 
   context: Context
 
+  defaultOnChange: EventHandler = () => {}
+
   static contextTypes = {
     adapterNativeControlDelegate: AdapterNativeControlDelegatePropType.isRequired
   }
@@ -45,18 +50,30 @@ export default class NativeControl<P: any> extends PropWrapper<*, P, *> {
     wrap: RadioInput
   }
 
-  componentWillUnmount () {
-    this.context.adapterNativeControlDelegate.onNativeControlUnmount();
+  adapterCallback: AdapterNativeControlCallback = {
+    setDefaultOnChange: (onChange: EventHandler) => {
+      this.defaultOnChange = onChange;
+    },
+    getDOMNode: () => ReactDOM.findDOMNode(this)
   }
 
-  handleRef = (el: Element) => {
-    this.context.adapterNativeControlDelegate.onNativeControlMount(el);
+  componentDidMount () {
+    this.context.adapterNativeControlDelegate.setCallback(this.adapterCallback);
+  }
+
+  componentWillUnmount () {
+    this.context.adapterNativeControlDelegate.unsetCallback(this.adapterCallback);
+  }
+
+  handleChange = (evt: SyntheticEvent, ...args: Array<void>) => {
+    this.defaultOnChange(evt, ...args);
   }
 
   renderProps (): P {
     let {
       wrap: _wrap,
       className,
+      onChange,
       ...props
     } = this.props;
     className = classNames(
@@ -64,7 +81,7 @@ export default class NativeControl<P: any> extends PropWrapper<*, P, *> {
       className
     );
     return {
-      ref: this.handleRef,
+      onChange: eventHandlerDecorator(this.handleChange)(onChange),
       ...props,
       className
     };

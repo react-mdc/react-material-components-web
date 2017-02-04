@@ -29,7 +29,7 @@ export default class RadioExample extends React.Component {
         <fieldset>
           <legend>Radio</legend>
           <FormField style={{margin: 16}}>
-            <Radio inputId="group-1-radio-1" name="group-1" />
+            <Radio inputId="group-1-radio-1" name="group-1" checked />
             <label htmlFor="group-1-radio-1">
               Radio 1
             </label>
@@ -44,20 +44,20 @@ export default class RadioExample extends React.Component {
         <fieldset>
           <legend>Disabled Radio</legend>
           <FormField style={{margin: 16}}>
-            <Radio inputId="group-2-radio-1" name="group-1" disabled />
+            <Radio inputId="group-2-radio-1" name="group-2" disabled />
             <label htmlFor="group-2-radio-1">
               Radio 1
             </label>
           </FormField>
           <FormField style={{margin: 16}}>
-            <Radio inputId="group-2-radio-2" name="group-1" disabled />
+            <Radio inputId="group-2-radio-2" name="group-2" checked disabled />
             <label htmlFor="group-2-radio-2">
               Radio 2
             </label>
           </FormField>
         </fieldset>
         <fieldset>
-          <legend>Radio Controlled by React</legend>
+          <legend>Radio Controlled by React State</legend>
           <FormField style={{margin: 16}}>
             <Radio
               inputId="group-3-radio-1"

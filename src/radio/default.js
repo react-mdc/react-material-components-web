@@ -25,7 +25,6 @@ export default class Radio extends React.Component {
   static defaultProps = {
   }
 
-  // FIXME: set checked, disabled by foundation
   render (): React.Element<*> {
     let {
       inputId,
@@ -37,14 +36,15 @@ export default class Radio extends React.Component {
       ...props
     } = this.props;
     return (
-      <Container disabled={disabled} {...props}>
+      <Container
+        disabled={disabled}
+        checked={checked}
+        onChange={onChange}
+        {...props}>
         <NativeControl
           id={inputId}
           name={name}
-          value={value}
-          onChange={onChange}
-          checked={checked}
-          disabled={disabled} />
+          value={value} />
         <Background>
           <OuterCircle />
           <InnerCircle />

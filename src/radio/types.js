@@ -1,12 +1,19 @@
 /* @flow */
 import React from 'react';
 
+import type {EventHandler} from '../core/types';
+
 export type AdapterNativeControlDelegate = {
-  onNativeControlMount: (el: Element) => void,
-  onNativeControlUnmount: () => void
+  setCallback: (callback: AdapterNativeControlCallback) => void,
+  unsetCallback: (callback: AdapterNativeControlCallback) => void
 };
 
 export const AdapterNativeControlDelegatePropType = React.PropTypes.shape({
-  onNativeControlMount: React.PropTypes.func.isRequired,
-  onNativeControlUnmount: React.PropTypes.func.isRequired
+  setCallback: React.PropTypes.func.isRequired,
+  unsetCallback: React.PropTypes.func.isRequired
 });
+
+export type AdapterNativeControlCallback = {
+  setDefaultOnChange: (onChange: EventHandler) => void,
+  getDOMNode: () => Element
+};
