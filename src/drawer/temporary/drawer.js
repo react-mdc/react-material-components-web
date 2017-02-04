@@ -4,6 +4,7 @@ import classNames from 'classnames';
 
 import type {Props as WrapperProps} from '../../core/wrapper';
 import {PropWrapper} from '../../core';
+import {eventHandlerDecorator} from '../../core/util';
 
 import type {AdapterDrawerDelegate, AdapterDrawerCallback} from './types';
 import {AdapterDrawerDelegatePropType} from './types';
@@ -57,10 +58,17 @@ export default class Drawer<P: any> extends PropWrapper<*, P, *> {
     this.context.adapterDrawerDelegate.onDrawerMount(el);
   }
 
+  handleClick = (evt: SyntheticEvent) => {
+    // Don't use click event handler of MDCTemporaryDrawerFoundation
+    // See `handleClick()` in `container.js` for more detail.
+    evt.stopPropagation();
+  }
+
   renderProps (): P {
     let {
       wrap: _wrap,
       className,
+      onClick,
       ...props
     } = this.props;
     className = classNames(
@@ -69,6 +77,7 @@ export default class Drawer<P: any> extends PropWrapper<*, P, *> {
     );
     props = {
       ref: this.handleRef,
+      onClick: eventHandlerDecorator(this.handleClick)(onClick),
       ...props,
       className
     };

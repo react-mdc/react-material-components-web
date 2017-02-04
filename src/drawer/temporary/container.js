@@ -6,6 +6,7 @@ import {Set, OrderedSet} from 'immutable';
 
 import type {Props as WrapperProps} from '../../core/wrapper';
 import {PropWrapper} from '../../core';
+import {eventHandlerDecorator} from '../../core/util';
 
 import * as drawerUtil from './drawerUtil';
 import type {AdapterDrawerDelegate, AdapterDrawerCallback} from './types';
@@ -117,20 +118,36 @@ export default class TemporaryDrawer<P: any> extends PropWrapper<*, P, *> {
     hasNecessaryDom: (): boolean => {
       return this.drawer !== null;
     },
-    registerInteractionHandler: (evt: Event, handler: EventListener) => {
-      this.refs.root.addEventListener(drawerUtil.remapEvent(evt), handler, drawerUtil.applyPassive());
-    },
-    deregisterInteractionHandler: (evt: Event, handler: EventListener) => {
-      this.refs.root.removeEventListener(drawerUtil.remapEvent(evt), handler, drawerUtil.applyPassive());
-    },
-    registerDrawerInteractionHandler: (evt: Event, handler: EventListener) => {
-      if (this.drawer) {
-        this.drawer.addEventListener(drawerUtil.remapEvent(evt), handler);
+    registerInteractionHandler: (evt: string, handler: EventListener) => {
+        // Don't use click event handler of MDCTemporaryDrawerFoundation
+        // See `handleClick()` for more detail.
+      if (evt !== 'click') {
+        this.refs.root.addEventListener(drawerUtil.remapEvent(evt), handler, drawerUtil.applyPassive());
       }
     },
-    deregisterDrawerInteractionHandler: (evt: Event, handler: EventListener) => {
+    deregisterInteractionHandler: (evt: string, handler: EventListener) => {
+        // Don't use click event handler of MDCTemporaryDrawerFoundation
+        // See `handleClick()` for more detail.
+      if (evt !== 'click') {
+        this.refs.root.removeEventListener(drawerUtil.remapEvent(evt), handler, drawerUtil.applyPassive());
+      }
+    },
+    registerDrawerInteractionHandler: (evt: string, handler: EventListener) => {
       if (this.drawer) {
-        this.drawer.removeEventListener(drawerUtil.remapEvent(evt), handler);
+        // Don't use click event handler of MDCTemporaryDrawerFoundation
+        // See `handleClick()` for more detail.
+        if (evt !== 'click') {
+          this.drawer.addEventListener(drawerUtil.remapEvent(evt), handler);
+        }
+      }
+    },
+    deregisterDrawerInteractionHandler: (evt: string, handler: EventListener) => {
+      if (this.drawer) {
+        // Don't use click event handler of MDCTemporaryDrawerFoundation
+        // See `handleClick()` for more detail.
+        if (evt !== 'click') {
+          this.drawer.removeEventListener(drawerUtil.remapEvent(evt), handler);
+        }
       }
     },
     registerTransitionEndHandler: (handler: EventListener) => {
@@ -219,11 +236,21 @@ export default class TemporaryDrawer<P: any> extends PropWrapper<*, P, *> {
     this.foundation.destroy();
   }
 
+  // Custom event handler
+  handleClick = (_evt: SyntheticEvent) => {
+    // Cannot handle properly click event because of react bug
+    // We implement react event handler with same functionally of this one
+    // https://github.com/material-components/material-components-web/issues/225
+    // https://github.com/facebook/react/issues/8693
+    this.foundation.close();
+  }
+
   renderProps (): P {
     let {
       wrap: _wrap,
       className: _className,
       rtl: _rtl,
+      onClick,
       onOpenDrawer: _onOpenDrawer,
       onCloseDrawer: _onCloseDrawer,
       ...props
@@ -232,6 +259,7 @@ export default class TemporaryDrawer<P: any> extends PropWrapper<*, P, *> {
     let className = this.getClassName(this.props, this.state);
     props = {
       ref: 'root',
+      onClick: eventHandlerDecorator(this.handleClick)(onClick),
       ...props,
       className
     };
