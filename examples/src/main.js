@@ -49,8 +49,6 @@ class Container extends React.Component {
     });
   }
 
-  // FIXME: click event will not be fired because of bug in mdc-web
-  // See: https://github.com/material-components/material-components-web/issues/225
   handleClickLink = () => {
     this.setState({
       drawerOpen: false
