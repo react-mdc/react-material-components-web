@@ -70,6 +70,8 @@ $ npm run build
 Progress
 --------
 
+### Components
+
 - [x] Theme
 
 - [x] Typography
@@ -95,3 +97,11 @@ Progress
 - [ ] Snackbar
 
 - [ ] Textfield
+
+### Extra
+
+- [ ] Documentation
+
+- [ ] Unit testing
+
+- [ ] Release
