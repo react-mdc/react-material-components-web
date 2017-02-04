@@ -13,7 +13,8 @@ export type Props = {
   value?: any,
   onChange?: (evt: SyntheticInputEvent) => void,
   checked?: boolean,
-  disabled?: boolean
+  disabled?: boolean,
+  defaultChecked?: boolean
 };
 
 /**
@@ -33,6 +34,7 @@ export default class Radio extends React.Component {
       onChange,
       checked,
       disabled,
+      defaultChecked,
       ...props
     } = this.props;
     return (
@@ -44,6 +46,7 @@ export default class Radio extends React.Component {
         <NativeControl
           id={inputId}
           name={name}
+          defaultChecked={defaultChecked}
           value={value} />
         <Background>
           <OuterCircle />
