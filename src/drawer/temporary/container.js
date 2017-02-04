@@ -1,5 +1,6 @@
 /* @flow */
 import React from 'react';
+import ReactDOM from 'react-dom';
 import classNames from 'classnames';
 import {MDCTemporaryDrawerFoundation} from '@material/drawer/dist/mdc.drawer';
 import {Set, OrderedSet} from 'immutable';
@@ -45,8 +46,6 @@ const {
 export default class TemporaryDrawer<P: any> extends PropWrapper<*, P, *> {
   props: Props<P>
 
-  drawer: ?Element
-
   static childContextTypes = {
     adapterDrawerDelegate: AdapterDrawerDelegatePropType
   }
@@ -57,7 +56,7 @@ export default class TemporaryDrawer<P: any> extends PropWrapper<*, P, *> {
     style: {}
   }
 
-  drawerCallbacks: Set<AdapterDrawerCallback> = new OrderedSet()
+  drawerCallback: ?AdapterDrawerCallback;
 
   state: State = {
     foundationClasses: new OrderedSet(),
@@ -65,17 +64,13 @@ export default class TemporaryDrawer<P: any> extends PropWrapper<*, P, *> {
   }
 
   adapterDrawerDelegate: AdapterDrawerDelegate = {
-    onDrawerMount: (el: Element) => {
-      this.drawer = el;
+    setCallback: (callback: AdapterDrawerCallback) => {
+      this.drawerCallback = callback;
     },
-    onDrawerUnmount: () => {
-      this.drawer = null;
-    },
-    addAdapterDrawerCallback: (callback: AdapterDrawerCallback) => {
-      this.drawerCallbacks = this.drawerCallbacks.add(callback);
-    },
-    removeAdapterDrawerCallback: (callback: AdapterDrawerCallback) => {
-      this.drawerCallbacks = this.drawerCallbacks.remove(callback);
+    unsetCallback: (callback: AdapterDrawerCallback) => {
+      if (this.drawerCallback === callback) {
+        this.drawerCallback = null;
+      }
     }
   }
 
@@ -116,48 +111,51 @@ export default class TemporaryDrawer<P: any> extends PropWrapper<*, P, *> {
       return this.getClassName(this.props, this.state).split(/\s+/).includes(className);
     },
     hasNecessaryDom: (): boolean => {
-      return this.drawer !== null;
+      if (this.drawerCallback == null) {
+        return false;
+      }
+      return this.drawerCallback.getDOMNode() != null;
     },
     registerInteractionHandler: (evt: string, handler: EventListener) => {
         // Don't use click event handler of MDCTemporaryDrawerFoundation
         // See `handleClick()` for more detail.
       if (evt !== 'click') {
-        this.refs.root.addEventListener(drawerUtil.remapEvent(evt), handler, drawerUtil.applyPassive());
+        this.getRootDOMNode().addEventListener(drawerUtil.remapEvent(evt), handler, drawerUtil.applyPassive());
       }
     },
     deregisterInteractionHandler: (evt: string, handler: EventListener) => {
         // Don't use click event handler of MDCTemporaryDrawerFoundation
         // See `handleClick()` for more detail.
       if (evt !== 'click') {
-        this.refs.root.removeEventListener(drawerUtil.remapEvent(evt), handler, drawerUtil.applyPassive());
+        this.getRootDOMNode().removeEventListener(drawerUtil.remapEvent(evt), handler, drawerUtil.applyPassive());
       }
     },
     registerDrawerInteractionHandler: (evt: string, handler: EventListener) => {
-      if (this.drawer) {
+      if (this.drawerCallback != null) {
         // Don't use click event handler of MDCTemporaryDrawerFoundation
         // See `handleClick()` for more detail.
         if (evt !== 'click') {
-          this.drawer.addEventListener(drawerUtil.remapEvent(evt), handler);
+          this.drawerCallback.getDOMNode().addEventListener(drawerUtil.remapEvent(evt), handler);
         }
       }
     },
     deregisterDrawerInteractionHandler: (evt: string, handler: EventListener) => {
-      if (this.drawer) {
+      if (this.drawerCallback != null) {
         // Don't use click event handler of MDCTemporaryDrawerFoundation
         // See `handleClick()` for more detail.
         if (evt !== 'click') {
-          this.drawer.removeEventListener(drawerUtil.remapEvent(evt), handler);
+          this.drawerCallback.getDOMNode().removeEventListener(drawerUtil.remapEvent(evt), handler);
         }
       }
     },
     registerTransitionEndHandler: (handler: EventListener) => {
-      if (this.drawer != null) {
-        this.drawer.addEventListener('transitionend', handler);
+      if (this.drawerCallback != null) {
+        this.drawerCallback.getDOMNode().addEventListener('transitionend', handler);
       }
     },
     deregisterTransitionEndHandler: (handler: EventListener) => {
-      if (this.drawer != null) {
-        this.drawer.removeEventListener('transitionend', handler);
+      if (this.drawerCallback != null) {
+        this.drawerCallback.getDOMNode().removeEventListener('transitionend', handler);
       }
     },
     registerDocumentKeydownHandler: (handler: EventListener) => {
@@ -167,22 +165,24 @@ export default class TemporaryDrawer<P: any> extends PropWrapper<*, P, *> {
       document.removeEventListener('keydown', handler);
     },
     getDrawerWidth: (): number => {
-      if (this.drawer == null) {
+      if (this.drawerCallback == null) {
         return 0;
       }
-      return this.drawer.getBoundingClientRect().width;
+      return this.drawerCallback.getDOMNode().getBoundingClientRect().width;
     },
     setTranslateX: (value: number) => {
-      this.drawerCallbacks.forEach((callback) => callback.setTranslateX(value));
+      if (this.drawerCallback != null) {
+        this.drawerCallback.setTranslateX(value);
+      }
     },
     updateCssVariable: (_value: string) => {
       // There's nothing we can do in react
     },
     getFocusableElements: (): Iterable<Node> => {
-      if (this.drawer == null) {
+      if (this.drawerCallback == null) {
         return [];
       }
-      return this.drawer.querySelectorAll(FOCUSABLE_ELEMENTS);
+      return this.drawerCallback.getDOMNode().querySelectorAll(FOCUSABLE_ELEMENTS);
     },
     saveElementTabState: (el: Element) => {
       drawerUtil.saveElementTabState(el);
@@ -197,7 +197,10 @@ export default class TemporaryDrawer<P: any> extends PropWrapper<*, P, *> {
       return this.props.rtl;
     },
     isDrawer: (el: Element): boolean => {
-      return el === this.drawer;
+      if (this.drawerCallback == null) {
+        return false;
+      }
+      return el === this.drawerCallback.getDOMNode();
     }
   })
 
@@ -214,6 +217,10 @@ export default class TemporaryDrawer<P: any> extends PropWrapper<*, P, *> {
       className,
       state.foundationClasses.toJS()
     );
+  }
+
+  getRootDOMNode (): Element {
+    return ReactDOM.findDOMNode(this);
   }
 
   // Sync props and internal state
@@ -258,7 +265,6 @@ export default class TemporaryDrawer<P: any> extends PropWrapper<*, P, *> {
 
     let className = this.getClassName(this.props, this.state);
     props = {
-      ref: 'root',
       onClick: eventHandlerDecorator(this.handleClick)(onClick),
       ...props,
       className

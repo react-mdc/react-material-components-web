@@ -1,5 +1,6 @@
 /* @flow */
 import React from 'react';
+import ReactDOM from 'react-dom';
 import classNames from 'classnames';
 
 import type {Props as WrapperProps} from '../../core/wrapper';
@@ -42,20 +43,16 @@ export default class Drawer<P: any> extends PropWrapper<*, P, *> {
   adapterCallback: AdapterDrawerCallback = {
     setTranslateX: (value: number) => {
       this.setState({translateX: value});
-    }
+    },
+    getDOMNode: () => ReactDOM.findDOMNode(this)
   }
 
   componentDidMount () {
-    this.context.adapterDrawerDelegate.addAdapterDrawerCallback(this.adapterCallback);
+    this.context.adapterDrawerDelegate.setCallback(this.adapterCallback);
   }
 
   componentWillUnmount () {
-    this.context.adapterDrawerDelegate.onDrawerUnmount();
-    this.context.adapterDrawerDelegate.removeAdapterDrawerCallback(this.adapterCallback);
-  }
-
-  handleRef = (el: Element) => {
-    this.context.adapterDrawerDelegate.onDrawerMount(el);
+    this.context.adapterDrawerDelegate.unsetCallback(this.adapterCallback);
   }
 
   handleClick = (evt: SyntheticEvent) => {
@@ -76,7 +73,6 @@ export default class Drawer<P: any> extends PropWrapper<*, P, *> {
       className
     );
     props = {
-      ref: this.handleRef,
       onClick: eventHandlerDecorator(this.handleClick)(onClick),
       ...props,
       className
