@@ -1,6 +1,6 @@
 /* @flow */
 import React from 'react';
-import {Router, Route, IndexRedirect, Link, hashHistory} from 'react-router';
+import {Router, Route, Link, hashHistory} from 'react-router';
 
 import {
   TemporaryDrawer,
@@ -24,6 +24,7 @@ import FormFieldExample from './form-field';
 import RadioExample from './radio';
 import RippleExample from './ripple';
 
+import Welcome from './welcome';
 import NotFound from './not-found';
 import {MaterialIcon} from './icon';
 
@@ -189,13 +190,13 @@ class Container extends React.Component {
         {this.renderToolbar()}
         <div
           style={{
-            padding: 15,
+            padding: 16,
             overflow: 'scroll',
             display: 'flex',
             flex: 1,
             flexGrow: 1
           }}>
-          {this.props.children}
+          {this.props.children || (<Welcome />)}
         </div>
       </Typography>
     );
@@ -207,7 +208,6 @@ export default class Main extends React.Component {
     return (
       <Router history={hashHistory}>
         <Route path="/" component={Container}>
-          <IndexRedirect to="/typography" />
           <Route path="typography" component={TypographyExample} />
           <Route path="elevation" component={ElevationExample} />
           <Route path="button" component={ButtonExample} />
