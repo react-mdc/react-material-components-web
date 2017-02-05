@@ -4,24 +4,12 @@
   "description": "React Components for Metarial Component Web",
   "author": "Choi Geonu",
   "license": "MIT",
-  "main": "lib/",
-  "repository": "https://github.com/Hardtack/react-mdcw.git",
-  "dependencies": {
-    "classnames": "^2.2.5",
-    "immutable": "^3.8.1",
-    "material-components-web": "^0.2.0",
-    "react": "^15.0.0",
-    "react-dom": "^15.4.2"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hardtack/react-mdcw.git"
   },
   "devDependencies": {
-    "babel": "^6.5.2",
-    "babel-cli": "^6.18.0",
-    "babel-core": "^6.22.1",
-    "babel-eslint": "^7.1.1",
-    "babel-plugin-transform-flow-strip-types": "^6.22.0",
-    "babel-preset-es2015": "^6.18.0",
-    "babel-preset-react": "^6.16.0",
-    "babel-preset-stage-0": "^6.22.0",
+    "@react-mdc/dev": "^0.1.0",
     "cross-env": "^3.1.4",
     "eslint": "^3.13.1",
     "eslint-config-standard": "^6.2.1",
@@ -37,10 +25,7 @@
     "lerna": "2.0.0-beta.36"
   },
   "scripts": {
-    "lint": "eslint src/",
-    "build": "npm run lint && babel src -d lib",
-    "babel-prepublish": "npm run build",
-    "flow-prepublish": "flow-copy-source src lib",
-    "prepublish": "npm run babel-prepublish && npm run flow-prepublish"
+    "lint": "cross-env FLOW_BIN=./node_modules/.bin/flow eslint packages/",
+    "postinstall": "lerna bootstrap"
   }
 }

@@ -1,9 +1,9 @@
 /* @flow */
 import React from 'react';
 
-import {Radio} from 'react-mdcw/lib/radio';
-import {FormField} from 'react-mdcw/lib/form-field';
-import {Title, Typography} from 'react-mdcw/lib/typography';
+import {Radio} from '@react-mdc/radio';
+import {FormField} from '@react-mdc/form-field';
+import {Title, Typography} from '@react-mdc/typography';
 
 export default class RadioExample extends React.Component {
   state: {

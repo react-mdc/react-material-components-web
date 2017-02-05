@@ -10,9 +10,9 @@ import {
   OrderedMap
 } from 'immutable';
 
-import type {Props as WrapperProps} from '../../core/wrapper';
-import {PropWrapper} from '../../core';
-import {eventHandlerDecorator} from '../../core/util';
+import type {Props as WrapperProps} from '@react-mdc/core/lib/wrapper';
+import {PropWrapper} from '@react-mdc/core';
+import {eventHandlerDecorator} from '@react-mdc/core/lib/util';
 
 import * as drawerUtil from './drawerUtil';
 import type {AdapterDrawerDelegate, AdapterDrawerCallback} from './types';

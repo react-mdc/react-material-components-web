@@ -1,8 +1,8 @@
 /* @flow */
 import React from 'react';
 
-import {Fab, Icon} from 'react-mdcw/lib/fab';
-import {Title, Typography} from 'react-mdcw/lib/typography';
+import {Fab, Icon} from '@react-mdc/fab';
+import {Title, Typography} from '@react-mdc/typography';
 
 import {Pen, MaterialIcon} from './icon';
 

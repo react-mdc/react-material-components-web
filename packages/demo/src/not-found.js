@@ -6,8 +6,8 @@ import {
   Card,
   actions,
   primary
-} from 'react-mdcw/lib/card';
-import {Button} from 'react-mdcw/lib/button';
+} from '@react-mdc/card';
+import {Button} from '@react-mdc/button';
 
 export default class NotFound extends React.Component {
   render (): React.Element<*> {

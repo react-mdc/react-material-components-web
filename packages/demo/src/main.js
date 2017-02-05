@@ -8,12 +8,12 @@ import {
   Content,
   Header,
   HeaderContent
-} from 'react-mdcw/lib/drawer/temporary';
-import {SELECTED_CLASS_NAME} from 'react-mdcw/lib/drawer/temporary/constants';
-import {Typography} from 'react-mdcw/lib/typography';
-import {Themed} from 'react-mdcw/lib/theme';
-import {Elevation} from 'react-mdcw/lib/elevation';
-import {List, Divider, group, item} from 'react-mdcw/lib/list';
+} from '@react-mdc/drawer/lib/temporary';
+import {SELECTED_CLASS_NAME} from '@react-mdc/drawer/lib/temporary/constants';
+import {Typography} from '@react-mdc/typography';
+import {Themed} from '@react-mdc/theme';
+import {Elevation} from '@react-mdc/elevation';
+import {List, Divider, group, item} from '@react-mdc/list';
 
 import TypographyExample from './typography';
 import ElevationExample from './elevation';

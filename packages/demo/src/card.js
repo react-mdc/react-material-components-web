@@ -9,8 +9,8 @@ import {
   SupportingText,
   actions,
   primary
-} from 'react-mdcw/lib/card';
-import {Title, Typography} from 'react-mdcw/lib/typography';
+} from '@react-mdc/card';
+import {Title, Typography} from '@react-mdc/typography';
 
 import Image16x9 from '../images/16-9.jpg';
 import Image1x1 from '../images/1-1.jpg';

@@ -1,0 +1,21 @@
+{
+  "name": "@react-mdc/dev",
+  "description": "Dev dependency of react-mdcw",
+  "version": "0.1.0",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hardtack/react-mdcw.git"
+  },
+  "bin": {
+    "babel": "./bin/babel.js",
+    "flow-copy-source": "./bin/flow-copy-source.js"
+  },
+  "dependencies": {
+    "babel-cli": "^6.22.2",
+    "babel-plugin-transform-flow-strip-types": "^6.22.0",
+    "babel-preset-react": "^6.22.0",
+    "babel-preset-stage-0": "^6.22.0",
+    "flow-copy-source": "^1.1.0"
+  }
+}

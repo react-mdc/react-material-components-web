@@ -14,4 +14,4 @@ export type WrapperProps<Props> = Props & {
   component: Wrappable<Props>
 };
 
-export type EventHandler = (evt: SyntheticEvent, ...args: Array<void>) => void;
+export type EventHandler = (evt: *, ...args: Array<void>) => void;

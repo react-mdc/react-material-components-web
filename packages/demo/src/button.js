@@ -1,9 +1,9 @@
 /* @flow */
 import React from 'react';
 
-import {Ripple} from 'react-mdcw/lib/ripple';
-import {Button} from 'react-mdcw/lib/button';
-import {Title, Typography} from 'react-mdcw/lib/typography';
+import {Ripple} from '@react-mdc/ripple';
+import {Button} from '@react-mdc/button';
+import {Title, Typography} from '@react-mdc/typography';
 
 function FieldSet (props: *): * {
   let {style} = props;

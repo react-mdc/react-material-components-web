@@ -2,9 +2,9 @@
 import React from 'react';
 import classNames from 'classnames';
 
-import type {Props as WrapperProps} from '../../core/wrapper';
-import {PropWrapper} from '../../core';
-import {Button} from '../../button';
+import type {Props as WrapperProps} from '@react-mdc/core/lib/wrapper';
+import {PropWrapper} from '@react-mdc/core';
+import {Button} from '@react-mdc/button';
 
 import {
   BASE_CLASS_NAME

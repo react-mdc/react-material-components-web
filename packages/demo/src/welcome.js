@@ -6,7 +6,7 @@ import {
   Display3,
   Title,
   Body2
-} from 'react-mdcw/lib/typography';
+} from '@react-mdc/typography';
 
 export default class Welcome extends React.Component {
   render (): React.Element<*> {

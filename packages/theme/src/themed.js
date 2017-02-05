@@ -2,8 +2,8 @@
 import React from 'react';
 import classNames from 'classnames';
 
-import type {Props as WrapperProps} from '../core/wrapper';
-import {PropWrapper} from '../core';
+import type {Props as WrapperProps} from '@react-mdc/core/lib/wrapper';
+import {PropWrapper} from '@react-mdc/core';
 
 import type {Color, BackgroundColor, TextColor, OnColor} from './types';
 import * as helpers from './helpers';

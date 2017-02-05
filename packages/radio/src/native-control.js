@@ -3,10 +3,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import classNames from 'classnames';
 
-import type {EventHandler} from '../core/types';
-import type {Props as WrapperProps} from '../core/wrapper';
-import {PropWrapper} from '../core';
-import {eventHandlerDecorator} from '../core/util';
+import type {EventHandler} from '@react-mdc/core/lib/types';
+import type {Props as WrapperProps} from '@react-mdc/core/lib/wrapper';
+import {PropWrapper} from '@react-mdc/core';
+import {eventHandlerDecorator} from '@react-mdc/core/lib/util';
 
 import type {AdapterNativeControlDelegate, AdapterNativeControlCallback} from './types';
 import {AdapterNativeControlDelegatePropType} from './types';

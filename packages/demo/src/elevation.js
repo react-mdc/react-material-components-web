@@ -1,9 +1,9 @@
 /* @flow */
 import React from 'react';
 
-import type {Props as ElevationProps} from 'react-mdcw/lib/elevation';
-import {Elevation} from 'react-mdcw/lib/elevation';
-import {Title, Typography} from 'react-mdcw/lib/typography';
+import type {Props as ElevationProps} from '@react-mdc/elevation';
+import {Elevation} from '@react-mdc/elevation';
+import {Title, Typography} from '@react-mdc/typography';
 
 type BoxProps<P: {}> =
   $Diff<typeof Elevation.defaultProps, ElevationProps<P>> & {

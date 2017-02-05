@@ -4,9 +4,9 @@ import classNames from 'classnames';
 import {MDCRadioFoundation} from '@material/radio/dist/mdc.radio';
 import {Set, OrderedSet} from 'immutable';
 
-import type {EventHandler} from '../core/types';
-import type {Props as WrapperProps} from '../core/wrapper';
-import {PropWrapper} from '../core';
+import type {EventHandler} from '@react-mdc/core/lib/types';
+import type {Props as WrapperProps} from '@react-mdc/core/lib/wrapper';
+import {PropWrapper} from '@react-mdc/core';
 
 import type {AdapterNativeControlDelegate, AdapterNativeControlCallback} from './types';
 import {AdapterNativeControlDelegatePropType} from './types';

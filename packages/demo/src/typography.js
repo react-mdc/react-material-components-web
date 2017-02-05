@@ -15,7 +15,7 @@ import {
   Body2,
   Body1,
   Caption
-} from 'react-mdcw/lib/typography';
+} from '@react-mdc/typography';
 
 export default class TypographyExample extends React.Component {
   render (): React.Element<*> {

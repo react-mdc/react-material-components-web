@@ -1,8 +1,8 @@
 /* @flow */
 import React from 'react';
 
-import {FormField} from 'react-mdcw/lib/form-field';
-import {Title, Typography} from 'react-mdcw/lib/typography';
+import {FormField} from '@react-mdc/form-field';
+import {Title, Typography} from '@react-mdc/typography';
 
 function FieldSet (props: *): * {
   let {style} = props;

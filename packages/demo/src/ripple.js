@@ -1,13 +1,13 @@
 /* @flow */
 import React from 'react';
 
-import {Ripple} from 'react-mdcw/lib/ripple';
-import {Elevation} from 'react-mdcw/lib/elevation';
+import {Ripple} from '@react-mdc/ripple';
+import {Elevation} from '@react-mdc/elevation';
 import {
   Typography,
   Title,
   Subheading2
-} from 'react-mdcw/lib/typography';
+} from '@react-mdc/typography';
 
 import {Pen} from './icon';
 
