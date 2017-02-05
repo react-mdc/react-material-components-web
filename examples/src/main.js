@@ -22,6 +22,7 @@ import FabExample from './fab';
 import CardExample from './card';
 import FormFieldExample from './form-field';
 import RadioExample from './radio';
+import RippleExample from './ripple';
 
 import NotFound from './not-found';
 
@@ -108,6 +109,13 @@ class Container extends React.Component {
           to="/radio"
           onClick={this.handleClickLink}>
           Radio
+        </item.ListItem>
+        <item.ListItem
+          wrap={Link}
+          activeClassName={SELECTED_CLASS_NAME}
+          to="/ripple"
+          onClick={this.handleClickLink}>
+          Ripple
         </item.ListItem>
         <Divider wrap={<hr />} />
         <item.ListItem
@@ -212,6 +220,7 @@ export default class Main extends React.Component {
           <Route path="card" component={CardExample} />
           <Route path="form-field" component={FormFieldExample} />
           <Route path="radio" component={RadioExample} />
+          <Route path="ripple" component={RippleExample} />
           <Route path="*" component={NotFound} />
         </Route>
       </Router>

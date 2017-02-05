@@ -92,7 +92,7 @@ Progress
 
 - [x] Radio
 
-- [ ] Ripple
+- [x] Ripple
 
 - [ ] Snackbar
 
