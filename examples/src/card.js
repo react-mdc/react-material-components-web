@@ -15,6 +15,20 @@ import {Title, Typography} from 'react-mdcw/lib/typography';
 import Image16x9 from '../images/16-9.jpg';
 import Image1x1 from '../images/1-1.jpg';
 
+function DemoCard (props: *): React.Element<*> {
+  let {
+    style
+  } = props;
+
+  style = {
+    ...style,
+    marginTop: 16,
+    marginBottom: 16
+  };
+
+  return (<Card {...props} style={style} />);
+}
+
 export default class ElevationExample extends React.Component {
   render (): React.Element<*> {
     return (
@@ -22,7 +36,7 @@ export default class ElevationExample extends React.Component {
         <Title>
           Card Examples
         </Title>
-        <Card style={{maxWidth: 350}}>
+        <DemoCard style={{maxWidth: 350}}>
           <Media
             style={{
               backgroundImage: `url(${Image16x9})`,
@@ -35,8 +49,8 @@ export default class ElevationExample extends React.Component {
             consectetur adipisicing elit,
             sed do eiusmod tempor.
           </SupportingText>
-        </Card>
-        <Card style={{maxWidth: 350}}>
+        </DemoCard>
+        <DemoCard style={{maxWidth: 350}}>
           <primary.Primary>
             <primary.Title>
               Title
@@ -65,8 +79,8 @@ export default class ElevationExample extends React.Component {
               ACTION 2
             </actions.Action>
           </actions.Actions>
-        </Card>
-        <Card
+        </DemoCard>
+        <DemoCard
           style={{
             backgroundImage: `url(${Image1x1})`,
             backgroundSize: 'cover',
@@ -86,8 +100,8 @@ export default class ElevationExample extends React.Component {
               Subtitle here
             </primary.Subtitle>
           </primary.Primary>
-        </Card>
-        <Card
+        </DemoCard>
+        <DemoCard
           style={{
             maxWidth: 350
           }}>
@@ -110,8 +124,8 @@ export default class ElevationExample extends React.Component {
               ACTION 2
             </actions.Action>
           </actions.Actions>
-        </Card>
-        <Card
+        </DemoCard>
+        <DemoCard
           style={{
             maxWidth: 350
           }}>
@@ -126,7 +140,7 @@ export default class ElevationExample extends React.Component {
               </actions.Action>
             </actions.Actions>
           </HorizontalBlock>
-        </Card>
+        </DemoCard>
       </Typography>
     );
   }
