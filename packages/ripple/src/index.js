@@ -12,8 +12,8 @@ import {
   OrderedMap
 } from 'immutable';
 
-import type {Props as WrapperProps} from '@react-mdc/core/lib/wrapper';
-import {PropWrapper} from '@react-mdc/core';
+import type {Props as WrapperProps} from '@react-mdc/base/lib/wrapper';
+import {PropWrapper} from '@react-mdc/base';
 
 import {supportsCssVariables, getMatchesProperty} from './util';
 

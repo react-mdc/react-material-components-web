@@ -1,7 +1,7 @@
 /* @flow */
 import React from 'react';
 
-import type {EventHandler} from '@react-mdc/core/lib/types';
+import type {EventHandler} from '@react-mdc/base/lib/types';
 
 export type AdapterNativeControlDelegate = {
   setCallback: (callback: AdapterNativeControlCallback) => void,

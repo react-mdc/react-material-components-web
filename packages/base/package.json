@@ -1,5 +1,5 @@
 {
-  "name": "@react-mdc/core",
+  "name": "@react-mdc/base",
   "description": "Core library of @react-mdc components",
   "version": "0.1.0",
   "license": "MIT",

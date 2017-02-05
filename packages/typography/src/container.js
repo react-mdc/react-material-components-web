@@ -2,8 +2,8 @@
 import React from 'react';
 import classNames from 'classnames';
 
-import type {Props as WrapperProps} from '@react-mdc/core/lib/wrapper';
-import {PropWrapper} from '@react-mdc/core';
+import type {Props as WrapperProps} from '@react-mdc/base/lib/wrapper';
+import {PropWrapper} from '@react-mdc/base';
 
 import {BASE_CLASS_NAME} from './constants';
 

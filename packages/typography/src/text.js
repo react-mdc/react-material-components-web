@@ -2,8 +2,8 @@
 import React from 'react';
 import classNames from 'classnames';
 
-import type {Wrappable} from '@react-mdc/core/lib/types';
-import {Wrapper} from '@react-mdc/core';
+import type {Wrappable} from '@react-mdc/base/lib/types';
+import {Wrapper} from '@react-mdc/base';
 
 import type {TextStyle} from './types';
 import {BASE_CLASS_NAME} from './constants';
