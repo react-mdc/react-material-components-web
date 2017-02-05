@@ -4,6 +4,19 @@ import React from 'react';
 import {FormField} from 'react-mdcw/lib/form-field';
 import {Title, Typography} from 'react-mdcw/lib/typography';
 
+function FieldSet (props: *): * {
+  let {style} = props;
+  style = {
+    ...style,
+    margin: 16
+  };
+  return (
+    <fieldset
+      {...props}
+      style={style} />
+  );
+}
+
 export default class FormFieldExample extends React.Component {
   render (): React.Element<*> {
     return (
@@ -11,7 +24,7 @@ export default class FormFieldExample extends React.Component {
         <Title>
           Form Field Examples
         </Title>
-        <fieldset>
+        <FieldSet>
           <legend>Form Field</legend>
           <div style={{margin: 16}}>
             <FormField>
@@ -19,8 +32,8 @@ export default class FormFieldExample extends React.Component {
               <label htmlFor="input">Input Label</label>
             </FormField>
           </div>
-        </fieldset>
-        <fieldset>
+        </FieldSet>
+        <FieldSet>
           <legend>Form Field Align End</legend>
           <div style={{margin: 16}}>
             <FormField alignEnd>
@@ -28,7 +41,7 @@ export default class FormFieldExample extends React.Component {
               <label htmlFor="input-end">Input Label</label>
             </FormField>
           </div>
-        </fieldset>
+        </FieldSet>
       </Typography>
     );
   }

@@ -20,7 +20,11 @@ import {
 export default class TypographyExample extends React.Component {
   render (): React.Element<*> {
     return (
-      <Typography>
+      <Typography
+        style={{
+          flex: 1,
+          textAlign: 'center'
+        }}>
         <Title textStyle="title">
           Typography Examples
         </Title>
@@ -57,17 +61,12 @@ export default class TypographyExample extends React.Component {
         <Body1>
           Body 1
         </Body1>
-        <ul>
-          <Caption wrap={<li />}>
-            Captions
-          </Caption>
-          <Caption wrap={<li />}>
-            Captions
-          </Caption>
-          <Caption wrap={<li />}>
-            Captions
-          </Caption>
-        </ul>
+        <Caption>
+          Caption
+        </Caption>
+        <Caption wrap={<i />}>
+          Italic Caption
+        </Caption>
       </Typography>
     );
   }
