@@ -3,7 +3,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import classNames from 'classnames';
 import {MDCTemporaryDrawerFoundation} from '@material/drawer/dist/mdc.drawer';
-import {Set, OrderedSet} from 'immutable';
+import {
+  Set,
+  OrderedSet,
+  Map,
+  OrderedMap
+} from 'immutable';
 
 import type {Props as WrapperProps} from '../../core/wrapper';
 import {PropWrapper} from '../../core';
@@ -27,6 +32,9 @@ export type Props<P> = WrapperProps<P> & {
 
 type State = {
   foundationClasses: Set<string>,
+  foundationCssVars: Map<string, ?string>,
+  foundationEventListeners: Map<string, EventListener>,
+  foundationDrawerEventListeners: Map<string, EventListener>,
   open: boolean
 };
 
@@ -39,7 +47,8 @@ const {
     OPEN: OPEN_CLASS_NAME
   },
   strings: {
-    FOCUSABLE_ELEMENTS
+    FOCUSABLE_ELEMENTS,
+    OPACITY_VAR_NAME
   }
 } = MDCTemporaryDrawerFoundation;
 
@@ -60,6 +69,9 @@ export default class TemporaryDrawer<P: any> extends PropWrapper<*, P, *> {
 
   state: State = {
     foundationClasses: new OrderedSet(),
+    foundationCssVars: new OrderedMap(),
+    foundationEventListeners: new OrderedMap(),
+    foundationDrawerEventListeners: new OrderedMap(),
     open: false
   }
 
@@ -117,45 +129,41 @@ export default class TemporaryDrawer<P: any> extends PropWrapper<*, P, *> {
       return this.drawerCallback.getDOMNode() != null;
     },
     registerInteractionHandler: (evt: string, handler: EventListener) => {
-        // Don't use click event handler of MDCTemporaryDrawerFoundation
-        // See `handleClick()` for more detail.
-      if (evt !== 'click') {
-        this.getRootDOMNode().addEventListener(drawerUtil.remapEvent(evt), handler, drawerUtil.applyPassive());
-      }
+      this.setState((state) => ({
+        foundationEventListeners: state.foundationEventListeners.set(evt, handler)
+      }));
     },
     deregisterInteractionHandler: (evt: string, handler: EventListener) => {
-        // Don't use click event handler of MDCTemporaryDrawerFoundation
-        // See `handleClick()` for more detail.
-      if (evt !== 'click') {
-        this.getRootDOMNode().removeEventListener(drawerUtil.remapEvent(evt), handler, drawerUtil.applyPassive());
+      if (this.state.foundationEventListeners.get(evt) === handler) {
+        this.setState((state) => ({
+          foundationEventListeners: state.foundationEventListeners.delete(evt)
+        }));
       }
     },
     registerDrawerInteractionHandler: (evt: string, handler: EventListener) => {
-      if (this.drawerCallback != null) {
-        // Don't use click event handler of MDCTemporaryDrawerFoundation
-        // See `handleClick()` for more detail.
-        if (evt !== 'click') {
-          this.drawerCallback.getDOMNode().addEventListener(drawerUtil.remapEvent(evt), handler);
-        }
-      }
+      this.setState((state) => ({
+        foundationDrawerEventListeners: state.foundationDrawerEventListeners.set(evt, handler)
+      }));
     },
     deregisterDrawerInteractionHandler: (evt: string, handler: EventListener) => {
-      if (this.drawerCallback != null) {
-        // Don't use click event handler of MDCTemporaryDrawerFoundation
-        // See `handleClick()` for more detail.
-        if (evt !== 'click') {
-          this.drawerCallback.getDOMNode().removeEventListener(drawerUtil.remapEvent(evt), handler);
-        }
+      if (this.state.foundationDrawerEventListeners.get(evt) === handler) {
+        this.setState((state) => ({
+          foundationDrawerEventListeners: state.foundationDrawerEventListeners.delete(evt)
+        }));
       }
     },
     registerTransitionEndHandler: (handler: EventListener) => {
-      if (this.drawerCallback != null) {
-        this.drawerCallback.getDOMNode().addEventListener('transitionend', handler);
-      }
+      const evt = 'transitionend';
+      this.setState((state) => ({
+        foundationDrawerEventListeners: state.foundationDrawerEventListeners.set(evt, handler)
+      }));
     },
     deregisterTransitionEndHandler: (handler: EventListener) => {
-      if (this.drawerCallback != null) {
-        this.drawerCallback.getDOMNode().removeEventListener('transitionend', handler);
+      const evt = 'transitionend';
+      if (this.state.foundationDrawerEventListeners.get(evt) === handler) {
+        this.setState((state) => ({
+          foundationDrawerEventListeners: state.foundationDrawerEventListeners.delete(evt)
+        }));
       }
     },
     registerDocumentKeydownHandler: (handler: EventListener) => {
@@ -175,8 +183,10 @@ export default class TemporaryDrawer<P: any> extends PropWrapper<*, P, *> {
         this.drawerCallback.setTranslateX(value);
       }
     },
-    updateCssVariable: (_value: string) => {
-      // There's nothing we can do in react
+    updateCssVariable: (value: string) => {
+      this.setState((state) => ({
+        foundationCssVars: state.foundationCssVars.set(OPACITY_VAR_NAME, value)
+      }));
     },
     getFocusableElements: (): Iterable<Node> => {
       if (this.drawerCallback == null) {
@@ -219,7 +229,7 @@ export default class TemporaryDrawer<P: any> extends PropWrapper<*, P, *> {
     );
   }
 
-  getRootDOMNode (): Element {
+  getRootDOMNode (): window.HTMLElement {
     return ReactDOM.findDOMNode(this);
   }
 
@@ -250,6 +260,61 @@ export default class TemporaryDrawer<P: any> extends PropWrapper<*, P, *> {
     // https://github.com/material-components/material-components-web/issues/225
     // https://github.com/facebook/react/issues/8693
     this.foundation.close();
+  }
+
+  // Sync dom node with foundation
+  componentDidUpdate (_prevProps: Props<P>, prevState: State) {
+    const rootNode = this.getRootDOMNode();
+    const drawerNode = this.drawerCallback && this.drawerCallback.getDOMNode();
+    // Sync css vars
+    prevState.foundationCssVars.forEach((v: *, k: *) => {
+      if (v !== this.state.foundationCssVars.get(k)) {
+        rootNode.style.removeProperty(k);
+      }
+    });
+    this.state.foundationCssVars.forEach((v: *, k: *) => {
+      rootNode.style.setProperty(k, v);
+    });
+    // Sync root event listeners
+    prevState.foundationDrawerEventListeners.forEach((v: *, k: *) => {
+      // Don't use click event handler of MDCTemporaryDrawerFoundation
+      // See `handleClick()` for more detail.
+      if (k === 'click') {
+        return;
+      }
+      if (v !== this.state.foundationDrawerEventListeners.get(k)) {
+        rootNode.removeEventListener(k, v);
+      }
+    });
+    this.state.foundationDrawerEventListeners.forEach((v: *, k: *) => {
+      // Don't use click event handler of MDCTemporaryDrawerFoundation
+      // See `handleClick()` for more detail.
+      if (k === 'click') {
+        return;
+      }
+      rootNode.addEventListener(k, v);
+    });
+    // Sync drawer event listeners
+    if (drawerNode != null) {
+      prevState.foundationDrawerEventListeners.forEach((v: *, k: *) => {
+        // Don't use click event handler of MDCTemporaryDrawerFoundation
+        // See `handleClick()` for more detail.
+        if (k === 'click') {
+          return;
+        }
+        if (v !== this.state.foundationDrawerEventListeners.get(k)) {
+          drawerNode.removeEventListener(k, v);
+        }
+      });
+      this.state.foundationDrawerEventListeners.forEach((v: *, k: *) => {
+        // Don't use click event handler of MDCTemporaryDrawerFoundation
+        // See `handleClick()` for more detail.
+        if (k === 'click') {
+          return;
+        }
+        drawerNode.addEventListener(k, v);
+      });
+    }
   }
 
   renderProps (): P {
