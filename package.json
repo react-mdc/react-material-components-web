@@ -33,7 +33,8 @@
     "eslint-plugin-react": "^6.9.0",
     "eslint-plugin-standard": "^2.0.1",
     "flow-bin": "^0.37.4",
-    "flow-copy-source": "^1.1.0"
+    "flow-copy-source": "^1.1.0",
+    "lerna": "2.0.0-beta.36"
   },
   "scripts": {
     "lint": "eslint src/",
