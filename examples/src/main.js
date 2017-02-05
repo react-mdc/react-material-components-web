@@ -55,10 +55,106 @@ class Container extends React.Component {
     });
   }
 
+  renderMenu (): React.Element<*> {
+    return (
+      <List wrap={<div />}>
+        <item.ListItem
+          wrap={Link}
+          activeClassName={SELECTED_CLASS_NAME}
+          to="/typography"
+          onClick={this.handleClickLink}>
+          Typography
+        </item.ListItem>
+        <item.ListItem
+          wrap={Link}
+          activeClassName={SELECTED_CLASS_NAME}
+          to="/elevation"
+          onClick={this.handleClickLink}>
+          Elevation
+        </item.ListItem>
+        <item.ListItem
+          wrap={Link}
+          activeClassName={SELECTED_CLASS_NAME}
+          to="/button"
+          onClick={this.handleClickLink}>
+          Button
+        </item.ListItem>
+        <item.ListItem
+          wrap={Link}
+          activeClassName={SELECTED_CLASS_NAME}
+          to="/fab"
+          onClick={this.handleClickLink}>
+          Fab
+        </item.ListItem>
+        <item.ListItem
+          wrap={Link}
+          activeClassName={SELECTED_CLASS_NAME}
+          to="/card"
+          onClick={this.handleClickLink}>
+          Card
+        </item.ListItem>
+        <item.ListItem
+          wrap={Link}
+          activeClassName={SELECTED_CLASS_NAME}
+          to="/form-field"
+          onClick={this.handleClickLink}>
+          Form Field
+        </item.ListItem>
+        <item.ListItem
+          wrap={Link}
+          activeClassName={SELECTED_CLASS_NAME}
+          to="/radio"
+          onClick={this.handleClickLink}>
+          Radio
+        </item.ListItem>
+        <Divider wrap={<hr />} />
+        <item.ListItem
+          wrap={<a />}
+          href="https://github.com/Hardtack/react-mdcw"
+          target="_blank">
+          GitHub Repository
+        </item.ListItem>
+      </List>
+    );
+  }
+
+  renderToolbar (): React.Element<*> {
+    return (
+      <Elevation
+        wrap={Themed}
+        zSpace={4}
+        style={{
+          display: 'flex',
+          paddingLeft: 16,
+          paddingRight: 16,
+          height: 64,
+          flexDirection: 'row',
+          alignItems: 'center'
+        }}
+        backgroundColor="primary"
+        textColor="primary"
+        onColor="primary">
+        <a
+          style={{
+            display: 'flex',
+            width: 64,
+            height: 44,
+            cursor: 'pointer',
+            justifyContent: 'center',
+            alignItems: 'center'
+          }}
+          onClick={this.handleMenuButtonPress}>
+          MENU
+        </a>
+      </Elevation>
+    );
+  }
+
   render (): React.Element<*> {
     return (
       <Typography
         style={{
+          display: 'flex',
           flex: 1,
           flexDirection: 'column'
         }}>
@@ -81,97 +177,18 @@ class Container extends React.Component {
             </Header>
             <Content
               wrap={<group.ListGroup wrap={<div />} />}>
-              <List wrap={<div />}>
-                <item.ListItem
-                  wrap={Link}
-                  activeClassName={SELECTED_CLASS_NAME}
-                  to="/typography"
-                  onClick={this.handleClickLink}>
-                  Typography
-                </item.ListItem>
-                <item.ListItem
-                  wrap={Link}
-                  activeClassName={SELECTED_CLASS_NAME}
-                  to="/elevation"
-                  onClick={this.handleClickLink}>
-                  Elevation
-                </item.ListItem>
-                <item.ListItem
-                  wrap={Link}
-                  activeClassName={SELECTED_CLASS_NAME}
-                  to="/button"
-                  onClick={this.handleClickLink}>
-                  Button
-                </item.ListItem>
-                <item.ListItem
-                  wrap={Link}
-                  activeClassName={SELECTED_CLASS_NAME}
-                  to="/fab"
-                  onClick={this.handleClickLink}>
-                  Fab
-                </item.ListItem>
-                <item.ListItem
-                  wrap={Link}
-                  activeClassName={SELECTED_CLASS_NAME}
-                  to="/card"
-                  onClick={this.handleClickLink}>
-                  Card
-                </item.ListItem>
-                <item.ListItem
-                  wrap={Link}
-                  activeClassName={SELECTED_CLASS_NAME}
-                  to="/form-field"
-                  onClick={this.handleClickLink}>
-                  Form Field
-                </item.ListItem>
-                <item.ListItem
-                  wrap={Link}
-                  activeClassName={SELECTED_CLASS_NAME}
-                  to="/radio"
-                  onClick={this.handleClickLink}>
-                  Radio
-                </item.ListItem>
-                <Divider wrap={<hr />} />
-                <item.ListItem
-                  wrap={<a />}
-                  href="https://github.com/Hardtack/react-mdcw"
-                  target="_blank">
-                  GitHub Repository
-                </item.ListItem>
-              </List>
+              {this.renderMenu()}
             </Content>
           </Drawer>
         </TemporaryDrawer>
-        <Elevation
-          wrap={Themed}
-          zSpace={4}
-          style={{
-            display: 'flex',
-            paddingLeft: 16,
-            paddingRight: 16,
-            height: 64,
-            flexDirection: 'row',
-            alignItems: 'center'
-          }}
-          backgroundColor="primary"
-          textColor="primary"
-          onColor="primary">
-          <a
-            style={{
-              display: 'flex',
-              width: 64,
-              height: 44,
-              cursor: 'pointer',
-              justifyContent: 'center',
-              alignItems: 'center'
-            }}
-            onClick={this.handleMenuButtonPress}>
-            MENU
-          </a>
-        </Elevation>
+        {this.renderToolbar()}
         <div
           style={{
-            padding: 15
+            padding: 15,
+            overflow: 'scroll',
+            display: 'flex',
+            flex: 1,
+            flexGrow: 1
           }}>
           {this.props.children}
         </div>
