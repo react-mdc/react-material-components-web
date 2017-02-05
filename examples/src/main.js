@@ -23,6 +23,8 @@ import CardExample from './card';
 import FormFieldExample from './form-field';
 import RadioExample from './radio';
 
+import NotFound from './not-found';
+
 class Container extends React.Component {
   props: {
     children: Array<Class<React.Component<*, *, *>>>
@@ -210,6 +212,7 @@ export default class Main extends React.Component {
           <Route path="card" component={CardExample} />
           <Route path="form-field" component={FormFieldExample} />
           <Route path="radio" component={RadioExample} />
+          <Route path="*" component={NotFound} />
         </Route>
       </Router>
     );
