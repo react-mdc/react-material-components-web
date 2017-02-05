@@ -60,6 +60,12 @@ class Container extends React.Component {
     });
   }
 
+  handleClickHeader = () => {
+    this.setState({
+      drawerOpen: false
+    });
+  }
+
   renderMenu (): React.Element<*> {
     return (
       <List wrap={<div />}>
@@ -174,7 +180,12 @@ class Container extends React.Component {
           <Drawer>
             <Header>
               <HeaderContent
-                wrap={Themed}
+                wrap={<Themed wrap={Link} />}
+                style={{
+                  textDecoration: 'none'
+                }}
+                onClick={this.handleClickHeader}
+                to="/"
                 textColor="primary"
                 onColor="primary"
                 backgroundColor="primary">
