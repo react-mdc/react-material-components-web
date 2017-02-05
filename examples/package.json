@@ -4,6 +4,7 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
+    "classnames": "^2.2.5",
     "react": "^15.0.0",
     "react-dom": "^15.4.2",
     "react-mdcw": "^0.1.1"

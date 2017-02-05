@@ -25,6 +25,7 @@ import RadioExample from './radio';
 import RippleExample from './ripple';
 
 import NotFound from './not-found';
+import {MaterialIcon} from './icon';
 
 class Container extends React.Component {
   props: {
@@ -135,8 +136,6 @@ class Container extends React.Component {
         zSpace={4}
         style={{
           display: 'flex',
-          paddingLeft: 16,
-          paddingRight: 16,
           height: 64,
           flexDirection: 'row',
           alignItems: 'center'
@@ -144,18 +143,14 @@ class Container extends React.Component {
         backgroundColor="primary"
         textColor="primary"
         onColor="primary">
-        <a
+        <MaterialIcon
           style={{
-            display: 'flex',
-            width: 64,
-            height: 44,
-            cursor: 'pointer',
-            justifyContent: 'center',
-            alignItems: 'center'
+            padding: 16,
+            cursor: 'pointer'
           }}
           onClick={this.handleMenuButtonPress}>
-          MENU
-        </a>
+          menu
+        </MaterialIcon>
       </Elevation>
     );
   }

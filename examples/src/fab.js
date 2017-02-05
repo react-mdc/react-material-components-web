@@ -4,7 +4,7 @@ import React from 'react';
 import {Fab, Icon} from 'react-mdcw/lib/fab';
 import {Title, Typography} from 'react-mdcw/lib/typography';
 
-import {Pen} from './icon';
+import {Pen, MaterialIcon} from './icon';
 
 export default class FabExample extends React.Component {
   render (): React.Element<*> {
@@ -22,10 +22,10 @@ export default class FabExample extends React.Component {
             <Fab mini><Icon><Pen /></Icon></Fab>
           </div>
           <div style={{margin: 16}}>
-            <Fab plain><Icon><Pen /></Icon></Fab>
+            <Fab plain><Icon><MaterialIcon>face</MaterialIcon></Icon></Fab>
           </div>
           <div style={{margin: 16}}>
-            <Fab plain mini><Icon><Pen /></Icon></Fab>
+            <Fab plain mini><Icon><MaterialIcon>face</MaterialIcon></Icon></Fab>
           </div>
         </fieldset>
       </Typography>
