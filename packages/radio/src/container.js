@@ -53,16 +53,16 @@ export default class Container<P: any> extends PropWrapper<*, P, *> {
     wrap: <div />
   }
 
-  drawerCallback: ?AdapterNativeControlCallback
+  nativeControlCallback: ?AdapterNativeControlCallback
 
   adapterNativeControlDelegate: AdapterNativeControlDelegate = {
     setCallback: (callback: AdapterNativeControlCallback) => {
-      this.drawerCallback = callback;
-      this.drawerCallback.setDefaultOnChange(this.handleChange);
+      this.nativeControlCallback = callback;
+      this.nativeControlCallback.setDefaultOnChange(this.handleChange);
     },
     unsetCallback: (callback: AdapterNativeControlCallback) => {
-      if (this.drawerCallback === callback) {
-        this.drawerCallback = null;
+      if (this.nativeControlCallback === callback) {
+        this.nativeControlCallback = null;
       }
     },
     isChecked: (): ?boolean => {
@@ -85,10 +85,10 @@ export default class Container<P: any> extends PropWrapper<*, P, *> {
       }));
     },
     getNativeControl: (): ?Element => {
-      if (this.drawerCallback == null) {
+      if (this.nativeControlCallback == null) {
         return null;
       }
-      return this.drawerCallback.getDOMNode();
+      return this.nativeControlCallback.getDOMNode();
     }
   })
 
