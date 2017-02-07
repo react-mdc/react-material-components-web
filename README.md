@@ -166,10 +166,10 @@ Supported Components
 
 - Ripple
 
+- Checkbox
+
 Ongoing Components
 ------------------
-
-- Checkbox
 
 - Switch
 
