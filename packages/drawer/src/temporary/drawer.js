@@ -8,6 +8,7 @@ import {PropWrapper} from '@react-mdc/base';
 import {eventHandlerDecorator} from '@react-mdc/base/lib/util';
 
 import type {AdapterDrawerDelegate, AdapterDrawerCallback} from './types';
+import * as drawerUtil from './drawerUtil';
 import {AdapterDrawerDelegatePropType} from './types';
 import {BASE_CLASS_NAME} from './constants';
 
@@ -18,7 +19,7 @@ export type Props<P> = WrapperProps<P> & {
 };
 
 type State = {
-  translateX: number
+  translateX: ?number
 };
 
 type Context = {
@@ -40,6 +41,10 @@ export default class Drawer<P: any> extends PropWrapper<*, P, *> {
     wrap: <nav />
   }
 
+  state = {
+    translateX: null
+  }
+
   adapterCallback: AdapterDrawerCallback = {
     setTranslateX: (value: number) => {
       this.setState({translateX: value});
@@ -59,6 +64,21 @@ export default class Drawer<P: any> extends PropWrapper<*, P, *> {
     // Don't use click event handler of MDCTemporaryDrawerFoundation
     // See `handleClick()` in `container.js` for more detail.
     evt.stopPropagation();
+  }
+
+  getRootDOMNode (): window.HTMLElement {
+    return ReactDOM.findDOMNode(this);
+  }
+
+  // Sync dom with state
+  componentDidUpdate (_prevProps: Props<P>, prevState: State) {
+    const rootNode = this.getRootDOMNode();
+    if (this.state.translateX == null) {
+      rootNode.style.removeProperty(drawerUtil.getTransformPropertyName());
+    } else if (this.state.translateX !== prevState.translateX) {
+      const value = this.state.translateX;
+      rootNode.style.setProperty(drawerUtil.getTransformPropertyName(), `translateX(${value}px)`);
+    }
   }
 
   renderProps (): P {
