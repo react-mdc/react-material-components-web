@@ -1,0 +1,28 @@
+{
+  "name": "@react-mdc/checkbox",
+  "description": "React wrapper of @material/checkbox",
+  "version": "0.1.0",
+  "license": "MIT",
+  "main": "lib/index",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hardtack/react-mdcw.git"
+  },
+  "dependencies": {
+    "@material/checkbox": "^0.1.2",
+    "@react-mdc/base": "^0.1.0",
+    "classnames": "^2.2.5",
+    "immutable": "^3.8.1",
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2"
+  },
+  "devDependencies": {
+    "@react-mdc/dev": "^0.1.0"
+  },
+  "scripts": {
+    "build": "babel src -d lib --presets=@react-mdc/dev/babel-preset",
+    "babel-prepublish": "npm run build",
+    "flow-prepublish": "flow-copy-source src lib",
+    "prepublish": "npm run babel-prepublish && npm run flow-prepublish"
+  }
+}
