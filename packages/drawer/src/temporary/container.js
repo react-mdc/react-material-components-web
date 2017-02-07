@@ -130,22 +130,23 @@ export default class TemporaryDrawer<P: any> extends PropWrapper<*, P, *> {
     },
     registerInteractionHandler: (evt: string, handler: EventListener) => {
       this.setState((state) => ({
-        foundationEventListeners: state.foundationEventListeners.set(evt, handler)
+        foundationEventListeners: state.foundationEventListeners.set(drawerUtil.remapEvent(evt), handler)
       }));
     },
     deregisterInteractionHandler: (evt: string, handler: EventListener) => {
       if (this.state.foundationEventListeners.get(evt) === handler) {
         this.setState((state) => ({
-          foundationEventListeners: state.foundationEventListeners.delete(evt)
+          foundationEventListeners: state.foundationEventListeners.delete(drawerUtil.remapEvent(evt))
         }));
       }
     },
     registerDrawerInteractionHandler: (evt: string, handler: EventListener) => {
       this.setState((state) => ({
-        foundationDrawerEventListeners: state.foundationDrawerEventListeners.set(evt, handler)
+        foundationDrawerEventListeners: state.foundationDrawerEventListeners.set(drawerUtil.remapEvent(evt), handler)
       }));
     },
     deregisterDrawerInteractionHandler: (evt: string, handler: EventListener) => {
+      evt = drawerUtil.remapEvent(evt);
       if (this.state.foundationDrawerEventListeners.get(evt) === handler) {
         this.setState((state) => ({
           foundationDrawerEventListeners: state.foundationDrawerEventListeners.delete(evt)
@@ -276,7 +277,7 @@ export default class TemporaryDrawer<P: any> extends PropWrapper<*, P, *> {
       rootNode.style.setProperty(k, v);
     });
     // Sync root event listeners
-    prevState.foundationDrawerEventListeners.forEach((v: *, k: *) => {
+    prevState.foundationEventListeners.forEach((v: *, k: *) => {
       // Don't use click event handler of MDCTemporaryDrawerFoundation
       // See `handleClick()` for more detail.
       if (k === 'click') {
@@ -286,7 +287,7 @@ export default class TemporaryDrawer<P: any> extends PropWrapper<*, P, *> {
         rootNode.removeEventListener(k, v);
       }
     });
-    this.state.foundationDrawerEventListeners.forEach((v: *, k: *) => {
+    this.state.foundationEventListeners.forEach((v: *, k: *) => {
       // Don't use click event handler of MDCTemporaryDrawerFoundation
       // See `handleClick()` for more detail.
       if (k === 'click') {

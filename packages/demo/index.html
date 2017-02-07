@@ -1,76 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>React-MDCW: React Components for Material Components Web</title>
-  <link type="text/css" href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" />
-  <link type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <style type="text/css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <title>React-MDCW: React Components for Material Components Web</title>
+    <link type="text/css" href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" />
+    <link type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style type="text/css">
 
-    /* Ensure layout covers the entire screen. */
-    html, body {
-      height: 100%;
-    }
+     /* Ensure layout covers the entire screen. */
+     html, body {
+       height: 100%;
+     }
 
-    body {
-      margin: 0;
-    }
+     body {
+       margin: 0;
+     }
 
-    /* Place drawer and content side by side. */
-    #root {
-      display: flex;
-      flex-direction: row;
-      padding: 0;
-      margin: 0;
-      box-sizing: border-box;
-      height: 100%;
-      width: 100%;
-    }
+     /* Place drawer and content side by side. */
+     #root {
+       display: flex;
+       flex-direction: row;
+       padding: 0;
+       margin: 0;
+       box-sizing: border-box;
+       height: 100%;
+       width: 100%;
+     }
 
-    .loading {
-      font-family: "Roboto", "Helvetica", Sans-serif;
-      font-size: 1.5em;
-      color: #333333;
-      display: flex;
-      width: 100%;
-      height: 100%;
-    /* flex-direction: column;*/
-      align-items: center;
-      justify-content: center;
-    }
-    /* Material Icons */
-    .material-icons {
-      font-family: 'Material Icons';
-      font-weight: normal;
-      font-style: normal;
-      font-size: 24px;  /* Preferred icon size */
-      display: inline-block;
-      line-height: 1;
-      text-transform: none;
-      letter-spacing: normal;
-      word-wrap: normal;
-      white-space: nowrap;
-      direction: ltr;
+     .loading {
+       font-family: "Roboto", "Helvetica", Sans-serif;
+       font-size: 1.5em;
+       color: #333333;
+       display: flex;
+       width: 100%;
+       height: 100%;
+       /* flex-direction: column;*/
+       align-items: center;
+       justify-content: center;
+     }
+     /* Material Icons */
+     .material-icons {
+       font-family: 'Material Icons';
+       font-weight: normal;
+       font-style: normal;
+       font-size: 24px;  /* Preferred icon size */
+       display: inline-block;
+       line-height: 1;
+       text-transform: none;
+       letter-spacing: normal;
+       word-wrap: normal;
+       white-space: nowrap;
+       direction: ltr;
 
-      /* Support for all WebKit browsers. */
-      -webkit-font-smoothing: antialiased;
-      /* Support for Safari and Chrome. */
-      text-rendering: optimizeLegibility;
+       /* Support for all WebKit browsers. */
+       -webkit-font-smoothing: antialiased;
+       /* Support for Safari and Chrome. */
+       text-rendering: optimizeLegibility;
 
-      /* Support for Firefox. */
-      -moz-osx-font-smoothing: grayscale;
+       /* Support for Firefox. */
+       -moz-osx-font-smoothing: grayscale;
 
-      /* Support for IE. */
-      font-feature-settings: 'liga';
-    }
-  </style>
-</head>
-<body>
-  <div id="root">
-    <div class="loading">
-      Loading...
+       /* Support for IE. */
+       font-feature-settings: 'liga';
+     }
+    </style>
+  </head>
+  <body>
+    <div id="root">
+      <div class="loading">
+        Loading...
+      </div>
     </div>
-  </div>
-  <script type="text/javascript" src="build/bundle.js"></script>
-</body>
+    <script type="text/javascript" src="build/bundle.js"></script>
+  </body>
 </html>

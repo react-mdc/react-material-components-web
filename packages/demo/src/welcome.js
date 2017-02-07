@@ -5,7 +5,7 @@ import {
   Typography,
   Display3,
   Title,
-  Body2
+  Caption
 } from '@react-mdc/typography';
 
 export default class Welcome extends React.Component {
@@ -17,7 +17,8 @@ export default class Welcome extends React.Component {
           flex: 1,
           flexDirection: 'column',
           justifyContent: 'center',
-          alignItems: 'center'
+          alignItems: 'center',
+          textAlign: 'center'
         }}>
         <Display3>
           React-MDCW
@@ -25,9 +26,9 @@ export default class Welcome extends React.Component {
         <Title adjustMargin>
           React Components for Material Components Web
         </Title>
-        <Body2>
+        <Caption>
           Click left-top menu button to open the list of Demo.
-        </Body2>
+        </Caption>
       </Typography>
     );
   }

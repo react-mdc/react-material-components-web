@@ -27,7 +27,7 @@ Usage
 
 ``` javascript
 import React from 'react';
-import {Typography, Title, Body2} from 'react-mdcw/lib/typography';
+import {Typography, Title, Body2} from '@react-mdc/typography';
 
 export default class Example extends React.Component {
   render () {
