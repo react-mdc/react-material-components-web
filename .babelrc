@@ -1,5 +1,4 @@
-/* eslint-disable */
-module.exports = {
+{
   presets: [
     "es2015",
     "stage-0",
@@ -8,4 +7,4 @@ module.exports = {
   plugins: [
     "transform-flow-strip-types"
   ]
-};
+}

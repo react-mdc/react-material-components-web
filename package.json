@@ -10,7 +10,12 @@
   "devDependencies": {
     "@react-mdc/dev": "^0.1.0",
     "babel-eslint": "^7.1.1",
+    "babel-plugin-transform-flow-strip-types": "^6.22.0",
+    "babel-preset-es2015": "^6.22.0",
+    "babel-preset-react": "^6.22.0",
+    "babel-preset-stage-0": "^6.22.0",
     "cross-env": "^3.1.4",
+    "del": "^2.2.2",
     "eslint": "^3.13.1",
     "eslint-config-standard": "^6.2.1",
     "eslint-config-standard-react": "^4.2.0",
@@ -22,10 +27,13 @@
     "eslint-plugin-standard": "^2.0.1",
     "flow-bin": "^0.37.4",
     "flow-copy-source": "^1.1.0",
-    "lerna": "2.0.0-beta.36"
+    "lerna": "2.0.0-beta.36",
+    "lodash": "^4.17.4"
   },
   "scripts": {
     "lint": "cross-env FLOW_BIN=./node_modules/.bin/flow eslint packages/",
-    "postinstall": "lerna bootstrap"
+    "postinstall": "lerna bootstrap",
+    "build": "node ./scripts/build.js",
+    "clean": "node ./scripts/clean.js"
   }
 }

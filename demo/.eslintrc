@@ -1,40 +1,19 @@
-module.exports = {
-  "extends": ["standard", "standard-react"],
-  "installedESLint": true,
+{
+  "extends": ["../.eslintrc", "standard-react"],
   "parser": "babel-eslint",
   "plugins": [
     "react",
-    "standard",
     "promise",
     "import",
     "flowtype",
     "flowtype-errors"
   ],
   "rules": {
+    "no-duplicate-imports": "off",
+    "import/no-duplicates": "error",
     "jsx-quotes": [
       "error",
       "prefer-double"
-    ],
-    "indent": [
-      "warn"
-    ],
-    "semi": [
-      "error",
-      "always"
-    ],
-    "eol-last": [
-      "warn",
-      "always"
-    ],
-    "no-duplicate-imports": "off",
-    "import/no-duplicates": "error",
-    "no-unused-vars": [
-      "warn",
-      {
-        "args": "all",
-        "argsIgnorePattern": "^_",
-        "varsIgnorePattern": "^_\\w+"
-      }
     ],
     "flowtype/boolean-style": [
       "error",
@@ -103,4 +82,4 @@ module.exports = {
     "flowtype/valid-syntax": "warn",
     "flowtype-errors/show-errors": 2
   }
-};
+}
