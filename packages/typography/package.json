@@ -6,7 +6,7 @@
   "main": "lib/index",
   "repository": {
     "type": "git",
-    "url": "https://github.com/hardtack/react-mdcw.git"
+    "url": "https://github.com/hardtack/react-material-components-web.git"
   },
   "dependencies": {
     "@material/typography": "^0.1.1",

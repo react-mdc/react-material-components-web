@@ -1,21 +1,23 @@
 {
   "name": "@react-mdc/dev",
-  "description": "Dev dependency of react-mdcw",
-  "version": "0.1.0",
+  "description": "Dev dependency of react-material-components-web",
+  "version": "0.1.1",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/hardtack/react-mdcw.git"
+    "url": "https://github.com/hardtack/react-material-components-web.git"
   },
   "bin": {
     "babel": "./bin/babel.js",
-    "flow-copy-source": "./bin/flow-copy-source.js"
+    "flow-copy-source": "./bin/flow-copy-source.js",
+    "rimraf": "./bin/rimraf.js"
   },
   "dependencies": {
     "babel-cli": "^6.22.2",
     "babel-plugin-transform-flow-strip-types": "^6.22.0",
     "babel-preset-react": "^6.22.0",
     "babel-preset-stage-0": "^6.22.0",
-    "flow-copy-source": "^1.1.0"
+    "flow-copy-source": "^1.1.0",
+    "rimraf": "^2.5.4"
   }
 }

@@ -136,7 +136,7 @@ class Container extends React.Component {
         <Divider wrap={<hr />} />
         <item.ListItem
           wrap={<a />}
-          href="https://github.com/Hardtack/react-mdcw"
+          href="https://github.com/Hardtack/react-material-components-web"
           target="_blank">
           GitHub Repository
         </item.ListItem>
@@ -197,7 +197,7 @@ class Container extends React.Component {
                 textColor="primary"
                 onColor="primary"
                 backgroundColor="primary">
-                React-MDCW
+                React-Material-Components-Web
               </HeaderContent>
             </Header>
             <Content
