@@ -1,11 +1,11 @@
 {
   "name": "@react-mdc/dev",
-  "description": "Dev dependency of react-mdcw",
+  "description": "Dev dependency of react-material-components-web",
   "version": "0.1.0",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/hardtack/react-mdcw.git"
+    "url": "https://github.com/hardtack/react-material-components-web.git"
   },
   "bin": {
     "babel": "./bin/babel.js",

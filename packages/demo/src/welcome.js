@@ -21,7 +21,7 @@ export default class Welcome extends React.Component {
           textAlign: 'center'
         }}>
         <Display3>
-          React-MDCW
+          React-Material-Components-Web
         </Display3>
         <Title adjustMargin>
           React Components for Material Components Web

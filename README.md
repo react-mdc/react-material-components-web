@@ -1,8 +1,8 @@
-React-MDCW
+React-Material-Components-Web
 ==========
 
 [![License: MIT](https://img.shields.io/github/license/mashape/apistatus.svg)](https://opensource.org/licenses/MIT)
-[![npm version](https://badge.fury.io/js/react-mdcw.svg)](https://badge.fury.io/js/react-mdcw)
+[![npm version](https://badge.fury.io/js/react-material-components-web.svg)](https://badge.fury.io/js/react-material-components-web)
 
 
 React wrapper of [Material Components Web](
@@ -11,7 +11,7 @@ https://github.com/material-components/material-components-web)
 Demo
 ----
 
-You can find live example demo at https://hardtack.github.io/react-mdcw/
+You can find live example demo at https://hardtack.github.io/react-material-components-web/
 
 Goals
 -----
@@ -112,7 +112,7 @@ Setup for Development
 
 ``` shell
 
-$ cd path/to/react-mdcw
+$ cd path/to/react-material-components-web
 $ lerna bootstrap
 
 ```
@@ -127,7 +127,7 @@ Run Demo
 -----------
 
 ``` shell
-$ cd path/to/react-mdcw
+$ cd path/to/react-material-components-web
 $ cd packages/demo
 $ npm start
 
