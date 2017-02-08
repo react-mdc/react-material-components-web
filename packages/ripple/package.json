@@ -17,12 +17,14 @@
     "react-dom": "^15.4.2"
   },
   "devDependencies": {
-    "@react-mdc/dev": "^0.1.0"
+    "@react-mdc/dev": "^0.1.1"
   },
   "scripts": {
-    "build": "babel src -d lib --presets=@react-mdc/dev/babel-preset",
-    "babel-prepublish": "npm run build",
+    "babel-prepublish": "npm run compile",
     "flow-prepublish": "flow-copy-source src lib",
-    "prepublish": "npm run babel-prepublish && npm run flow-prepublish"
+    "prepublish": "npm run babel-prepublish && npm run flow-prepublish",
+    "clean": "rimraf lib/",
+    "compile": "babel src -d lib --presets=@react-mdc/dev/babel-preset",
+    "precompile": "npm run clean"
   }
 }

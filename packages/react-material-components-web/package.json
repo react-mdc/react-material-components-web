@@ -1,20 +1,33 @@
 {
-  "name": "@react-mdc/card",
-  "description": "React wrapper of @material/card",
+  "name": "react-material-components-web",
+  "description": "React Components for Metarial Component Web",
+  "author": "Choi Geonu",
   "version": "0.1.0",
   "license": "MIT",
-  "main": "lib/index",
+  "keywords": [
+    "material components",
+    "material design",
+    "react"
+  ],
+  "main": "src/index.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/hardtack/react-material-components-web.git"
   },
   "dependencies": {
-    "@material/card": "^0.1.2",
     "@react-mdc/button": "^0.1.0",
+    "@react-mdc/card": "^0.1.0",
+    "@react-mdc/checkbox": "^0.1.0",
     "@react-mdc/base": "^0.1.0",
-    "classnames": "^2.2.5",
-    "react": "^15.4.2",
-    "react-dom": "^15.4.2"
+    "@react-mdc/drawer": "^0.1.1",
+    "@react-mdc/elevation": "^0.1.0",
+    "@react-mdc/fab": "^0.1.0",
+    "@react-mdc/form-field": "^0.1.0",
+    "@react-mdc/list": "^0.1.0",
+    "@react-mdc/radio": "^0.1.0",
+    "@react-mdc/ripple": "^0.1.0",
+    "@react-mdc/theme": "^0.1.0",
+    "@react-mdc/typography": "^0.1.0"
   },
   "devDependencies": {
     "@react-mdc/dev": "^0.1.1"

@@ -1,15 +1,15 @@
 {
-  "name": "react-material-components-web",
-  "version": "0.1.1",
-  "description": "React Components for Metarial Component Web",
+  "name": "react-material-components-web-root",
   "author": "Choi Geonu",
   "license": "MIT",
+  "private": true,
   "repository": {
     "type": "git",
     "url": "https://github.com/hardtack/react-material-components-web.git"
   },
   "devDependencies": {
     "@react-mdc/dev": "^0.1.0",
+    "babel-eslint": "^7.1.1",
     "cross-env": "^3.1.4",
     "eslint": "^3.13.1",
     "eslint-config-standard": "^6.2.1",

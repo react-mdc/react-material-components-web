@@ -36,13 +36,15 @@
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",
     "webpack": "^1.14.0",
-    "webpack-dev-server": "^1.16.2"
+    "webpack-dev-server": "^1.16.2",
+    "@react-mdc/dev": "^0.1.1"
   },
   "scripts": {
     "clean": "rimraf build/",
-    "build": "cross-env NODE_ENV=production webpack -p --progress",
+    "precompile": "npm run clean",
+    "compile": "cross-env NODE_ENV=production webpack -p --progress",
     "start": "webpack-dev-server",
-    "prepublish": "npm run build",
+    "prepublish": "npm run compile",
     "release": "npm run clean && cross-env URL_PREFIX=react-material-components-web/ npm run compile && gh-pages -d . -m 'Updates v'$npm_package_version --remove node_modules"
   }
 }
