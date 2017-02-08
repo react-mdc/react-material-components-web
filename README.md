@@ -101,10 +101,19 @@ export default class Main extends React.Component {
 Setup for Development
 ---------------------
 
+Bootstrap
+
 ``` shell
 
-$ cd path/to/react-material-components-web
 $ lerna bootstrap
+
+```
+
+Build
+
+``` shell
+
+$ npm run build
 
 ```
 
@@ -118,8 +127,8 @@ Run Demo
 -----------
 
 ``` shell
-$ cd path/to/react-material-components-web
-$ cd packages/demo
+
+$ cd demo
 $ npm start
 
 ```
@@ -128,6 +137,7 @@ Build
 -----
 
 ``` shell
+
 $ lerna run build
 
 ```
