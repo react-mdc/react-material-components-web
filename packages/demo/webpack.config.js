@@ -54,7 +54,7 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: /(node_modules|bower_components)/,
-        loader: 'babel-loader'
+        loader: 'babel-loader?presets=@react-mdc/dev/babel-preset'
       },
       {
         test: /\.css$/,

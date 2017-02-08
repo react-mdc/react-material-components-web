@@ -1,5 +1,5 @@
-React-Material-Components-Web
-==========
+React Material Components Web
+=============================
 
 [![License: MIT](https://img.shields.io/github/license/mashape/apistatus.svg)](https://opensource.org/licenses/MIT)
 [![npm version](https://badge.fury.io/js/react-material-components-web.svg)](https://badge.fury.io/js/react-material-components-web)
@@ -12,15 +12,6 @@ Demo
 ----
 
 You can find live example demo at https://hardtack.github.io/react-material-components-web/
-
-Goals
------
-
-*  Making fully-featured, customizable
-
-*  Wrapping material-components-web with react in react way
-
-*  Typing strictly with [flowtype](https://flowtype.org)
 
 Features
 --------
