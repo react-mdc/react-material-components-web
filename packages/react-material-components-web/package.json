@@ -1,0 +1,43 @@
+{
+  "name": "react-material-components-web",
+  "description": "React Components for Metarial Component Web",
+  "author": "Choi Geonu",
+  "version": "0.1.0",
+  "license": "MIT",
+  "keywords": [
+    "material components",
+    "material design",
+    "react"
+  ],
+  "main": "src/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hardtack/react-material-components-web.git"
+  },
+  "dependencies": {
+    "@react-mdc/button": "^0.1.0",
+    "@react-mdc/card": "^0.1.0",
+    "@react-mdc/checkbox": "^0.1.0",
+    "@react-mdc/base": "^0.1.0",
+    "@react-mdc/drawer": "^0.1.1",
+    "@react-mdc/elevation": "^0.1.0",
+    "@react-mdc/fab": "^0.1.0",
+    "@react-mdc/form-field": "^0.1.0",
+    "@react-mdc/list": "^0.1.0",
+    "@react-mdc/radio": "^0.1.0",
+    "@react-mdc/ripple": "^0.1.0",
+    "@react-mdc/theme": "^0.1.0",
+    "@react-mdc/typography": "^0.1.0"
+  },
+  "devDependencies": {
+    "@react-mdc/dev": "^0.1.1"
+  },
+  "scripts": {
+    "babel-prepublish": "npm run compile",
+    "flow-prepublish": "flow-copy-source src lib",
+    "prepublish": "npm run babel-prepublish && npm run flow-prepublish",
+    "clean": "rimraf lib/",
+    "compile": "babel src -d lib --presets=@react-mdc/dev/babel-preset",
+    "precompile": "npm run clean"
+  }
+}
