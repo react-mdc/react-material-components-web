@@ -13,15 +13,6 @@ Demo
 
 You can find live example demo at https://hardtack.github.io/react-material-components-web/
 
-Goals
------
-
-*  Making fully-featured, customizable
-
-*  Wrapping material-components-web with react in react way
-
-*  Typing strictly with [flowtype](https://flowtype.org)
-
 Features
 --------
 
