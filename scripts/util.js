@@ -134,3 +134,11 @@ module.exports.copyFile = function (source, target, cb) {
     }
   }
 };
+
+module.exports.fileExists = function (filename) {
+  try {
+    return fs.statSync(filename).isFile();
+  } catch (e) {
+    return false;
+  }
+};

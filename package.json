@@ -35,6 +35,8 @@
     "postinstall": "lerna bootstrap && npm run build",
     "do-build": "node ./scripts/build.js",
     "build": "npm run lint && npm run do-build",
+    "do-watch": "node ./scripts/watch.js",
+    "watch": "npm run do-build && npm run do-watch",
     "clean": "node ./scripts/clean.js"
   }
 }

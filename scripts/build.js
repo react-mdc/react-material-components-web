@@ -77,7 +77,7 @@ function buildPackages (packages) {
     .reduce((p, pkg) => p.then(() => buildPackage(pkg)), buildPackage(packages[0]));
 }
 
-function runCommand (target) {
+const runCommand = module.exports.runCommand = function (target) {
   const allPackages = util.getPackages();
 
   if (target == null) {
@@ -89,20 +89,28 @@ function runCommand (target) {
   } else {
     return buildPath(target);
   }
-}
+};
 
 function main () {
   let args = {};
   program
-    .arguments('[target]')
-    .action((target) => {
-      args.target = target;
+    .arguments('[targets...]')
+    .action((targets) => {
+      args.targets = targets;
     });
 
   program.parse(process.argv);
 
-  let {target} = args;
-  runCommand(target);
+  let {targets} = args;
+  if (targets && targets.length > 0) {
+    targets
+      .slice(1)
+      .reduce((p, pkg) => p.then(() => runCommand(pkg)), runCommand(targets[0]));
+  } else {
+    return runCommand(null);
+  }
 }
 
-main();
+if (require.main === module) {
+  main();
+}
