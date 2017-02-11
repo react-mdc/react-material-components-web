@@ -1,5 +1,6 @@
 'use strict';
 
+const fsExtra = require('fs-extra');
 const path = require('path');
 const program = require('commander');
 const chalk = require('chalk');
@@ -9,11 +10,17 @@ const util = require('./util');
 function copyFlowSingleSource (srcPath, outPath) {
   const flowPath = outPath + '.flow';
   return new Promise((resolve, reject) => {
-    util.copyFile(srcPath, flowPath, (error) => {
+    fsExtra.ensureDir(path.dirname(flowPath), (error) => {
       if (error != null) {
         reject(error);
       } else {
-        resolve();
+        fsExtra.copy(srcPath, flowPath, (error) => {
+          if (error != null) {
+            reject(error);
+          } else {
+            resolve();
+          }
+        });
       }
     });
   });

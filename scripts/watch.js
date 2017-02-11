@@ -22,10 +22,7 @@ function main () {
         const sourcePath = path.resolve(pkg.srcPath, filename);
         // TODO: Add lint
 
-        if (
-          (event === 'change' || event === 'rename') &&
-            util.fileExists(sourcePath)
-        ) {
+        if (['change', 'rename'].includes(event) && util.fileExists(sourcePath)) {
           console.log(chalk.green('->'), `${event}: ${filename}`);
           rebuild(sourcePath);
         } else {
