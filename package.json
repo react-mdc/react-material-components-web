@@ -33,11 +33,13 @@
   },
   "scripts": {
     "lint": "flow check && eslint .",
-    "postinstall": "lerna bootstrap && npm run build",
+    "clean": "node ./scripts/clean.js",
     "do-build": "node ./scripts/build.js",
-    "build": "npm run lint && npm run do-build",
     "do-watch": "node ./scripts/watch.js",
+    "build": "npm run do-build && lerna bootstrap && npm run lint",
+    "postinstall": "npm run build",
     "watch": "npm run do-build && npm run do-watch",
-    "clean": "node ./scripts/clean.js"
+    "postinstall": "npm run build",
+    "prepublish": "npm run clean && npm run build"
   }
 }

@@ -20,6 +20,11 @@ if (process.env.NODE_ENV === 'production') {
       NODE_ENV: JSON.stringify(process.env.NODE_ENV),
     },
   }));
+  plugins.push(new webpack.optimize.UglifyJsPlugin({
+    compress: {
+      warnings: false
+    }
+  }));
 }
 var urlPrefix = '/'
 if (process.env.URL_PREFIX != null) {

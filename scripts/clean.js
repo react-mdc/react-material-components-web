@@ -11,3 +11,7 @@ const PACKAGES_DIR = path.resolve(PROJECT_ROOT, 'packages');
 del.sync([
   path.resolve(PACKAGES_DIR, '*', 'lib')
 ]);
+
+del.sync([
+  path.resolve(PROJECT_ROOT, 'demo', 'build')
+]);
