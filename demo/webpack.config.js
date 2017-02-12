@@ -2,10 +2,18 @@
 var path = require('path');
 var webpack = require('webpack');
 
-var projectRoot = path.resolve(__dirname);
-var buildPath = path.resolve(projectRoot, 'build');
+var PROJECT_ROOT = path.resolve(__dirname, '..');
+var DEMO_ROOT = path.resolve(PROJECT_ROOT, 'demo')
+var BUILD_PATH = path.resolve(DEMO_ROOT, 'build');
+var SRC_ROOT = path.resolve(DEMO_ROOT, 'src');
 
-var plugins = [];
+var FlowtypePlugin = require('flowtype-loader/plugin');
+
+var plugins = [
+  new FlowtypePlugin({
+    cwd: PROJECT_ROOT
+  })
+];
 if (process.env.NODE_ENV === 'production') {
   plugins.push(new webpack.DefinePlugin({
     'process.env': {
@@ -20,11 +28,11 @@ if (process.env.URL_PREFIX != null) {
 
 module.exports = {
   entry: {
-    app: [path.resolve(projectRoot, 'src', 'app.js')]
+    app: [path.resolve(SRC_ROOT, 'app.js')]
   },
   plugins: plugins,
   output: {
-    path: buildPath,
+    path: BUILD_PATH,
     publicPath: urlPrefix + 'build/',
     filename: 'bundle.js'
   },
@@ -32,7 +40,7 @@ module.exports = {
     preLoaders: [
       {
         test: /src\/.+\.js$/,
-        loader: 'eslint-loader',
+        loader: 'eslint-loader!flowtype-loader',
         exclude: /node_modules/
       }
     ],
@@ -78,6 +86,6 @@ module.exports = {
   // and it will be fixed webpack 2.X
   // See: https://github.com/facebook/flow/issues/1548
   resolveLoader: {
-    fallback: path.join(projectRoot, 'node_modules')
+    fallback: path.join(DEMO_ROOT, 'node_modules')
   }
 };

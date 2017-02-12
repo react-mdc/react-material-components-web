@@ -32,7 +32,7 @@
     "lodash": "^4.17.4"
   },
   "scripts": {
-    "lint": "cross-env FLOW_BIN=./node_modules/.bin/flow eslint .",
+    "lint": "flow check && eslint .",
     "postinstall": "lerna bootstrap && npm run build",
     "do-build": "node ./scripts/build.js",
     "build": "npm run lint && npm run do-build",

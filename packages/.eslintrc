@@ -5,8 +5,7 @@
     "react",
     "promise",
     "import",
-    "flowtype",
-    "flowtype-errors"
+    "flowtype"
   ],
   "rules": {
     "no-duplicate-imports": "off",
@@ -79,7 +78,6 @@
       "always"
     ],
     "flowtype/use-flow-type": "error",
-    "flowtype/valid-syntax": "warn",
-    "flowtype-errors/show-errors": 2
+    "flowtype/valid-syntax": "warn"
   }
 }
