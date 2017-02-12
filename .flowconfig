@@ -1,6 +1,6 @@
 [ignore]
 <PROJECT_ROOT>/scripts/.*
-<PROJECT_ROOT>/demo/node_modules/gh-pages/.cache/.*
+<PROJECT_ROOT>/demo/.*
 
 [include]
 
