@@ -230,7 +230,7 @@ export default class TemporaryDrawer<P: any> extends PropWrapper<*, P, *> {
     );
   }
 
-  getRootDOMNode (): window.HTMLElement {
+  getRootDOMNode (): HTMLElement {
     return ReactDOM.findDOMNode(this);
   }
 

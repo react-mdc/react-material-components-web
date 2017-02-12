@@ -6,8 +6,6 @@ import {
   OrderedSet
 } from 'immutable';
 
-export type NativeDOMNode = window.HTMLElement;
-
 export type EventListeners = {
   [string]: Array<EventListener>
 };
@@ -36,15 +34,15 @@ export default class NativeDOMAdapter extends React.Component {
   };
 
   // Last known DOM node
-  lastDOMNode: ?NativeDOMNode
+  lastDOMNode: ?HTMLElement
 
   // Get root DOM node of element
-  getDOMNode (): NativeDOMNode {
+  getDOMNode (): HTMLElement {
     return ReactDOM.findDOMNode(this);
   }
 
   // Manage CSS variables
-  removeCssVariables (dom: NativeDOMNode, toRemove: CSSVariables) {
+  removeCssVariables (dom: HTMLElement, toRemove: CSSVariables) {
     _.each(toRemove, (value: any, key: string) => {
       if (dom.style.getPropertyValue(key) === value) {
         dom.style.removeProperty(key);
@@ -52,7 +50,7 @@ export default class NativeDOMAdapter extends React.Component {
     });
   }
 
-  addCssVariables (dom: NativeDOMNode, toAdd: CSSVariables) {
+  addCssVariables (dom: HTMLElement, toAdd: CSSVariables) {
     _.each(toAdd, (value: any, key: string) => {
       if (dom.style.getPropertyValue(key) !== value) {
         dom.style.setProperty(key, value);
@@ -60,7 +58,7 @@ export default class NativeDOMAdapter extends React.Component {
     });
   }
 
-  updateCssVariables (dom: NativeDOMNode,
+  updateCssVariables (dom: HTMLElement,
                       prev: CSSVariables,
                       next: CSSVariables) {
     let toRemove: CSSVariables = {};
@@ -80,21 +78,21 @@ export default class NativeDOMAdapter extends React.Component {
   }
 
   // Manage event listeners
-  removeEventListeners (dom: NativeDOMNode, toRemove: EventListeners) {
+  removeEventListeners (dom: HTMLElement, toRemove: EventListeners) {
     _.each(toRemove, (item: *) => {
       const [event, listener] = item;
       dom.removeEventListener(event, listener);
     });
   }
 
-  addEventListeners (dom: NativeDOMNode, toAdd: EventListeners) {
+  addEventListeners (dom: HTMLElement, toAdd: EventListeners) {
     _.each(toAdd, (item: *) => {
       const [event, listener] = item;
       dom.addEventListener(event, listener);
     });
   }
 
-  updateEventListeners (dom: NativeDOMNode,
+  updateEventListeners (dom: HTMLElement,
                         prev: EventListeners,
                         next: EventListeners) {
     const prevKeys = Object.keys(prev);

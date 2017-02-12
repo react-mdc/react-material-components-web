@@ -66,7 +66,7 @@ export default class Drawer<P: any> extends PropWrapper<*, P, *> {
     evt.stopPropagation();
   }
 
-  getRootDOMNode (): window.HTMLElement {
+  getRootDOMNode (): HTMLElement {
     return ReactDOM.findDOMNode(this);
   }
 

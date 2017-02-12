@@ -55,7 +55,7 @@ export class Ripple<P: any> extends PropWrapper<*, P, *> {
   foundation = new MDCRippleFoundation({
     browserSupportsCssVars: () => supportsCssVariables(window),
     isUnbounded: () => this.props.unbounded,
-    isSurfaceActive: () => this.getDOMNode()[MATCHES](':active'),
+    isSurfaceActive: () => (this.getDOMNode(): any)[MATCHES](':active'),
     addClass: (className: string) => {
       this.setState((state) => ({
         foundationClasses: state.foundationClasses.add(className)
@@ -108,7 +108,7 @@ export class Ripple<P: any> extends PropWrapper<*, P, *> {
     this.foundation.destroy();
   }
 
-  getDOMNode (): window.HTMLElement {
+  getDOMNode (): HTMLElement {
     return ReactDOM.findDOMNode(this);
   }
 
