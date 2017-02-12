@@ -1,5 +1,4 @@
 .git/
 node_modules/
 src/
-examples/
 yarn.lock

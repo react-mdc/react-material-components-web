@@ -197,7 +197,7 @@ class Container extends React.Component {
                 textColor="primary"
                 onColor="primary"
                 backgroundColor="primary">
-                React-Material-Components-Web
+                React Material Components Web
               </HeaderContent>
             </Header>
             <Content

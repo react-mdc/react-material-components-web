@@ -1,7 +1,7 @@
 {
   "name": "@react-mdc/base",
   "description": "Core library of @react-mdc components",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "license": "MIT",
   "main": "lib/index",
   "repository": {
@@ -13,16 +13,5 @@
     "immutable": "^3.8.1",
     "react": "^15.4.2",
     "react-dom": "^15.4.2"
-  },
-  "devDependencies": {
-    "@react-mdc/dev": "^0.1.1"
-  },
-  "scripts": {
-    "babel-prepublish": "npm run compile",
-    "flow-prepublish": "flow-copy-source src lib",
-    "prepublish": "npm run babel-prepublish && npm run flow-prepublish",
-    "clean": "rimraf lib/",
-    "compile": "babel src -d lib --presets=@react-mdc/dev/babel-preset",
-    "precompile": "npm run clean"
   }
 }

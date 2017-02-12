@@ -1,8 +1,14 @@
 {
   "lerna": "2.0.0-beta.36",
   "packages": [
-    "packages/*"
+    "packages/*",
+    "demo"
   ],
+  "commands": {
+    "publish": {
+      "ignore": ["demo/*"]
+    }
+  },
   "version": "independent",
   "publishConfig": {
     "ignore": [

@@ -148,7 +148,7 @@ export default class Container<P: any> extends PropWrapper<*, P, *> {
     );
   }
 
-  getRootDOMNode (): window.HTMLElement {
+  getRootDOMNode (): HTMLElement {
     return ReactDOM.findDOMNode(this);
   }
 

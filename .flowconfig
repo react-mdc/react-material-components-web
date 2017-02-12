@@ -1,6 +1,6 @@
 [ignore]
-examples/
-scripts/
+<PROJECT_ROOT>/scripts/.*
+<PROJECT_ROOT>/demo/.*
 
 [include]
 

@@ -13,7 +13,7 @@ import {
 } from 'immutable';
 
 import type {Props as WrapperProps} from '@react-mdc/base/lib/wrapper';
-import {PropWrapper} from '@react-mdc/base';
+import {PropWrapper, NativeDOMAdapter} from '@react-mdc/base';
 
 import {supportsCssVariables, getMatchesProperty} from './util';
 
@@ -32,7 +32,7 @@ export type Props<P: {}> = WrapperProps<P> & {
 type State = {
   foundationClasses: Set<string>,
   foundationCssVars: Map<string, ?string>,
-  foundationEventListeners: Map<string, EventListener>
+  foundationEventListeners: Map<string, Set<EventListener>>
 };
 
 /**
@@ -55,7 +55,7 @@ export class Ripple<P: any> extends PropWrapper<*, P, *> {
   foundation = new MDCRippleFoundation({
     browserSupportsCssVars: () => supportsCssVariables(window),
     isUnbounded: () => this.props.unbounded,
-    isSurfaceActive: () => this.getDOMNode()[MATCHES](':active'),
+    isSurfaceActive: () => (this.getDOMNode(): any)[MATCHES](':active'),
     addClass: (className: string) => {
       this.setState((state) => ({
         foundationClasses: state.foundationClasses.add(className)
@@ -68,15 +68,21 @@ export class Ripple<P: any> extends PropWrapper<*, P, *> {
     },
     registerInteractionHandler: (evtType: string, handler: EventListener) => {
       this.setState((state) => ({
-        foundationEventListeners: state.foundationEventListeners.set(evtType, handler)
+        foundationEventListeners: state.foundationEventListeners.update(
+          evtType,
+          new OrderedSet(),
+          (x) => x.add(handler)
+        )
       }));
     },
     deregisterInteractionHandler: (evtType: string, handler: EventListener) => {
-      if (this.state.foundationEventListeners.get(evtType) === handler) {
-        this.setState((state) => ({
-          foundationEventListeners: state.foundationEventListeners.delete(evtType)
-        }));
-      }
+      this.setState((state) => ({
+        foundationEventListeners: state.foundationEventListeners.update(
+          evtType,
+          new OrderedSet(),
+          (x) => x.delete(handler)
+        )
+      }));
     },
     registerResizeHandler: (handler: EventListener) => {
       window.addEventListener('resize', handler);
@@ -102,30 +108,7 @@ export class Ripple<P: any> extends PropWrapper<*, P, *> {
     this.foundation.destroy();
   }
 
-  // Sync dom node with foundation
-  componentDidUpdate (_prevProps: Props<P>, prevState: State) {
-    const node = this.getDOMNode();
-    // Sync css vars
-    prevState.foundationCssVars.forEach((v: *, k: *) => {
-      if (v !== this.state.foundationCssVars.get(k)) {
-        node.style.removeProperty(k);
-      }
-    });
-    this.state.foundationCssVars.forEach((v: *, k: *) => {
-      node.style.setProperty(k, v);
-    });
-    // Sync event listeners
-    prevState.foundationEventListeners.forEach((v: *, k: *) => {
-      if (v !== this.state.foundationEventListeners.get(k)) {
-        node.removeEventListener(k, v);
-      }
-    });
-    this.state.foundationEventListeners.forEach((v: *, k: *) => {
-      node.addEventListener(k, v);
-    });
-  }
-
-  getDOMNode (): window.HTMLElement {
+  getDOMNode (): HTMLElement {
     return ReactDOM.findDOMNode(this);
   }
 
@@ -153,6 +136,16 @@ export class Ripple<P: any> extends PropWrapper<*, P, *> {
       className
     };
     return props;
+  }
+
+  render (): * {
+    return (
+      <NativeDOMAdapter
+        cssVariables={this.state.foundationCssVars.toJS()}
+        eventListeners={this.state.foundationEventListeners.toJS()}>
+        {super.render()}
+      </NativeDOMAdapter>
+    );
   }
 }
 
