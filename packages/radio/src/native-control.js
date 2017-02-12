@@ -8,8 +8,7 @@ import type {Props as WrapperProps} from '@react-mdc/base/lib/wrapper';
 import {PropWrapper} from '@react-mdc/base';
 import {eventHandlerDecorator} from '@react-mdc/base/lib/util';
 
-import type {AdapterNativeControlDelegate, AdapterNativeControlCallback} from './types';
-import {AdapterNativeControlDelegatePropType} from './types';
+import {FoundationAdapter, NativeControlAdapter} from './adapter';
 import {BASE_CLASS_NAME} from './constants';
 
 export const CLASS_NAME = `${BASE_CLASS_NAME}__native-control`;
@@ -22,7 +21,7 @@ export type Props<P: {}> = WrapperProps<P> & {
 };
 
 type Context = {
-  adapterNativeControlDelegate: AdapterNativeControlDelegate
+  adapter: FoundationAdapter
 };
 
 // Input with type="radio" as default
@@ -43,26 +42,19 @@ export default class NativeControl<P: any> extends PropWrapper<*, P, *> {
   defaultOnChange: EventHandler = () => {}
 
   static contextTypes = {
-    adapterNativeControlDelegate: AdapterNativeControlDelegatePropType.isRequired
+    adapter: React.PropTypes.instanceOf(FoundationAdapter).isRequired
   }
 
   static defaultProps = {
     wrap: RadioInput
   }
 
-  adapterCallback: AdapterNativeControlCallback = {
-    setDefaultOnChange: (onChange: EventHandler) => {
-      this.defaultOnChange = onChange;
-    },
-    getDOMNode: () => ReactDOM.findDOMNode(this)
-  }
-
   componentDidMount () {
-    this.context.adapterNativeControlDelegate.setCallback(this.adapterCallback);
+    this.context.adapter.setNativeControlAdapter(new NativeControlAdapterImpl(this));
   }
 
   componentWillUnmount () {
-    this.context.adapterNativeControlDelegate.unsetCallback(this.adapterCallback);
+    this.context.adapter.setNativeControlAdapter(new NativeControlAdapter());
   }
 
   handleChange = (evt: SyntheticEvent, ...args: Array<void>) => {
@@ -84,7 +76,22 @@ export default class NativeControl<P: any> extends PropWrapper<*, P, *> {
       onChange: eventHandlerDecorator(this.handleChange)(onChange),
       ...props,
       className,
-      checked: this.context.adapterNativeControlDelegate.isChecked()
+      checked: this.context.adapter.isChecked()
     };
+  }
+}
+
+class NativeControlAdapterImpl extends NativeControlAdapter {
+  element: NativeControl<*>
+
+  constructor (element: NativeControl<*>) {
+    super();
+    this.element = element;
+  }
+  getNativeControl (): ?HTMLElement {
+    return ReactDOM.findDOMNode(this.element);
+  }
+  setDefaultOnChangeHandler (onChange: EventHandler) {
+    this.element.defaultOnChange = onChange;
   }
 }
