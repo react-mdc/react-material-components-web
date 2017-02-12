@@ -34,7 +34,7 @@ export default class NativeDOMAdapter extends React.Component {
   };
 
   // Last known DOM node
-  lastDOMNode: ?HTMLElement
+  lastDOMNode: HTMLElement
 
   // Get root DOM node of element
   getDOMNode (): HTMLElement {
