@@ -18,7 +18,7 @@ export class Wrapper<T, P: {}, S> extends React.Component<T, P, S> {
     throw new Error('Not implemented');
   }
 
-  render (): React.Element<P> {
+  render (): React.Element<*> {
     let wrap = this.renderWrap();
     let props = this.renderProps();
 
