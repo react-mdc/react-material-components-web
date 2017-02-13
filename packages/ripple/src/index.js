@@ -15,6 +15,7 @@ import {
 import type {Props as WrapperProps} from '@react-mdc/base/lib/wrapper';
 import {PropWrapper, NativeDOMAdapter} from '@react-mdc/base';
 
+import {FoundationAdapter, RippleAdapter} from './adapter';
 import {supportsCssVariables, getMatchesProperty} from './util';
 
 import {
@@ -40,6 +41,8 @@ type State = {
  */
 export class Ripple<P: any> extends PropWrapper<*, P, *> {
   props: Props<P>
+  adapter: FoundationAdapter
+  foundation: MDCRippleFoundation
 
   state: State = {
     foundationClasses: new OrderedSet(),
@@ -52,52 +55,12 @@ export class Ripple<P: any> extends PropWrapper<*, P, *> {
     unbounded: false
   }
 
-  foundation = new MDCRippleFoundation({
-    browserSupportsCssVars: () => supportsCssVariables(window),
-    isUnbounded: () => this.props.unbounded,
-    isSurfaceActive: () => (this.getDOMNode(): any)[MATCHES](':active'),
-    addClass: (className: string) => {
-      this.setState((state) => ({
-        foundationClasses: state.foundationClasses.add(className)
-      }));
-    },
-    removeClass: (className: string) => {
-      this.setState((state) => ({
-        foundationClasses: state.foundationClasses.remove(className)
-      }));
-    },
-    registerInteractionHandler: (evtType: string, handler: EventListener) => {
-      this.setState((state) => ({
-        foundationEventListeners: state.foundationEventListeners.update(
-          evtType,
-          new OrderedSet(),
-          (x) => x.add(handler)
-        )
-      }));
-    },
-    deregisterInteractionHandler: (evtType: string, handler: EventListener) => {
-      this.setState((state) => ({
-        foundationEventListeners: state.foundationEventListeners.update(
-          evtType,
-          new OrderedSet(),
-          (x) => x.delete(handler)
-        )
-      }));
-    },
-    registerResizeHandler: (handler: EventListener) => {
-      window.addEventListener('resize', handler);
-    },
-    deregisterResizeHandler: (handler: EventListener) => {
-      window.removeEventListener('resize', handler);
-    },
-    updateCssVariable: (varName: string, value: ?string) => {
-      this.setState((state) => ({
-        foundationCssVars: state.foundationCssVars.set(varName, value)
-      }));
-    },
-    computeBoundingRect: () => this.getDOMNode().getBoundingClientRect(),
-    getWindowPageOffset: () => ({x: window.pageXOffset, y: window.pageYOffset})
-  })
+  constructor (props: Props<P>) {
+    super(props);
+    this.adapter = new FoundationAdapter(this);
+    this.foundation = new MDCRippleFoundation(this.adapter.toObject());
+    this.adapter.setRippleAdapter(new RippleAdapterImpl(this));
+  }
 
   // Foundation lifecycle
   componentDidMount () {
@@ -146,6 +109,69 @@ export class Ripple<P: any> extends PropWrapper<*, P, *> {
         {super.render()}
       </NativeDOMAdapter>
     );
+  }
+}
+
+class RippleAdapterImpl extends RippleAdapter {
+  element: Ripple<*>
+
+  constructor (element: Ripple<*>) {
+    super();
+    this.element = element;
+  }
+  browserSupportsCssVars (): boolean {
+    return supportsCssVariables(window);
+  }
+  isUnbounded (): boolean {
+    return this.element.props.unbounded;
+  }
+  isSurfaceActive (): boolean {
+    return (this.element.getDOMNode(): any)[MATCHES](':active');
+  }
+  addClass (className: string) {
+    this.element.setState((state) => ({
+      foundationClasses: state.foundationClasses.add(className)
+    }));
+  }
+  removeClass (className: string) {
+    this.element.setState((state) => ({
+      foundationClasses: state.foundationClasses.remove(className)
+    }));
+  }
+  registerInteractionHandler (evtType: string, handler: EventListener) {
+    this.element.setState((state) => ({
+      foundationEventListeners: state.foundationEventListeners.update(
+        evtType,
+        new OrderedSet(),
+        (x) => x.add(handler)
+      )
+    }));
+  }
+  deregisterInteractionHandler (evtType: string, handler: EventListener) {
+    this.element.setState((state) => ({
+      foundationEventListeners: state.foundationEventListeners.update(
+        evtType,
+        new OrderedSet(),
+        (x) => x.delete(handler)
+      )
+    }));
+  }
+  registerResizeHandler (handler: EventListener) {
+    window.addEventListener('resize', handler);
+  }
+  deregisterResizeHandler (handler: EventListener) {
+    window.removeEventListener('resize', handler);
+  }
+  updateCssVariable (varName: string, value: ?string) {
+    this.element.setState((state) => ({
+      foundationCssVars: state.foundationCssVars.set(varName, value)
+    }));
+  }
+  computeBoundingRect (): ?ClientRect {
+    return this.element.getDOMNode().getBoundingClientRect();
+  }
+  getWindowPageOffset (): {x: number, y: number} {
+    return {x: window.pageXOffset, y: window.pageYOffset};
   }
 }
 
