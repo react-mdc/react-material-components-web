@@ -70,7 +70,6 @@ export default class Container<P: any> extends PropWrapper<*, P, *> {
     super(props);
     this.adapter = new FoundationAdapter(this);
     this.foundation = new MDCCheckboxFoundation(this.adapter.toObject());
-    this.adapter.setContainerAdapter(new ContainerAdapterImpl(this));
   }
 
   getChildContext (): ChildContext {
@@ -108,6 +107,7 @@ export default class Container<P: any> extends PropWrapper<*, P, *> {
 
   // Foundation lifecycle
   componentDidMount () {
+    this.adapter.setContainerAdapter(new ContainerAdapterImpl(this));
     this.foundation.init();
     if (this.props.checked != null) {
       this.foundation.setChecked(this.props.checked);
@@ -119,6 +119,7 @@ export default class Container<P: any> extends PropWrapper<*, P, *> {
 
   componentWillUnmount () {
     this.foundation.destroy();
+    this.adapter.setContainerAdapter(new ContainerAdapter());
   }
 
   // Sync props and internal state

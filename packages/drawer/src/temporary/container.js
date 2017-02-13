@@ -77,7 +77,6 @@ export default class TemporaryDrawer<P: any> extends PropWrapper<*, P, *> {
     super(props);
     this.adapter = new FoundationAdapter(this);
     this.foundation = new MDCTemporaryDrawerFoundation(this.adapter.toObject());
-    this.adapter.setContainerAdapter(new ContainerAdapterImpl(this));
   }
 
   getChildContext (): ChildContext {
@@ -112,11 +111,13 @@ export default class TemporaryDrawer<P: any> extends PropWrapper<*, P, *> {
 
   // Foundation lifecycle
   componentDidMount () {
+    this.adapter.setContainerAdapter(new ContainerAdapterImpl(this));
     this.foundation.init();
   }
 
   componentWillUnmount () {
     this.foundation.destroy();
+    this.adapter.setContainerAdapter(new ContainerAdapter());
   }
 
   // Custom event handler

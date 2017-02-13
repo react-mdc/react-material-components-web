@@ -59,16 +59,17 @@ export class Ripple<P: any> extends PropWrapper<*, P, *> {
     super(props);
     this.adapter = new FoundationAdapter(this);
     this.foundation = new MDCRippleFoundation(this.adapter.toObject());
-    this.adapter.setRippleAdapter(new RippleAdapterImpl(this));
   }
 
   // Foundation lifecycle
   componentDidMount () {
+    this.adapter.setRippleAdapter(new RippleAdapterImpl(this));
     this.foundation.init();
   }
 
   componentWillUnmount () {
     this.foundation.destroy();
+    this.adapter.setRippleAdapter(new RippleAdapter());
   }
 
   getDOMNode (): HTMLElement {
