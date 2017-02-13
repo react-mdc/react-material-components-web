@@ -75,7 +75,8 @@ export default class RippleExample extends React.Component {
               cursor: 'pointer',
               display: 'flex',
               alignItems: 'center',
-              justifyContent: 'center'
+              justifyContent: 'center',
+              borderRadius: '50%'
             }}
             unbounded>
             <Pen />

@@ -2,15 +2,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import classNames from 'classnames';
+import {
+  Set,
+  OrderedSet,
+  Map
+} from 'immutable';
 
 import type {EventHandler} from '@react-mdc/base/lib/types';
 import type {Props as WrapperProps} from '@react-mdc/base/lib/wrapper';
 import {PropWrapper} from '@react-mdc/base';
 import {eventHandlerDecorator} from '@react-mdc/base/lib/util';
 
-import type {AdapterNativeControlDelegate, AdapterNativeControlCallback} from './types';
-import {AdapterNativeControlDelegatePropType} from './types';
 import {BASE_CLASS_NAME} from './constants';
+import {FoundationAdapter, NativeControlAdapter} from './adapter';
 
 export const CLASS_NAME = `${BASE_CLASS_NAME}__native-control`;
 
@@ -21,8 +25,12 @@ export const propertyClassNames = {
 export type Props<P: {}> = WrapperProps<P> & {
 };
 
+type State = {
+  foundationEventListeners: Map<string, Set<EventListener>>
+};
+
 type Context = {
-  adapterNativeControlDelegate: AdapterNativeControlDelegate
+  adapter: FoundationAdapter
 };
 
 // Input with type="checkbox" as default
@@ -43,26 +51,23 @@ export default class NativeControl<P: any> extends PropWrapper<*, P, *> {
   defaultOnChange: EventHandler = () => {}
 
   static contextTypes = {
-    adapterNativeControlDelegate: AdapterNativeControlDelegatePropType.isRequired
+    adapter: React.PropTypes.instanceOf(FoundationAdapter).isRequired
   }
 
   static defaultProps = {
     wrap: CheckboxInput
   }
 
-  adapterCallback: AdapterNativeControlCallback = {
-    setDefaultOnChange: (onChange: EventHandler) => {
-      this.defaultOnChange = onChange;
-    },
-    getDOMNode: () => ReactDOM.findDOMNode(this)
+  state = {
+    foundationEventListeners: new Map()
   }
 
   componentDidMount () {
-    this.context.adapterNativeControlDelegate.setCallback(this.adapterCallback);
+    this.context.adapter.setNativeControlAdapter(new NativeControlAdapterImpl(this));
   }
 
   componentWillUnmount () {
-    this.context.adapterNativeControlDelegate.unsetCallback(this.adapterCallback);
+    this.context.adapter.setNativeControlAdapter(new NativeControlAdapter());
   }
 
   handleChange = (evt: SyntheticEvent, ...args: Array<void>) => {
@@ -84,7 +89,41 @@ export default class NativeControl<P: any> extends PropWrapper<*, P, *> {
       onChange: eventHandlerDecorator(this.handleChange)(onChange),
       ...props,
       className,
-      checked: this.context.adapterNativeControlDelegate.isChecked()
+      checked: this.context.adapter.isChecked()
     };
+  }
+}
+
+class NativeControlAdapterImpl extends NativeControlAdapter {
+  element: NativeControl<*>
+
+  constructor (element: NativeControl<*>) {
+    super();
+    this.element = element;
+  }
+
+  registerChangeHandler (handler: EventListener) {
+    this.element.setState((state: State) => ({
+      foundationEventListeners: state.foundationEventListeners.update(
+        'change',
+        new OrderedSet(),
+        x => x.add(handler)
+      )
+    }));
+  }
+  deregisterChangeHandler (handler: EventListener) {
+    this.element.setState((state: State) => ({
+      foundationEventListeners: state.foundationEventListeners.update(
+        'change',
+        new OrderedSet(),
+        x => x.delete(handler)
+      )
+    }));
+  }
+  getNativeControl (): ?HTMLElement {
+    return ReactDOM.findDOMNode(this.element);
+  }
+  setDefaultOnChangeHandler (handler: EventHandler) {
+    this.element.defaultOnChange = handler;
   }
 }

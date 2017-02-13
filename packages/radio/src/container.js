@@ -8,8 +8,7 @@ import type {EventHandler} from '@react-mdc/base/lib/types';
 import type {Props as WrapperProps} from '@react-mdc/base/lib/wrapper';
 import {PropWrapper} from '@react-mdc/base';
 
-import type {AdapterNativeControlDelegate, AdapterNativeControlCallback} from './types';
-import {AdapterNativeControlDelegatePropType} from './types';
+import {FoundationAdapter, ContainerAdapter} from './adapter';
 
 import {
   BASE_CLASS_NAME
@@ -32,7 +31,7 @@ type State = {
 };
 
 export type ChildContext = {
-  adapterNativeControlDelegate: AdapterNativeControlDelegate
+  adapter: FoundationAdapter
 };
 
 /**
@@ -40,9 +39,11 @@ export type ChildContext = {
  */
 export default class Container<P: any> extends PropWrapper<*, P, *> {
   props: Props<P>
+  adapter: FoundationAdapter
+  foundation: MDCRadioFoundation
 
   static childContextTypes = {
-    adapterNativeControlDelegate: AdapterNativeControlDelegatePropType
+    adapter: React.PropTypes.instanceOf(FoundationAdapter)
   }
 
   state: State = {
@@ -53,48 +54,15 @@ export default class Container<P: any> extends PropWrapper<*, P, *> {
     wrap: <div />
   }
 
-  nativeControlCallback: ?AdapterNativeControlCallback
-
-  adapterNativeControlDelegate: AdapterNativeControlDelegate = {
-    setCallback: (callback: AdapterNativeControlCallback) => {
-      this.nativeControlCallback = callback;
-      this.nativeControlCallback.setDefaultOnChange(this.handleChange);
-    },
-    unsetCallback: (callback: AdapterNativeControlCallback) => {
-      if (this.nativeControlCallback === callback) {
-        this.nativeControlCallback = null;
-      }
-    },
-    isChecked: (): ?boolean => {
-      if (this.props.checked != null) {
-        return this.props.checked;
-      }
-      return undefined;
-    }
+  constructor (props: Props<P>) {
+    super(props);
+    this.adapter = new FoundationAdapter(this);
+    this.foundation = new MDCRadioFoundation(this.adapter.toObject());
   }
-
-  foundation = new MDCRadioFoundation({
-    addClass: (className: string) => {
-      this.setState((state) => ({
-        foundationClasses: state.foundationClasses.add(className)
-      }));
-    },
-    removeClass: (className: string) => {
-      this.setState((state) => ({
-        foundationClasses: state.foundationClasses.remove(className)
-      }));
-    },
-    getNativeControl: (): ?Element => {
-      if (this.nativeControlCallback == null) {
-        return null;
-      }
-      return this.nativeControlCallback.getDOMNode();
-    }
-  })
 
   getChildContext (): ChildContext {
     return {
-      adapterNativeControlDelegate: this.adapterNativeControlDelegate
+      adapter: this.adapter
     };
   }
 
@@ -120,6 +88,7 @@ export default class Container<P: any> extends PropWrapper<*, P, *> {
 
   // Foundation lifecycle
   componentDidMount () {
+    this.adapter.setContainerAdapter(new ContainerAdapterImpl(this));
     this.foundation.init();
     if (this.props.checked != null) {
       this.foundation.setChecked(this.props.checked);
@@ -131,6 +100,7 @@ export default class Container<P: any> extends PropWrapper<*, P, *> {
 
   componentWillUnmount () {
     this.foundation.destroy();
+    this.adapter.setContainerAdapter(new ContainerAdapter());
   }
 
   // Sync props and internal state
@@ -166,5 +136,27 @@ export default class Container<P: any> extends PropWrapper<*, P, *> {
       ...props,
       className
     };
+  }
+}
+
+class ContainerAdapterImpl extends ContainerAdapter {
+  element: Container<*>
+
+  constructor (element: Container<*>) {
+    super();
+    this.element = element;
+  }
+  addClass (className: string) {
+    this.element.setState((state) => ({
+      foundationClasses: state.foundationClasses.remove(className)
+    }));
+  }
+  removeClass (className: string) {
+    this.element.setState((state) => ({
+      foundationClasses: state.foundationClasses.add(className)
+    }));
+  }
+  isChecked (): ?boolean {
+    return this.element.props.checked;
   }
 }

@@ -7,16 +7,17 @@ import {getCorrectEventName} from '@material/animation/dist/mdc.animation';
 import {
   Set,
   OrderedSet,
-  Map,
-  OrderedMap
+  Map
 } from 'immutable';
 
 import type {EventHandler} from '@react-mdc/base/lib/types';
 import type {Props as WrapperProps} from '@react-mdc/base/lib/wrapper';
-import {PropWrapper} from '@react-mdc/base';
+import {
+  PropWrapper,
+  NativeDOMAdapter
+} from '@react-mdc/base';
 
-import type {AdapterNativeControlDelegate, AdapterNativeControlCallback} from './types';
-import {AdapterNativeControlDelegatePropType} from './types';
+import {ContainerAdapter, FoundationAdapter} from './adapter';
 
 import {
   BASE_CLASS_NAME
@@ -37,12 +38,11 @@ export type Props<P: {}> = WrapperProps<P> & {
 
 type State = {
   foundationClasses: Set<string>,
-  foundationEventListeners: Map<string, EventListener>,
-  foundationNativeControlEventListeners: Map<string, EventListener>
+  foundationEventListeners: Map<string, Set<EventListener>>
 };
 
 export type ChildContext = {
-  adapterNativeControlDelegate: AdapterNativeControlDelegate
+  adapter: FoundationAdapter
 };
 
 /**
@@ -50,90 +50,31 @@ export type ChildContext = {
  */
 export default class Container<P: any> extends PropWrapper<*, P, *> {
   props: Props<P>
+  adapter: FoundationAdapter
+  foundation: MDCCheckboxFoundation
 
   static childContextTypes = {
-    adapterNativeControlDelegate: AdapterNativeControlDelegatePropType
+    adapter: React.PropTypes.instanceOf(FoundationAdapter)
   }
 
   state: State = {
     foundationClasses: new OrderedSet(),
-    foundationEventListeners: new OrderedMap(),
-    foundationNativeControlEventListeners: new OrderedMap()
+    foundationEventListeners: new Map()
   }
 
   static defaultProps = {
     wrap: <div />
   }
 
-  nativeControlCallback: ?AdapterNativeControlCallback
-
-  adapterNativeControlDelegate: AdapterNativeControlDelegate = {
-    setCallback: (callback: AdapterNativeControlCallback) => {
-      this.nativeControlCallback = callback;
-      this.nativeControlCallback.setDefaultOnChange(this.handleChange);
-    },
-    unsetCallback: (callback: AdapterNativeControlCallback) => {
-      if (this.nativeControlCallback === callback) {
-        this.nativeControlCallback = null;
-      }
-    },
-    isChecked: (): ?boolean => {
-      if (this.props.checked != null) {
-        return this.props.checked;
-      }
-      return undefined;
-    }
+  constructor (props: Props<P>) {
+    super(props);
+    this.adapter = new FoundationAdapter(this);
+    this.foundation = new MDCCheckboxFoundation(this.adapter.toObject());
   }
-
-  foundation = new MDCCheckboxFoundation({
-    addClass: (className: string) => {
-      this.setState((state) => ({
-        foundationClasses: state.foundationClasses.add(className)
-      }));
-    },
-    removeClass: (className: string) => {
-      this.setState((state) => ({
-        foundationClasses: state.foundationClasses.remove(className)
-      }));
-    },
-    registerAnimationEndHandler: (handler: EventListener) => {
-      this.setState((state) => ({
-        foundationEventListeners: state.foundationEventListeners.set(getCorrectEventName(window, 'animationend'), handler)
-      }));
-    },
-    deregisterAnimationEndHandler: (handler: EventListener) => {
-      const evt = getCorrectEventName(window, 'animationend');
-      if (this.state.foundationEventListeners.get(evt) === handler) {
-        this.setState((state) => ({
-          foundationEventListeners: state.foundationEventListeners.delete(evt)
-        }));
-      }
-    },
-    registerChangeHandler: (handler: EventListener) => {
-      this.setState((state: State) => ({
-        foundationNativeControlEventListener: state.foundationNativeControlEventListeners.set('change', handler)
-      }));
-    },
-    deregisterChangeHandler: (handler: EventListener) => {
-      if (this.state.foundationNativeControlEventListeners.get('change') === handler) {
-        this.setState((state: State) => ({
-          foundationNativeControlEventListener: state.foundationNativeControlEventListeners.delete('change')
-        }));
-      }
-    },
-    getNativeControl: (): ?Element => {
-      if (this.nativeControlCallback == null) {
-        return null;
-      }
-      return this.nativeControlCallback.getDOMNode();
-    },
-    forceLayout: () => { /* no-op */ },
-    isAttachedToDOM: () => true // Always true. Because we initialize foundation on componentDidMount
-  })
 
   getChildContext (): ChildContext {
     return {
-      adapterNativeControlDelegate: this.adapterNativeControlDelegate
+      adapter: this.adapter
     };
   }
 
@@ -166,6 +107,7 @@ export default class Container<P: any> extends PropWrapper<*, P, *> {
 
   // Foundation lifecycle
   componentDidMount () {
+    this.adapter.setContainerAdapter(new ContainerAdapterImpl(this));
     this.foundation.init();
     if (this.props.checked != null) {
       this.foundation.setChecked(this.props.checked);
@@ -177,38 +119,12 @@ export default class Container<P: any> extends PropWrapper<*, P, *> {
 
   componentWillUnmount () {
     this.foundation.destroy();
+    this.adapter.setContainerAdapter(new ContainerAdapter());
   }
 
   // Sync props and internal state
   componentWillReceiveProps (props: Props<P>) {
     this.syncFoundation(props);
-  }
-
-  // Sync dom node with foundation
-  componentDidUpdate (_prevProps: Props<P>, prevState: State) {
-    const rootNode = this.getRootDOMNode();
-    // Sync root event listeners
-    prevState.foundationEventListeners.forEach((v: *, k: *) => {
-      if (v !== this.state.foundationEventListeners.get(k)) {
-        rootNode.removeEventListener(k, v);
-      }
-    });
-    this.state.foundationEventListeners.forEach((v: *, k: *) => {
-      rootNode.addEventListener(k, v);
-    });
-
-    if (this.nativeControlCallback != null) {
-      const nativeNode = this.nativeControlCallback.getDOMNode();
-      // Sync native control event listeners
-      prevState.foundationNativeControlEventListeners.forEach((v: *, k: *) => {
-        if (v !== this.state.foundationNativeControlEventListeners.get(k)) {
-          nativeNode.removeEventListener(k, v);
-        }
-      });
-      this.state.foundationNativeControlEventListeners.forEach((v: *, k: *) => {
-        nativeNode.addEventListener(k, v);
-      });
-    }
   }
 
   // Event handler
@@ -240,5 +156,60 @@ export default class Container<P: any> extends PropWrapper<*, P, *> {
       ...props,
       className
     };
+  }
+
+  render (): * {
+    return (
+      <NativeDOMAdapter
+        eventListeners={this.state.foundationEventListeners.toJS()}>
+        {super.render()}
+      </NativeDOMAdapter>
+    );
+  }
+}
+
+class ContainerAdapterImpl extends ContainerAdapter {
+  element: Container<*>
+
+  constructor (element: Container<*>) {
+    super();
+    this.element = element;
+  }
+  addClass (className: string) {
+    this.element.setState((state) => ({
+      foundationClasses: state.foundationClasses.add(className)
+    }));
+  }
+  removeClass (className: string) {
+    this.element.setState((state) => ({
+      foundationClasses: state.foundationClasses.remove(className)
+    }));
+  }
+  registerAnimationEndHandler (handler: EventListener) {
+    this.element.setState((state) => ({
+      foundationEventListeners: state.foundationEventListeners.update(
+        getCorrectEventName(window, 'animationend'),
+        new OrderedSet(),
+        x => x.add(handler)
+      )
+    }));
+  }
+  deregisterAnimationEndHandler (handler: EventListener) {
+    const evt = getCorrectEventName(window, 'animationend');
+    if (this.element.state.foundationEventListeners.get(evt) === handler) {
+      this.element.setState((state) => ({
+        foundationEventListeners: state.foundationEventListeners.delete(evt)
+      }));
+    }
+  }
+  forceLayout () {
+    /* no-op */
+  }
+  isAttachedToDOM (): boolean {
+    // Always true. Because we initialize foundation on componentDidMount
+    return true;
+  }
+  isChecked (): ?boolean {
+    return this.element.props.checked;
   }
 }
