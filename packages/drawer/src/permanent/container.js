@@ -7,17 +7,17 @@ import {PropWrapper} from '@react-mdc/base';
 
 import {BASE_CLASS_NAME} from './constants';
 
-export const CLASS_NAME = `${BASE_CLASS_NAME}__drawer`;
+export const CLASS_NAME = BASE_CLASS_NAME;
 
 export type Props<P: {}> = WrapperProps<P> & {
   className?: string
 };
 
-export default class Drawer<P: any> extends PropWrapper<*, P, *> {
+export default class PermanentDrawer<P: any> extends PropWrapper<*, P, *> {
   props: Props<P>
 
   static defaultProps = {
-    wrap: <div />
+    wrap: <nav />
   }
 
   renderProps (): P {
