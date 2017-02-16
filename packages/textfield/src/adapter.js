@@ -65,6 +65,8 @@ export class FoundationAdapter {
   constructor () {
     this.containerAdapter = new ContainerAdapter();
     this.inputAdapter = new InputAdapter();
+    this.labelAdapter = new LabelAdapter();
+    this.helptextAdapter = new HelptextAdapter();
   }
   setContainerAdapter (containerAdapter: ContainerAdapter) {
     this.containerAdapter = containerAdapter;

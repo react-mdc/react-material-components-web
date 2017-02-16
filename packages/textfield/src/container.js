@@ -16,11 +16,15 @@ import {
 export const CLASS_NAME = BASE_CLASS_NAME;
 
 export const propertyClassNames = {
-  PREFIX: CLASS_NAME
+  PREFIX: CLASS_NAME,
+  MULTILINE: `${CLASS_NAME}--multiline`,
+  FULLWIDTH: `${CLASS_NAME}--fullwidth`
 };
 
 export type Props<P: {}> = WrapperProps<P> & {
-  disabled?: boolean
+  disabled?: boolean,
+  multiline: boolean,
+  fullwidth: boolean
 };
 
 type State = {
@@ -44,7 +48,9 @@ export default class Container<P: any> extends PropWrapper<*, P, *> {
   }
 
   state: State = {
-    foundationClasses: new OrderedSet()
+    foundationClasses: new OrderedSet(),
+    multiline: false,
+    fullwidth: false
   }
 
   static defaultProps = {
@@ -69,6 +75,10 @@ export default class Container<P: any> extends PropWrapper<*, P, *> {
     } = props;
     return classNames(
       CLASS_NAME,
+      {
+        [propertyClassNames.MULTILINE]: this.props.multiline,
+        [propertyClassNames.FULLWIDTH]: this.props.fullwidth
+      },
       className,
       state.foundationClasses.toJS()
     );
@@ -89,6 +99,8 @@ export default class Container<P: any> extends PropWrapper<*, P, *> {
     let {
       wrap: _wrap,
       disabled: _disabled,
+      multiline: _multiline,
+      fullwidth: _fullwidth,
       className: _className,
       ...props
     } = this.props;
@@ -107,5 +119,15 @@ class ContainerAdapterImpl extends ContainerAdapter {
   constructor (element: Container<*>) {
     super();
     this.element = element;
+  }
+  addClass (className: string) {
+    this.element.setState((state) => ({
+      foundationClasses: state.foundationClasses.add(className)
+    }));
+  }
+  removeClass (className: string) {
+    this.element.setState((state) => ({
+      foundationClasses: state.foundationClasses.remove(className)
+    }));
   }
 }
