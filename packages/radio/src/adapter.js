@@ -36,6 +36,7 @@ export class NativeControlAdapter {
 export class FoundationAdapter {
   containerAdapter: ContainerAdapter
   nativeControlAdapter: NativeControlAdapter
+  defaultOnchangeHandler: EventHandler = () => {}
 
   constructor () {
     this.containerAdapter = new ContainerAdapter();
@@ -46,6 +47,7 @@ export class FoundationAdapter {
   }
   setNativeControlAdapter (nativeControlAdapter: NativeControlAdapter) {
     this.nativeControlAdapter = nativeControlAdapter;
+    this.nativeControlAdapter.setDefaultOnChangeHandler(this.defaultOnchangeHandler);
   }
   addClass (className: string) {
     this.containerAdapter.addClass(className);

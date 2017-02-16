@@ -34,18 +34,20 @@
     "flow-bin": "^0.37.4",
     "flowtype-loader": "^0.2.2",
     "gh-pages": "^0.12.0",
+    "npm-run-all": "^4.0.1",
     "rimraf": "^2.5.4",
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",
-    "webpack": "^1.14.0",
-    "webpack-dev-server": "^1.16.2"
+    "webpack": "^2.2.1",
+    "webpack-dev-server": "^2.3.0"
   },
   "scripts": {
     "clean": "rimraf build/",
     "precompile": "npm run clean",
-    "compile": "cross-env NODE_ENV=production webpack -p --progress",
+    "compile": "cross-env NODE_ENV=production webpack --progress",
     "start": "webpack-dev-server --progress",
-    "prepublish": "npm run compile",
-    "release": "npm run clean && cross-env URL_PREFIX=react-material-components-web/ npm run compile && gh-pages -d . -m 'Updates v'$npm_package_version --remove node_modules"
+    "release:compile": "cross-env URL_PREFIX=react-material-components-web/ npm run compile",
+    "release:gh-pages": "gh-pages -d . -m 'Update Demo' --remove node_modules",
+    "release": "npm-run-all clean release:compile release:gh-pages"
   }
 }

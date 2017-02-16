@@ -90,6 +90,7 @@ export default class Container<P: any> extends PropWrapper<*, P, *> {
   componentDidMount () {
     this.adapter.setContainerAdapter(new ContainerAdapterImpl(this));
     this.foundation.init();
+    this.adapter.setDefaultOnChangeHandler(this.handleChange);
     if (this.props.checked != null) {
       this.foundation.setChecked(this.props.checked);
     }

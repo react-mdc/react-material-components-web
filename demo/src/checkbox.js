@@ -67,7 +67,7 @@ export default class CheckboxExample extends React.Component {
               indeterminate={this.state.checkbox3State === 'indeterminate'}
               checked={this.state.checkbox3State === 'checked'} />
             <label htmlFor="checkbox-3">
-              Checkbox 3
+              Checkbox 3 State: {this.state.checkbox3State}
             </label>
           </FormField>
           <Button onClick={this.handleIndeterminateClick} raised>

@@ -14,9 +14,14 @@ export type CSSVariables = {
   [string]: any
 };
 
+export type Attributes = {
+  [string]: string
+};
+
 export type Props = {
   cssVariables: CSSVariables,
   eventListeners: EventListeners,
+  attributes: Attributes,
   // FIXME: How do we handle children property properly?
   children?: React.Element<*>
 };
@@ -30,7 +35,8 @@ export default class NativeDOMAdapter extends React.Component {
 
   static defaultProps = {
     cssVariables: {},
-    eventListeners: {}
+    eventListeners: {},
+    attributes: {}
   };
 
   // Last known DOM node
@@ -126,10 +132,47 @@ export default class NativeDOMAdapter extends React.Component {
     });
   }
 
+  // Manage attributes
+  removeAttributes (dom: HTMLElement, toRemove: Attributes) {
+    _.each(toRemove, (value: any, key: string) => {
+      if (dom.getAttribute(key) === value) {
+        dom.removeAttribute(key);
+      }
+    });
+  }
+
+  addAttributes (dom: HTMLElement, toAdd: Attributes) {
+    _.each(toAdd, (value: any, key: string) => {
+      if (dom.getAttribute(key) !== value) {
+        dom.setAttribute(key, value);
+      }
+    });
+  }
+
+  updateAttributes (dom: HTMLElement,
+                    prev: Attributes,
+                    next: Attributes) {
+    let toRemove: Attributes = {};
+    let toAdd: Attributes = {};
+    _.each(prev, (value: string, key: string) => {
+      if (next[key] !== value) {
+        toRemove[key] = value;
+      }
+    });
+    _.each(next, (value: string, key: string) => {
+      if (prev[key] !== value) {
+        toAdd[key] = value;
+      }
+    });
+    this.removeAttributes(dom, toRemove);
+    this.addAttributes(dom, toAdd);
+  }
+
   componentDidMount () {
     this.lastDOMNode = this.getDOMNode();
     this.addCssVariables(this.lastDOMNode, this.props.cssVariables);
     this.addEventListeners(this.lastDOMNode, this.props.eventListeners);
+    this.addAttributes(this.lastDOMNode, this.props.attributes);
   }
 
   componentDidUpdate (prevProps: Props) {
@@ -138,9 +181,11 @@ export default class NativeDOMAdapter extends React.Component {
       // Remove from previous DOM node
       this.removeCssVariables(this.lastDOMNode, prevProps.cssVariables);
       this.removeEventListeners(this.lastDOMNode, prevProps.eventListeners);
+      this.removeAttributes(this.lastDOMNode, this.props.attributes);
       // Add to new DOM node
       this.addCssVariables(node, this.props.cssVariables);
       this.addEventListeners(node, this.props.eventListeners);
+      this.addAttributes(node, this.props.attributes);
       // Update current DOM node
       this.lastDOMNode = node;
     } else {
@@ -151,6 +196,9 @@ export default class NativeDOMAdapter extends React.Component {
       this.updateEventListeners(node,
                                 prevProps.eventListeners,
                                 this.props.eventListeners);
+      this.updateAttributes(node,
+                            prevProps.attributes,
+                            this.props.attributes);
     }
   }
 

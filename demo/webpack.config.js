@@ -42,14 +42,13 @@ module.exports = {
     filename: 'bundle.js'
   },
   module: {
-    preLoaders: [
+    loaders: [
       {
         test: /src\/.+\.js$/,
+        enforce: 'pre',
         loader: 'eslint-loader!flowtype-loader',
         exclude: /node_modules/
-      }
-    ],
-    loaders: [
+      },
       {
         exclude: [
           /\.html$/,
@@ -71,7 +70,7 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        loader: 'style-loader!css?importLoaders=1'
+        loader: 'style-loader!css-loader?importLoaders=1'
       },
       {
         test: /\.json$/,
@@ -86,11 +85,5 @@ module.exports = {
       }
     ]
   },
-  devtool: 'source-map',
-  // Webpack bug: webpack cannot recognize npm link'd module's configurations
-  // and it will be fixed webpack 2.X
-  // See: https://github.com/facebook/flow/issues/1548
-  resolveLoader: {
-    fallback: path.join(DEMO_ROOT, 'node_modules')
-  }
+  devtool: 'source-map'
 };
