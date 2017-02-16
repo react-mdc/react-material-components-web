@@ -15,6 +15,7 @@
     "@react-mdc/list": "^0.1.0",
     "@react-mdc/radio": "^0.1.2",
     "@react-mdc/ripple": "^0.1.0",
+    "@react-mdc/textfield": "^0.1.0",
     "@react-mdc/theme": "^0.1.0",
     "@react-mdc/typography": "^0.1.0",
     "classnames": "^2.2.5",
