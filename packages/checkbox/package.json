@@ -1,7 +1,7 @@
 {
   "name": "@react-mdc/checkbox",
   "description": "React wrapper of @material/checkbox",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "license": "MIT",
   "main": "lib/index",
   "repository": {
@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@material/checkbox": "^0.1.2",
-    "@react-mdc/base": "^0.1.1",
+    "@react-mdc/base": "^0.1.2",
     "classnames": "^2.2.5",
     "immutable": "^3.8.1",
     "react": "^15.4.2",
