@@ -24,6 +24,7 @@ import FormFieldExample from './form-field';
 import RadioExample from './radio';
 import RippleExample from './ripple';
 import CheckboxExample from './checkbox';
+import TextfieldExample from './textfield';
 
 import Welcome from './welcome';
 import NotFound from './not-found';
@@ -133,6 +134,13 @@ class Container extends React.Component {
           onClick={this.handleClickLink}>
           Checkbox
         </item.ListItem>
+        <item.ListItem
+          wrap={Link}
+          activeClassName={SELECTED_CLASS_NAME}
+          to="/textfield"
+          onClick={this.handleClickLink}>
+          Textfield
+        </item.ListItem>
         <Divider wrap={<hr />} />
         <item.ListItem
           wrap={<a />}
@@ -236,6 +244,7 @@ export default class Main extends React.Component {
           <Route path="radio" component={RadioExample} />
           <Route path="ripple" component={RippleExample} />
           <Route path="checkbox" component={CheckboxExample} />
+          <Route path="textfield" component={TextfieldExample} />
           <Route path="*" component={NotFound} />
         </Route>
       </Router>

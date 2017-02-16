@@ -8,18 +8,16 @@ import {
   Map
 } from 'immutable';
 
-import type {EventHandler} from '@react-mdc/base/lib/types';
 import type {Props as WrapperProps} from '@react-mdc/base/lib/wrapper';
 import {
   PropWrapper,
   NativeDOMAdapter
 } from '@react-mdc/base';
-import {eventHandlerDecorator} from '@react-mdc/base/lib/util';
 
 import {BASE_CLASS_NAME} from './constants';
-import {FoundationAdapter, NativeControlAdapter} from './adapter';
+import {FoundationAdapter, InputAdapter} from './adapter';
 
-export const CLASS_NAME = `${BASE_CLASS_NAME}__native-control`;
+export const CLASS_NAME = `${BASE_CLASS_NAME}__input`;
 
 export const propertyClassNames = {
   PREFIX: CLASS_NAME
@@ -37,30 +35,28 @@ type Context = {
 };
 
 // Input with type="checkbox" as default
-function CheckboxInput (props: *): React.Element<*> {
+function TextInput (props: *): React.Element<*> {
   return (
-    <input type="checkbox" {...props} />
+    <input type="text" {...props} />
   );
 }
 
 /**
- * Checkbox input component
+ * Textfield input component
  */
-export default class NativeControl<P: any> extends PropWrapper<*, P, *> {
+export default class Input<P: any> extends PropWrapper<*, P, *> {
   props: Props<P>
 
   context: Context
 
   state: State
 
-  defaultOnChange: EventHandler = () => {}
-
   static contextTypes = {
     adapter: React.PropTypes.instanceOf(FoundationAdapter).isRequired
   }
 
   static defaultProps = {
-    wrap: CheckboxInput
+    wrap: TextInput
   }
 
   state = {
@@ -68,22 +64,17 @@ export default class NativeControl<P: any> extends PropWrapper<*, P, *> {
   }
 
   componentDidMount () {
-    this.context.adapter.setNativeControlAdapter(new NativeControlAdapterImpl(this));
+    this.context.adapter.setInputAdapter(new InputAdapterImpl(this));
   }
 
   componentWillUnmount () {
-    this.context.adapter.setNativeControlAdapter(new NativeControlAdapter());
-  }
-
-  handleChange = (evt: SyntheticEvent, ...args: Array<void>) => {
-    this.defaultOnChange(evt, ...args);
+    this.context.adapter.setInputAdapter(new InputAdapter());
   }
 
   renderProps (): P {
     let {
       wrap: _wrap,
       className,
-      onChange,
       ...props
     } = this.props;
     className = classNames(
@@ -91,10 +82,8 @@ export default class NativeControl<P: any> extends PropWrapper<*, P, *> {
       className
     );
     return {
-      onChange: eventHandlerDecorator(this.handleChange)(onChange),
       ...props,
-      className,
-      checked: this.context.adapter.isChecked()
+      className
     };
   }
 
@@ -108,36 +97,59 @@ export default class NativeControl<P: any> extends PropWrapper<*, P, *> {
   }
 }
 
-class NativeControlAdapterImpl extends NativeControlAdapter {
-  element: NativeControl<*>
+class InputAdapterImpl extends InputAdapter {
+  element: Input<*>
 
-  constructor (element: NativeControl<*>) {
+  constructor (element: Input<*>) {
     super();
     this.element = element;
   }
 
-  registerChangeHandler (handler: EventListener) {
+  _registerInputHandler (evt: string, handler: EventListener) {
     this.element.setState((state: State) => ({
       foundationEventListeners: state.foundationEventListeners.update(
-        'change',
+        evt,
         new OrderedSet(),
         x => x.add(handler)
       )
     }));
   }
-  deregisterChangeHandler (handler: EventListener) {
+
+  _deregisterInputHandler (evt: string, handler: EventListener) {
     this.element.setState((state: State) => ({
       foundationEventListeners: state.foundationEventListeners.update(
-        'change',
+        evt,
         new OrderedSet(),
         x => x.delete(handler)
       )
     }));
   }
-  getNativeControl (): ?HTMLElement {
-    return ReactDOM.findDOMNode(this.element);
+
+  registerInputFocusHandler (handler: EventListener) {
+    this._registerInputHandler('focus', handler);
   }
-  setDefaultOnChangeHandler (handler: EventHandler) {
-    this.element.defaultOnChange = handler;
+  deregisterInputFocusHandler (handler: EventListener) {
+    this._deregisterInputHandler('focus', handler);
+  }
+  registerInputBlurHandler (handler: EventListener) {
+    this._registerInputHandler('blur', handler);
+  }
+  deregisterInputBlurHandler (handler: EventListener) {
+    this._deregisterInputHandler('blur', handler);
+  }
+  registerInputInputHandler (handler: EventListener) {
+    this._registerInputHandler('input', handler);
+  }
+  deregisterInputInputHandler (handler: EventListener) {
+    this._deregisterInputHandler('input', handler);
+  }
+  registerInputKeydownHandler (handler: EventListener) {
+    this._registerInputHandler('keydown', handler);
+  }
+  deregisterInputKeydownHandler (handler: EventListener) {
+    this._deregisterInputHandler('keydown', handler);
+  }
+  getNativeInput (): ?{value: string, disabled: boolean, checkValidity: () => boolean} {
+    return ReactDOM.findDOMNode(this.element);
   }
 }
