@@ -30,16 +30,20 @@
     "flow-copy-source": "^1.1.0",
     "fs-extra": "^2.0.0",
     "lerna": "2.0.0-beta.36",
-    "lodash": "^4.17.4"
+    "lodash": "^4.17.4",
+    "npm-run-all": "^4.0.1"
   },
   "scripts": {
-    "lint": "flow check && eslint .",
+    "lint:flow": "flow check",
+    "lint:eslint": "eslint .",
+    "lint": "npm-run-all --parallel lint:*",
     "clean": "node ./scripts/clean.js",
-    "do-build": "node ./scripts/build.js",
-    "do-watch": "node ./scripts/watch.js",
-    "build": "npm run do-build && lerna bootstrap && npm run lint",
+    "bootstrap": "lerna bootstrap",
+    "build:script": "node ./scripts/build.js",
+    "build": "npm-run-all build:script bootstrap lint",
+    "watch:script": "node ./scripts/watch.js",
+    "watch": "npm-run-all build:script watch:script",
     "postinstall": "npm run build",
-    "watch": "npm run do-build && npm run do-watch",
-    "prepublish": "npm run clean && npm run build"
+    "prepublish": "npm-run-all clean build"
   }
 }
