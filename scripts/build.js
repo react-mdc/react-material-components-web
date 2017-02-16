@@ -79,9 +79,7 @@ function buildPackage (pkg) {
 }
 
 function buildPackages (packages) {
-  return packages
-    .slice(1)
-    .reduce((p, pkg) => p.then(() => buildPackage(pkg)), buildPackage(packages[0]));
+  return Promise.all(packages.map((pkg) => buildPackage(pkg)));
 }
 
 const runCommand = module.exports.runCommand = function (target) {
@@ -110,9 +108,7 @@ function main () {
 
   let {targets} = args;
   if (targets && targets.length > 0) {
-    targets
-      .slice(1)
-      .reduce((p, pkg) => p.then(() => runCommand(pkg)), runCommand(targets[0]));
+    return Promise.all(targets.map(runCommand));
   } else {
     return runCommand(null);
   }
