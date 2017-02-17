@@ -4,8 +4,7 @@ import React from 'react';
 import Container from './container';
 import NativeControl from './native-control';
 import Background from './background';
-import Checkmark from './checkmark';
-import Mixedmark from './mixedmark';
+import Knob from './knob';
 
 export type Props = {
   inputId?: string,
@@ -14,7 +13,6 @@ export type Props = {
   onChange?: (evt: SyntheticInputEvent) => void,
   checked?: boolean,
   disabled?: boolean,
-  indeterminate?: boolean,
   defaultChecked?: boolean
 };
 
@@ -35,7 +33,6 @@ export default class Checkbox extends React.Component {
       onChange,
       checked,
       disabled,
-      indeterminate,
       defaultChecked,
       ...props
     } = this.props;
@@ -43,17 +40,16 @@ export default class Checkbox extends React.Component {
       <Container
         disabled={disabled}
         checked={checked}
-        indeterminate={indeterminate}
         {...props}>
         <NativeControl
           id={inputId}
           name={name}
           onChange={onChange}
           defaultChecked={defaultChecked}
+          disabled={disabled}
           value={value} />
         <Background>
-          <Checkmark />
-          <Mixedmark />
+          <Knob />
         </Background>
       </Container>
     );

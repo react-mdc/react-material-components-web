@@ -8,6 +8,15 @@ React Material Components Web
 React wrapper of [Material Components Web](
 https://github.com/material-components/material-components-web)
 
+Under Active Development
+------------------------
+
+The project is under active development.
+
+Every updates can contain breaking changes before 0.2.0.
+
+We **do not** recommend you to use this library for product now.
+
 Demo
 ----
 
@@ -169,14 +178,14 @@ Supported Components
 
 - Checkbox
 
+- Textfield
+
 Ongoing Components
 ------------------
 
 - Switch
 
 - Menu
-
-- Textfield
 
 - Rtl
 
