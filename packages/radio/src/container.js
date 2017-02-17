@@ -21,7 +21,6 @@ export const propertyClassNames = {
 };
 
 export type Props<P: {}> = WrapperProps<P> & {
-  onChange?: EventHandler,
   checked?: boolean,
   disabled?: boolean
 };
@@ -110,15 +109,12 @@ export default class Container<P: any> extends PropWrapper<*, P, *> {
   }
 
   // Event handler
-  handleChange = (evt: SyntheticInputEvent, ...args: Array<void>) => {
+  handleChange = (_evt: SyntheticInputEvent) => {
     if (this.props.checked != null) {
       if (this.foundation.isChecked() !== this.props.checked) {
         // Checked state should not be changed by foundation
         this.foundation.setChecked(this.props.checked);
       }
-    }
-    if (this.props.onChange != null) {
-      this.props.onChange(evt, ...args);
     }
   }
 
@@ -128,7 +124,6 @@ export default class Container<P: any> extends PropWrapper<*, P, *> {
       checked: _checked,
       disabled: _disabled,
       className: _className,
-      onChange: _onChange,
       ...props
     } = this.props;
 

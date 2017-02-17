@@ -41,11 +41,11 @@ export default class Radio extends React.Component {
       <Container
         disabled={disabled}
         checked={checked}
-        onChange={onChange}
         {...props}>
         <NativeControl
           id={inputId}
           name={name}
+          onChange={onChange}
           defaultChecked={defaultChecked}
           value={value} />
         <Background>

@@ -80,6 +80,7 @@ export default class RadioExample extends React.Component {
               Radio 2
             </label>
           </FormField>
+          Selected: {this.state.group3Selected}
         </fieldset>
       </Typography>
     );
