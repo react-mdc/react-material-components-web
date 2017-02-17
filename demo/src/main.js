@@ -24,6 +24,7 @@ import FormFieldExample from './form-field';
 import RadioExample from './radio';
 import RippleExample from './ripple';
 import CheckboxExample from './checkbox';
+import SwitchExample from './switch';
 import TextfieldExample from './textfield';
 
 import Welcome from './welcome';
@@ -137,6 +138,13 @@ class Container extends React.Component {
         <item.ListItem
           wrap={Link}
           activeClassName={SELECTED_CLASS_NAME}
+          to="/switch"
+          onClick={this.handleClickLink}>
+          Switch
+        </item.ListItem>
+        <item.ListItem
+          wrap={Link}
+          activeClassName={SELECTED_CLASS_NAME}
           to="/textfield"
           onClick={this.handleClickLink}>
           Textfield
@@ -244,6 +252,7 @@ export default class Main extends React.Component {
           <Route path="radio" component={RadioExample} />
           <Route path="ripple" component={RippleExample} />
           <Route path="checkbox" component={CheckboxExample} />
+          <Route path="switch" component={SwitchExample} />
           <Route path="textfield" component={TextfieldExample} />
           <Route path="*" component={NotFound} />
         </Route>

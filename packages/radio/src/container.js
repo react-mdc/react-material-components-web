@@ -4,7 +4,6 @@ import classNames from 'classnames';
 import {MDCRadioFoundation} from '@material/radio/dist/mdc.radio';
 import {Set, OrderedSet} from 'immutable';
 
-import type {EventHandler} from '@react-mdc/base/lib/types';
 import type {Props as WrapperProps} from '@react-mdc/base/lib/wrapper';
 import {PropWrapper} from '@react-mdc/base';
 

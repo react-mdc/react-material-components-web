@@ -15,11 +15,12 @@
     "@react-mdc/list": "^0.1.0",
     "@react-mdc/radio": "^0.1.2",
     "@react-mdc/ripple": "^0.1.0",
+    "@react-mdc/switch": "^0.1.0",
     "@react-mdc/textfield": "^0.1.0",
     "@react-mdc/theme": "^0.1.0",
     "@react-mdc/typography": "^0.1.0",
     "classnames": "^2.2.5",
-    "material-components-web": "^0.3.0",
+    "material-components-web": "^0.4.0",
     "react": "^15.0.0",
     "react-dom": "^15.4.2",
     "react-router": "^3.0.2"
