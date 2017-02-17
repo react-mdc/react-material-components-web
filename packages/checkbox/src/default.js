@@ -44,11 +44,11 @@ export default class Checkbox extends React.Component {
         disabled={disabled}
         checked={checked}
         indeterminate={indeterminate}
-        onChange={onChange}
         {...props}>
         <NativeControl
           id={inputId}
           name={name}
+          onChange={onChange}
           defaultChecked={defaultChecked}
           value={value} />
         <Background>
