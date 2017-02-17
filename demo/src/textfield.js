@@ -1,32 +1,41 @@
 /* @flow */
 import React from 'react';
 
-import {Textfield, Input, Label} from '@react-mdc/textfield';
+import {
+  Textfield,
+  TextareaTextfield,
+  Container as TextFieldContainer,
+  Input,
+  Label
+} from '@react-mdc/textfield';
 import {FormField} from '@react-mdc/form-field';
 import {Title, Typography, Subheading2} from '@react-mdc/typography';
 
 export default class TextfieldExample extends React.Component {
   render (): React.Element<*> {
     return (
-      <Typography>
+      <Typography
+        style={{
+          flexGrow: 1
+        }}>
         <Title>
           Textfield Examples
         </Title>
         <div>
           <Subheading2>Basic</Subheading2>
           <FormField style={{margin: 16}}>
-            <Textfield>
+            <TextFieldContainer>
               <Input id="textfield1" autoComplete="email" />
               <Label htmlFor="textfield1">
                 Email Address
               </Label>
-            </Textfield>
+            </TextFieldContainer>
           </FormField>
         </div>
         <div>
           <Subheading2>Multiline</Subheading2>
           <FormField style={{margin: 16}}>
-            <Textfield multiline>
+            <TextFieldContainer multiline>
               <Input
                 wrap={<textarea />}
                 id="textfield2"
@@ -35,22 +44,22 @@ export default class TextfieldExample extends React.Component {
               <Label htmlFor="textfield2">
                 Comment
               </Label>
-            </Textfield>
+            </TextFieldContainer>
           </FormField>
         </div>
-        <div style={{minWidth: 300}}>
+        <div>
           <Subheading2>Full Width</Subheading2>
-          <Textfield fullwidth>
-            <Input id="textfield3" placeholder="Title" />
-          </Textfield>
-          <Textfield multiline fullwidth>
-            <Input
-              wrap={<textarea />}
-              id="textfield4"
-              rows="8"
-              cols="40"
-              placeholder="Content" />
-          </Textfield>
+          <Textfield
+            inputId="textfield3"
+            placeholder="Title"
+            fullwidth />
+          <TextareaTextfield
+            rows="8"
+            cols="40"
+            inputId="textfield4"
+            multiline
+            placeholder="Content"
+            fullwidth />
         </div>
       </Typography>
     );
