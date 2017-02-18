@@ -13,6 +13,8 @@ import {Themed} from '@react-mdc/theme';
 import {SELECTED_CLASS_NAME} from '@react-mdc/drawer/lib/temporary/constants';
 import {List, Divider, group, item} from '@react-mdc/list';
 
+import styles from './styles.css';
+
 type Props = {
   onOpenDrawer: () => void,
   onCloseDrawer: () => void,
@@ -46,19 +48,14 @@ export default class MainDrawer extends React.Component {
   render (): React.Element<*> {
     return (
       <TemporaryDrawer
-        style={{
-          zIndex: 1
-        }}
         open={this.props.open}
         onOpenDrawer={this.handleOpenDrawer}
         onCloseDrawer={this.handleCloseDrawer}>
         <Drawer>
           <Header>
             <HeaderContent
+              className={styles.headerLink}
               wrap={<Themed wrap={Link} />}
-              style={{
-                textDecoration: 'none'
-              }}
               onClick={this.handleClickHeader}
               to="/"
               textColor="primary"

@@ -5,7 +5,7 @@ import ReactDOM from 'react-dom';
 
 import MainRouter from './routes';
 
-import 'app/scss/index.scss';
+import '../style/index.css';
 
 let element = document.getElementById('root');
 ReactDOM.render(<MainRouter />, element);

@@ -6,6 +6,8 @@ import {Typography} from '@react-mdc/typography';
 import Drawer from './drawer';
 import Toolbar from './toolbar';
 
+import styles from './styles.css';
+
 export default class Container extends React.Component {
   props: {
     children?: React.Element<*>
@@ -39,25 +41,13 @@ export default class Container extends React.Component {
 
   render (): React.Element<*> {
     return (
-      <Typography
-        style={{
-          display: 'flex',
-          flex: 1,
-          flexDirection: 'column'
-        }}>
+      <Typography className={styles.layout}>
         <Drawer
           onOpenDrawer={this.handleOpenDrawer}
           onCloseDrawer={this.handleCloseDrawer}
           open={this.state.drawerOpen} />
         <Toolbar onMenuButtonClick={this.handleMenuButtonClick} />
-        <div
-          style={{
-            padding: 16,
-            overflow: 'auto',
-            display: 'flex',
-            flex: 1,
-            flexGrow: 1
-          }}>
+        <div className={styles.content}>
           {this.props.children}
         </div>
       </Typography>

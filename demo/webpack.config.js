@@ -1,14 +1,14 @@
 /* eslint-disable */
-var path = require('path');
-var webpack = require('webpack');
-
-var PROJECT_ROOT = path.resolve(__dirname, '..');
-var DEMO_ROOT = path.resolve(PROJECT_ROOT, 'demo')
-var BUILD_PATH = path.resolve(DEMO_ROOT, 'build');
-var SRC_ROOT = path.resolve(DEMO_ROOT, 'src');
+const path = require('path');
+const webpack = require('webpack');
 
 const FlowtypePlugin = require('flowtype-loader/plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+
+const PROJECT_ROOT = path.resolve(__dirname, '..');
+const DEMO_ROOT = path.resolve(PROJECT_ROOT, 'demo')
+const BUILD_PATH = path.resolve(DEMO_ROOT, 'build');
+const SRC_ROOT = path.resolve(DEMO_ROOT, 'src');
 
 const PRODUCTION = process.env.NODE_ENV === 'production';
 const URL_PREFIX = `/${process.env.URL_PREFIX || ''}`
@@ -83,27 +83,40 @@ module.exports = {
         loader: 'babel-loader'
       },
       {
+        // css files in /src/style/ are global styles
         test: /\.css$/,
         loader: extractSass.extract({
-          use: 'css-loader',
+          use: [
+            {
+              loader: 'css-loader',
+              query: {
+                importLoaders: 1
+              }
+            },
+            'postcss-loader'
+          ],
           // use style-loader in development
           fallback: 'style-loader'
-        })
+        }),
+        include: /src\/style\//
       },
       {
-        test: /\.scss$/,
+        test: /\.css$/,
         loader: extractSass.extract({
-          use: [{
-            loader: 'css-loader'
-          }, {
-            loader: 'sass-loader',
-            options: {
-              includePaths: [path.resolve(DEMO_ROOT, 'node_modules')]
-            }
-          }],
+          use: [
+            {
+              loader: 'css-loader',
+              query: {
+                module: true,
+                importLoaders: 1
+              }
+            },
+            'postcss-loader'
+          ],
           // use style-loader in development
           fallback: 'style-loader'
-        })
+        }),
+        exclude: /src\/style\//
       },
       {
         test: /\.json$/,

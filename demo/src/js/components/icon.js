@@ -2,6 +2,8 @@
 import React from 'react';
 import classNames from 'classnames';
 
+import styles from './styles.css';
+
 export function Pen (props: *): React.Element<*> {
   return (
     <MaterialIcon {...props}>edit</MaterialIcon>
@@ -16,7 +18,7 @@ export function MaterialIcon (props: *): * {
   } = props;
   wrap = wrap || 'i';
   className = classNames(
-    'material-icons',
+    styles.icon,
     className
   );
   return React.createElement(wrap, {

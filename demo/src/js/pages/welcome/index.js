@@ -8,18 +8,12 @@ import {
   Caption
 } from '@react-mdc/typography';
 
+import styles from './styles.css';
+
 export default class Welcome extends React.Component {
   render (): React.Element<*> {
     return (
-      <Typography
-        style={{
-          display: 'flex',
-          flex: 1,
-          flexDirection: 'column',
-          justifyContent: 'center',
-          alignItems: 'center',
-          textAlign: 'center'
-        }}>
+      <Typography className={styles['welcome-box']}>
         <Display3>
           React Material Components Web
         </Display3>
