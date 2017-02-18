@@ -1,7 +1,7 @@
 /* @flow */
 import React from 'react';
 import ReactDOM from 'react-dom';
-import _ from 'lodash';
+import forEach from 'lodash.foreach';
 import {
   OrderedSet
 } from 'immutable';
@@ -49,7 +49,7 @@ export default class NativeDOMAdapter extends React.Component {
 
   // Manage CSS variables
   removeCssVariables (dom: HTMLElement, toRemove: CSSVariables) {
-    _.each(toRemove, (value: any, key: string) => {
+    forEach(toRemove, (value: any, key: string) => {
       if (dom.style.getPropertyValue(key) === value) {
         dom.style.removeProperty(key);
       }
@@ -57,7 +57,7 @@ export default class NativeDOMAdapter extends React.Component {
   }
 
   addCssVariables (dom: HTMLElement, toAdd: CSSVariables) {
-    _.each(toAdd, (value: any, key: string) => {
+    forEach(toAdd, (value: any, key: string) => {
       if (dom.style.getPropertyValue(key) !== value) {
         dom.style.setProperty(key, value);
       }
@@ -69,12 +69,12 @@ export default class NativeDOMAdapter extends React.Component {
                       next: CSSVariables) {
     let toRemove: CSSVariables = {};
     let toAdd: CSSVariables = {};
-    _.each(prev, (value: any, key: string) => {
+    forEach(prev, (value: any, key: string) => {
       if (next[key] !== value) {
         toRemove[key] = value;
       }
     });
-    _.each(next, (value: any, key: string) => {
+    forEach(next, (value: any, key: string) => {
       if (prev[key] !== value) {
         toAdd[key] = value;
       }
@@ -85,14 +85,14 @@ export default class NativeDOMAdapter extends React.Component {
 
   // Manage event listeners
   removeEventListeners (dom: HTMLElement, toRemove: EventListeners) {
-    _.each(toRemove, (item: *) => {
+    forEach(toRemove, (item: *) => {
       const [event, listener] = item;
       dom.removeEventListener(event, listener);
     });
   }
 
   addEventListeners (dom: HTMLElement, toAdd: EventListeners) {
-    _.each(toAdd, (item: *) => {
+    forEach(toAdd, (item: *) => {
       const [event, listener] = item;
       dom.addEventListener(event, listener);
     });
@@ -124,7 +124,7 @@ export default class NativeDOMAdapter extends React.Component {
       };
     });
 
-    _.each(diff, ({event, toRemove, toAdd}: *) => {
+    forEach(diff, ({event, toRemove, toAdd}: *) => {
       toRemove = toRemove.map(x => [event, x]);
       toAdd = toAdd.map(x => [event, x]);
       this.removeEventListeners(dom, toRemove);
@@ -134,7 +134,7 @@ export default class NativeDOMAdapter extends React.Component {
 
   // Manage attributes
   removeAttributes (dom: HTMLElement, toRemove: Attributes) {
-    _.each(toRemove, (value: any, key: string) => {
+    forEach(toRemove, (value: any, key: string) => {
       if (dom.getAttribute(key) === value) {
         dom.removeAttribute(key);
       }
@@ -142,7 +142,7 @@ export default class NativeDOMAdapter extends React.Component {
   }
 
   addAttributes (dom: HTMLElement, toAdd: Attributes) {
-    _.each(toAdd, (value: any, key: string) => {
+    forEach(toAdd, (value: any, key: string) => {
       if (dom.getAttribute(key) !== value) {
         dom.setAttribute(key, value);
       }
@@ -154,12 +154,12 @@ export default class NativeDOMAdapter extends React.Component {
                     next: Attributes) {
     let toRemove: Attributes = {};
     let toAdd: Attributes = {};
-    _.each(prev, (value: string, key: string) => {
+    forEach(prev, (value: string, key: string) => {
       if (next[key] !== value) {
         toRemove[key] = value;
       }
     });
-    _.each(next, (value: string, key: string) => {
+    forEach(next, (value: string, key: string) => {
       if (prev[key] !== value) {
         toAdd[key] = value;
       }
