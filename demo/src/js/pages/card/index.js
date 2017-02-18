@@ -12,8 +12,8 @@ import {
 } from '@react-mdc/card';
 import {Title, Typography} from '@react-mdc/typography';
 
-import Image16x9 from '../images/16-9.jpg';
-import Image1x1 from '../images/1-1.jpg';
+import Image16x9 from 'app/images/16-9.jpg';
+import Image1x1 from 'app/images/1-1.jpg';
 
 function DemoCard (props: *): React.Element<*> {
   let {
