@@ -118,8 +118,5 @@ module.exports = {
       }
     ]
   },
-  devServer: {
-    contentBase: path.join(DEMO_ROOT, "public")
-  },
   devtool: 'source-map'
 };
