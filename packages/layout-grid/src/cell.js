@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import type {Props as WrapperProps} from '@react-mdc/base/lib/wrapper';
 import {PropWrapper} from '@react-mdc/base';
 
-import type {GridNumber, Alignment, Screen} from './types';
+import type {GridNumber, Alignment} from './types';
 import {CELL_BASE_CLASS_NAME} from './constants';
 import * as helpers from './helpers';
 
