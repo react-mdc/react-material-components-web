@@ -8,12 +8,12 @@ import {
   Caption
 } from '@react-mdc/typography';
 
-import styles from './styles.css';
+import {CenterFullSize} from '../../components/full-size';
 
 export default class Welcome extends React.Component {
   render (): React.Element<*> {
     return (
-      <Typography className={styles['welcome-box']}>
+      <Typography wrap={CenterFullSize}>
         <Display3>
           React Material Components Web
         </Display3>
