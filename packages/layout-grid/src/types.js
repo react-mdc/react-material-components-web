@@ -13,3 +13,9 @@ export type Alignment =
   'top' |
   'middle' |
   'bottom';
+
+type MarginAndGutter = number | string;
+
+export type Margin = MarginAndGutter;
+
+export type Gutter = MarginAndGutter;
