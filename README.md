@@ -182,6 +182,8 @@ Supported Components
 
 - Switch
 
+- Layout Grid
+
 Ongoing Components
 ------------------
 
@@ -192,7 +194,5 @@ Ongoing Components
 - Icon Toggle
 
 - Select
-
-- Layout Grid
 
 - Snackbar
