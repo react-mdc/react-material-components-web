@@ -144,6 +144,13 @@ export default class MainDrawer extends React.Component {
                 onClick={this.handleClickLink}>
                 Textfield
               </item.ListItem>
+              <item.ListItem
+                wrap={Link}
+                activeClassName={SELECTED_CLASS_NAME}
+                to="/layout-grid"
+                onClick={this.handleClickLink}>
+                Layout Grid
+              </item.ListItem>
               <Divider wrap={<hr />} />
               <item.ListItem
                 wrap={<a />}

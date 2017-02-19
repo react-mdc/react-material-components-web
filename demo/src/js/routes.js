@@ -13,6 +13,7 @@ import RippleExample from './pages/ripple';
 import CheckboxExample from './pages/checkbox';
 import SwitchExample from './pages/switch';
 import TextfieldExample from './pages/textfield';
+import LayoutGridExample from './pages/layout-grid';
 
 import Welcome from './pages/welcome';
 import NotFound from './pages/not-found';
@@ -42,6 +43,7 @@ export default function MainRouter (): * {
         <Route path="checkbox" component={CheckboxExample} />
         <Route path="switch" component={SwitchExample} />
         <Route path="textfield" component={TextfieldExample} />
+        <Route path="layout-grid" component={LayoutGridExample} />
         <Route path="*" component={NotFound} />
       </Route>
     </Router>

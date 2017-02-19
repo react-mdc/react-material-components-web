@@ -19,6 +19,7 @@
     "@react-mdc/textfield": "^0.1.0",
     "@react-mdc/theme": "^0.1.0",
     "@react-mdc/typography": "^0.1.0",
+    "@react-mdc/layout-grid": "^0.1.0",
     "classnames": "^2.2.5",
     "material-components-web": "^0.4.0",
     "react": "^15.0.0",
