@@ -9,7 +9,7 @@ import {
   Subheading2
 } from '@react-mdc/typography';
 
-import {Pen} from './icon';
+import {Pen} from 'app/js/components/icon';
 
 function Box (props: *): React.Element<*> {
   let {

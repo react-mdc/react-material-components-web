@@ -11,6 +11,8 @@ import {
 import {FormField} from '@react-mdc/form-field';
 import {Title, Typography, Subheading2} from '@react-mdc/typography';
 
+import styles from './styles.css';
+
 export default class TextfieldExample extends React.Component {
   render (): React.Element<*> {
     return (
@@ -23,7 +25,7 @@ export default class TextfieldExample extends React.Component {
         </Title>
         <div>
           <Subheading2>Basic</Subheading2>
-          <FormField style={{margin: 16}}>
+          <FormField className={styles.formField}>
             <TextFieldContainer>
               <Input id="textfield1" autoComplete="email" />
               <Label htmlFor="textfield1">
@@ -34,7 +36,7 @@ export default class TextfieldExample extends React.Component {
         </div>
         <div>
           <Subheading2>Multiline</Subheading2>
-          <FormField style={{margin: 16}}>
+          <FormField className={styles.formField}>
             <TextFieldContainer multiline>
               <Input
                 wrap={<textarea />}

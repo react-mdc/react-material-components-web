@@ -4,7 +4,7 @@ import React from 'react';
 import {Fab, Icon} from '@react-mdc/fab';
 import {Title, Typography} from '@react-mdc/typography';
 
-import {Pen, MaterialIcon} from './icon';
+import {Pen, MaterialIcon} from 'app/js/components/icon';
 
 export default class FabExample extends React.Component {
   render (): React.Element<*> {

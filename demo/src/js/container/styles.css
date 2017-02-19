@@ -1,0 +1,17 @@
+.layout {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+.content {
+  padding: 16px;
+  overflow: auto;
+  display: flex;
+  flex: 1;
+  flex-grow: 1;
+}
+
+.headerLink {
+  text-decoration: none;
+}

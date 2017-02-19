@@ -1,24 +1,35 @@
 /* eslint-disable */
-var path = require('path');
-var webpack = require('webpack');
+const path = require('path');
+const webpack = require('webpack');
 
-var PROJECT_ROOT = path.resolve(__dirname, '..');
-var DEMO_ROOT = path.resolve(PROJECT_ROOT, 'demo')
-var BUILD_PATH = path.resolve(DEMO_ROOT, 'build');
-var SRC_ROOT = path.resolve(DEMO_ROOT, 'src');
+const FlowtypePlugin = require('flowtype-loader/plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-var FlowtypePlugin = require('flowtype-loader/plugin');
+const PROJECT_ROOT = path.resolve(__dirname, '..');
+const DEMO_ROOT = path.resolve(PROJECT_ROOT, 'demo')
+const BUILD_PATH = path.resolve(DEMO_ROOT, 'build');
+const SRC_ROOT = path.resolve(DEMO_ROOT, 'src');
 
-var plugins = [
+const PRODUCTION = process.env.NODE_ENV === 'production';
+const URL_PREFIX = `/${process.env.URL_PREFIX || ''}`
+
+/* Configure plugins */
+const extractSass = new ExtractTextPlugin({
+  filename: '[name].css'
+});
+
+let plugins = [
+  extractSass,
   new FlowtypePlugin({
-    cwd: PROJECT_ROOT
+    cwd: DEMO_ROOT
   })
 ];
-if (process.env.NODE_ENV === 'production') {
+
+if (PRODUCTION) {
   plugins.push(new webpack.DefinePlugin({
     'process.env': {
       NODE_ENV: JSON.stringify(process.env.NODE_ENV),
-    },
+    }
   }));
   plugins.push(new webpack.optimize.UglifyJsPlugin({
     compress: {
@@ -26,20 +37,22 @@ if (process.env.NODE_ENV === 'production') {
     }
   }));
 }
-var urlPrefix = '/'
-if (process.env.URL_PREFIX != null) {
-  urlPrefix += process.env.URL_PREFIX;
-}
+
 
 module.exports = {
   entry: {
-    app: [path.resolve(SRC_ROOT, 'app.js')]
+    app: [path.resolve(SRC_ROOT, 'js', 'index.js')]
   },
   plugins: plugins,
   output: {
     path: BUILD_PATH,
-    publicPath: urlPrefix + 'build/',
+    publicPath: URL_PREFIX + 'build/',
     filename: 'bundle.js'
+  },
+  resolve: {
+    alias: {
+      app: SRC_ROOT
+    }
   },
   module: {
     loaders: [
@@ -54,6 +67,7 @@ module.exports = {
           /\.html$/,
           /\.(js|jsx)$/,
           /\.css$/,
+          /\.scss$/,
           /\.json$/,
           /\.svg$/
         ],
@@ -69,8 +83,40 @@ module.exports = {
         loader: 'babel-loader'
       },
       {
+        // css files in /src/style/ are global styles
         test: /\.css$/,
-        loader: 'style-loader!css-loader?importLoaders=1'
+        loader: extractSass.extract({
+          use: [
+            {
+              loader: 'css-loader',
+              query: {
+                importLoaders: 1
+              }
+            },
+            'postcss-loader'
+          ],
+          // use style-loader in development
+          fallback: 'style-loader'
+        }),
+        include: /src\/style\//
+      },
+      {
+        test: /\.css$/,
+        loader: extractSass.extract({
+          use: [
+            {
+              loader: 'css-loader',
+              query: {
+                module: true,
+                importLoaders: 1
+              }
+            },
+            'postcss-loader'
+          ],
+          // use style-loader in development
+          fallback: 'style-loader'
+        }),
+        exclude: /src\/style\//
       },
       {
         test: /\.json$/,

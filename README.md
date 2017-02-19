@@ -180,10 +180,10 @@ Supported Components
 
 - Textfield
 
+- Switch
+
 Ongoing Components
 ------------------
-
-- Switch
 
 - Menu
 

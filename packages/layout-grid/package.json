@@ -1,7 +1,7 @@
 {
-  "name": "@react-mdc/base",
-  "description": "Core library of @react-mdc components",
-  "version": "0.1.2",
+  "name": "@react-mdc/layout-grid",
+  "description": "React wrapper of @material/layout-grid",
+  "version": "0.1.0",
   "license": "MIT",
   "main": "lib/index",
   "repository": {
@@ -9,9 +9,9 @@
     "url": "https://github.com/hardtack/react-material-components-web.git"
   },
   "dependencies": {
+    "@material/layout-grid": "^0.1.0",
+    "@react-mdc/base": "^0.1.2",
     "classnames": "^2.2.5",
-    "immutable": "^3.8.1",
-    "lodash.foreach": "^4.5.0",
     "react": "^15.4.2",
     "react-dom": "^15.4.2"
   }
