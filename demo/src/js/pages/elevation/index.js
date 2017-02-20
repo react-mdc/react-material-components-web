@@ -73,7 +73,7 @@ export default class ElevationExample extends React.Component {
           Elevation Examples
         </PageTitle>
         <Section>
-          <Grid margin={16} gutter={24}>
+          <Grid margin={40} gutter={40}>
             <Box zSpace={0}>
               Elevation with 0 z-space
             </Box>
