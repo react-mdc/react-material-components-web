@@ -4,6 +4,7 @@
   flex-direction: column;
   padding: 16px;
   padding-top: 80px;
+  z-index: 1;
 }
 
 .toolbar-layout {
