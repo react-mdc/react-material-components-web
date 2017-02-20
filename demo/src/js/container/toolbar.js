@@ -1,5 +1,6 @@
 /* @flow */
 import React from 'react';
+import classNames from 'classnames';
 
 import {Elevation} from '@react-mdc/elevation';
 import {Themed} from '@react-mdc/theme';
@@ -9,6 +10,7 @@ import {MaterialIcon} from 'app/js/components/icon';
 import styles from './styles.css';
 
 type Props = {
+  className?: string,
   onMenuButtonClick: () => void
 };
 
@@ -21,7 +23,7 @@ export default class Toolbar extends React.Component {
   render (): React.Element<*> {
     return (
       <Elevation
-        className={styles.toolbar}
+        className={classNames(styles.toolbar, this.props.className)}
         wrap={Themed}
         zSpace={4}
         backgroundColor="primary"

@@ -46,10 +46,10 @@ export default class Container extends React.Component {
           onOpenDrawer={this.handleOpenDrawer}
           onCloseDrawer={this.handleCloseDrawer}
           open={this.state.drawerOpen} />
-        <Toolbar onMenuButtonClick={this.handleMenuButtonClick} />
-        <div className={styles.content}>
-          {this.props.children}
-        </div>
+        <Toolbar
+          className={styles['toolbar-layout']}
+          onMenuButtonClick={this.handleMenuButtonClick} />
+        {this.props.children}
       </Typography>
     );
   }

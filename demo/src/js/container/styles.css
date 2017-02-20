@@ -2,14 +2,15 @@
   display: flex;
   flex: 1;
   flex-direction: column;
+  padding: 16px;
+  padding-top: 80px;
 }
 
-.content {
-  padding: 16px;
-  overflow: auto;
-  display: flex;
-  flex: 1;
-  flex-grow: 1;
+.toolbar-layout {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
 }
 
 .headerLink {

@@ -5,7 +5,6 @@ import {Ripple} from '@react-mdc/ripple';
 import {Elevation} from '@react-mdc/elevation';
 
 import {Pen} from 'app/js/components/icon';
-import {FullSize} from 'app/js/components/full-size';
 import PageTitle from 'app/js/components/page-title';
 import {Section, SectionTitle} from 'app/js/components/section';
 
@@ -14,7 +13,7 @@ import styles from './styles.css';
 export default class RippleExample extends React.Component {
   render (): React.Element<*> {
     return (
-      <FullSize>
+      <div>
         <PageTitle>
           Ripple Examples
         </PageTitle>
@@ -61,7 +60,7 @@ export default class RippleExample extends React.Component {
             Interact with me
           </Ripple>
         </Section>
-      </FullSize>
+      </div>
     );
   }
 }
