@@ -5,3 +5,7 @@
 .form-field {
   margin: 16px;
 }
+
+.textarea {
+  width: 100%;
+}

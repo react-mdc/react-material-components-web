@@ -40,6 +40,7 @@ export default class TextfieldExample extends React.Component {
               <Input
                 wrap={<textarea />}
                 id="textfield2"
+                className={styles.textarea}
                 rows="8"
                 cols="40" />
               <Label htmlFor="textfield2">
