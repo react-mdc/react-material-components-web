@@ -2,7 +2,7 @@
   "name": "react-material-components-web",
   "description": "React Components for Metarial Component Web",
   "author": "Choi Geonu",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "license": "MIT",
   "keywords": [
     "material components",
@@ -25,8 +25,9 @@
     "@react-mdc/form-field": "^0.1.0",
     "@react-mdc/list": "^0.1.0",
     "@react-mdc/radio": "^0.1.2",
-    "@react-mdc/ripple": "^0.1.1",
+    "@react-mdc/ripple": "^0.1.2",
     "@react-mdc/theme": "^0.1.0",
-    "@react-mdc/typography": "^0.1.0"
+    "@react-mdc/typography": "^0.1.0",
+    "@react-mdc/layout-grid": "^0.1.1"
   }
 }
