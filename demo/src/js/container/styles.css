@@ -15,3 +15,15 @@
 .headerLink {
   text-decoration: none;
 }
+
+.toolbar {
+  height: 64px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.menu-button {
+  padding: 16px;
+  cursor: pointer;
+}

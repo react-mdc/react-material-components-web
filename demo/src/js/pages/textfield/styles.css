@@ -1,3 +1,7 @@
-.formField {
+.layout {
+  flex: 1;
+}
+
+.form-field {
   margin: 16px;
 }

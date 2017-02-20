@@ -6,6 +6,8 @@ import {Themed} from '@react-mdc/theme';
 
 import {MaterialIcon} from 'app/js/components/icon';
 
+import styles from './styles.css';
+
 type Props = {
   onMenuButtonClick: () => void
 };
@@ -19,22 +21,14 @@ export default class Toolbar extends React.Component {
   render (): React.Element<*> {
     return (
       <Elevation
+        className={styles.toolbar}
         wrap={Themed}
         zSpace={4}
-        style={{
-          display: 'flex',
-          height: 64,
-          flexDirection: 'row',
-          alignItems: 'center'
-        }}
         backgroundColor="primary"
         textColor="primary"
         onColor="primary">
         <MaterialIcon
-          style={{
-            padding: 16,
-            cursor: 'pointer'
-          }}
+          className={styles['menu-button']}
           onClick={this.props.onMenuButtonClick}>
           menu
         </MaterialIcon>

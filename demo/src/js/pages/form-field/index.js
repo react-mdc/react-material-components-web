@@ -4,6 +4,9 @@ import React from 'react';
 import {FormField} from '@react-mdc/form-field';
 import {Title, Typography} from '@react-mdc/typography';
 
+import PageTitle from 'app/js/components/page-title';
+import {Section, SectionTitle} from 'app/js/components/section';
+
 function FieldSet (props: *): * {
   let {style} = props;
   style = {
@@ -20,29 +23,25 @@ function FieldSet (props: *): * {
 export default class FormFieldExample extends React.Component {
   render (): React.Element<*> {
     return (
-      <Typography>
-        <Title>
+      <div>
+        <PageTitle>
           Form Field Examples
-        </Title>
-        <FieldSet>
-          <legend>Form Field</legend>
-          <div style={{margin: 16}}>
-            <FormField>
-              <input type="checkbox" id="input" />
-              <label htmlFor="input">Input Label</label>
-            </FormField>
-          </div>
-        </FieldSet>
-        <FieldSet>
-          <legend>Form Field Align End</legend>
-          <div style={{margin: 16}}>
-            <FormField alignEnd>
-              <input type="checkbox" id="input-end" />
-              <label htmlFor="input-end">Input Label</label>
-            </FormField>
-          </div>
-        </FieldSet>
-      </Typography>
+        </PageTitle>
+        <Section>
+          <SectionTitle>Form Field</SectionTitle>
+          <FormField>
+            <input type="checkbox" id="input" />
+            <label htmlFor="input">Input Label</label>
+          </FormField>
+        </Section>
+        <Section>
+          <SectionTitle>Form Field Align End</SectionTitle>
+          <FormField alignEnd>
+            <input type="checkbox" id="input-end" />
+            <label htmlFor="input-end">Input Label</label>
+          </FormField>
+        </Section>
+      </div>
     );
   }
 }

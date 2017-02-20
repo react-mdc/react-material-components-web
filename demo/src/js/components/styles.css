@@ -39,7 +39,6 @@ $section-padding: 16px;
 
 .section {
   flex: 1;
-  min-height: 150px;
   padding: $section-padding;
   margin: $section-padding;
 }

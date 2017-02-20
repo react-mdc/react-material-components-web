@@ -9,23 +9,22 @@ import {
   Label
 } from '@react-mdc/textfield';
 import {FormField} from '@react-mdc/form-field';
-import {Title, Typography, Subheading2} from '@react-mdc/typography';
+
+import PageTitle from 'app/js/components/page-title';
+import {Section, SectionTitle} from 'app/js/components/section';
 
 import styles from './styles.css';
 
 export default class TextfieldExample extends React.Component {
   render (): React.Element<*> {
     return (
-      <Typography
-        style={{
-          flexGrow: 1
-        }}>
-        <Title>
+      <div className={styles.layout}>
+        <PageTitle>
           Textfield Examples
-        </Title>
-        <div>
-          <Subheading2>Basic</Subheading2>
-          <FormField className={styles.formField}>
+        </PageTitle>
+        <Section>
+          <SectionTitle>Basic</SectionTitle>
+          <FormField className={styles['form-field']}>
             <TextFieldContainer>
               <Input id="textfield1" autoComplete="email" />
               <Label htmlFor="textfield1">
@@ -33,10 +32,10 @@ export default class TextfieldExample extends React.Component {
               </Label>
             </TextFieldContainer>
           </FormField>
-        </div>
-        <div>
-          <Subheading2>Multiline</Subheading2>
-          <FormField className={styles.formField}>
+        </Section>
+        <Section>
+          <SectionTitle>Multiline</SectionTitle>
+          <FormField className={styles['form-field']}>
             <TextFieldContainer multiline>
               <Input
                 wrap={<textarea />}
@@ -48,9 +47,9 @@ export default class TextfieldExample extends React.Component {
               </Label>
             </TextFieldContainer>
           </FormField>
-        </div>
-        <div>
-          <Subheading2>Full Width</Subheading2>
+        </Section>
+        <Section>
+          <SectionTitle>Full Width</SectionTitle>
           <Textfield
             inputId="textfield3"
             placeholder="Title"
@@ -62,8 +61,8 @@ export default class TextfieldExample extends React.Component {
             multiline
             placeholder="Content"
             fullwidth />
-        </div>
-      </Typography>
+        </Section>
+      </div>
     );
   }
 }

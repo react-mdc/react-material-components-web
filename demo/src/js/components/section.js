@@ -34,7 +34,7 @@ export class SectionTitle extends React.Component {
     } = this.props;
     return (
       <Typography {...props}>
-        <Title>
+        <Title adjustMargin>
           {children}
         </Title>
       </Typography>

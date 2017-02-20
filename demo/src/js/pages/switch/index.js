@@ -3,7 +3,10 @@ import React from 'react';
 
 import {Switch, Label} from '@react-mdc/switch';
 import {FormField} from '@react-mdc/form-field';
-import {Title, Typography} from '@react-mdc/typography';
+import {Caption, Typography} from '@react-mdc/typography';
+
+import PageTitle from 'app/js/components/page-title';
+import {Section, SectionTitle} from 'app/js/components/section';
 
 type SwitchState = 'checked' | 'unchecked';
 
@@ -29,41 +32,46 @@ export default class SwitchExample extends React.Component {
 
   render (): React.Element<*> {
     return (
-      <Typography>
-        <Title>
+      <div>
+        <PageTitle>
           Switch Examples
-        </Title>
-        <fieldset>
-          <legend>Switch</legend>
-          <FormField style={{margin: 16}}>
+        </PageTitle>
+        <Section>
+          <SectionTitle>Switch</SectionTitle>
+          <FormField>
             <Switch inputId="switch-1" name="switch-1" defaultChecked />
             <Label htmlFor="switch-1">
               Switch 1
             </Label>
           </FormField>
-        </fieldset>
-        <fieldset>
-          <legend>Disabled Switch</legend>
-          <FormField style={{margin: 16}}>
+        </Section>
+        <Section>
+          <SectionTitle>Disabled Switch</SectionTitle>
+          <FormField>
             <Switch inputId="switch-1" name="switch-2" disabled />
             <Label htmlFor="switch-2">
               Switch 2
             </Label>
           </FormField>
-        </fieldset>
-        <fieldset>
-          <legend>Switch Controlled by React State</legend>
-          <FormField style={{margin: 16}}>
+        </Section>
+        <Section>
+          <SectionTitle>Switch Controlled by React State</SectionTitle>
+          <Typography>
+            <Caption>
+              State: {this.state.switch3State}
+            </Caption>
+          </Typography>
+          <FormField>
             <Switch
               inputId="switch-3"
               onChange={this.handleSwitch3Change}
               checked={this.state.switch3State === 'checked'} />
             <Label htmlFor="switch-3">
-              Switch 3 State: {this.state.switch3State}
+              Switch 3
             </Label>
           </FormField>
-        </fieldset>
-      </Typography>
+        </Section>
+      </div>
     );
   }
 }

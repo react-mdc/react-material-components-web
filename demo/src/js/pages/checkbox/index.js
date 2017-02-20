@@ -4,7 +4,10 @@ import React from 'react';
 import {Button} from '@react-mdc/button';
 import {Checkbox} from '@react-mdc/checkbox';
 import {FormField} from '@react-mdc/form-field';
-import {Title, Typography} from '@react-mdc/typography';
+import {Caption, Typography} from '@react-mdc/typography';
+
+import PageTitle from 'app/js/components/page-title';
+import {Section, SectionTitle} from 'app/js/components/section';
 
 type CheckboxState = 'checked' | 'unchecked' | 'indeterminate';
 
@@ -36,45 +39,50 @@ export default class CheckboxExample extends React.Component {
 
   render (): React.Element<*> {
     return (
-      <Typography>
-        <Title>
+      <div>
+        <PageTitle>
           Checkbox Examples
-        </Title>
-        <fieldset>
-          <legend>Checkbox</legend>
-          <FormField style={{margin: 16}}>
+        </PageTitle>
+        <Section>
+          <SectionTitle>Checkbox</SectionTitle>
+          <FormField>
             <Checkbox inputId="checkbox-1" name="checkbox-1" defaultChecked />
             <label htmlFor="checkbox-1">
               Checkbox 1
             </label>
           </FormField>
-        </fieldset>
-        <fieldset>
-          <legend>Disabled Checkbox</legend>
-          <FormField style={{margin: 16}}>
+        </Section>
+        <Section>
+          <SectionTitle>Disabled Checkbox</SectionTitle>
+          <FormField>
             <Checkbox inputId="checkbox-1" name="checkbox-2" disabled />
             <label htmlFor="checkbox-2">
               Checkbox 2
             </label>
           </FormField>
-        </fieldset>
-        <fieldset>
-          <legend>Checkbox Controlled by React State</legend>
-          <FormField style={{margin: 16}}>
+        </Section>
+        <Section>
+          <SectionTitle>Checkbox Controlled by React State</SectionTitle>
+          <Typography>
+            <Caption>State: {this.state.checkbox3State}</Caption>
+          </Typography>
+          <FormField>
             <Checkbox
               inputId="checkbox-3"
               onChange={this.handleCheckbox3Change}
               indeterminate={this.state.checkbox3State === 'indeterminate'}
               checked={this.state.checkbox3State === 'checked'} />
             <label htmlFor="checkbox-3">
-              Checkbox 3 State: {this.state.checkbox3State}
+              Checkbox 3
             </label>
           </FormField>
-          <Button onClick={this.handleIndeterminateClick} raised>
-            Make Indetermiated
-          </Button>
-        </fieldset>
-      </Typography>
+          <div>
+            <Button onClick={this.handleIndeterminateClick} raised>
+              Make Indetermiated
+            </Button>
+          </div>
+        </Section>
+      </div>
     );
   }
 }
