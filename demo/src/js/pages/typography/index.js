@@ -17,6 +17,8 @@ import {
   Caption
 } from '@react-mdc/typography';
 
+import PageTitle from '../../components/page-title';
+
 export default class TypographyExample extends React.Component {
   render (): React.Element<*> {
     return (
@@ -25,9 +27,9 @@ export default class TypographyExample extends React.Component {
           flex: 1,
           textAlign: 'center'
         }}>
-        <Title textStyle="title">
+        <PageTitle>
           Typography Examples
-        </Title>
+        </PageTitle>
         <Display4>
           Display 4
         </Display4>
@@ -46,6 +48,9 @@ export default class TypographyExample extends React.Component {
         <Headline adjustMargin>
           Headline with Adjust Margin
         </Headline>
+        <Title>
+          Title
+        </Title>
         <Subheading2>
           Subheading 2
         </Subheading2>

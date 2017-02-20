@@ -15,19 +15,22 @@ import {
 import type {Props as WrapperProps} from '@react-mdc/base/lib/wrapper';
 import {PropWrapper, NativeDOMAdapter} from '@react-mdc/base';
 
+import type {Color} from './types';
 import {FoundationAdapter, RippleAdapter} from './adapter';
 import {supportsCssVariables, getMatchesProperty} from './util';
+import * as helpers from './helpers';
 
 import {
-  BASE_CLASS_NAME
+  SURFACE_BASE_CLASS_NAME
 } from './constants';
 
 const MATCHES = getMatchesProperty(window.HTMLElement.prototype);
 
-export const CLASS_NAME = `${BASE_CLASS_NAME}-surface`;
+export const CLASS_NAME = SURFACE_BASE_CLASS_NAME;
 
 export type Props<P: {}> = WrapperProps<P> & {
-  unbounded: boolean
+  unbounded: boolean,
+  color?: Color
 };
 
 type State = {
@@ -61,6 +64,15 @@ export class Ripple<P: any> extends PropWrapper<*, P, *> {
     this.foundation = new MDCRippleFoundation(this.adapter.toObject());
   }
 
+  // Exposed methods
+  activate () {
+    this.foundation.activate();
+  }
+
+  deactivate () {
+    this.foundation.deactivate();
+  }
+
   // Foundation lifecycle
   componentDidMount () {
     this.adapter.setRippleAdapter(new RippleAdapterImpl(this));
@@ -78,8 +90,13 @@ export class Ripple<P: any> extends PropWrapper<*, P, *> {
 
   getClassName (props: Props<P>, state: State): string {
     let {className} = props;
+    let classes = [];
+    if (this.props.color != null) {
+      classes.push(helpers.classNameForColor(this.props.color));
+    }
     return classNames(
       CLASS_NAME,
+      classes,
       className,
       state.foundationClasses.toJS()
     );
@@ -140,6 +157,7 @@ class RippleAdapterImpl extends RippleAdapter {
     }));
   }
   registerInteractionHandler (evtType: string, handler: EventListener) {
+    console.log(evtType);
     this.element.setState((state) => ({
       foundationEventListeners: state.foundationEventListeners.update(
         evtType,
@@ -164,9 +182,15 @@ class RippleAdapterImpl extends RippleAdapter {
     window.removeEventListener('resize', handler);
   }
   updateCssVariable (varName: string, value: ?string) {
-    this.element.setState((state) => ({
-      foundationCssVars: state.foundationCssVars.set(varName, value)
-    }));
+    if (value == null) {
+      this.element.setState((state) => ({
+        foundationCssVars: state.foundationCssVars.delete(varName)
+      }));
+    } else {
+      this.element.setState((state) => ({
+        foundationCssVars: state.foundationCssVars.set(varName, value)
+      }));
+    }
   }
   computeBoundingRect (): ?ClientRect {
     return this.element.getDOMNode().getBoundingClientRect();

@@ -14,12 +14,12 @@ const PRODUCTION = process.env.NODE_ENV === 'production';
 const URL_PREFIX = `/${process.env.URL_PREFIX || ''}`
 
 /* Configure plugins */
-const extractSass = new ExtractTextPlugin({
+const extractStyle = new ExtractTextPlugin({
   filename: '[name].css'
 });
 
 let plugins = [
-  extractSass,
+  extractStyle,
   new FlowtypePlugin({
     cwd: DEMO_ROOT
   })
@@ -67,12 +67,11 @@ module.exports = {
           /\.html$/,
           /\.(js|jsx)$/,
           /\.css$/,
-          /\.scss$/,
           /\.json$/,
           /\.svg$/
         ],
         loader: 'url-loader',
-        query: {
+        options: {
           limit: 10000,
           name: 'static/media/[name].[hash:8].[ext]'
         }
@@ -85,11 +84,11 @@ module.exports = {
       {
         // css files in /src/style/ are global styles
         test: /\.css$/,
-        loader: extractSass.extract({
+        loader: extractStyle.extract({
           use: [
             {
               loader: 'css-loader',
-              query: {
+              options: {
                 importLoaders: 1
               }
             },
@@ -101,13 +100,24 @@ module.exports = {
         include: /src\/style\//
       },
       {
+        // Don't compile external stylesheets
         test: /\.css$/,
-        loader: extractSass.extract({
+        loader: extractStyle.extract({
+          use: 'css-loader',
+          // use style-loader in development
+          fallback: 'style-loader'
+        }),
+        include: /node_modules/
+      },
+      {
+        test: /\.css$/,
+        loader: extractStyle.extract({
           use: [
             {
               loader: 'css-loader',
-              query: {
+              options: {
                 module: true,
+                localIdentName: '[local]--[hash:base64:5]',
                 importLoaders: 1
               }
             },
@@ -116,7 +126,7 @@ module.exports = {
           // use style-loader in development
           fallback: 'style-loader'
         }),
-        exclude: /src\/style\//
+        exclude: /src\/style\/|node_modules\//
       },
       {
         test: /\.json$/,

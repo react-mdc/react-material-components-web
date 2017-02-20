@@ -4,6 +4,5 @@
 @import url(https://fonts.googleapis.com/icon?family=Material+Icons);
 
 /* Global Setup */
-@import "./material";
 @import "./preload";
 @import "./app";

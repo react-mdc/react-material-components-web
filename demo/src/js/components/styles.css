@@ -21,3 +21,25 @@
     // Support for IE.
     font-feature-settings: 'liga';
 }
+
+.fullsize {
+  flex: 1;
+}
+
+.center {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+$section-margin: 16px;
+$section-padding: 16px;
+
+.section {
+  flex: 1;
+  min-height: 150px;
+  padding: $section-padding;
+  margin: $section-padding;
+}

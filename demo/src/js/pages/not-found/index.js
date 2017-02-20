@@ -9,17 +9,12 @@ import {
 } from '@react-mdc/card';
 import {Button} from '@react-mdc/button';
 
+import {CenterFullSize} from '../../components/full-size';
+
 export default class NotFound extends React.Component {
   render (): React.Element<*> {
     return (
-      <div
-        style={{
-          display: 'flex',
-          flex: 1,
-          flexDirection: 'column',
-          justifyContent: 'center',
-          alignItems: 'center'
-        }}>
+      <CenterFullSize>
         <Card>
           <primary.Primary
             style={{
@@ -38,7 +33,7 @@ export default class NotFound extends React.Component {
             </actions.Action>
           </actions.Actions>
         </Card>
-      </div>
+      </CenterFullSize>
     );
   }
 }

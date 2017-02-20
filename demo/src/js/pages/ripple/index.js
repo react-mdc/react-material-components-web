@@ -3,86 +3,65 @@ import React from 'react';
 
 import {Ripple} from '@react-mdc/ripple';
 import {Elevation} from '@react-mdc/elevation';
-import {
-  Typography,
-  Title,
-  Subheading2
-} from '@react-mdc/typography';
 
 import {Pen} from 'app/js/components/icon';
+import {FullSize} from 'app/js/components/full-size';
+import PageTitle from 'app/js/components/page-title';
+import {Section, SectionTitle} from 'app/js/components/section';
 
-function Box (props: *): React.Element<*> {
-  let {
-    style
-  } = props;
-
-  style = {
-    width: 350,
-    height: 200,
-    cursor: 'pointer',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    ...style
-  };
-
-  return (
-    <Elevation
-      zSpace={2}
-      {...props}
-      style={style} />
-  );
-}
-
-function Section (props: *): * {
-  let {
-    style
-  } = props;
-
-  style = {
-    margin: 48
-  };
-
-  return (
-    <section {...props} style={style} />
-  );
-}
+import styles from './styles.css';
 
 export default class RippleExample extends React.Component {
   render (): React.Element<*> {
     return (
-      <Typography>
-        <Title>
+      <FullSize>
+        <PageTitle>
           Ripple Examples
-        </Title>
-
+        </PageTitle>
         <Section>
-          <Subheading2>
+          <SectionTitle>
             Bounded
-          </Subheading2>
-          <Ripple wrap={Box}>
+          </SectionTitle>
+          <Ripple
+            wrap={<Elevation wrap={<div />} />}
+            className={styles.bounded}
+            zSpace={2}>
             Interact with me
           </Ripple>
         </Section>
         <Section>
-          <Subheading2>
+          <SectionTitle>
             Unbounded
-          </Subheading2>
-          <Ripple
-            style={{
-              width: 100,
-              height: 100,
-              cursor: 'pointer',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              borderRadius: '50%'
-            }}
-            unbounded>
+          </SectionTitle>
+          <Ripple className={styles.unbounded} unbounded>
             <Pen />
           </Ripple>
         </Section>
-      </Typography>
+        <Section>
+          <SectionTitle>
+            Primary
+          </SectionTitle>
+          <Ripple
+            color="primary"
+            wrap={<Elevation wrap={<div />} />}
+            className={styles.bounded}
+            zSpace={2}>
+            Interact with me
+          </Ripple>
+        </Section>
+        <Section>
+          <SectionTitle>
+            Accent
+          </SectionTitle>
+          <Ripple
+            color="accent"
+            wrap={<Elevation wrap={<div />} />}
+            className={styles.bounded}
+            zSpace={2}>
+            Interact with me
+          </Ripple>
+        </Section>
+      </FullSize>
     );
   }
 }
