@@ -1,6 +1,6 @@
 [ignore]
 <PROJECT_ROOT>/scripts/.*
-<PROJECT_ROOT>/demo/.*
+<PROJECT_ROOT>/docs/.*
 
 [include]
 

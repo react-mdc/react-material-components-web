@@ -21,7 +21,7 @@ export default class Welcome extends React.Component {
           React Components for Material Components Web
         </Title>
         <Caption>
-          Click left-top menu button to open the list of Demo.
+          Click left-top menu button to open the table of contents.
         </Caption>
       </Typography>
     );

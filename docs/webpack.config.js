@@ -6,9 +6,9 @@ const FlowtypePlugin = require('flowtype-loader/plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const PROJECT_ROOT = path.resolve(__dirname, '..');
-const DEMO_ROOT = path.resolve(PROJECT_ROOT, 'demo')
-const BUILD_PATH = path.resolve(DEMO_ROOT, 'build');
-const SRC_ROOT = path.resolve(DEMO_ROOT, 'src');
+const DOCS_ROOT = path.resolve(PROJECT_ROOT, 'docs')
+const BUILD_PATH = path.resolve(DOCS_ROOT, 'build');
+const SRC_ROOT = path.resolve(DOCS_ROOT, 'src');
 
 const PRODUCTION = process.env.NODE_ENV === 'production';
 const URL_PREFIX = `/${process.env.URL_PREFIX || ''}`
@@ -21,7 +21,7 @@ const extractStyle = new ExtractTextPlugin({
 let plugins = [
   extractStyle,
   new FlowtypePlugin({
-    cwd: DEMO_ROOT
+    cwd: DOCS_ROOT
   })
 ];
 

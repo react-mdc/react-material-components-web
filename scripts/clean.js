@@ -13,5 +13,5 @@ del.sync([
 ]);
 
 del.sync([
-  path.resolve(PROJECT_ROOT, 'demo', 'build')
+  path.resolve(PROJECT_ROOT, 'docs', 'build')
 ]);

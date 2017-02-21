@@ -1,5 +1,5 @@
 {
-  "name": "Example",
+  "name": "Document",
   "author": "Choi Geonu",
   "license": "MIT",
   "private": true,
@@ -59,7 +59,7 @@
     "compile": "cross-env NODE_ENV=production webpack --progress",
     "start": "webpack-dev-server --progress",
     "release:compile": "cross-env URL_PREFIX=react-material-components-web/ npm run compile",
-    "release:gh-pages": "gh-pages -d . -m 'Update Demo' --remove node_modules",
+    "release:gh-pages": "gh-pages -d . -m 'Update Docs' --remove node_modules",
     "release": "npm-run-all clean release:compile release:gh-pages"
   }
 }
