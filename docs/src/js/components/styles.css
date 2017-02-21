@@ -49,7 +49,17 @@
   max-width: 850px;
   margin: 16px;
   :global {
+    .CodeMirror-gutter-wrapper {
+      font-family: Roboto Mono, monospace;
+    }
+    .CodeMirror-code {
+      line-height: 1.6em;
+    }
     .CodeMirror {
+      pre {
+        font-family: Roboto Mono, monospace;
+      }
+      font-size: 0.8em;
       height: auto;
     }
   }
