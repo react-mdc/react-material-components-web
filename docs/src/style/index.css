@@ -2,6 +2,10 @@
 /* Google web fonts */
 @import url(https://fonts.googleapis.com/css?family=Roboto);
 @import url(https://fonts.googleapis.com/icon?family=Material+Icons);
+@import url("codemirror/lib/codemirror");
+@import url("codemirror/theme/dracula");
+
+
 
 /* Global Setup */
 @import "./preload";

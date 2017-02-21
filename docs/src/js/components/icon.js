@@ -18,8 +18,8 @@ export function MaterialIcon (props: *): * {
   } = props;
   wrap = wrap || 'i';
   className = classNames(
-    styles.icon,
-    className
+    className,
+    styles.icon
   );
   return React.createElement(wrap, {
     className,

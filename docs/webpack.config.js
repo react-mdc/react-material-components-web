@@ -79,7 +79,8 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: /(node_modules|bower_components)/,
-        loader: 'babel-loader'
+        loader: 'babel-loader',
+        exclude: /\.example\.js$/
       },
       {
         // css files in /src/style/ are global styles

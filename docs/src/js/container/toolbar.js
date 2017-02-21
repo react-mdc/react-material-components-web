@@ -23,7 +23,7 @@ export default class Toolbar extends React.Component {
   render (): React.Element<*> {
     return (
       <Elevation
-        className={classNames(styles.toolbar, this.props.className)}
+        className={classNames(this.props.className, styles.toolbar)}
         wrap={Themed}
         zSpace={4}
         backgroundColor="primary"

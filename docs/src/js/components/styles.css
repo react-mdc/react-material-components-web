@@ -1,4 +1,9 @@
 /* Material Icons */
+:root {
+  --app-section-margin: 16px;
+  --app-section-padding: 16px;
+}
+
 .icon {
     font-family: 'Material Icons';
     font-weight: normal;
@@ -34,11 +39,18 @@
   flex-direction: column;
 }
 
-$section-margin: 16px;
-$section-padding: 16px;
-
 .section {
   flex: 1;
-  padding: $section-padding;
-  margin: $section-padding;
+  padding: var(--app-section-padding);
+  margin: var(--app-section-padding);
+}
+
+.code {
+  max-width: 850px;
+  margin: 16px;
+  :global {
+    .CodeMirror {
+      height: auto;
+    }
+  }
 }

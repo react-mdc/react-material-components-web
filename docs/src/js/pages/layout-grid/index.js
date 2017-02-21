@@ -10,9 +10,9 @@ import {Grid, Cell} from '@react-mdc/layout-grid';
 
 import styles from './styles.css';
 
-const DemoGrid = (p: *) => (<Grid {...p} className={classNames(styles.grid, p.className)} />);
+const DemoGrid = (p: *) => (<Grid {...p} className={classNames(p.className, styles.grid)} />);
 const DemoCell = (p: *) => (
-  <Cell {...p} className={classNames(styles.cell, p.className)}>
+  <Cell {...p} className={classNames(p.className, styles.cell)}>
     <Title>{p.children}</Title>
   </Cell>
 );

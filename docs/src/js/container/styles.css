@@ -1,3 +1,7 @@
+:root {
+  --app-drawer-z-index: 10;
+}
+
 .layout {
   display: flex;
   flex: 1;
@@ -14,6 +18,11 @@
   width: 100%;
 }
 
+.drawer {
+  /* Codemirror has z-index > 3 */
+  z-index: var(--app-drawer-z-index) !important;
+}
+
 .headerLink {
   text-decoration: none;
 }
@@ -23,6 +32,8 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  /* Codemirror has z-index > 3 */
+  z-index: calc(var(--app-drawer-z-index) - 1) !important;
 }
 
 .menu-button {

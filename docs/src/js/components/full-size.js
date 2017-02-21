@@ -10,7 +10,7 @@ export class FullSize extends React.Component {
   }
   render (): React.Element<*> {
     return (
-      <div {...this.props} className={classNames(styles.fullsize, this.props.className)} />
+      <div {...this.props} className={classNames(this.props.className, styles.fullsize)} />
     );
   }
 }
@@ -21,7 +21,7 @@ export class CenterFullSize extends React.Component {
   }
   render (): React.Element<*> {
     return (
-      <div {...this.props} className={classNames(styles.fullsize, styles.center, this.props.className)} />
+      <div {...this.props} className={classNames(this.props.className, styles.fullsize, styles.center)} />
     );
   }
 }

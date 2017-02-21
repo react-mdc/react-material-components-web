@@ -48,6 +48,7 @@ export default class MainDrawer extends React.Component {
   render (): React.Element<*> {
     return (
       <TemporaryDrawer
+        className={styles.drawer}
         open={this.props.open}
         onOpenDrawer={this.handleOpenDrawer}
         onCloseDrawer={this.handleCloseDrawer}>
