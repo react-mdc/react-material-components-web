@@ -6,16 +6,8 @@
   display: flex;
   flex: 1;
   flex-direction: column;
-  padding: 16px;
-  padding-top: 80px;
-  z-index: 1;
-}
-
-.toolbar-layout {
-  position: fixed;
-  left: 0;
-  top: 0;
-  width: 100%;
+  padding-left: 16px;
+  padding-right: 16px;
 }
 
 .drawer {
@@ -28,15 +20,11 @@
 }
 
 .toolbar {
-  height: 64px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
   /* Codemirror has z-index > 3 */
   z-index: calc(var(--app-drawer-z-index) - 1) !important;
 }
 
 .menu-button {
-  padding: 16px;
+  padding-right: 16px;
   cursor: pointer;
 }

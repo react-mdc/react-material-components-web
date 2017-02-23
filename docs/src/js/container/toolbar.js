@@ -2,8 +2,11 @@
 import React from 'react';
 import classNames from 'classnames';
 
-import {Elevation} from '@react-mdc/elevation';
-import {Themed} from '@react-mdc/theme';
+import {
+  Toolbar,
+  Section,
+  Title
+} from '@react-mdc/toolbar';
 
 import {MaterialIcon} from 'app/js/components/icon';
 
@@ -14,7 +17,7 @@ type Props = {
   onMenuButtonClick: () => void
 };
 
-export default class Toolbar extends React.Component {
+export default class MainToolbar extends React.Component {
   props: Props
 
   static defaultProps = {
@@ -22,19 +25,18 @@ export default class Toolbar extends React.Component {
   }
   render (): React.Element<*> {
     return (
-      <Elevation
-        className={classNames(this.props.className, styles.toolbar)}
-        wrap={Themed}
-        zSpace={4}
-        backgroundColor="primary"
-        textColor="primary"
-        onColor="primary">
-        <MaterialIcon
-          className={styles['menu-button']}
-          onClick={this.props.onMenuButtonClick}>
-          menu
-        </MaterialIcon>
-      </Elevation>
+      <Toolbar className={classNames(this.props.className, styles.toolbar)} fixed>
+        <Section align="start">
+          <MaterialIcon
+            className={styles['menu-button']}
+            onClick={this.props.onMenuButtonClick}>
+            menu
+          </MaterialIcon>
+          <Title>
+            React Material Components Web
+          </Title>
+        </Section>
+      </Toolbar>
     );
   }
 }

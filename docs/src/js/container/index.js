@@ -1,12 +1,14 @@
 /* @flow */
 import React from 'react';
 
-import {Typography} from '@react-mdc/typography';
+import {FixedToolbarAdjusted} from '@react-mdc/toolbar';
 
 import Drawer from './drawer';
 import Toolbar from './toolbar';
 
 import styles from './styles.css';
+
+const OLD_FIXED_ADJUST_CLASS_NAME = 'mdc-toolbar__fixed-adjust';
 
 export default class Container extends React.Component {
   props: {
@@ -41,16 +43,16 @@ export default class Container extends React.Component {
 
   render (): React.Element<*> {
     return (
-      <Typography className={styles.layout}>
+      <div className={styles.layout}>
         <Drawer
           onOpenDrawer={this.handleOpenDrawer}
           onCloseDrawer={this.handleCloseDrawer}
           open={this.state.drawerOpen} />
-        <Toolbar
-          className={styles['toolbar-layout']}
-          onMenuButtonClick={this.handleMenuButtonClick} />
-        {this.props.children}
-      </Typography>
+        <Toolbar onMenuButtonClick={this.handleMenuButtonClick} />
+        <FixedToolbarAdjusted className={OLD_FIXED_ADJUST_CLASS_NAME}>
+          {this.props.children}
+        </FixedToolbarAdjusted>
+      </div>
     );
   }
 }
