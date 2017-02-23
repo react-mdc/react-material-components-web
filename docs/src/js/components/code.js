@@ -43,7 +43,6 @@ export default function Code (p: Props): React.Element<*> {
     ...mergedOptions,
     ...options
   };
-  console.log(options);
   return (
     <div className={className}>
       <CodeMirror options={options} {...props} />

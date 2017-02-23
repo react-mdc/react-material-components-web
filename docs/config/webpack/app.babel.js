@@ -1,49 +1,61 @@
-/* eslint-disable */
-const path = require('path');
-const webpack = require('webpack');
+import fs from 'fs';
+import path from 'path';
+import webpack from 'webpack';
 
-const FlowtypePlugin = require('flowtype-loader/plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+import FlowtypePlugin from 'flowtype-loader/plugin';
+import ExtractTextPlugin from 'extract-text-webpack-plugin';
 
-const PROJECT_ROOT = path.resolve(__dirname, '..');
-const DOCS_ROOT = path.resolve(PROJECT_ROOT, 'docs')
-const BUILD_PATH = path.resolve(DOCS_ROOT, 'build');
-const SRC_ROOT = path.resolve(DOCS_ROOT, 'src');
+import {
+  DOCS_ROOT,
+  BUILD_PATH,
+  SRC_ROOT,
+  PRODUCTION,
+  URL_PREFIX
+} from './constants';
 
-const PRODUCTION = process.env.NODE_ENV === 'production';
-const URL_PREFIX = `/${process.env.URL_PREFIX || ''}`
-
-/* Configure plugins */
-const extractStyle = new ExtractTextPlugin({
-  filename: '[name].css'
-});
-
-let plugins = [
-  extractStyle,
-  new FlowtypePlugin({
-    cwd: DOCS_ROOT
-  })
-];
-
-if (PRODUCTION) {
-  plugins.push(new webpack.DefinePlugin({
-    'process.env': {
-      NODE_ENV: JSON.stringify(process.env.NODE_ENV),
-    }
-  }));
-  plugins.push(new webpack.optimize.UglifyJsPlugin({
-    compress: {
-      warnings: false
-    }
-  }));
+function loadManifest (name) {
+  return JSON.parse(fs.readFileSync(path.resolve(BUILD_PATH, `${name}-manifest.json`), 'utf-8'));
 }
 
+/* Configure plugins */
+const extractVendorStyle = new ExtractTextPlugin({
+  filename: 'vendor.css'
+});
+const extractGlobalStyle = new ExtractTextPlugin({
+  filename: 'global.css'
+});
+const extractLocalStyle = new ExtractTextPlugin({
+  filename: 'local.css'
+});
 
-module.exports = {
+const ENV_PLUGINS = PRODUCTION ? [
+  new webpack.DefinePlugin({
+    'process.env': {
+      NODE_ENV: JSON.stringify(process.env.NODE_ENV)
+    }
+  })
+] : [];
+
+export default {
+  context: DOCS_ROOT,
   entry: {
     app: [path.resolve(SRC_ROOT, 'js', 'index.js')]
   },
-  plugins: plugins,
+  plugins: [
+    extractVendorStyle,
+    extractGlobalStyle,
+    extractLocalStyle,
+    new webpack.DllReferencePlugin({
+      context: DOCS_ROOT,
+      manifest: loadManifest('vendor')
+    }),
+    new FlowtypePlugin({
+      cwd: DOCS_ROOT
+    }),
+    new webpack.optimize.UglifyJsPlugin({
+      compress: PRODUCTION
+    })
+  ].concat(ENV_PLUGINS),
   output: {
     path: BUILD_PATH,
     publicPath: URL_PREFIX + 'build/',
@@ -78,14 +90,16 @@ module.exports = {
       },
       {
         test: /\.js$/,
-        exclude: /(node_modules|bower_components)/,
+        exclude: /(node_modules)|(\.example\.js$)/,
         loader: 'babel-loader',
-        exclude: /\.example\.js$/
+        options: {
+          cacheDirectory: true
+        }
       },
       {
         // css files in /src/style/ are global styles
         test: /\.css$/,
-        loader: extractStyle.extract({
+        loader: extractGlobalStyle.extract({
           use: [
             {
               loader: 'css-loader',
@@ -103,7 +117,7 @@ module.exports = {
       {
         // Don't compile external stylesheets
         test: /\.css$/,
-        loader: extractStyle.extract({
+        loader: extractVendorStyle.extract({
           use: 'css-loader',
           // use style-loader in development
           fallback: 'style-loader'
@@ -112,7 +126,7 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        loader: extractStyle.extract({
+        loader: extractLocalStyle.extract({
           use: [
             {
               loader: 'css-loader',
@@ -142,5 +156,5 @@ module.exports = {
       }
     ]
   },
-  devtool: 'source-map'
+  devtool: PRODUCTION ? 'source-map' : 'cheap-module-eval-source-map'
 };

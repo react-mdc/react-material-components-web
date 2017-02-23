@@ -1,5 +1,5 @@
 {
-  "extends": ["../.eslintrc", "standard-react"],
+  "extends": ["../../.eslintrc", "standard-react"],
   "parser": "babel-eslint",
   "plugins": [
     "react",

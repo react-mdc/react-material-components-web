@@ -57,9 +57,13 @@
   "scripts": {
     "clean": "rimraf build/",
     "precompile": "npm run clean",
-    "compile": "cross-env NODE_ENV=production webpack --progress",
-    "start": "webpack-dev-server --progress",
-    "release:compile": "cross-env URL_PREFIX=react-material-components-web/ npm run compile",
+    "postinstall": "npm run compile:vendor",
+    "compile:vendor": "webpack --progress --config config/webpack/vendor.babel.js",
+    "compile:app": "webpack --progress --config config/webpack/app.babel.js",
+    "compile": "npm-run-all compile:vendor compile:app",
+    "start:webpack-dev-server": "webpack-dev-server --progress --config config/webpack/app.babel.js",
+    "start": "npm-run-all compile:vendor start:webpack-dev-server",
+    "release:compile": "cross-env NODE_ENV=production URL_PREFIX=react-material-components-web/ npm run compile",
     "release:gh-pages": "gh-pages -d . -m 'Update Docs' --remove node_modules",
     "release": "npm-run-all clean release:compile release:gh-pages"
   }
