@@ -157,7 +157,6 @@ class RippleAdapterImpl extends RippleAdapter {
     }));
   }
   registerInteractionHandler (evtType: string, handler: EventListener) {
-    console.log(evtType);
     this.element.setState((state) => ({
       foundationEventListeners: state.foundationEventListeners.update(
         evtType,
