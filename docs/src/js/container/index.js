@@ -8,8 +8,6 @@ import Toolbar from './toolbar';
 
 import styles from './styles.css';
 
-const OLD_FIXED_ADJUST_CLASS_NAME = 'mdc-toolbar__fixed-adjust';
-
 export default class Container extends React.Component {
   props: {
     children?: React.Element<*>
@@ -49,7 +47,7 @@ export default class Container extends React.Component {
           onCloseDrawer={this.handleCloseDrawer}
           open={this.state.drawerOpen} />
         <Toolbar onMenuButtonClick={this.handleMenuButtonClick} />
-        <FixedToolbarAdjusted className={OLD_FIXED_ADJUST_CLASS_NAME}>
+        <FixedToolbarAdjusted>
           {this.props.children}
         </FixedToolbarAdjusted>
       </div>
