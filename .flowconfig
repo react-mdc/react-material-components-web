@@ -1,5 +1,4 @@
 [ignore]
-<PROJECT_ROOT>/scripts/.*
 <PROJECT_ROOT>/docs/.*
 
 [include]
