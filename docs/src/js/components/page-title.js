@@ -1,7 +1,7 @@
 /* @flow */
 import React from 'react';
 
-import {Typography, Title} from '@react-mdc/typography';
+import {Typography, Display1} from '@react-mdc/typography';
 
 /**
  * Page Title
@@ -17,9 +17,9 @@ export default class PageTitle extends React.Component {
     } = this.props;
     return (
       <Typography {...props}>
-        <Title>
+        <Display1>
           {children}
-        </Title>
+        </Display1>
       </Typography>
     );
   }

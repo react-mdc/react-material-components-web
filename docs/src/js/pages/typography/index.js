@@ -4,7 +4,13 @@ import React from 'react';
 import PageContainer from 'app/js/components/page-container';
 import PageTitle from 'app/js/components/page-title';
 import Code from 'app/js/components/code';
-import {Section, SectionTitle, SectionSubtitle} from 'app/js/components/section';
+import {
+  Section,
+  SectionTitle,
+  Explanation,
+  ExampleCode,
+  Demo
+} from 'app/js/components/section';
 import {stripIgnored} from 'app/js/utils/code';
 
 import TextExampleCode from 'raw-loader!./text.example.js';
@@ -24,23 +30,29 @@ export default class TypographyExample extends React.Component {
           <SectionTitle>
             Basic usage
           </SectionTitle>
-          You can use <code>Text</code> components within <code>Typography</code> component.
-          <Code value={stripIgnored(TextExampleCode)} />
-          <SectionSubtitle>
-            Demo
-          </SectionSubtitle>
-          <TextExample />
+          <Explanation>
+            You can use <code>Text</code> components within <code>Typography</code> component.
+          </Explanation>
+          <ExampleCode>
+            <Code value={stripIgnored(TextExampleCode)} />
+          </ExampleCode>
+          <Demo>
+            <TextExample />
+          </Demo>
         </Section>
         <Section>
           <SectionTitle>
             Shortcuts
           </SectionTitle>
-          There are coresponding shortcut components for each text styles.
-          <Code value={stripIgnored(ShortcutsExampleCode)} />
-          <SectionSubtitle>
-            Demo
-          </SectionSubtitle>
-          <ShortcutsExample />
+          <Explanation>
+            There are coresponding shortcut components for each text styles.
+          </Explanation>
+          <ExampleCode>
+            <Code value={stripIgnored(ShortcutsExampleCode)} />
+          </ExampleCode>
+          <Demo>
+            <ShortcutsExample />
+          </Demo>
         </Section>
       </PageContainer>
     );

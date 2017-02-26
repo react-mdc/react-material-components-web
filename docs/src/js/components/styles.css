@@ -40,14 +40,10 @@
 }
 
 .section {
-  flex: 1;
-  padding: var(--app-section-padding);
-  margin: var(--app-section-padding);
 }
 
 .code {
   max-width: 850px;
-  margin: 16px;
   :global {
     .CodeMirror-gutter-wrapper {
       font-family: Roboto Mono, monospace;
@@ -63,4 +59,24 @@
       height: auto;
     }
   }
+}
+
+.page-container {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.demo {
+  hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #eeeeee;
+    padding: 0;
+  }
+}
+
+.demo-content {
+  padding: 16px;
 }

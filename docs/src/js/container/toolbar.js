@@ -4,8 +4,7 @@ import classNames from 'classnames';
 
 import {
   Toolbar,
-  Section,
-  Title
+  Section
 } from '@react-mdc/toolbar';
 
 import {MaterialIcon} from 'app/js/components/icon';
@@ -32,9 +31,6 @@ export default class MainToolbar extends React.Component {
             onClick={this.props.onMenuButtonClick}>
             menu
           </MaterialIcon>
-          <Title>
-            React Material Components Web
-          </Title>
         </Section>
       </Toolbar>
     );
