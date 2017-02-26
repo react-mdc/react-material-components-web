@@ -80,3 +80,8 @@
 .demo-content {
   padding: 16px;
 }
+
+.demo-title {
+  padding-left: 8px;
+  padding-right: 8px;
+}

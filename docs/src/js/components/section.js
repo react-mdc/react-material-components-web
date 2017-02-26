@@ -83,7 +83,7 @@ export class Explanation extends React.Component {
       ...props
     } = this.props;
     return (
-      <Typography wrap={Cell} span={6} {...props}>
+      <Typography wrap={Cell} span={4} {...props}>
         <SectionSubtitle>
           Explanation
         </SectionSubtitle>
@@ -109,7 +109,7 @@ export class ExampleCode extends React.Component {
       ...props
     } = this.props;
     return (
-      <Cell span={6} {...props}>
+      <Cell span={8} {...props}>
         <Typography>
           <SectionSubtitle>
             Example Code
@@ -135,17 +135,18 @@ export class Demo extends React.Component {
       ...props
     } = this.props;
     return (
-      <Elevation className={styles.demo} zSpace={4} wrap={Cell} span={12} {...props}>
-        <Typography>
+      <Cell className={styles.demo} span={12} {...props}>
+        <Typography className={styles['demo-title']}>
           <SectionSubtitle>
             Demo
           </SectionSubtitle>
         </Typography>
-        <hr />
-        <div className={styles['demo-content']}>
-          {children}
-        </div>
-      </Elevation>
+        <Elevation zSpace={4}>
+          <div className={styles['demo-content']}>
+            {children}
+          </div>
+        </Elevation>
+      </Cell>
     );
   }
 }
