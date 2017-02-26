@@ -1,0 +1,30 @@
+:root {
+  --app-drawer-z-index: 10;
+}
+
+.layout {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.drawer {
+  /* Codemirror has z-index > 3 */
+  z-index: var(--app-drawer-z-index) !important;
+}
+
+.headerLink {
+  text-decoration: none;
+}
+
+.toolbar {
+  /* Codemirror has z-index > 3 */
+  z-index: calc(var(--app-drawer-z-index) - 1) !important;
+}
+
+.menu-button {
+  padding-right: 16px;
+  cursor: pointer;
+}

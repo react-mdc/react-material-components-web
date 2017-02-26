@@ -1,0 +1,82 @@
+/* Material Icons */
+:root {
+  --app-section-margin: 16px;
+  --app-section-padding: 16px;
+}
+
+.icon {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;  // Preferred icon size
+    display: inline-block;
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
+
+    // Support for all WebKit browsers.
+    -webkit-font-smoothing: antialiased;
+    // Support for Safari and Chrome.
+    text-rendering: optimizeLegibility;
+    // Support for Firefox.
+    -moz-osx-font-smoothing: grayscale;
+    // Support for IE.
+    font-feature-settings: 'liga';
+}
+
+.fullsize {
+  flex: 1;
+}
+
+.center {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.section {
+}
+
+.code {
+  max-width: 850px;
+  :global {
+    .CodeMirror-gutter-wrapper {
+      font-family: Roboto Mono, monospace;
+    }
+    .CodeMirror-code {
+      line-height: 1.6em;
+    }
+    .CodeMirror {
+      pre {
+        font-family: Roboto Mono, monospace;
+      }
+      font-size: 0.8em;
+      height: auto;
+    }
+  }
+}
+
+.page-container {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.demo {
+  hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #eeeeee;
+    padding: 0;
+  }
+}
+
+.demo-content {
+  padding: 16px;
+}

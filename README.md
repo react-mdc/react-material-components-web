@@ -17,10 +17,10 @@ Every updates can contain breaking changes before 0.2.0.
 
 We **do not** recommend you to use this library for product now.
 
-Demo
-----
+Documentation
+-------------
 
-You can find live example demo at https://hardtack.github.io/react-material-components-web/
+You can find a document with live examples at https://hardtack.github.io/react-material-components-web/
 
 Features
 --------
@@ -132,12 +132,12 @@ Documentation
 TBD
 
 
-Run Demo
------------
+Run Docs
+--------
 
 ``` shell
 
-$ cd demo
+$ cd docs
 $ npm start
 
 ```
