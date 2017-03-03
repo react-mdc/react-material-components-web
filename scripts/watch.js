@@ -10,8 +10,17 @@ const {PROJECT_ROOT} = require('./constants');
 
 let filesToBuild = new Map();
 
+const TARGET_EXTS = [
+  '.js',
+  '.jsx'
+];
+
 function rebuild (filename) {
   filesToBuild.set(filename, true);
+}
+
+function isTarget (filename) {
+  return TARGET_EXTS.some(ext => filename.endsWith(ext));
 }
 
 function main () {
@@ -21,8 +30,9 @@ function main () {
       fs.watch(pkg.srcPath, {recursive: true}, (event, filename) => {
         const sourcePath = path.resolve(pkg.srcPath, filename);
         // TODO: Add lint
-
-        if (['change', 'rename'].includes(event) && util.fileExists(sourcePath)) {
+        if (['change', 'rename'].includes(event) &&
+            util.fileExists(sourcePath) &&
+            isTarget(sourcePath)) {
           console.log(chalk.green('->'), `${event}: ${filename}`);
           rebuild(sourcePath);
         } else {
