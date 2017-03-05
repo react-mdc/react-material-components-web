@@ -18,7 +18,7 @@ export type Props<P: {}> = WrapperProps<P> & {
 /**
  * Fixed toolbar adjusted main component
  */
-export default class FixedToolbarAdjusted<P: any> extends PropWrapper<*, P, *> {
+export default class FixedToolbarAdjusted<P: any> extends PropWrapper<P, *, Props<P>, *> {
   props: Props<P>
 
   static defaultProps = {

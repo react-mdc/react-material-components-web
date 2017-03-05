@@ -22,7 +22,7 @@ export type Props<P: {}> = WrapperProps<P> & {
 /**
  * Card component
  */
-export default class Card<P: any> extends PropWrapper<*, P, *> {
+export default class Card<P: any> extends PropWrapper<P, *, Props<P>, *> {
   props: Props<P>
 
   static defaultProps = {

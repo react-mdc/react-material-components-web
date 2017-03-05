@@ -21,7 +21,7 @@ export type Props<P: {}> = WrapperProps<P> & {
 /**
  * Radio background component
  */
-export default class Background<P: any> extends PropWrapper<*, P, *> {
+export default class Background<P: any> extends PropWrapper<P, *, Props<P>, *> {
   props: Props<P>
 
   static defaultProps = {

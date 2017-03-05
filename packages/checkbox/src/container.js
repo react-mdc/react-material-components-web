@@ -46,7 +46,7 @@ export type ChildContext = {
 /**
  * Checkbox input container component
  */
-export default class Container<P: any> extends PropWrapper<*, P, *> {
+export default class Container<P: any> extends PropWrapper<P, *, Props<P>, *> {
   props: Props<P>
   adapter: FoundationAdapter
   foundation: MDCCheckboxFoundation

@@ -17,7 +17,7 @@ export type Props<P: {}> = WrapperProps<P> & {
 /**
  * Supporting text section component
  */
-export default class SupportingText<P: any> extends PropWrapper<*, P, *> {
+export default class SupportingText<P: any> extends PropWrapper<P, *, Props<P>, *> {
   props: Props<P>
 
   static defaultProps = {

@@ -16,7 +16,7 @@ export type Props<P: {}> = WrapperProps<P> & {};
 /**
  * Fab icon component
  */
-export default class Icon<P: any> extends PropWrapper<*, P, *> {
+export default class Icon<P: any> extends PropWrapper<P, *, Props<P>, *> {
   props: Props<P>
 
   static defaultProps = {

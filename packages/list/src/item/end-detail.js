@@ -20,7 +20,7 @@ export type Props<P: {}> = WrapperProps<P> & {
 /**
  * List item end detail component
  */
-export default class EndDetail<P: any> extends PropWrapper<*, P, *> {
+export default class EndDetail<P: any> extends PropWrapper<P, *, Props<P>, *> {
   props: Props<P>
 
   static defaultProps = {

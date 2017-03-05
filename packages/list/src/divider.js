@@ -27,7 +27,7 @@ function SeparatorLi (props: *): React.Element<*> {
 /**
  * List divider component
  */
-export default class Divider<P: any> extends PropWrapper<*, P, *> {
+export default class Divider<P: any> extends PropWrapper<P, *, Props<P>, *> {
   props: Props<P>
 
   static defaultProps = {

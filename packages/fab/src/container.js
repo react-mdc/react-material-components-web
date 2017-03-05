@@ -24,7 +24,7 @@ export type Props<P: {}> = WrapperProps<P> & {
 /**
  * Fab container
  */
-export default class Fab<P: any> extends PropWrapper<*, P, *> {
+export default class Fab<P: any> extends PropWrapper<P, *, Props<P>, *> {
   props: Props<P>
 
   static defaultProps = {

@@ -46,7 +46,7 @@ function CheckboxInput (props: *): React.Element<*> {
 /**
  * Checkbox input component
  */
-export default class NativeControl<P: any> extends PropWrapper<*, P, *> {
+export default class NativeControl<P: any> extends PropWrapper<P, *, Props<P>, *> {
   props: Props<P>
 
   context: Context

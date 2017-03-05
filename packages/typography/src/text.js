@@ -13,23 +13,20 @@ export const propertyClassNames = {
   ADJUST_MARGIN: `${BASE_CLASS_NAME}--adjust-margin`
 };
 
-export type BaseProps<P: {}> = {
+export type BaseProps<P> = {
   adjustMargin?: boolean,
   className?: string,
   wrap?: Wrappable<P>
-} & P;
+};
 
-export type Props<P: {}> = {
-  textStyle: TextStyle,
-  adjustMargin?: boolean,
-  className?: string,
-  wrap?: Wrappable<P>
-} & P;
+export type Props<P> = BaseProps<P> & {
+  textStyle: TextStyle
+};
 
 /**
  * Text component decorated by mdc-typography
  */
-export default class Text<P: any> extends Wrapper<*, Props<P>, *> {
+export default class Text<P: {}> extends Wrapper<P, *, Props<P>, *> {
   props: Props<P>
 
   static defaultProps = {

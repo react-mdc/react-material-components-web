@@ -22,7 +22,7 @@ export type Props<P: {}> = WrapperProps<P> & {
 /**
  * Actions section component
  */
-export default class Actions<P: any> extends PropWrapper<*, P, *> {
+export default class Actions<P: any> extends PropWrapper<P, *, Props<P>, *> {
   props: Props<P>
 
   static defaultProps = {

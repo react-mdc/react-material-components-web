@@ -16,7 +16,7 @@ export type Props<P> = WrapperProps<P> & {
 /**
  * Wrapper component of mdc-typography
  */
-export default class Typography<P: any> extends PropWrapper<*, P, *> {
+export default class Typography<P: any> extends PropWrapper<P, *, Props<P>, *> {
   props: Props<P>
 
   static defaultProps = {

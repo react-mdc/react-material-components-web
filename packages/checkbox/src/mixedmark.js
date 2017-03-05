@@ -21,7 +21,7 @@ export type Props<P: {}> = WrapperProps<P> & {
 /**
  * Checkbox mixedmark component
  */
-export default class Mixedmark<P: any> extends PropWrapper<*, P, *> {
+export default class Mixedmark<P: any> extends PropWrapper<P, *, Props<P>, *> {
   props: Props<P>
 
   static defaultProps = {

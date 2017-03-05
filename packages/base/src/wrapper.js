@@ -1,20 +1,18 @@
 /* @flow */
 import React from 'react';
 
-import type {Wrappable, ReactComponent} from './types';
+import type {Config, Wrappable, ReactComponent} from './types';
 
-export class Wrapper<T, P: {}, S> extends React.Component<T, P, S> {
-  static defaultProps: T
-
+export class Wrapper<WP: Config, DP, P: Config, S> extends React.Component<DP, P, S> {
+  static defaultProps: DP
   props: P
-
   state: S
 
-  renderProps (): P {
+  renderProps (): WP {
     throw new Error('Not implemented');
   }
 
-  renderWrap (): Wrappable<$Shape<P>> {
+  renderWrap (): Wrappable<WP> {
     throw new Error('Not implemented');
   }
 
@@ -24,29 +22,26 @@ export class Wrapper<T, P: {}, S> extends React.Component<T, P, S> {
 
     if (React.isValidElement(wrap)) {
       // Force type cast
-      wrap = ((wrap: any): React.Element<P>);
+      wrap = ((wrap: any): React.Element<WP>);
       return React.cloneElement(wrap, props);
     } else {
       // Force type cast
-      wrap = ((wrap: any): ReactComponent<P>);
+      wrap = ((wrap: any): ReactComponent<WP>);
       return React.createElement(wrap, props);
     }
   }
 }
 
-export type Props<P: {}> = {
+export type Props<P: Config> = {
   wrap: Wrappable<P>
 } & P;
 
-export type DefaultProps<T> = {
-  wrap: Wrappable<T>
-} & T;
+export type DefaultProps = {
+  wrap: Wrappable<Config>
+};
 
-export class PropWrapper<T, P: {}, S> extends Wrapper<DefaultProps<T>, Props<P>, S> {
-  static defaultProps: DefaultProps<T>
-  props: Props<P>
-
-  renderWrap (): Wrappable<P> {
+export class PropWrapper<WP: Config, D: DefaultProps, P: Props<WP>, S> extends Wrapper<WP, D, P, S> {
+  renderWrap (): Wrappable<WP> {
     return this.props.wrap;
   }
 }

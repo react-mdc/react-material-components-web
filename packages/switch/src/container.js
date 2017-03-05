@@ -23,7 +23,7 @@ export type Props<P: {}> = WrapperProps<P> & {
 /**
  * Switch input container component
  */
-export default class Container<P: any> extends PropWrapper<*, P, *> {
+export default class Container<P: any> extends PropWrapper<P, *, Props<P>, *> {
   props: Props<P>
 
   static defaultProps = {

@@ -17,7 +17,7 @@ export type Props<P: {}> = WrapperProps<P> & {
 /**
  * Horizontal block section component
  */
-export default class HorizontalBlock<P: any> extends PropWrapper<*, P, *> {
+export default class HorizontalBlock<P: any> extends PropWrapper<P, *, Props<P>, *> {
   props: Props<P>
 
   static defaultProps = {

@@ -20,7 +20,7 @@ export type Props<P: {}> = WrapperProps<P> & {
 /**
  * Form field component
  */
-export class FormField<P: any> extends PropWrapper<*, P, *> {
+export class FormField<P: any> extends PropWrapper<P, *, Props<P>, *> {
   props: Props<P>
 
   static defaultProps = {

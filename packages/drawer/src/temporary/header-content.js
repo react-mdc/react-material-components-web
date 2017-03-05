@@ -14,7 +14,7 @@ export type Props<P> = WrapperProps<P> & {
   className?: string
 };
 
-export default class HeaderContent<P: any> extends PropWrapper<*, P, *> {
+export default class HeaderContent<P: any> extends PropWrapper<P, *, Props<P>, *> {
   props: Props<P>
 
   static defaultProps = {

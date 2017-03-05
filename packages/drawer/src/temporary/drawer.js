@@ -41,7 +41,7 @@ type Context = {
   adapter: FoundationAdapter
 };
 
-export default class Drawer<P: any> extends PropWrapper<*, P, *> {
+export default class Drawer<P: any> extends PropWrapper<P, *, Props<P>, *> {
   props: Props<P>
 
   state: State

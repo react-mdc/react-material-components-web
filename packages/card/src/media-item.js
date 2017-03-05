@@ -33,7 +33,7 @@ export type Props<P: {}> = WrapperProps<P> & {
 /**
  * Media item component
  */
-export default class MediaItem<P: any> extends PropWrapper<*, P, *> {
+export default class MediaItem<P: any> extends PropWrapper<P, *, Props<P>, *> {
   props: Props<P>
 
   static defaultProps = {

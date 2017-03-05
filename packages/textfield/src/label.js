@@ -32,7 +32,7 @@ type Context = {
 /**
  * Textfield label component
  */
-export default class Label<P: any> extends PropWrapper<*, P, *> {
+export default class Label<P: any> extends PropWrapper<P, *, Props<P>, *> {
   props: Props<P>
 
   context: Context

@@ -42,7 +42,7 @@ type State = {
 /**
  * Ripple foundation component
  */
-export class Ripple<P: any> extends PropWrapper<*, P, *> {
+export class Ripple<P: any> extends PropWrapper<P, *, Props<P>, *> {
   props: Props<P>
   adapter: FoundationAdapter
   foundation: MDCRippleFoundation

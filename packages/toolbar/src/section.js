@@ -18,7 +18,7 @@ export type Props<P: {}> = WrapperProps<P> & {
 /**
  * Toolbar section
  */
-export default class Section<P: any> extends PropWrapper<*, P, *> {
+export default class Section<P: any> extends PropWrapper<P, *, Props<P>, *> {
   props: Props<P>
 
   static defaultProps = {

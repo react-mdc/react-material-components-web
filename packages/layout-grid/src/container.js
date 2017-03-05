@@ -26,7 +26,7 @@ export type Props<P> = WrapperProps<P> & {
 /**
  * Wrapper component of mdc-layout-grid
  */
-export default class Container<P: any> extends PropWrapper<*, P, *> {
+export default class Container<P: any> extends PropWrapper<P, *, Props<P>, *> {
   props: Props<P>
 
   static defaultProps = {

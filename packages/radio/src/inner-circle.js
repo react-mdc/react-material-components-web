@@ -21,7 +21,7 @@ export type Props<P: {}> = WrapperProps<P> & {
 /**
  * Radio inner circle component
  */
-export default class InnerCircle<P: any> extends PropWrapper<*, P, *> {
+export default class InnerCircle<P: any> extends PropWrapper<P, *, Props<P>, *> {
   props: Props<P>
 
   static defaultProps = {

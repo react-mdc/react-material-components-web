@@ -44,7 +44,7 @@ function TextInput (props: *): React.Element<*> {
 /**
  * Textfield input component
  */
-export default class Input<P: any> extends PropWrapper<*, P, *> {
+export default class Input<P: any> extends PropWrapper<P, *, Props<P>, *> {
   props: Props<P>
 
   context: Context

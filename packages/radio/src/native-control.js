@@ -34,7 +34,7 @@ function RadioInput (props: *): React.Element<*> {
 /**
  * Radio input component
  */
-export default class NativeControl<P: any> extends PropWrapper<*, P, *> {
+export default class NativeControl<P: any> extends PropWrapper<P, *, Props<P>, *> {
   props: Props<P>
 
   context: Context

@@ -16,7 +16,7 @@ export type Props<P: {}> = WrapperProps<P> & {};
 /**
  * Knob component
  */
-export default class Knob<P: any> extends PropWrapper<*, P, *> {
+export default class Knob<P: any> extends PropWrapper<P, *, Props<P>, *> {
   props: Props<P>
 
   static defaultProps = {

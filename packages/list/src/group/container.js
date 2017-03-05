@@ -17,7 +17,7 @@ export type Props<P: {}> = WrapperProps<P> & {
 /**
  * List group component
  */
-export default class ListGroup<P: any> extends PropWrapper<*, P, *> {
+export default class ListGroup<P: any> extends PropWrapper<P, *, Props<P>, *> {
   props: Props<P>
 
   static defaultProps = {

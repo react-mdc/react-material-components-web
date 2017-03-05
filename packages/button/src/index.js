@@ -2,6 +2,7 @@
 import React from 'react';
 import classNames from 'classnames';
 
+import type {Config} from '@react-mdc/base/lib/types';
 import type {Props as WrapperProps} from '@react-mdc/base/lib/wrapper';
 import {PropWrapper} from '@react-mdc/base';
 
@@ -20,20 +21,19 @@ export const propertyClassNames = {
   ACCENT: `${CLASS_NAME}--accent`
 };
 
-export type Props<P: {}> = WrapperProps<P> & {
+export type Props<P> = WrapperProps<P> & {
   dense: boolean,
   raised: boolean,
   compact: boolean,
   primary: boolean,
-  accent: boolean
+  accent: boolean,
+  className?: string
 };
 
 /**
  * Button component
  */
-export class Button<P: any> extends PropWrapper<*, P, *> {
-  props: Props<P>
-
+export class Button<P: Config> extends PropWrapper<P, *, Props<P>, *> {
   static defaultProps = {
     dense: false,
     raised: false,

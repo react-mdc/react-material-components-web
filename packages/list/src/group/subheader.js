@@ -17,7 +17,7 @@ export type Props<P: {}> = WrapperProps<P> & {
 /**
  * List group subheader component
  */
-export default class Subheader<P: any> extends PropWrapper<*, P, *> {
+export default class Subheader<P: any> extends PropWrapper<P, *, Props<P>, *> {
   props: Props<P>
 
   static defaultProps = {

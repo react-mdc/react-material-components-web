@@ -51,7 +51,7 @@ const {
   }
 } = MDCTemporaryDrawerFoundation;
 
-export default class TemporaryDrawer<P: any> extends PropWrapper<*, P, *> {
+export default class TemporaryDrawer<P: any> extends PropWrapper<P, *, Props<P>, *> {
   props: Props<P>
   adapter: FoundationAdapter
   foundation: MDCTemporaryDrawerFoundation
