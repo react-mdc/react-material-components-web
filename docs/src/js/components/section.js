@@ -135,18 +135,23 @@ export class Demo extends React.Component {
       ...props
     } = this.props;
     return (
-      <Cell className={styles.demo} span={12} {...props}>
+      <Elevation
+        className={styles.demo}
+        zSpace={4}
+        wrap={<Cell wrap={Typography} />}
+        span={12}
+        {...props}>
         <Typography className={styles['demo-title']}>
           <SectionSubtitle>
             Demo
           </SectionSubtitle>
         </Typography>
-        <Elevation zSpace={4}>
+        <Elevation wrap={<div />} zSpace={4}>
           <div className={styles['demo-content']}>
             {children}
           </div>
         </Elevation>
-      </Cell>
+      </Elevation>
     );
   }
 }

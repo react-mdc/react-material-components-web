@@ -1,6 +1,7 @@
 /* @flow */
 import React from 'react';
 
+import {Themed} from '@react-mdc/theme';
 import {Typography, Display1} from '@react-mdc/typography';
 
 /**
@@ -16,7 +17,7 @@ export default class PageTitle extends React.Component {
       ...props
     } = this.props;
     return (
-      <Typography {...props}>
+      <Typography wrap={Themed} color="primary" {...props}>
         <Display1>
           {children}
         </Display1>
