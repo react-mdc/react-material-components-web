@@ -142,12 +142,12 @@ $ npm start
 
 ```
 
-Build
------
+Watch for Changes and Build
+---------------------------
 
 ``` shell
 
-$ lerna run build
+$ npm run watch
 
 ```
 
