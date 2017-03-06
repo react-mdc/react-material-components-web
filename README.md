@@ -184,6 +184,8 @@ Supported Components
 
 - Layout Grid
 
+- Toolbar
+
 Ongoing Components
 ------------------
 
