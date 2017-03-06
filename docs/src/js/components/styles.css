@@ -44,6 +44,8 @@
 
 .code {
   max-width: 850px;
+  margin-top: 14px;
+  margin-bottom: 14px;
   :global {
     .CodeMirror-gutter-wrapper {
       font-family: Roboto Mono, monospace;

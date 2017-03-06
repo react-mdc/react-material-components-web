@@ -3,24 +3,47 @@ import React from 'react';
 import classNames from 'classnames';
 
 import {Elevation} from '@react-mdc/elevation';
-import {Typography, Title, Subheading2, Body2} from '@react-mdc/typography';
+import {Typography, Title, Subheading2} from '@react-mdc/typography';
 import {
   Grid,
   Cell
 } from '@react-mdc/layout-grid';
 
+import type {Children} from 'app/js/common/types';
 import styles from './styles.css';
 
 /**
- * Section divider for each secion
+ * Section divider for each section
  */
 export class Section extends React.Component {
   props: {
-    className?: string
+    title?: string,
+    className?: string,
+    children?: Children
   }
+
   render (): React.Element<*> {
+    const {
+      title,
+      className,
+      children,
+      ...props
+    } = this.props;
+    let titleEl = null;
+    if (title != null) {
+      titleEl = (
+        <Typography wrap={Cell} span={12} {...props}>
+          <Title>
+            {title}
+          </Title>
+        </Typography>
+      );
+    }
     return (
-      <Grid {...this.props} className={classNames(this.props.className, styles.section)} />
+      <Grid className={classNames(styles.section, className)} {...props}>
+        {titleEl}
+        {children}
+      </Grid>
     );
   }
 }
@@ -47,6 +70,30 @@ export class SectionTitle extends React.Component {
   }
 }
 
+type SectionPanelProps = {
+  title: string,
+  children?: Children
+};
+
+/**
+ * Section panel
+ */
+export function SectionPanel (props: SectionPanelProps): React.Element<*> {
+  const {
+    title,
+    children,
+    ...p
+  } = props;
+  return (
+    <Typography wrap={Cell} {...p}>
+      <Subheading2>
+        {title}
+      </Subheading2>
+      {children}
+    </Typography>
+  );
+}
+
 /**
  * Section Subtitle
  */
@@ -65,58 +112,6 @@ export class SectionSubtitle extends React.Component {
           {children}
         </Subheading2>
       </Typography>
-    );
-  }
-}
-
-/**
- * Explanation
- */
-export class Explanation extends React.Component {
-  props: {
-    children?: Array<React.Element<*>> | React.Element<*>
-  }
-
-  render (): React.Element<*> {
-    let {
-      children,
-      ...props
-    } = this.props;
-    return (
-      <Typography wrap={Cell} span={4} {...props}>
-        <SectionSubtitle>
-          Explanation
-        </SectionSubtitle>
-        <Body2>
-          {children}
-        </Body2>
-      </Typography>
-    );
-  }
-}
-
-/**
- * Example Code
- */
-export class ExampleCode extends React.Component {
-  props: {
-    children?: Array<React.Element<*>> | React.Element<*>
-  }
-
-  render (): React.Element<*> {
-    let {
-      children,
-      ...props
-    } = this.props;
-    return (
-      <Cell span={8} {...props}>
-        <Typography>
-          <SectionSubtitle>
-            Example Code
-          </SectionSubtitle>
-        </Typography>
-        {children}
-      </Cell>
     );
   }
 }

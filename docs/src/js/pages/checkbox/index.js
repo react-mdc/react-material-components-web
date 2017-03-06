@@ -7,7 +7,7 @@ import {FormField} from '@react-mdc/form-field';
 import {Caption, Typography} from '@react-mdc/typography';
 
 import PageTitle from 'app/js/components/page-title';
-import {Section, SectionTitle} from 'app/js/components/section';
+import {Section} from 'app/js/components/section';
 
 type CheckboxState = 'checked' | 'unchecked' | 'indeterminate';
 
@@ -43,8 +43,7 @@ export default class CheckboxExample extends React.Component {
         <PageTitle>
           Checkbox Examples
         </PageTitle>
-        <Section>
-          <SectionTitle>Checkbox</SectionTitle>
+        <Section title="Checkbox">
           <FormField>
             <Checkbox inputId="checkbox-1" name="checkbox-1" defaultChecked />
             <label htmlFor="checkbox-1">
@@ -52,8 +51,7 @@ export default class CheckboxExample extends React.Component {
             </label>
           </FormField>
         </Section>
-        <Section>
-          <SectionTitle>Disabled Checkbox</SectionTitle>
+        <Section title="Disabled Checkbox">
           <FormField>
             <Checkbox inputId="checkbox-1" name="checkbox-2" disabled />
             <label htmlFor="checkbox-2">
@@ -61,8 +59,7 @@ export default class CheckboxExample extends React.Component {
             </label>
           </FormField>
         </Section>
-        <Section>
-          <SectionTitle>Checkbox Controlled by React State</SectionTitle>
+        <Section title="Checkbox Controlled by React State">
           <Typography>
             <Caption>State: {this.state.checkbox3State}</Caption>
           </Typography>

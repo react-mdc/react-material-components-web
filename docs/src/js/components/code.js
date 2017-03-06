@@ -33,7 +33,7 @@ export default function Code (p: Props): React.Element<*> {
     ...props
   } = p;
 
-  className = classNames(className, styles.code);
+  className = classNames(styles.code, className);
   let mergedOptions = {};
   mergedOptions['mode'] = ifNull(mode, 'jsx');
   mergedOptions['lineNumbers'] = ifNull(lineNumbers, true);

@@ -11,13 +11,13 @@ export default class Example extends React.Component {
     return (
       <Typography>
         <Text textStyle="title">
-          This is title
+          Title
         </Text>
         <Text textStyle="body2">
-          And i am body.
+          Body Two
         </Text>
         <Text textStyle="display4" adjustMargin>
-          I hate too broad margin.
+          Adjust margin
         </Text>
       </Typography>
     );

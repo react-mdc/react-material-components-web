@@ -1,0 +1,37 @@
+:root {
+  --app-api-table-border-color: #CCC;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.8em;
+  text-align: left;
+
+  thead tr {
+    &:last-child {
+      border: 0;
+      border-bottom: 1px;
+      border-style: solid;
+      border-color: var(--app-api-table-border-color);
+    }
+  }
+
+  tbody tr {
+    border: 0;
+    border-bottom: 1px;
+    border-style: solid;
+    border-color: var(--app-api-table-border-color);
+
+    &:last-child {
+      border-bottom: 0;
+    }
+    &:hover {
+      background: #EEEEEE;
+    }
+  }
+
+  td, th {
+    padding: 8px;
+  }
+}
