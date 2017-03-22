@@ -11,8 +11,17 @@
   "dependencies": {
     "@material/switch": "^0.1.0",
     "@react-mdc/base": "^0.1.2",
+    "@types/react": "^15.0.16",
     "classnames": "^2.2.5",
     "react": "^15.4.2",
     "react-dom": "^15.4.2"
+  },
+  "devDependencies": {
+    "typescript": "^2.2.1"
+  },
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "prepublish": "npm run build"
   }
 }

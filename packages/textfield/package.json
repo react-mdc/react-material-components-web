@@ -9,11 +9,20 @@
     "url": "https://github.com/hardtack/react-material-components-web.git"
   },
   "dependencies": {
+    "@types/react": "^15.0.16",
     "@material/textfield": "^0.2.0",
     "@react-mdc/base": "^0.1.2",
     "classnames": "^2.2.5",
     "immutable": "^3.8.1",
     "react": "^15.4.2",
     "react-dom": "^15.4.2"
+  },
+  "devDependencies": {
+    "typescript": "^2.2.1"
+  },
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "prepublish": "npm run build"
   }
 }

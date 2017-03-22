@@ -29,5 +29,8 @@
     "@react-mdc/theme": "^0.1.0",
     "@react-mdc/typography": "^0.1.0",
     "@react-mdc/layout-grid": "^0.1.1"
+  },
+  "devDependencies": {
+    "typescript": "^2.2.1"
   }
 }
