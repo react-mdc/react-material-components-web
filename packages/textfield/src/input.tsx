@@ -1,7 +1,7 @@
 import * as React from "react";
 import ReactDOM from "react-dom";
 
-import classNames from "classnames";
+import * as classNames from "classnames";
 import {
     Map,
     OrderedSet,
@@ -9,7 +9,11 @@ import {
 } from "immutable";
 
 import { NativeDOMAdapter } from "@react-mdc/base";
-import { default as PropWrapper, Props as WrapperProps } from "@react-mdc/base/lib/prop-wrapper";
+import {
+    createDefaultComponent,
+    default as BaseMeta,
+    DefaultComponent,
+} from "@react-mdc/base/lib/meta";
 
 import { FoundationAdapter, InputAdapter } from "./adapter";
 import { BASE_CLASS_NAME } from "./constants";
@@ -20,8 +24,11 @@ export const propertyClassNames = {
     PREFIX: CLASS_NAME,
 };
 
-export type Props<P> = WrapperProps<P> & {
+export type ChildProps = {
     className?: string,
+};
+
+export type MetaProps = {
 };
 
 export type State = {
@@ -32,26 +39,13 @@ export type Context = {
     adapter: FoundationAdapter,
 };
 
-// Input with type="checkbox" as default
-function TextInput(props) {
-    return (
-        <input type="text" {...props} />
-    );
-}
-
 /**
  * Textfield input component
  */
-export default class Input<P> extends PropWrapper<P, Props<P>, State> {
+export class Meta extends BaseMeta<ChildProps, MetaProps, State> {
     public static contextTypes = {
         adapter: React.PropTypes.instanceOf(FoundationAdapter).isRequired,
     };
-
-    public static defaultProps = {
-        wrap: TextInput,
-    };
-
-    public props: Props<P>;
 
     public context: Context;
 
@@ -77,26 +71,19 @@ export default class Input<P> extends PropWrapper<P, Props<P>, State> {
     }
 
     protected renderProps() {
-        let {
-      wrap: _wrap,
-            className,
-            ...props,
-    } = this.props;
-        className = classNames(
+        const className = classNames(
             CLASS_NAME,
-            className,
         );
         return {
-            ...props,
             className,
         };
     }
 };
 
 class InputAdapterImpl<P> extends InputAdapter {
-    private element: Input<P>;
+    private element: Meta;
 
-    constructor(element: Input<P>) {
+    constructor(element: Meta) {
         super();
         this.element = element;
     }
@@ -149,3 +136,19 @@ class InputAdapterImpl<P> extends InputAdapter {
         }));
     }
 }
+
+// Input with type="checkbox" as default
+function TextInput(props: React.HTMLProps<HTMLInputElement>) {
+    return (
+        <input type="text" {...props} />
+    );
+}
+
+// Maybe related to this
+// https://github.com/Microsoft/TypeScript/issues/5938
+const component: DefaultComponent<React.HTMLProps<HTMLInputElement>, ChildProps, MetaProps> =
+    createDefaultComponent<React.HTMLProps<HTMLInputElement>, ChildProps, MetaProps>(
+        TextInput, Meta, [],
+    );
+
+export default component;

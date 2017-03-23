@@ -1,8 +1,10 @@
 import * as React from "react";
 
-import classNames from "classnames";
-
-import { default as PropWrapper, Props as WrapperProps } from "@react-mdc/base/lib/prop-wrapper";
+import {
+    createDefaultComponent,
+    default as BaseMeta,
+    DefaultComponent,
+} from "@react-mdc/base/lib/meta";
 
 import {
     BASE_CLASS_NAME,
@@ -10,34 +12,28 @@ import {
 
 export const CLASS_NAME = `${BASE_CLASS_NAME}-label`;
 
-export type Props<P> = WrapperProps<P> & {
+export type MetaProps = {};
+export type ChildProps = {
     className?: string,
 };
 
 /**
  * Label component
  */
-export default class Label<P> extends PropWrapper<P, Props<P>, {}> {
-    public static defaultProps = {
-        wrap: <label />,
-    };
-
-    public props: Props<P>;
-
+export class Meta extends BaseMeta<ChildProps, MetaProps, {}> {
     protected renderProps() {
-        let {
-            className,
-            wrap: _wrap,
-            ...props,
-        } = this.props;
-
-        className = classNames(
-            CLASS_NAME,
-            className,
-        );
+        const className = CLASS_NAME;
         return {
-            ...props,
             className,
         };
     }
 };
+
+// Maybe related to this
+// https://github.com/Microsoft/TypeScript/issues/5938
+const component: DefaultComponent<React.HTMLProps<HTMLLabelElement>, ChildProps, MetaProps> =
+    createDefaultComponent<React.HTMLProps<HTMLLabelElement>, ChildProps, MetaProps>(
+        "label", Meta, [],
+    );
+
+export default component;

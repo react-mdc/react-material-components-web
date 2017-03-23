@@ -11,11 +11,14 @@
   "dependencies": {
     "@material/elevation": "^0.1.2",
     "@react-mdc/base": "^0.1.2",
+    "@types/classnames": "0.0.32",
+    "@types/react": "^15.0.18",
     "classnames": "^2.2.5",
     "react": "^15.4.2",
     "react-dom": "^15.4.2"
   },
   "devDependencies": {
+    "tslint": "^4.5.1",
     "typescript": "^2.2.1"
   }
 }

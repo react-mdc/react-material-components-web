@@ -1,8 +1,10 @@
 import * as React from "react";
 
-import classNames from "classnames";
-
-import { default as PropWrapper, Props as WrapperProps } from "@react-mdc/base/lib/prop-wrapper";
+import {
+    createDefaultComponent,
+    default as BaseMeta,
+    DefaultComponent,
+} from "@react-mdc/base/lib/meta";
 
 import {
     BASE_CLASS_NAME,
@@ -10,41 +12,35 @@ import {
 
 export const CLASS_NAME = `${BASE_CLASS_NAME}__native-control`;
 
-// Input with type="checkbox" as default
-function CheckboxInput(props) {
-    return (
-        <input type="checkbox" {...props} />
-    );
-}
-
-export type Props<P> = WrapperProps<P> & {
+export type MetaProps = {};
+export type ChildProps = {
     className?: string,
 };
 
 /**
  * Native control component
  */
-export default class NativeControl<P> extends PropWrapper<P, Props<P>, {}> {
-    public static defaultProps = {
-        wrap: CheckboxInput,
-    };
-
-    public props: Props<P>;
-
+export class Meta extends BaseMeta<ChildProps, MetaProps, {}> {
     protected renderProps() {
-        let {
-            className,
-            wrap: _wrap,
-            ...props,
-        } = this.props;
-
-        className = classNames(
-            CLASS_NAME,
-            className,
-        );
+        const className = CLASS_NAME;
         return {
-            ...props,
             className,
         };
     }
 };
+
+// Input with type="checkbox" as default
+function CheckboxInput(props: React.HTMLProps<HTMLInputElement>) {
+    return (
+        <input type="checkbox" {...props} />
+    );
+}
+
+// Maybe related to this
+// https://github.com/Microsoft/TypeScript/issues/5938
+const component: DefaultComponent<React.HTMLProps<HTMLInputElement>, ChildProps, MetaProps> =
+    createDefaultComponent<React.HTMLProps<HTMLInputElement>, ChildProps, MetaProps>(
+        CheckboxInput, Meta, [],
+    );
+
+export default component;

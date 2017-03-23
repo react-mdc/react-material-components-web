@@ -15,22 +15,25 @@
     "url": "https://github.com/hardtack/react-material-components-web.git"
   },
   "dependencies": {
+    "@react-mdc/base": "^0.1.2",
     "@react-mdc/button": "^0.1.0",
     "@react-mdc/card": "^0.1.0",
     "@react-mdc/checkbox": "^0.1.2",
-    "@react-mdc/base": "^0.1.2",
     "@react-mdc/drawer": "^0.1.4",
     "@react-mdc/elevation": "^0.1.0",
     "@react-mdc/fab": "^0.1.0",
     "@react-mdc/form-field": "^0.1.0",
+    "@react-mdc/layout-grid": "^0.1.1",
     "@react-mdc/list": "^0.1.0",
     "@react-mdc/radio": "^0.1.2",
     "@react-mdc/ripple": "^0.1.2",
     "@react-mdc/theme": "^0.1.0",
     "@react-mdc/typography": "^0.1.0",
-    "@react-mdc/layout-grid": "^0.1.1"
+    "@types/classnames": "0.0.32",
+    "@types/react": "^15.0.18"
   },
   "devDependencies": {
+    "tslint": "^4.5.1",
     "typescript": "^2.2.1"
   }
 }

@@ -1,10 +1,14 @@
 import * as React from "react";
 
 import { MDCTextfieldFoundation } from "@material/textfield/dist/mdc.textfield";
-import classNames from "classnames";
+import * as classNames from "classnames";
 import { OrderedSet, Set } from "immutable";
 
-import { default as PropWrapper, Props as WrapperProps } from "@react-mdc/base/lib/prop-wrapper";
+import {
+    createDefaultComponent,
+    default as BaseMeta,
+    DefaultComponent,
+} from "@react-mdc/base/lib/meta";
 
 import { ContainerAdapter, FoundationAdapter } from "./adapter";
 
@@ -20,11 +24,14 @@ export const propertyClassNames = {
     FULLWIDTH: `${CLASS_NAME}--fullwidth`,
 };
 
-export type Props<P> = WrapperProps<P> & {
+export type ChildProps = {
+    className?: string,
+};
+
+export type MetaProps = {
     disabled?: boolean,
     multiline?: boolean,
     fullwidth?: boolean,
-    className?: string,
 };
 
 export type State = {
@@ -38,16 +45,10 @@ export type ChildContext = {
 /**
  * Textfield input container component
  */
-export default class Container<P> extends PropWrapper<P, Props<P>, State> {
+export class Meta extends BaseMeta<ChildProps, MetaProps, State> {
     public static childContextTypes = {
         adapter: React.PropTypes.instanceOf(FoundationAdapter),
     };
-
-    public static defaultProps = {
-        wrap: <div />,
-    };
-
-    public props: Props<P>;
 
     public state: State = {
         foundationClasses: OrderedSet<string>(),
@@ -56,7 +57,7 @@ export default class Container<P> extends PropWrapper<P, Props<P>, State> {
     private adapter: FoundationAdapter;
     private foundation: MDCTextfieldFoundation;
 
-    constructor(props: Props<P>) {
+    constructor(props) {
         super(props);
         this.adapter = new FoundationAdapter();
         this.foundation = new MDCTextfieldFoundation(this.adapter.toObject());
@@ -81,41 +82,31 @@ export default class Container<P> extends PropWrapper<P, Props<P>, State> {
 
     protected renderProps() {
         let {
-            wrap: _wrap,
             disabled: _disabled,
             multiline: _multiline,
             fullwidth: _fullwidth,
-            className: _className,
             ...props,
         } = this.props;
 
-        let className = this.getClassName(this.props, this.state);
-        return {
-            ...props,
-            className,
-        };
-    }
-
-    private getClassName(props: Props<P>, state: State): string {
-        let {
-      className,
-    } = props;
-        return classNames(
+        const className = classNames(
             CLASS_NAME,
             {
                 [propertyClassNames.MULTILINE]: this.props.multiline,
                 [propertyClassNames.FULLWIDTH]: this.props.fullwidth,
             },
-            className,
-            state.foundationClasses.toJS(),
+            this.state.foundationClasses.toJS(),
         );
+
+        return {
+            className,
+        };
     }
 };
 
-class ContainerAdapterImpl<P> extends ContainerAdapter {
-    private element: Container<P>;
+class ContainerAdapterImpl extends ContainerAdapter {
+    private element: Meta;
 
-    constructor(element: Container<P>) {
+    constructor(element: Meta) {
         super();
         this.element = element;
     }
@@ -130,3 +121,16 @@ class ContainerAdapterImpl<P> extends ContainerAdapter {
         }));
     }
 }
+
+// Maybe related to this
+// https://github.com/Microsoft/TypeScript/issues/5938
+const component: DefaultComponent<React.HTMLProps<HTMLDivElement>, ChildProps, MetaProps> =
+    createDefaultComponent<React.HTMLProps<HTMLDivElement>, ChildProps, MetaProps>(
+        "div", Meta, [
+            "disabled",
+            "multiline",
+            "fullwidth",
+        ],
+    );
+
+export default component;

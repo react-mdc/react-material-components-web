@@ -9,7 +9,8 @@
     "url": "https://github.com/hardtack/react-material-components-web.git"
   },
   "dependencies": {
-    "@types/react": "^15.0.16",
+    "@types/classnames": "0.0.32",
+    "@types/react": "^15.0.18",
     "@types/react-dom": "^0.14.23",
     "classnames": "^2.2.5",
     "immutable": "^3.8.1",

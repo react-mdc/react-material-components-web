@@ -1,35 +1,35 @@
 import * as React from "react";
 
-import classNames from "classnames";
+import * as classNames from "classnames";
 
-import { default as PropWrapper, Props as WrapperProps } from "@react-mdc/base/lib/prop-wrapper";
+import {
+    createDefaultComponent,
+    default as BaseMeta,
+    DefaultComponent,
+} from "@react-mdc/base/lib/meta";
 
 import * as helpers from "./helpers";
 import { BackgroundColor, Color, OnColor, TextColor } from "./types";
 
-export type Props<P> = WrapperProps<P> & {
+export type ChildProps = {
     className?: string,
+};
+
+export type MetaProps = {
     color?: Color,
     backgroundColor?: BackgroundColor,
     textColor?: TextColor,
     onColor?: OnColor,
 };
 
-export default class Themed<P> extends PropWrapper<P, Props<P>, {}> {
-    public static defaultProps = {
-        wrap: <div />,
-    };
-
+export class Meta extends BaseMeta<ChildProps, MetaProps, {}> {
     protected renderProps() {
         let {
-      wrap: _wrap,
-            className,
             color,
             backgroundColor,
             textColor,
             onColor,
-            ...props,
-    } = this.props;
+        } = this.props;
 
         let classes: string[] = [];
         if (color != null) {
@@ -41,12 +41,24 @@ export default class Themed<P> extends PropWrapper<P, Props<P>, {}> {
         if (textColor != null && onColor != null) {
             classes.push(helpers.classNameForTextColor(textColor, onColor));
         }
-        className = classNames(classes, className);
+        const className = classNames(classes);
 
-        props = {
+        return {
             className,
-            ...props,
         };
-        return props;
     }
 };
+
+// Maybe related to this
+// https://github.com/Microsoft/TypeScript/issues/5938
+const component: DefaultComponent<React.HTMLProps<HTMLDivElement>, ChildProps, MetaProps> =
+    createDefaultComponent<React.HTMLProps<HTMLDivElement>, ChildProps, MetaProps>(
+        "div", Meta, [
+            "color",
+            "backgroundColor",
+            "textColor",
+            "onColor",
+        ],
+    );
+
+export default component;

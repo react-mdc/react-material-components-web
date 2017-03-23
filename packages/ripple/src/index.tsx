@@ -3,7 +3,7 @@ import * as React from "react";
 import {
     MDCRippleFoundation,
 } from "@material/ripple/dist/mdc.ripple";
-import classNames from "classnames";
+import * as classNames from "classnames";
 import {
     Map,
     OrderedMap,
@@ -13,7 +13,11 @@ import {
 import ReactDOM from "react-dom";
 
 import { NativeDOMAdapter } from "@react-mdc/base";
-import { default as PropWrapper, Props as WrapperProps } from "@react-mdc/base/lib/prop-wrapper";
+import {
+    createDefaultComponent,
+    default as BaseMeta,
+    DefaultComponent,
+} from "@react-mdc/base/lib/meta";
 
 import { FoundationAdapter, RippleAdapter } from "./adapter";
 import * as helpers from "./helpers";
@@ -28,9 +32,12 @@ const MATCHES = getMatchesProperty(HTMLElement.prototype);
 
 export const CLASS_NAME = SURFACE_BASE_CLASS_NAME;
 
-export type Props<P> = WrapperProps<P> & {
-    unbounded: boolean,
+export type MetaProps = {
+    unbounded?: boolean,
     color?: Color,
+};
+
+export type ChildProps = {
     className?: string,
 };
 
@@ -43,9 +50,8 @@ export type State = {
 /**
  * Ripple foundation component
  */
-export class Ripple<P> extends PropWrapper<P, Props<P>, State> {
+export class Meta extends BaseMeta<ChildProps, MetaProps, State> {
     public static defaultProps = {
-        wrap: <div />,
         unbounded: false,
     };
 
@@ -58,7 +64,7 @@ export class Ripple<P> extends PropWrapper<P, Props<P>, State> {
     private adapter: FoundationAdapter;
     private foundation: MDCRippleFoundation;
 
-    constructor(props: Props<P>) {
+    constructor(props) {
         super(props);
         this.adapter = new FoundationAdapter();
         this.foundation = new MDCRippleFoundation(this.adapter.toObject());
@@ -100,40 +106,29 @@ export class Ripple<P> extends PropWrapper<P, Props<P>, State> {
 
     protected renderProps() {
         let {
-      wrap: _wrap,
-            className: _className,
             unbounded: _unbounded,
-            ...props,
-    } = this.props;
+        } = this.props;
 
-        let className = this.getClassName(this.props, this.state);
-
-        props = {
-            ...props,
-            className,
-        };
-        return props;
-    }
-
-    private getClassName(props: Props<P>, state: State): string {
-        let { className } = props;
         let classes: string[] = [];
-        if (props.color != null) {
-            classes.push(helpers.classNameForColor(props.color));
+        if (this.props.color != null) {
+            classes.push(helpers.classNameForColor(this.props.color));
         }
-        return classNames(
+        const className = classNames(
             CLASS_NAME,
             classes,
-            className,
-            state.foundationClasses.toJS(),
+            this.state.foundationClasses.toJS(),
         );
+
+        return {
+            className,
+        };
     }
 }
 
 class RippleAdapterImpl<P> extends RippleAdapter {
-    private element: Ripple<P>;
+    private element: Meta;
 
-    constructor(element: Ripple<P>) {
+    constructor(element: Meta) {
         super();
         this.element = element;
     }
@@ -141,7 +136,7 @@ class RippleAdapterImpl<P> extends RippleAdapter {
         return supportsCssVariables(window);
     }
     public isUnbounded(): boolean {
-        return this.element.props.unbounded;
+        return this.element.props.unbounded || false;
     }
     public isSurfaceActive(): boolean {
         return this.element.getDOMNode()[MATCHES](":active");
@@ -199,4 +194,14 @@ class RippleAdapterImpl<P> extends RippleAdapter {
     }
 }
 
-export default Ripple;
+// Maybe related to this
+// https://github.com/Microsoft/TypeScript/issues/5938
+const component: DefaultComponent<React.HTMLProps<HTMLDivElement>, ChildProps, MetaProps> =
+    createDefaultComponent<React.HTMLProps<HTMLDivElement>, ChildProps, MetaProps>(
+        "div", Meta, [],
+    );
+
+/* tslint:disable:variable-name */
+export const Ripple = component;
+/* tslint:enable:variable-name */
+export default component;

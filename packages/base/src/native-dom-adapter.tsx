@@ -18,10 +18,17 @@ export type Attributes = {
 };
 
 export type Props = {
+    cssVariables?: CSSVariables,
+    eventListeners?: EventListeners,
+    attributes?: Attributes,
+    children?: React.ReactElement<any>,
+};
+
+type InternalProps = {
     cssVariables: CSSVariables,
     eventListeners: EventListeners,
     attributes: Attributes,
-    children: React.ReactElement<any> | null,
+    children: React.ReactElement<any>,
 };
 
 /**
@@ -35,7 +42,7 @@ export default class NativeDOMAdapter extends React.Component<Props, {}> {
         attributes: {},
     };
 
-    public props: Props;
+    public props: Props
 
     // Last known DOM node
     private lastDOMNode: HTMLElement;
@@ -45,31 +52,45 @@ export default class NativeDOMAdapter extends React.Component<Props, {}> {
     }
 
     public componentDidMount() {
+        const props = this.internalProps(this.props);
+
         this.lastDOMNode = this.getDOMNode();
-        this.addCssVariables(this.lastDOMNode, this.props.cssVariables);
-        this.addEventListeners(this.lastDOMNode, this.props.eventListeners);
-        this.addAttributes(this.lastDOMNode, this.props.attributes);
+        this.addCssVariables(this.lastDOMNode, props.cssVariables);
+        this.addEventListeners(this.lastDOMNode, props.eventListeners);
+        this.addAttributes(this.lastDOMNode, props.attributes);
     }
 
-    public componentDidUpdate(prevProps: Props) {
+    public componentDidUpdate(origPrevProps: Props) {
+        const props = this.internalProps(this.props);
+        const prevProps = this.internalProps(origPrevProps);
+
         const node = this.getDOMNode();
         if (node !== this.lastDOMNode) {
             // Remove from previous DOM node
             this.removeCssVariables(this.lastDOMNode, prevProps.cssVariables);
             this.removeEventListeners(this.lastDOMNode, prevProps.eventListeners);
-            this.removeAttributes(this.lastDOMNode, this.props.attributes);
+            this.removeAttributes(this.lastDOMNode, props.attributes);
             // Add to new DOM node
-            this.addCssVariables(node, this.props.cssVariables);
-            this.addEventListeners(node, this.props.eventListeners);
-            this.addAttributes(node, this.props.attributes);
+            this.addCssVariables(node, props.cssVariables);
+            this.addEventListeners(node, props.eventListeners);
+            this.addAttributes(node, props.attributes);
             // Update current DOM node
             this.lastDOMNode = node;
         } else {
             // Update
-            this.updateCssVariables(node, prevProps.cssVariables, this.props.cssVariables);
-            this.updateEventListeners(node, prevProps.eventListeners, this.props.eventListeners);
-            this.updateAttributes(node, prevProps.attributes, this.props.attributes);
+            this.updateCssVariables(node, prevProps.cssVariables, props.cssVariables);
+            this.updateEventListeners(node, prevProps.eventListeners, props.eventListeners);
+            this.updateAttributes(node, prevProps.attributes, props.attributes);
         }
+    }
+
+    private internalProps(props: Props): InternalProps {
+        return {
+            cssVariables: (props.cssVariables as CSSVariables),
+            eventListeners: (props.eventListeners as EventListeners),
+            attributes: (props.attributes as Attributes),
+            children: (props.children as React.ReactElement<any>),
+        };
     }
 
     // Get root DOM node of element

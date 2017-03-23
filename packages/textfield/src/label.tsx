@@ -1,11 +1,15 @@
-import classNames from "classnames";
+import * as classNames from "classnames";
 import {
     OrderedSet,
     Set,
 } from "immutable";
 import * as React from "react";
 
-import { default as PropWrapper, Props as WrapperProps } from "@react-mdc/base/lib/prop-wrapper";
+import {
+    createDefaultComponent,
+    default as BaseMeta,
+    DefaultComponent,
+} from "@react-mdc/base/lib/meta";
 
 import { FoundationAdapter, LabelAdapter } from "./adapter";
 import { BASE_CLASS_NAME } from "./constants";
@@ -16,9 +20,11 @@ export const propertyClassNames = {
     PREFIX: CLASS_NAME,
 };
 
-export type Props<P> = WrapperProps<P> & {
-    className?: string,
-};
+export type MetaProps = {};
+
+export type ChildProps = {
+    classNames?: string,
+}
 
 export type State = {
     foundationClasses: Set<string>,
@@ -31,16 +37,10 @@ export type Context = {
 /**
  * Textfield label component
  */
-export default class Label<P> extends PropWrapper<P, Props<P>, State> {
+export class Meta extends BaseMeta<ChildProps, MetaProps, State> {
     public static contextTypes = {
         adapter: React.PropTypes.instanceOf(FoundationAdapter).isRequired,
     };
-
-    public static defaultProps = {
-        wrap: <label />,
-    };
-
-    public props: Props<P>;
 
     public context: Context;
 
@@ -57,35 +57,20 @@ export default class Label<P> extends PropWrapper<P, Props<P>, State> {
     }
 
     protected renderProps() {
-        let {
-            wrap: _wrap,
-            className: _className,
-            ...props,
-        } = this.props;
-
-        let className = this.getClassName(this.props, this.state);
+        const className = classNames(
+            CLASS_NAME,
+            this.state.foundationClasses.toJS(),
+        );
         return {
-            ...props,
             className,
         };
-    }
-
-    private getClassName(props: Props<P>, state: State): string {
-        let {
-      className,
-    } = props;
-        return classNames(
-            CLASS_NAME,
-            className,
-            state.foundationClasses.toJS(),
-        );
     }
 }
 
 class LabelAdapterImpl<P> extends LabelAdapter {
-    public element: Label<P>;
+    public element: Meta;
 
-    constructor(element: Label<P>) {
+    constructor(element: Meta) {
         super();
         this.element = element;
     }

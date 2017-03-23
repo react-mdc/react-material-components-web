@@ -1,8 +1,12 @@
 import * as React from "react";
 
-import classNames from "classnames";
+import * as classNames from "classnames";
 
-import { default as PropWrapper, Props as WrapperProps } from "@react-mdc/base/lib/prop-wrapper";
+import {
+    createDefaultComponent,
+    default as BaseMeta,
+    DefaultComponent,
+} from "@react-mdc/base/lib/meta";
 
 import {
     BASE_CLASS_NAME,
@@ -15,34 +19,43 @@ export const propertyClassNames = {
     DISABLED: `${CLASS_NAME}--disabled`,
 };
 
-export type Props<P> = WrapperProps<P> & {
+export type MetaProps = {
     disabled?: boolean,
+};
+
+export type ChildProps = {
     className?: string,
 };
 
 /**
  * Switch input container component
  */
-export default class Container<P> extends PropWrapper<P, Props<P>, {}> {
+export class Meta extends BaseMeta<ChildProps, MetaProps, {}> {
     public static defaultProps = {
-        wrap: <div />,
+        disabled: false,
     };
-
+    
     protected renderProps() {
-        let {
-            className,
-            wrap: _wrap,
-            disabled: _disabled,
-            ...props,
+        const {
+            disabled,
         } = this.props;
-
-        className = classNames(
+        const className = classNames(
             CLASS_NAME,
-            className,
+            {
+                [propertyClassNames.DISABLED]: disabled,
+            },
         );
         return {
-            ...props,
             className,
         };
     }
 };
+
+// Maybe related to this
+// https://github.com/Microsoft/TypeScript/issues/5938
+const component: DefaultComponent<React.HTMLProps<HTMLDivElement>, ChildProps, MetaProps> =
+    createDefaultComponent<React.HTMLProps<HTMLDivElement>, ChildProps, MetaProps>(
+        "div", Meta, [],
+    );
+
+export default component;

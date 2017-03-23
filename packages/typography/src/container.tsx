@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import classNames from "classnames";
+import * as classNames from "classnames";
 
 import { default as PropWrapper, Props as WrapperProps } from "@react-mdc/base/lib/prop-wrapper";
 
