@@ -1,31 +1,31 @@
 {
-  "name": "@react-mdc/radio",
-  "description": "React wrapper of @material/radio",
-  "version": "0.1.2",
-  "license": "MIT",
-  "main": "lib/index",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/hardtack/react-material-components-web.git"
-  },
-  "dependencies": {
-    "@material/radio": "^0.1.2",
-    "@react-mdc/base": "^0.1.2",
-    "@types/classnames": "0.0.32",
-    "@types/react": "^15.0.18",
-    "@types/react-dom": "^0.14.23",
-    "classnames": "^2.2.5",
-    "immutable": "^3.8.1",
-    "react": "^15.4.2",
-    "react-dom": "^15.4.2"
-  },
-  "devDependencies": {
-    "tslint": "^4.5.1",
-    "typescript": "^2.2.1"
-  },
-  "scripts": {
-    "build": "tsc",
-    "watch": "tsc --watch",
-    "prepublish": "npm run build"
-  }
+    "name": "@react-mdc/radio",
+    "description": "React wrapper of @material/radio",
+    "version": "0.1.2",
+    "license": "MIT",
+    "main": "lib/index",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/hardtack/react-material-components-web.git"
+    },
+    "dependencies": {
+        "@material/radio": "^0.1.2",
+        "@react-mdc/base": "^0.1.2",
+        "@types/classnames": "0.0.32",
+        "@types/react": "^15.0.18",
+        "@types/react-dom": "^0.14.23",
+        "classnames": "^2.2.5",
+        "immutable": "^3.8.1",
+        "react": "^15.4.2",
+        "react-dom": "^15.4.2"
+    },
+    "devDependencies": {
+        "tslint": "^4.5.1",
+        "typescript": "^2.2.1"
+    },
+    "scripts": {
+        "build": "tsc",
+        "watch": "tsc --watch",
+        "prepublish": "npm run build"
+    }
 }
