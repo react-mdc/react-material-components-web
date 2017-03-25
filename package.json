@@ -24,7 +24,7 @@
     "build": "lerna run build --stream",
     "lint": "tslint packages/*/src/**/*.ts{,x}",
     "lint:fix": "tslint --fix packages/*/src/**/*.ts{,x}",
-    "watch": "lerna run watch --stream",
+    "watch": "lerna run watch --stream --no-sort --concurrency=50",
     "prepublish": "npm run lint && npm run build"
   }
 }
