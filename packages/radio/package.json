@@ -21,7 +21,8 @@
     },
     "devDependencies": {
         "tslint": "^4.5.1",
-        "typescript": "^2.2.1"
+        "typescript": "^2.2.1",
+        "tslint-react": "^2.5.0"
     },
     "scripts": {
         "build": "tsc",
