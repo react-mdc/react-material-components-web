@@ -1,3 +1,2 @@
-/* @flow */
-export {default as ListGroup} from './container';
-export {default as Subheader} from './subheader';
+export {default as ListGroup} from "./container";
+export {default as Subheader} from "./subheader";

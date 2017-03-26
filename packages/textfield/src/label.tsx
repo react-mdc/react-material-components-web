@@ -16,10 +16,6 @@ import { BASE_CLASS_NAME } from "./constants";
 
 export const CLASS_NAME = `${BASE_CLASS_NAME}__label`;
 
-export const propertyClassNames = {
-    PREFIX: CLASS_NAME,
-};
-
 export type MetaProps = {};
 
 export type ChildProps = {
@@ -86,3 +82,12 @@ class LabelAdapterImpl<P> extends LabelAdapter {
         }));
     }
 }
+
+// Maybe related to this
+// https://github.com/Microsoft/TypeScript/issues/5938
+const component: DefaultComponent<React.HTMLProps<HTMLLabelElement>, ChildProps, MetaProps> =
+    createDefaultComponent<React.HTMLProps<HTMLLabelElement>, ChildProps, MetaProps>(
+        "label", Meta, [],
+    );
+
+export default component;

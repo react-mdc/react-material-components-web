@@ -10,7 +10,7 @@ import {
   BASE_CLASS_NAME,
 } from "./constants";
 
-export const CLASS_NAME = BASE_CLASS_NAME;
+export const CLASS_NAME = `${BASE_CLASS_NAME}__horizontal-block`;
 
 export type MetaProps = {
 };
@@ -20,11 +20,16 @@ export type ChildProps = {
 };
 
 /**
- * List item component
+ * Horizontal block section component
  */
 export class Meta extends BaseMeta<ChildProps, MetaProps, {}> {
+    public static defaultProps = {
+        dark: false,
+    };
+
     protected renderProps() {
         const className = CLASS_NAME;
+
         return {
             className,
         };
@@ -33,9 +38,9 @@ export class Meta extends BaseMeta<ChildProps, MetaProps, {}> {
 
 // Maybe related to this
 // https://github.com/Microsoft/TypeScript/issues/5938
-const component: DefaultComponent<React.HTMLProps<HTMLHeadingElement>, ChildProps, MetaProps> =
-    createDefaultComponent<React.HTMLProps<HTMLHeadingElement>, ChildProps, MetaProps>(
-        "h3", Meta, [],
+const component: DefaultComponent<React.HTMLProps<HTMLDivElement>, ChildProps, MetaProps> =
+    createDefaultComponent<React.HTMLProps<HTMLDivElement>, ChildProps, MetaProps>(
+        "div", Meta, [],
     );
 
 export default component;

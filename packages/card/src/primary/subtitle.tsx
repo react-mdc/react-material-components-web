@@ -7,10 +7,10 @@ import {
 } from "@react-mdc/base/lib/meta";
 
 import {
-  BASE_CLASS_NAME,
-} from "./constants";
+    BASE_CLASS_NAME,
+} from "../constants";
 
-export const CLASS_NAME = BASE_CLASS_NAME;
+export const CLASS_NAME = `${BASE_CLASS_NAME}__subtitle`;
 
 export type MetaProps = {
 };
@@ -20,11 +20,12 @@ export type ChildProps = {
 };
 
 /**
- * List item component
+ * Primary section subtitle component
  */
 export class Meta extends BaseMeta<ChildProps, MetaProps, {}> {
     protected renderProps() {
         const className = CLASS_NAME;
+
         return {
             className,
         };
@@ -35,7 +36,7 @@ export class Meta extends BaseMeta<ChildProps, MetaProps, {}> {
 // https://github.com/Microsoft/TypeScript/issues/5938
 const component: DefaultComponent<React.HTMLProps<HTMLHeadingElement>, ChildProps, MetaProps> =
     createDefaultComponent<React.HTMLProps<HTMLHeadingElement>, ChildProps, MetaProps>(
-        "h3", Meta, [],
+        "h2", Meta, [],
     );
 
 export default component;

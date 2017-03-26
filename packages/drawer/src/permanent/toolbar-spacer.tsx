@@ -6,11 +6,9 @@ import {
     DefaultComponent,
 } from "@react-mdc/base/lib/meta";
 
-import {
-  BASE_CLASS_NAME
-} from "./constants";
+import {BASE_CLASS_NAME} from "./constants";
 
-export const CLASS_NAME = `${BASE_CLASS_NAME}__end-detail`;
+export const CLASS_NAME = `${BASE_CLASS_NAME}__toolbar-spacer`;
 
 export type MetaProps = {
 };
@@ -19,9 +17,6 @@ export type ChildProps = {
     className?: string,
 };
 
-/**
- * List item end detail component
- */
 export class Meta extends BaseMeta<ChildProps, MetaProps, {}> {
   protected renderProps () {
     const className = CLASS_NAME;
@@ -36,7 +31,7 @@ export class Meta extends BaseMeta<ChildProps, MetaProps, {}> {
 // https://github.com/Microsoft/TypeScript/issues/5938
 const component: DefaultComponent<React.HTMLProps<HTMLSpanElement>, ChildProps, MetaProps> =
     createDefaultComponent<React.HTMLProps<HTMLSpanElement>, ChildProps, MetaProps>(
-        "span", Meta, [],
+        "div", Meta, [],
     );
 
 export default component;

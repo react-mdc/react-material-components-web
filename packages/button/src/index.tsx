@@ -2,7 +2,11 @@ import * as React from "react";
 
 import * as classNames from "classnames";
 
-import { default as BaseMeta } from "@react-mdc/base/lib/meta";
+import {
+    createDefaultComponent,
+    default as BaseMeta,
+    DefaultComponent,
+} from "@react-mdc/base/lib/meta";
 
 import {
     BASE_CLASS_NAME,
@@ -67,31 +71,17 @@ export class Meta extends BaseMeta<ChildProps, MetaProps, {}> {
     }
 }
 
-export type Props = React.HTMLProps<HTMLButtonElement>
-    & ChildProps
-    & MetaProps;
+// Maybe related to this
+// https://github.com/Microsoft/TypeScript/issues/5938
+const component: DefaultComponent<React.HTMLProps<HTMLButtonElement>, ChildProps, MetaProps> =
+    createDefaultComponent<React.HTMLProps<HTMLButtonElement>, ChildProps, MetaProps>(
+        "button", Meta, [
+            "dense",
+            "raised",
+            "compact",
+            "primary",
+            "accent",
+        ],
+    );
 
-export default class Button extends React.Component<Props, {}> {
-    public static Meta = Meta;
-
-    public render() {
-        const {
-            dense,
-            raised,
-            compact,
-            primary,
-            accent,
-            ...props,
-        } = this.props;
-        return (
-            <Meta
-                dense={dense}
-                raised={raised}
-                compact={compact}
-                primary={primary}
-                accent={accent}>
-                <button {...props} />
-            </Meta>
-        );
-    }
-}
+export default component;

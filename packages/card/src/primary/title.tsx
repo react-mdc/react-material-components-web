@@ -1,5 +1,7 @@
 import * as React from "react";
 
+import * as classNames from "classnames";
+
 import {
     createDefaultComponent,
     default as BaseMeta,
@@ -8,11 +10,16 @@ import {
 
 import {
   BASE_CLASS_NAME,
-} from "./constants";
+} from "../constants";
 
-export const CLASS_NAME = BASE_CLASS_NAME;
+export const CLASS_NAME = `${BASE_CLASS_NAME}__title`;
+
+export const propertyClassNames = {
+  LARGE: `${CLASS_NAME}--large`,
+};
 
 export type MetaProps = {
+    large?: boolean,
 };
 
 export type ChildProps = {
@@ -20,11 +27,24 @@ export type ChildProps = {
 };
 
 /**
- * List item component
+ * Primary section title component
  */
 export class Meta extends BaseMeta<ChildProps, MetaProps, {}> {
+    public static defaultProps = {
+        large: false,
+    };
+
     protected renderProps() {
-        const className = CLASS_NAME;
+        const {
+            large,
+        } = this.props;
+        const className = classNames(
+            CLASS_NAME,
+            {
+                [propertyClassNames.LARGE]: large,
+            },
+        );
+
         return {
             className,
         };
@@ -35,7 +55,7 @@ export class Meta extends BaseMeta<ChildProps, MetaProps, {}> {
 // https://github.com/Microsoft/TypeScript/issues/5938
 const component: DefaultComponent<React.HTMLProps<HTMLHeadingElement>, ChildProps, MetaProps> =
     createDefaultComponent<React.HTMLProps<HTMLHeadingElement>, ChildProps, MetaProps>(
-        "h3", Meta, [],
+        "h1", Meta, [],
     );
 
 export default component;

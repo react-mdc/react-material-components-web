@@ -1,11 +1,14 @@
 import * as React from "react";
 
-import {default as Container, Props as ContainerProps} from "./container";
-import {default as Input, Props as InputProps} from "./input";
+import { default as Container } from "./container";
+import { default as Input } from "./input";
+
+type ContainerProps = any;
+type InputProps = any;
 
 type TextFieldInternalProps<C, I> = {
-    containerProps: ContainerProps<any>,
-    inputProps: InputProps<any>,
+    containerProps: ContainerProps,
+    inputProps: InputProps,
 };
 
 /**
