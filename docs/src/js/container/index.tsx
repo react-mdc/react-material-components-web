@@ -1,4 +1,3 @@
-/* @flow */
 import * as React from "react";
 
 import { FixedToolbarAdjusted } from "@react-mdc/toolbar";

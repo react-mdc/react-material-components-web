@@ -3,8 +3,8 @@ import * as React from "react";
 import { default as Container } from "./container";
 import { default as Input } from "./input";
 
-type ContainerProps = any;
-type InputProps = any;
+export type ContainerProps = any;
+export type InputProps = any;
 
 type TextFieldInternalProps<C, I> = {
     containerProps: ContainerProps,
@@ -29,7 +29,7 @@ class TextFieldInternal<C, I> extends React.Component<TextFieldInternalProps<C, 
     }
 }
 
-export type Props = {
+export type Props = ContainerProps & {
     inputId?: string,
     name?: string,
     value?: any,
@@ -72,7 +72,7 @@ export class Textfield extends React.Component<Props, {}> {
     }
 }
 
-export type TextareaProps = {
+export type TextareaProps = ContainerProps & {
     inputId?: string,
     name?: string,
     value?: any,

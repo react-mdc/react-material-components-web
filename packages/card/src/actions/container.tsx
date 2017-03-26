@@ -19,7 +19,7 @@ export const propertyClassNames = {
 };
 
 export type MetaProps = {
-    vertical: boolean,
+    vertical?: boolean,
 };
 
 export type ChildProps = {

@@ -1,4 +1,3 @@
-/* @flow */
 import * as base from "@react-mdc/base";
 import * as button from "@react-mdc/button";
 import * as card from "@react-mdc/card";

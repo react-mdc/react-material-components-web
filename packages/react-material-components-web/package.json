@@ -10,6 +10,7 @@
         "react"
     ],
     "main": "src/index.js",
+    "typings": "lib/index.d.ts",
     "repository": {
         "type": "git",
         "url": "https://github.com/hardtack/react-material-components-web.git"

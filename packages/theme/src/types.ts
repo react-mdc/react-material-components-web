@@ -8,7 +8,7 @@ export type Color =
 // Background colors
 export type BackgroundColor =
     "background" |
-    "priamry" |
+    "primary" |
     "accent";
 
 // Text colors

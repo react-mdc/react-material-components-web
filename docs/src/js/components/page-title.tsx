@@ -12,7 +12,7 @@ export default function PageTitle(props: { children?: Children<any>, [key: strin
     } = props;
     return (
         <Typography.Meta>
-            <Themed color="primary" {...p }>
+            <Themed color="primary" {...p}>
                 <Display1>
                     {children}
                 </Display1>

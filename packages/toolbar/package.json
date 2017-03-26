@@ -4,6 +4,7 @@
     "version": "0.1.1",
     "license": "MIT",
     "main": "lib/index",
+    "typings": "lib/index.d.ts",
     "repository": {
         "type": "git",
         "url": "https://github.com/hardtack/react-material-components-web.git"

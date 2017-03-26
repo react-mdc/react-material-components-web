@@ -1,7 +1,5 @@
 import * as React from "react";
 
-import * as classNames from "classnames";
-
 export type Props<ChildProps> = {
     children?: React.ReactElement<ChildProps>,
 };

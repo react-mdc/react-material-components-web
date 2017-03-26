@@ -21,9 +21,9 @@ export const propertyClassNames = {
 };
 
 export type MetaProps = {
-    dense: boolean,
-    twoLine: boolean,
-    avartarList: boolean,
+    dense?: boolean,
+    twoLine?: boolean,
+    avartarList?: boolean,
 };
 
 export type ChildProps = {
