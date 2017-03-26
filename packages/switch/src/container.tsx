@@ -34,8 +34,8 @@ export class Meta extends BaseMeta<ChildProps, MetaProps, {}> {
     public static defaultProps = {
         disabled: false,
     };
-    
-    protected renderProps() {
+
+    protected renderProps(childProps: ChildProps) {
         const {
             disabled,
         } = this.props;
@@ -44,8 +44,10 @@ export class Meta extends BaseMeta<ChildProps, MetaProps, {}> {
             {
                 [propertyClassNames.DISABLED]: disabled,
             },
+            childProps.className,
         );
         return {
+            ...childProps,
             className,
         };
     }
@@ -55,7 +57,7 @@ export class Meta extends BaseMeta<ChildProps, MetaProps, {}> {
 // https://github.com/Microsoft/TypeScript/issues/5938
 const component: DefaultComponent<React.HTMLProps<HTMLDivElement>, ChildProps, MetaProps> =
     createDefaultComponent<React.HTMLProps<HTMLDivElement>, ChildProps, MetaProps>(
-        "div", Meta, [],
+        "div", Meta, ["disabled"],
     );
 
 export default component;

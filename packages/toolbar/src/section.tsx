@@ -26,7 +26,7 @@ export type ChildProps = {
  * Toolbar section meta
  */
 export class Meta extends BaseMeta<ChildProps, MetaProps, {}> {
-    protected renderProps() {
+    protected renderProps(childProps: ChildProps) {
         let {
             align,
         } = this.props;
@@ -37,8 +37,10 @@ export class Meta extends BaseMeta<ChildProps, MetaProps, {}> {
         const className = classNames(
             CLASS_NAME,
             classes,
+            childProps.className,
         );
         return {
+            ...childProps,
             className,
         };
     }

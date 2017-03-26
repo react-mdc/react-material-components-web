@@ -40,7 +40,7 @@ export class Meta extends BaseMeta<ChildProps, MetaProps, {}> {
         avartarList: false,
     };
 
-    protected renderProps() {
+    protected renderProps(childProps: ChildProps) {
         const {
             dense,
             twoLine,
@@ -53,9 +53,11 @@ export class Meta extends BaseMeta<ChildProps, MetaProps, {}> {
                 [propertyClassNames.TWO_LINE]: twoLine,
                 [propertyClassNames.AVARTAR_LIST]: avartarList,
             },
+            childProps.className,
         );
 
         return {
+            ...childProps,
             className,
         };
     }
@@ -65,7 +67,11 @@ export class Meta extends BaseMeta<ChildProps, MetaProps, {}> {
 // https://github.com/Microsoft/TypeScript/issues/5938
 const component: DefaultComponent<React.HTMLProps<HTMLUListElement>, ChildProps, MetaProps> =
     createDefaultComponent<React.HTMLProps<HTMLUListElement>, ChildProps, MetaProps>(
-        "ul", Meta, ["dense", "twoLine", "avartarList"],
+        "ul", Meta, [
+            "dense",
+            "twoLine",
+            "avartarList"
+        ],
     );
 
 export default component;

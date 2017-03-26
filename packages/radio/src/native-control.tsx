@@ -1,6 +1,8 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 
+import * as classNames from "classnames";
+
 import {
     createDefaultComponent,
     default as BaseMeta,
@@ -34,7 +36,6 @@ export type ChildProps = {
 
 export type Context = {
     adapter: FoundationAdapter<ChildProps>,
-
 };
 
 /**
@@ -56,19 +57,21 @@ export class Meta extends BaseMeta<ChildProps, MetaProps, {}> {
         this.context.adapter.setNativeControlAdapter(new NativeControlAdapter());
     }
 
-    protected renderProps(): ChildProps {
+    protected renderProps(childProps: ChildProps) {
         const {
-      onChange,
-    } = this.props;
-        const className = CLASS_NAME;
+            onChange,
+        } = this.props;
+        const className = classNames(CLASS_NAME, childProps.className);
+
         return {
+            ...childProps,
             checked: this.context.adapter.isChecked() || undefined,
             className,
-            onChange: eventHandlerDecorator(this.handleChange)(onChange || null),
+            onChange: (eventHandlerDecorator(this.handleChange)(onChange || null) as React.ChangeEventHandler<any>),
         };
     }
 
-    private handleChange = (evt: React.ChangeEvent<ChildProps>) => {
+    private handleChange: React.ChangeEventHandler<any> = (evt: React.ChangeEvent<ChildProps>) => {
         this.defaultOnChange(evt);
     }
 }

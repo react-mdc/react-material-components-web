@@ -70,11 +70,14 @@ export class Meta extends BaseMeta<ChildProps, MetaProps, State> {
         );
     }
 
-    protected renderProps() {
+    protected renderProps(childProps: ChildProps) {
         const className = classNames(
             CLASS_NAME,
+            childProps.className,
         );
+
         return {
+            ...childProps,
             className,
         };
     }

@@ -2,6 +2,7 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 
 import { MDCTemporaryDrawerFoundation } from "@material/drawer/dist/mdc.drawer";
+import * as classNames from "classnames";
 import {
     Map,
     OrderedSet,
@@ -76,12 +77,14 @@ export class Meta extends BaseMeta<ChildProps, MetaProps, State> {
         );
     }
 
-    protected renderProps() {
-        let {
+    protected renderProps(childProps: ChildProps) {
+        const {
             onClick,
         } = this.props;
-        const className = CLASS_NAME;
+        const className = classNames(CLASS_NAME, childProps.className);
+
         return {
+            ...childProps,
             onClick: (eventHandlerDecorator(this.handleClick)(onClick || null) as React.ReactEventHandler<any>),
             className,
         };

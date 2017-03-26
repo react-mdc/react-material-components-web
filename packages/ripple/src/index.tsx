@@ -1,4 +1,5 @@
 import * as React from "react";
+import * as ReactDOM from "react-dom";
 
 import {
     MDCRippleFoundation,
@@ -10,7 +11,6 @@ import {
     OrderedSet,
     Set,
 } from "immutable";
-import ReactDOM from "react-dom";
 
 import { NativeDOMAdapter } from "@react-mdc/base";
 import {
@@ -104,11 +104,7 @@ export class Meta extends BaseMeta<ChildProps, MetaProps, State> {
         this.adapter.setRippleAdapter(new RippleAdapter());
     }
 
-    protected renderProps() {
-        let {
-            unbounded: _unbounded,
-        } = this.props;
-
+    protected renderProps(childProps: ChildProps) {
         let classes: string[] = [];
         if (this.props.color != null) {
             classes.push(helpers.classNameForColor(this.props.color));
@@ -116,10 +112,12 @@ export class Meta extends BaseMeta<ChildProps, MetaProps, State> {
         const className = classNames(
             CLASS_NAME,
             classes,
+            childProps.className,
             this.state.foundationClasses.toJS(),
         );
 
         return {
+            ...childProps,
             className,
         };
     }
@@ -198,10 +196,14 @@ class RippleAdapterImpl<P> extends RippleAdapter {
 // https://github.com/Microsoft/TypeScript/issues/5938
 const component: DefaultComponent<React.HTMLProps<HTMLDivElement>, ChildProps, MetaProps> =
     createDefaultComponent<React.HTMLProps<HTMLDivElement>, ChildProps, MetaProps>(
-        "div", Meta, [],
+        "div", Meta, [
+            "unbounded",
+            "color",
+        ],
     );
 
-/* tslint:disable:variable-name */
+// tslint:disable:variable-name
 export const Ripple = component;
-/* tslint:enable:variable-name */
+// tslint:enable:variable-name
+
 export default component;

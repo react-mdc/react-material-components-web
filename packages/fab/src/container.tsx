@@ -37,7 +37,7 @@ export class Meta extends BaseMeta<ChildProps, MetaProps, {}> {
         plain: false,
     };
 
-    protected renderProps() {
+    protected renderProps(childProps: ChildProps) {
         let {
             mini,
             plain,
@@ -48,8 +48,10 @@ export class Meta extends BaseMeta<ChildProps, MetaProps, {}> {
                 [propertyClassNames.MINI]: mini,
                 [propertyClassNames.PLAIN]: plain,
             },
+            childProps.className,
         );
         return {
+            ...childProps,
             className,
         };
     }

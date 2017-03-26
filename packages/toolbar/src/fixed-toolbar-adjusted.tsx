@@ -15,23 +15,25 @@ export const CLASS_NAME = `${BASE_CLASS_NAME}-fixed-adjust`;
 // https://github.com/material-components/material-components-web/issues/320#issuecomment-282535960
 const DEPRECATED_CLASS_NAME = `${BASE_CLASS_NAME}__fixed-adjust`;
 
-export type ChildProps = {
-    className?: string,
+export type MetaProps = {
 };
 
-export type MetaProps = {
+export type ChildProps = {
+    className?: string,
 };
 
 /**
  * Fixed toolbar adjusted main component
  */
 export class Meta extends BaseMeta<ChildProps, MetaProps, {}> {
-    protected renderProps() {
+    protected renderProps(childProps: ChildProps) {
         const className = classNames(
             CLASS_NAME,
             DEPRECATED_CLASS_NAME,
+            childProps.className,
         );
         return {
+            ...childProps,
             className,
         };
     }

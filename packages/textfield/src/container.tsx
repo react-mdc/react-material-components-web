@@ -80,24 +80,19 @@ export class Meta extends BaseMeta<ChildProps, MetaProps, State> {
         };
     }
 
-    protected renderProps() {
-        let {
-            disabled: _disabled,
-            multiline: _multiline,
-            fullwidth: _fullwidth,
-            ...props,
-        } = this.props;
-
+    protected renderProps(childProps: ChildProps) {
         const className = classNames(
             CLASS_NAME,
             {
                 [propertyClassNames.MULTILINE]: this.props.multiline,
                 [propertyClassNames.FULLWIDTH]: this.props.fullwidth,
             },
+            childProps.className,
             this.state.foundationClasses.toJS(),
         );
 
         return {
+            ...childProps,
             className,
         };
     }

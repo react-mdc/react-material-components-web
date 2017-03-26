@@ -1,9 +1,10 @@
+import * as React from "react";
+
 import * as classNames from "classnames";
 import {
     OrderedSet,
     Set,
 } from "immutable";
-import * as React from "react";
 
 import {
     createDefaultComponent,
@@ -20,7 +21,7 @@ export type MetaProps = {};
 
 export type ChildProps = {
     classNames?: string,
-}
+};
 
 export type State = {
     foundationClasses: Set<string>,
@@ -52,12 +53,14 @@ export class Meta extends BaseMeta<ChildProps, MetaProps, State> {
         this.context.adapter.setLabelAdapter(new LabelAdapter());
     }
 
-    protected renderProps() {
+    protected renderProps(childProps: ChildProps) {
         const className = classNames(
             CLASS_NAME,
+            childProps.classNames,
             this.state.foundationClasses.toJS(),
         );
         return {
+            ...childProps,
             className,
         };
     }

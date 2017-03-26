@@ -33,7 +33,7 @@ export class Meta extends BaseMeta<ChildProps, MetaProps, {}> {
         transition: false,
     };
 
-    protected renderProps() {
+    protected renderProps(childProps: ChildProps) {
         const {
             zSpace,
             transition,
@@ -43,8 +43,10 @@ export class Meta extends BaseMeta<ChildProps, MetaProps, {}> {
             {
                 [propertyClassNames.TRANSITION]: transition,
             },
+            childProps.className,
         );
         return {
+            ...childProps,
             className,
         };
     }
@@ -56,5 +58,9 @@ const component: DefaultComponent<React.HTMLProps<HTMLParagraphElement>, ChildPr
     createDefaultComponent<React.HTMLProps<HTMLParagraphElement>, ChildProps, MetaProps>(
         "p", Meta, ["zSpace", "transition"],
     );
+
+// tslint:disable:variable-name
+export const Elevation = component;
+// tslint:enable:variable-name
 
 export default component;

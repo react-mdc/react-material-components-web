@@ -34,7 +34,7 @@ export class Meta extends BaseMeta<ChildProps, MetaProps, {}> {
         fixed: false,
     };
 
-    protected renderProps() {
+    protected renderProps(childProps: ChildProps) {
         let {
             fixed,
         } = this.props;
@@ -43,8 +43,10 @@ export class Meta extends BaseMeta<ChildProps, MetaProps, {}> {
             {
                 [propertyClassNames.FIXED]: fixed,
             },
+            childProps.className,
         );
         return {
+            ...childProps,
             className,
         };
     }

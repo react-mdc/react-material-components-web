@@ -1,5 +1,7 @@
 import * as React from "react";
 
+import * as classNames from "classnames";
+
 import {
     createDefaultComponent,
     default as BaseMeta,
@@ -27,10 +29,11 @@ export class Meta extends BaseMeta<ChildProps, MetaProps, {}> {
         dark: false,
     };
 
-    protected renderProps() {
-        const className = CLASS_NAME;
+    protected renderProps(childProps: ChildProps) {
+        const className = classNames(CLASS_NAME, childProps.className);
 
         return {
+            ...childProps,
             className,
         };
     }

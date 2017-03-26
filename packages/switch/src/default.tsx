@@ -45,7 +45,7 @@ export default class Checkbox extends React.Component<Props, {}> {
                     value={value} />
                 <Background>
                     <Knob />
-                </Background>;
+                </Background>
             </Container >
         );
     }

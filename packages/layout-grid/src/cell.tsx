@@ -31,15 +31,16 @@ export type ChildProps = {
  * Grid cell component
  */
 export class Meta extends BaseMeta<ChildProps, MetaProps, {}> {
-    protected renderProps() {
-        const className = this.getClassName();
+    protected renderProps(childProps: ChildProps) {
+        const className = this.getClassName(childProps);
 
         return {
+            ...childProps,
             className,
         };
     }
 
-    private getClassName(): string {
+    private getClassName(childProps: ChildProps): string {
         const {
             span,
             spanDesktop,
@@ -68,7 +69,7 @@ export class Meta extends BaseMeta<ChildProps, MetaProps, {}> {
         if (order != null) {
             classes.push(helpers.classNameForCellOrder(order));
         }
-        return classNames(classes);
+        return classNames(classes, childProps.className);
     }
 }
 

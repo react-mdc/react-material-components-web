@@ -47,7 +47,7 @@ export class Meta extends BaseMeta<ChildProps, MetaProps, {}> {
         accent: false,
     };
 
-    protected renderProps() {
+    protected renderProps(childProps: ChildProps) {
         let {
             dense,
             raised,
@@ -64,8 +64,10 @@ export class Meta extends BaseMeta<ChildProps, MetaProps, {}> {
                 [propertyClassNames.PRIMARY]: primary,
                 [propertyClassNames.ACCENT]: accent,
             },
+            childProps.className,
         );
         return {
+            ...childProps,
             className,
         };
     }
@@ -83,5 +85,9 @@ const component: DefaultComponent<React.HTMLProps<HTMLButtonElement>, ChildProps
             "accent",
         ],
     );
+
+// tslint:disable:variable-name
+export const Button = component;
+// tslint:enable:variable-name
 
 export default component;

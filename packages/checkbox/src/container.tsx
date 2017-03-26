@@ -1,5 +1,7 @@
 import * as React from "react";
 
+import * as classNames from "classnames";
+
 import { getCorrectEventName } from "@material/animation/dist/mdc.animation";
 import { MDCCheckboxFoundation } from "@material/checkbox/dist/mdc.checkbox";
 
@@ -103,18 +105,16 @@ export class Meta extends BaseMeta<ChildProps, MetaProps, State> {
         );
     }
 
-    protected renderProps() {
-        const className = this.getClassName(this.props, this.state);
+    protected renderProps(childProps: ChildProps) {
+        const className = classNames(
+            CLASS_NAME,
+            this.state.foundationClasses.toJS(),
+            childProps.className,
+        );
         return {
+            ...childProps,
             className,
         };
-    }
-
-    private getClassName(props: MetaProps, state: State): string {
-        return classNames(
-            CLASS_NAME,
-            state.foundationClasses.toJS(),
-        );
     }
 
     private syncFoundation(props: MetaProps) {
@@ -190,7 +190,11 @@ class ContainerAdapterImpl extends ContainerAdapter {
 // https://github.com/Microsoft/TypeScript/issues/5938
 const component: DefaultComponent<React.HTMLProps<HTMLDivElement>, ChildProps, MetaProps> =
     createDefaultComponent<React.HTMLProps<HTMLDivElement>, ChildProps, MetaProps>(
-        "div", Meta, [],
+        "div", Meta, [
+            "checked",
+            "disabled",
+            "indeterminate",
+        ],
     );
 
 export default component;

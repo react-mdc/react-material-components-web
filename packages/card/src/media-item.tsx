@@ -9,24 +9,24 @@ import {
 } from "@react-mdc/base/lib/meta";
 
 import {
-  BASE_CLASS_NAME,
+    BASE_CLASS_NAME,
 } from "./constants";
 
 export const CLASS_NAME = `${BASE_CLASS_NAME}__media-item`;
 
 export type Size = 1.5 | 2 | 3;
 
-export function classNameForSize (size: Size): string {
-  switch (size) {
-    case 1.5:
-      return `${CLASS_NAME}--1dot5x`;
-    case 2:
-      return `${CLASS_NAME}--2x`;
-    case 3:
-      return `${CLASS_NAME}--3x`;
-    default:
-      throw new TypeError("Invalid size type");
-  }
+export function classNameForSize(size: Size): string {
+    switch (size) {
+        case 1.5:
+            return `${CLASS_NAME}--1dot5x`;
+        case 2:
+            return `${CLASS_NAME}--2x`;
+        case 3:
+            return `${CLASS_NAME}--3x`;
+        default:
+            throw new TypeError("Invalid size type");
+    }
 }
 
 export type MetaProps = {
@@ -41,25 +41,27 @@ export type ChildProps = {
  * Media item component
  */
 export class Meta extends BaseMeta<ChildProps, MetaProps, {}> {
-  protected renderProps () {
-    let {
-      size,
-    } = this.props;
+    protected renderProps(childProps: ChildProps) {
+        let {
+            size,
+        } = this.props;
 
-    let classes: string[] = [];
-    if (size != null) {
-      classes.push(classNameForSize(size));
+        let classes: string[] = [];
+        if (size != null) {
+            classes.push(classNameForSize(size));
+        }
+
+        const className = classNames(
+            CLASS_NAME,
+            classes,
+            childProps.className,
+        );
+
+        return {
+            ...childProps,
+            className,
+        };
     }
-
-    const className = classNames(
-      CLASS_NAME,
-      classes,
-    );
-
-    return {
-      className,
-    };
-  }
 }
 
 // Maybe related to this

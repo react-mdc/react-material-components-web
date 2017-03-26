@@ -8,16 +8,16 @@ import {
     DefaultComponent,
 } from "@react-mdc/base/lib/meta";
 
-import {BASE_CLASS_NAME} from "./constants";
+import { BASE_CLASS_NAME } from "./constants";
 
 export const CLASS_NAME = BASE_CLASS_NAME;
 
 export const propertyClassNames = {
-  ALIGN_END: `${CLASS_NAME}--align-end`,
+    ALIGN_END: `${CLASS_NAME}--align-end`,
 };
 
 export type MetaProps = {
-  alignEnd?: boolean,
+    alignEnd?: boolean,
 };
 
 export type ChildProps = {
@@ -28,18 +28,20 @@ export type ChildProps = {
  * Form field component
  */
 export class Meta extends BaseMeta<ChildProps, MetaProps, {}> {
-    protected renderProps() {
-    const {
-      alignEnd,
-    } = this.props;
+    protected renderProps(childProps: ChildProps) {
+        const {
+            alignEnd,
+        } = this.props;
 
-    const className = classNames(
-      CLASS_NAME,
-      {
-        [propertyClassNames.ALIGN_END]: alignEnd,
-      },
-    );
-    return {
+        const className = classNames(
+            CLASS_NAME,
+            {
+                [propertyClassNames.ALIGN_END]: alignEnd,
+            },
+            childProps.className,
+        );
+        return {
+            ...childProps,
             className,
         };
     }
@@ -49,7 +51,13 @@ export class Meta extends BaseMeta<ChildProps, MetaProps, {}> {
 // https://github.com/Microsoft/TypeScript/issues/5938
 const component: DefaultComponent<React.HTMLProps<HTMLDivElement>, ChildProps, MetaProps> =
     createDefaultComponent<React.HTMLProps<HTMLDivElement>, ChildProps, MetaProps>(
-        "div", Meta, [],
+        "div", Meta, [
+            "alignEnd",
+        ],
     );
+
+// tslint:disable:variable-name
+export const FormField = component;
+// tslint:enable:variable-name
 
 export default component;

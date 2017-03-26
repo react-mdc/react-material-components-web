@@ -34,7 +34,7 @@ export class Meta extends BaseMeta<ChildProps, MetaProps, {}> {
         large: false,
     };
 
-    protected renderProps() {
+    protected renderProps(childProps: ChildProps) {
         const {
             large,
         } = this.props;
@@ -43,9 +43,11 @@ export class Meta extends BaseMeta<ChildProps, MetaProps, {}> {
             {
                 [propertyClassNames.LARGE]: large,
             },
+            childProps.className,
         );
 
         return {
+            ...childProps,
             className,
         };
     }
@@ -55,7 +57,7 @@ export class Meta extends BaseMeta<ChildProps, MetaProps, {}> {
 // https://github.com/Microsoft/TypeScript/issues/5938
 const component: DefaultComponent<React.HTMLProps<HTMLHeadingElement>, ChildProps, MetaProps> =
     createDefaultComponent<React.HTMLProps<HTMLHeadingElement>, ChildProps, MetaProps>(
-        "h1", Meta, [],
+        "h1", Meta, ["large"],
     );
 
 export default component;

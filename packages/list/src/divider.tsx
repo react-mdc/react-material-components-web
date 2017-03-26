@@ -33,7 +33,7 @@ export class Meta extends BaseMeta<ChildProps, MetaProps, {}> {
         inset: false,
     };
 
-    protected renderProps() {
+    protected renderProps(childProps: ChildProps) {
         const {
       inset,
     } = this.props;
@@ -43,9 +43,11 @@ export class Meta extends BaseMeta<ChildProps, MetaProps, {}> {
             {
                 [propertyClassNames.INSET]: inset,
             },
+            childProps.className,
         );
 
         return {
+            ...childProps,
             className,
         };
     }

@@ -1,5 +1,7 @@
 import * as React from "react";
 
+import * as classNames from "classnames";
+
 import {
     createDefaultComponent,
     default as BaseMeta,
@@ -12,7 +14,9 @@ import {
 
 export const CLASS_NAME = `${BASE_CLASS_NAME}__knob`;
 
-export type MetaProps = {};
+export type MetaProps = {
+};
+
 export type ChildProps = {
     className?: string,
 };
@@ -21,9 +25,11 @@ export type ChildProps = {
  * Knob component
  */
 export class Meta extends BaseMeta<ChildProps, MetaProps, {}> {
-    protected renderProps() {
-        const className = CLASS_NAME;
+    protected renderProps(childProps: ChildProps) {
+        const className = classNames(CLASS_NAME, childProps.className);
+        
         return {
+            ...childProps,
             className,
         };
     }

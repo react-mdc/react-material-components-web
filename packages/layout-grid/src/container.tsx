@@ -1,5 +1,7 @@
 import * as React from "react";
 
+import * as classNames from "classnames";
+
 import {
     createDefaultComponent,
     default as BaseMeta,
@@ -43,10 +45,11 @@ export class Meta extends BaseMeta<ChildProps, MetaProps, {}> {
             </NativeDOMAdapter>
         );
     }
-    protected renderProps() {
-        const className = CLASS_NAME;
+    protected renderProps(childProps: ChildProps) {
+        const className = classNames(CLASS_NAME, childProps.className);
 
         return {
+            ...childProps,
             className,
         };
     }
@@ -62,9 +65,12 @@ export class Meta extends BaseMeta<ChildProps, MetaProps, {}> {
 
 // Maybe related to this
 // https://github.com/Microsoft/TypeScript/issues/5938
-const component: DefaultComponent<React.HTMLProps<HTMLHeadingElement>, ChildProps, MetaProps> =
-    createDefaultComponent<React.HTMLProps<HTMLHeadingElement>, ChildProps, MetaProps>(
-        "h3", Meta, ["margin", "gutter"],
+const component: DefaultComponent<React.HTMLProps<HTMLDivElement>, ChildProps, MetaProps> =
+    createDefaultComponent<React.HTMLProps<HTMLDivElement>, ChildProps, MetaProps>(
+        "div", Meta, [
+            "margin",
+            "gutter",
+        ],
     );
 
 export default component;

@@ -1,7 +1,7 @@
 import {
     OrderedSet,
 } from "immutable";
-import forEach from "lodash.foreach";
+import * as forEach from "lodash.foreach";
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 

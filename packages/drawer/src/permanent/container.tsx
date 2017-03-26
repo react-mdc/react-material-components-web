@@ -1,12 +1,14 @@
 import * as React from "react";
 
+import * as classNames from "classnames";
+
 import {
     createDefaultComponent,
     default as BaseMeta,
     DefaultComponent,
 } from "@react-mdc/base/lib/meta";
 
-import {BASE_CLASS_NAME} from "./constants";
+import { BASE_CLASS_NAME } from "./constants";
 
 export const CLASS_NAME = BASE_CLASS_NAME;
 
@@ -18,13 +20,14 @@ export type ChildProps = {
 };
 
 export class Meta extends BaseMeta<ChildProps, MetaProps, {}> {
-  protected renderProps () {
-    const className = CLASS_NAME;
+    protected renderProps(childProps: ChildProps) {
+        const className = classNames(CLASS_NAME, childProps.className);
 
-    return {
-      className,
-    };
-  }
+        return {
+            ...childProps,
+            className,
+        };
+    }
 }
 
 // Maybe related to this

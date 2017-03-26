@@ -30,19 +30,21 @@ export type ChildProps = {
  * Actions section component
  */
 export class Meta extends BaseMeta<ChildProps, MetaProps, {}> {
-    protected renderProps() {
+    protected renderProps(childProps: ChildProps) {
         const {
-      vertical,
-    } = this.props;
+            vertical,
+        } = this.props;
 
         const className = classNames(
             CLASS_NAME,
             {
                 [propertyClassNames.VERTICAL]: vertical,
             },
+            childProps.className,
         );
 
         return {
+            ...childProps,
             className,
         };
     }

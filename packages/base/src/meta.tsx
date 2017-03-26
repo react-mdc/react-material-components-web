@@ -1,5 +1,7 @@
 import * as React from "react";
 
+import * as classNames from "classnames";
+
 export type Props<ChildProps> = {
     children?: React.ReactElement<ChildProps>,
 };
@@ -25,8 +27,13 @@ export default class Meta<ChildProps, P, S> extends React.Component<P & Props<Ch
 
 export type ComponentProps<DefaultChildProps, ChildProps, MetaProps> = DefaultChildProps & ChildProps & MetaProps;
 
+export type ClassOf<T> = {
+    prototype: T,
+    new (): T,
+};
+
 export type DefaultComponent<DefaultChildProps, ChildProps, MetaProps> = {
-    Meta: Meta<ChildProps, MetaProps, any>;
+    Meta: ClassOf<Meta<ChildProps, MetaProps, any>>;
 } & React.StatelessComponent<ComponentProps<DefaultChildProps, ChildProps, MetaProps>>;
 
 export function createDefaultComponent<DefaultChildProps, ChildProps, MetaProps>(

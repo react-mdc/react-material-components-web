@@ -1,5 +1,7 @@
 import * as React from "react";
 
+import * as classNames from "classnames";
+
 import {
     createDefaultComponent,
     default as BaseMeta,
@@ -12,10 +14,6 @@ import {
 
 export const CLASS_NAME = `${BASE_CLASS_NAME}__inner-circle`;
 
-export const propertyClassNames = {
-    PREFIX: CLASS_NAME,
-};
-
 export type MetaProps = {
 };
 
@@ -27,9 +25,11 @@ export type ChildProps = {
  * Radio inner circle component
  */
 export class Meta extends BaseMeta<ChildProps, MetaProps, {}> {
-    protected renderProps() {
-        const className = CLASS_NAME;
+    protected renderProps(childProps: ChildProps) {
+        const className = classNames(CLASS_NAME, childProps.className);
+
         return {
+            ...childProps,
             className,
         };
     }

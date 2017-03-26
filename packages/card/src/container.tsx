@@ -34,7 +34,7 @@ export class Meta extends BaseMeta<ChildProps, MetaProps, {}> {
         dark: false,
     };
 
-    protected renderProps() {
+    protected renderProps(childProps: ChildProps) {
         const {
             dark,
         } = this.props;
@@ -43,9 +43,11 @@ export class Meta extends BaseMeta<ChildProps, MetaProps, {}> {
             {
                 [propertyClassNames.DARK]: dark,
             },
+            childProps.className,
         );
 
         return {
+            ...childProps,
             className,
         };
     }
@@ -55,7 +57,7 @@ export class Meta extends BaseMeta<ChildProps, MetaProps, {}> {
 // https://github.com/Microsoft/TypeScript/issues/5938
 const component: DefaultComponent<React.HTMLProps<HTMLDivElement>, ChildProps, MetaProps> =
     createDefaultComponent<React.HTMLProps<HTMLDivElement>, ChildProps, MetaProps>(
-        "div", Meta, [],
+        "div", Meta, ["dark"],
     );
 
 export default component;

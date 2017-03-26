@@ -39,5 +39,5 @@ module.exports = {
     filename: "[name].dll.js",
     library: "[name]_dll"
   },
-  devtool: PRODUCTION ? "source-map" : "cheap-module-eval-source-map"
+  devtool: "source-map"
 };

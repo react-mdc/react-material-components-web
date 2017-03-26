@@ -1,4 +1,3 @@
-/* eslint-disable */
 const path = require("path");
 
 const PROJECT_ROOT = module.exports.PROJECT_ROOT = path.resolve(__dirname, "..", "..", "..");

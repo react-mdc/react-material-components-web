@@ -32,7 +32,7 @@ export class Meta extends BaseMeta<ChildProps, MetaProps, {}> {
         adjustMargin: false,
     };
 
-    protected renderProps() {
+    protected renderProps(childProps: ChildProps) {
         let {
             textStyle,
             adjustMargin,
@@ -42,8 +42,10 @@ export class Meta extends BaseMeta<ChildProps, MetaProps, {}> {
             {
                 [propertyClassNames.ADJUST_MARGIN]: adjustMargin,
             },
+            childProps.className,
         );
         return {
+            ...childProps,
             className,
         };
     }

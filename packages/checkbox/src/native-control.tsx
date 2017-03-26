@@ -1,6 +1,8 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 
+import * as classNames from "classnames";
+
 import {
     Map,
     OrderedSet,
@@ -70,12 +72,14 @@ export class Meta extends BaseMeta<ChildProps, MetaProps, State> {
         );
     }
 
-    protected renderProps() {
+    protected renderProps(childProps: ChildProps) {
         let {
             onChange,
         } = this.props;
-        const className = CLASS_NAME;
+        const className = classNames(CLASS_NAME, childProps.className);
+
         return {
+            ...childProps,
             onChange: (eventHandlerDecorator(this.handleChange)(onChange || null) as React.ChangeEventHandler<any>),
             className,
             checked: this.context.adapter.isChecked() || undefined,
@@ -132,7 +136,7 @@ function CheckboxInput(props: React.HTMLProps<HTMLInputElement>) {
 // https://github.com/Microsoft/TypeScript/issues/5938
 const component: DefaultComponent<React.HTMLProps<HTMLInputElement>, ChildProps, MetaProps> =
     createDefaultComponent<React.HTMLProps<HTMLInputElement>, ChildProps, MetaProps>(
-        CheckboxInput, Meta, [],
+        CheckboxInput, Meta, ["onChange"],
     );
 
 export default component;

@@ -2,35 +2,43 @@ import * as React from "react";
 
 import * as classNames from "classnames";
 
-import { default as PropWrapper, Props as WrapperProps } from "@react-mdc/base/lib/prop-wrapper";
+import {
+    createDefaultComponent,
+    default as BaseMeta,
+    DefaultComponent,
+} from "@react-mdc/base/lib/meta";
 
 import { BASE_CLASS_NAME } from "./constants";
 
 export const CLASS_NAME = BASE_CLASS_NAME;
 
-export type Props<P> = WrapperProps<P> & {
+export type MetaProps = {
+};
+
+export type ChildProps = {
     className?: string,
 };
 
 /**
  * Wrapper component of mdc-typography
  */
-export default class Typography<P> extends PropWrapper<P, Props<P>, {}> {
-    public static defaultProps = {
-        wrap: <div />,
-    };
+export class Meta extends BaseMeta<ChildProps, MetaProps, {}> {
+    protected renderProps(childProps: ChildProps) {
+        const className = classNames(CLASS_NAME, childProps.className);
 
-    public props: Props<P>;
-
-    protected renderProps() {
-        let {
-            wrap: _wrap,
-            className,
-            ...props,
-        } = this.props;
         return {
-            ...props,
-            className: classNames(CLASS_NAME, className),
-        };
+            ...childProps,
+            className,
+        }
     }
 }
+
+
+// Maybe related to this
+// https://github.com/Microsoft/TypeScript/issues/5938
+const component: DefaultComponent<React.HTMLProps<HTMLDivElement>, ChildProps, MetaProps> =
+    createDefaultComponent<React.HTMLProps<HTMLDivElement>, ChildProps, MetaProps>(
+        "div", Meta, [],
+    );
+
+export default component;

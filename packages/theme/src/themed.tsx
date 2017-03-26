@@ -23,7 +23,7 @@ export type MetaProps = {
 };
 
 export class Meta extends BaseMeta<ChildProps, MetaProps, {}> {
-    protected renderProps() {
+    protected renderProps(childProps: ChildProps) {
         let {
             color,
             backgroundColor,
@@ -41,9 +41,10 @@ export class Meta extends BaseMeta<ChildProps, MetaProps, {}> {
         if (textColor != null && onColor != null) {
             classes.push(helpers.classNameForTextColor(textColor, onColor));
         }
-        const className = classNames(classes);
+        const className = classNames(classes, childProps.className);
 
         return {
+            ...childProps,
             className,
         };
     }

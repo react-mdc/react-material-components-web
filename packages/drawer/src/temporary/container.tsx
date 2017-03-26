@@ -24,9 +24,9 @@ import * as drawerUtil from "./drawerUtil";
 export const CLASS_NAME = BASE_CLASS_NAME;
 
 export type MetaProps = {
-    open: boolean,
-    rtl: boolean,
-    style: { [name: string]: any },
+    open?: boolean,
+    rtl?: boolean,
+    style?: { [name: string]: any },
     onOpenDrawer?: (meta: Meta) => void,
     onCloseDrawer?: (meta: Meta) => void,
     onClick?: React.MouseEventHandler<any>,
@@ -128,7 +128,7 @@ export class Meta extends BaseMeta<ChildProps, MetaProps, State> {
         );
     }
 
-    protected renderProps() {
+    protected renderProps(childProps: ChildProps) {
         let {
             rtl: _rtl,
             onClick,
@@ -136,8 +136,12 @@ export class Meta extends BaseMeta<ChildProps, MetaProps, State> {
             onCloseDrawer: _onCloseDrawer,
         } = this.props;
 
-        let className = this.getClassName(this.props, this.state);
+        let className = classNames(
+            this.getClassName(this.props, this.state),
+            childProps.className,
+        );
         return {
+            ...childProps,
             className,
             onClick: (eventHandlerDecorator(this.handleClick)(onClick || null) as React.MouseEventHandler<any>),
         };
@@ -254,7 +258,7 @@ class ContainerAdapterImpl extends ContainerAdapter {
         el.setAttribute("tabindex", "-1");
     }
     public isRtl(): boolean {
-        return this.element.props.rtl;
+        return this.element.props.rtl || false;
     }
 }
 
@@ -262,7 +266,14 @@ class ContainerAdapterImpl extends ContainerAdapter {
 // https://github.com/Microsoft/TypeScript/issues/5938
 const component: DefaultComponent<React.HTMLProps<HTMLElement>, ChildProps, MetaProps> =
     createDefaultComponent<React.HTMLProps<HTMLElement>, ChildProps, MetaProps>(
-        "aside", Meta, [],
+        "aside", Meta, [
+            "open",
+            "rtl",
+            "style",
+            "onOpenDrawer",
+            "onCloseDrawer",
+            "onClick",
+        ],
     );
 
 export default component;
