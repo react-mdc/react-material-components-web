@@ -25,9 +25,9 @@ You can find a document with live examples at https://hardtack.github.io/react-m
 Features
 --------
 
-*  Typed strictly with [flow](https://flowtype.org)
+*  Typed strictly with [TypeScript](http://typescriptlang.org)
 
-   You can get a typing support with flow.
+   You can get a typing support with TypeScript
 
 *  Stylesheet independent
 
@@ -85,24 +85,24 @@ ReactDOM.render(<Main />, document.getElementById('root'));
 And import *@react-mdc* and try it.
 
 `main.js`
-``` javascript
+``` typescript
 
-import React from 'react';
-import {Typography, Title, Body2} from '@react-mdc/typography';
+import * as React from "react";
+import { Typography, Title, Body2 } from "@react-mdc/typography";
 
-export default class Main extends React.Component {
-  render () {
-    return (
-      <Typography>
-        <Title>
-          This is an example
-        </Title>
-        <Body2>
-          Hello world!
-        </Body2>
-      </Typography>
-    );
-  }
+export default class Main extends React.Component<{}, {}> {
+    render () {
+        return (
+            <Typography>
+                <Title>
+                    This is an example
+                </Title>
+                <Body2>
+                    Hello world!
+                </Body2>
+            </Typography>
+        );
+    }
 }
 
 ```
