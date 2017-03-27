@@ -1,15 +1,13 @@
 import * as React from "react";
 
-import * as classNames from "classnames";
-
 import {
     createDefaultComponent,
-    default as BaseMeta,
     DefaultComponent,
+    MetaAdapter,
 } from "@react-mdc/base/lib/meta";
 
 import {
-    BASE_CLASS_NAME,
+  BASE_CLASS_NAME,
 } from "./constants";
 
 export const CLASS_NAME = `${BASE_CLASS_NAME}-label`;
@@ -22,24 +20,21 @@ export type ChildProps = {
 };
 
 /**
- * Label component
+ * Knob component
  */
-export class Meta extends BaseMeta<ChildProps, MetaProps, {}> {
-    protected renderProps(childProps: ChildProps) {
-        const className = classNames(CLASS_NAME, childProps.className);
-
-        return {
-            ...childProps,
-            className,
-        };
+export class Meta extends MetaAdapter<ChildProps, MetaProps, {}> {
+    protected getBaseClassName() {
+        return CLASS_NAME;
     }
-};
+}
 
-// Maybe related to this
+export type Props = React.HTMLProps<HTMLLabelElement> & MetaProps;
+
+// TypeScript Bug
 // https://github.com/Microsoft/TypeScript/issues/5938
-const component: DefaultComponent<React.HTMLProps<HTMLLabelElement>, ChildProps, MetaProps> =
-    createDefaultComponent<React.HTMLProps<HTMLLabelElement>, ChildProps, MetaProps>(
-        "label", Meta, [],
-    );
+const component = createDefaultComponent<React.HTMLProps<HTMLLabelElement>, MetaProps, Props>(
+    "label",
+    Meta,
+    []) as DefaultComponent<React.HTMLProps<HTMLLabelElement>, MetaProps>;
 
 export default component;

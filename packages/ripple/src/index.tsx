@@ -4,7 +4,6 @@ import * as ReactDOM from "react-dom";
 import {
     MDCRippleFoundation,
 } from "@material/ripple/dist/mdc.ripple";
-import * as classNames from "classnames";
 import {
     Map,
     OrderedMap,
@@ -12,11 +11,10 @@ import {
     Set,
 } from "immutable";
 
-import { NativeDOMAdapter } from "@react-mdc/base";
 import {
     createDefaultComponent,
-    default as BaseMeta,
     DefaultComponent,
+    MetaAdapter,
 } from "@react-mdc/base/lib/meta";
 
 import { FoundationAdapter, RippleAdapter } from "./adapter";
@@ -50,7 +48,7 @@ export type State = {
 /**
  * Ripple foundation component
  */
-export class Meta extends BaseMeta<ChildProps, MetaProps, State> {
+export class Meta extends MetaAdapter<ChildProps, MetaProps, State> {
     public static defaultProps = {
         unbounded: false,
     };
@@ -68,16 +66,6 @@ export class Meta extends BaseMeta<ChildProps, MetaProps, State> {
         super(props);
         this.adapter = new FoundationAdapter();
         this.foundation = new MDCRippleFoundation(this.adapter.toObject());
-    }
-
-    public render() {
-        return (
-            <NativeDOMAdapter
-                cssVariables={this.state.foundationCssVars.toJS()}
-                eventListeners={this.state.foundationEventListeners.toJS()}>
-                {super.render()}
-            </NativeDOMAdapter>
-        );
     }
 
     // Exposed methods
@@ -104,21 +92,25 @@ export class Meta extends BaseMeta<ChildProps, MetaProps, State> {
         this.adapter.setRippleAdapter(new RippleAdapter());
     }
 
-    protected renderProps(childProps: ChildProps) {
+    protected getBaseClassName() {
+        return CLASS_NAME;
+    }
+
+    protected getClassValues() {
         let classes: string[] = [];
         if (this.props.color != null) {
             classes.push(helpers.classNameForColor(this.props.color));
         }
-        const className = classNames(
-            CLASS_NAME,
+        return [
             classes,
-            childProps.className,
             this.state.foundationClasses.toJS(),
-        );
+        ];
+    }
 
+    protected getNativeDOMProps() {
         return {
-            ...childProps,
-            className,
+            cssVariables: this.state.foundationCssVars.toJS(),
+            eventListeners: this.state.foundationEventListeners.toJS(),
         };
     }
 }
@@ -192,18 +184,20 @@ class RippleAdapterImpl<P> extends RippleAdapter {
     }
 }
 
-// Maybe related to this
-// https://github.com/Microsoft/TypeScript/issues/5938
-const component: DefaultComponent<React.HTMLProps<HTMLDivElement>, ChildProps, MetaProps> =
-    createDefaultComponent<React.HTMLProps<HTMLDivElement>, ChildProps, MetaProps>(
-        "div", Meta, [
-            "unbounded",
-            "color",
-        ],
-    );
+export type Props = React.HTMLProps<HTMLDivElement> & MetaProps;
 
-// tslint:disable:variable-name
-export const Ripple = component;
-// tslint:enable:variable-name
+// TypeScript Bug
+// https://github.com/Microsoft/TypeScript/issues/5938
+const component = createDefaultComponent<React.HTMLProps<HTMLDivElement>, MetaProps, Props>(
+    "div",
+    Meta,
+    [
+        "unbounded",
+        "color",
+    ]) as DefaultComponent<React.HTMLProps<HTMLDivElement>, MetaProps>;
+
+export {
+    component as Ripple,
+}
 
 export default component;

@@ -1,21 +1,19 @@
 import * as React from "react";
 
-import * as classNames from "classnames";
-
 import {
     createDefaultComponent,
-    default as BaseMeta,
     DefaultComponent,
+    MetaAdapter,
 } from "@react-mdc/base/lib/meta";
 
 import {
-  BASE_CLASS_NAME,
+    BASE_CLASS_NAME,
 } from "../constants";
 
 export const CLASS_NAME = `${BASE_CLASS_NAME}__title`;
 
 export const propertyClassNames = {
-  LARGE: `${CLASS_NAME}--large`,
+    LARGE: `${CLASS_NAME}--large`,
 };
 
 export type MetaProps = {
@@ -29,35 +27,29 @@ export type ChildProps = {
 /**
  * Primary section title component
  */
-export class Meta extends BaseMeta<ChildProps, MetaProps, {}> {
+export class Meta extends MetaAdapter<ChildProps, MetaProps, {}> {
     public static defaultProps = {
         large: false,
     };
 
-    protected renderProps(childProps: ChildProps) {
-        const {
-            large,
-        } = this.props;
-        const className = classNames(
-            CLASS_NAME,
-            {
-                [propertyClassNames.LARGE]: large,
-            },
-            childProps.className,
-        );
+    protected getBaseClassName() {
+        return CLASS_NAME;
+    }
 
-        return {
-            ...childProps,
-            className,
-        };
+    protected getClassValues() {
+        return [{
+            [propertyClassNames.LARGE]: this.props.large,
+        }];
     }
 }
 
-// Maybe related to this
+export type Props = React.HTMLProps<HTMLHeadingElement> & MetaProps;
+
+// TypeScript Bug
 // https://github.com/Microsoft/TypeScript/issues/5938
-const component: DefaultComponent<React.HTMLProps<HTMLHeadingElement>, ChildProps, MetaProps> =
-    createDefaultComponent<React.HTMLProps<HTMLHeadingElement>, ChildProps, MetaProps>(
-        "h1", Meta, ["large"],
-    );
+const component = createDefaultComponent<React.HTMLProps<HTMLHeadingElement>, MetaProps, Props>(
+    "h1",
+    Meta,
+    []) as DefaultComponent<React.HTMLProps<HTMLHeadingElement>, MetaProps>;
 
 export default component;

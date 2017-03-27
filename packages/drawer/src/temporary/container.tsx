@@ -11,10 +11,9 @@ import {
 
 import {
     createDefaultComponent,
-    default as BaseMeta,
     DefaultComponent,
+    MetaAdapter,
 } from "@react-mdc/base/lib/meta";
-import NativeDOMAdapter from "@react-mdc/base/lib/native-dom-adapter";
 import { eventHandlerDecorator, includes } from "@react-mdc/base/lib/util";
 
 import { ContainerAdapter, FoundationAdapter } from "./adapter";
@@ -49,15 +48,15 @@ export type ChildContext = {
 };
 
 const {
-  cssClasses: {
-    OPEN: OPEN_CLASS_NAME,
-  },
+    cssClasses: {
+        OPEN: OPEN_CLASS_NAME,
+    },
     strings: {
-    OPACITY_VAR_NAME,
-  },
+        OPACITY_VAR_NAME,
+    },
 } = MDCTemporaryDrawerFoundation;
 
-export class Meta extends BaseMeta<ChildProps, MetaProps, State> {
+export class Meta extends MetaAdapter<ChildProps, MetaProps, State> {
     public static childContextTypes = {
         adapter: React.PropTypes.instanceOf(FoundationAdapter),
     };
@@ -118,32 +117,29 @@ export class Meta extends BaseMeta<ChildProps, MetaProps, State> {
         this.adapter.setContainerAdapter(new ContainerAdapter());
     }
 
-    public render() {
-        return (
-            <NativeDOMAdapter
-                cssVariables={this.state.foundationCssVars.toJS()}
-                eventListeners={this.state.foundationEventListeners.toJS()}>
-                {super.render()}
-            </NativeDOMAdapter>
-        );
+    protected getBaseClassName() {
+        return CLASS_NAME;
     }
 
     protected renderProps(childProps: ChildProps) {
-        let {
-            rtl: _rtl,
+        const {
             onClick,
-            onOpenDrawer: _onOpenDrawer,
-            onCloseDrawer: _onCloseDrawer,
         } = this.props;
 
-        let className = classNames(
-            this.getClassName(this.props, this.state),
-            childProps.className,
-        );
         return {
-            ...childProps,
-            className,
+            ...super.renderProps(childProps),
             onClick: (eventHandlerDecorator(this.handleClick)(onClick || null) as React.MouseEventHandler<any>),
+        };
+    }
+
+    protected getClassValues() {
+        return [this.getClassName(this.props, this.state)];
+    }
+
+    protected getNativeDOMProps() {
+        return {
+            cssVariables: this.state.foundationCssVars.toJS(),
+            eventListeners: this.state.foundationEventListeners.toJS(),
         };
     }
 
@@ -262,18 +258,20 @@ class ContainerAdapterImpl extends ContainerAdapter {
     }
 }
 
-// Maybe related to this
+export type Props = React.HTMLProps<HTMLElement> & MetaProps;
+
+// TypeScript Bug
 // https://github.com/Microsoft/TypeScript/issues/5938
-const component: DefaultComponent<React.HTMLProps<HTMLElement>, ChildProps, MetaProps> =
-    createDefaultComponent<React.HTMLProps<HTMLElement>, ChildProps, MetaProps>(
-        "aside", Meta, [
-            "open",
-            "rtl",
-            "style",
-            "onOpenDrawer",
-            "onCloseDrawer",
-            "onClick",
-        ],
-    );
+const component = createDefaultComponent<React.HTMLProps<HTMLElement>, MetaProps, Props>(
+    "aside",
+    Meta,
+    [
+        "open",
+        "rtl",
+        "style",
+        "onOpenDrawer",
+        "onCloseDrawer",
+        "onClick",
+    ]) as DefaultComponent<React.HTMLProps<HTMLElement>, MetaProps>;
 
 export default component;

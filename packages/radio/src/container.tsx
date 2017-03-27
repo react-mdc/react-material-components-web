@@ -1,13 +1,12 @@
 import * as React from "react";
 
-import * as classNames from "classnames";
 import { OrderedSet, Set } from "immutable";
 
 import { MDCRadioFoundation } from "@material/radio/dist/mdc.radio";
 import {
     createDefaultComponent,
-    default as BaseMeta,
     DefaultComponent,
+    MetaAdapter,
 } from "@react-mdc/base/lib/meta";
 
 import { ContainerAdapter, FoundationAdapter } from "./adapter";
@@ -38,7 +37,7 @@ export type ChildContext = {
 /**
  * Radio input container component
  */
-export class Meta extends BaseMeta<ChildProps, MetaProps, State> {
+export class Meta extends MetaAdapter<ChildProps, MetaProps, State> {
     public static childContextTypes = {
         adapter: React.PropTypes.instanceOf(FoundationAdapter),
     };
@@ -85,21 +84,12 @@ export class Meta extends BaseMeta<ChildProps, MetaProps, State> {
         this.syncFoundation(props);
     }
 
-    protected renderProps(childProps: ChildProps) {
-        let {
-      checked: _checked,
-            disabled: _disabled,
-    } = this.props;
+    protected getBaseClassName() {
+        return CLASS_NAME;
+    }
 
-        const className = classNames(
-            CLASS_NAME,
-            childProps.className,
-            this.state.foundationClasses.toJS(),
-        );
-        return {
-            ...childProps,
-            className,
-        };
+    protected getClassValues() {
+        return this.state.foundationClasses.toJS();
     }
 
     private syncFoundation(props: MetaProps) {
@@ -144,11 +134,16 @@ class ContainerAdapterImpl extends ContainerAdapter {
     }
 }
 
-// Maybe related to this
+export type Props = React.HTMLProps<HTMLDivElement> & MetaProps;
+
+// TypeScript Bug
 // https://github.com/Microsoft/TypeScript/issues/5938
-const component: DefaultComponent<React.HTMLProps<HTMLDivElement>, ChildProps, MetaProps> =
-    createDefaultComponent<React.HTMLProps<HTMLDivElement>, ChildProps, MetaProps>(
-        "div", Meta, ["checked", "disabled"],
-    );
+const component = createDefaultComponent<React.HTMLProps<HTMLDivElement>, MetaProps, Props>(
+    "div",
+    Meta,
+    [
+        "checked",
+        "disabled",
+    ]) as DefaultComponent<React.HTMLProps<HTMLDivElement>, MetaProps>;
 
 export default component;

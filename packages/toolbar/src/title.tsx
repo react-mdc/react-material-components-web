@@ -1,18 +1,18 @@
 import * as React from "react";
 
-import * as classNames from "classnames";
-
 import {
     createDefaultComponent,
-    default as BaseMeta,
     DefaultComponent,
+    MetaAdapter,
 } from "@react-mdc/base/lib/meta";
 
 import { BASE_CLASS_NAME } from "./constants";
+import { Alignment } from "./types";
 
 export const CLASS_NAME = `${BASE_CLASS_NAME}__title`;
 
 export type MetaProps = {
+    align?: Alignment,
 };
 
 export type ChildProps = {
@@ -20,24 +20,22 @@ export type ChildProps = {
 };
 
 /**
- * Toolbar title
+ * Toolbar title component
  */
-export class Meta extends BaseMeta<ChildProps, MetaProps, {}> {
-    protected renderProps(childProps: ChildProps) {
-        const className = classNames(CLASS_NAME, childProps.className);
-
-        return {
-            ...childProps,
-            className,
-        };
+export class Meta extends MetaAdapter<ChildProps, MetaProps, {}> {
+    protected getBaseClassName() {
+        return CLASS_NAME;
     }
 };
 
-// Maybe related to this
+export type Props = React.HTMLProps<HTMLSpanElement> & MetaProps;
+
+// TypeScript Bug
 // https://github.com/Microsoft/TypeScript/issues/5938
-const component: DefaultComponent<React.HTMLProps<HTMLHeadingElement>, ChildProps, MetaProps> =
-    createDefaultComponent<React.HTMLProps<HTMLHeadingElement>, ChildProps, MetaProps>(
-        "span", Meta, [],
-    );
+const component = createDefaultComponent<React.HTMLProps<HTMLSpanElement>, MetaProps, Props>(
+    "span",
+    Meta,
+    [
+    ]) as DefaultComponent<React.HTMLProps<HTMLSpanElement>, MetaProps>;
 
 export default component;

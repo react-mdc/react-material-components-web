@@ -1,12 +1,10 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 
-import * as classNames from "classnames";
-
 import {
     createDefaultComponent,
-    default as BaseMeta,
     DefaultComponent,
+    MetaAdapter,
 } from "@react-mdc/base/lib/meta";
 
 import { eventHandlerDecorator } from "@react-mdc/base/lib/util";
@@ -41,7 +39,7 @@ export type Context = {
 /**
  * Radio input component
  */
-export class Meta extends BaseMeta<ChildProps, MetaProps, {}> {
+export class Meta extends MetaAdapter<ChildProps, MetaProps, {}> {
     public static contextTypes = {
         adapter: React.PropTypes.instanceOf(FoundationAdapter).isRequired,
     };
@@ -61,14 +59,15 @@ export class Meta extends BaseMeta<ChildProps, MetaProps, {}> {
         const {
             onChange,
         } = this.props;
-        const className = classNames(CLASS_NAME, childProps.className);
-
         return {
-            ...childProps,
+            ...super.renderProps(childProps),
             checked: this.context.adapter.isChecked() || undefined,
-            className,
             onChange: (eventHandlerDecorator(this.handleChange)(onChange || null) as React.ChangeEventHandler<any>),
         };
+    }
+
+    protected getBaseClassName() {
+        return CLASS_NAME;
     }
 
     private handleChange: React.ChangeEventHandler<any> = (evt: React.ChangeEvent<ChildProps>) => {
@@ -98,11 +97,15 @@ function RadioInput(props: React.HTMLProps<HTMLInputElement>) {
     );
 }
 
-// Maybe related to this
+export type Props = React.HTMLProps<HTMLInputElement> & MetaProps;
+
+// TypeScript Bug
 // https://github.com/Microsoft/TypeScript/issues/5938
-const component: DefaultComponent<React.HTMLProps<HTMLInputElement>, ChildProps, MetaProps> =
-    createDefaultComponent<React.HTMLProps<HTMLInputElement>, ChildProps, MetaProps>(
-        RadioInput, Meta, ["onChange"],
-    );
+const component = createDefaultComponent<React.HTMLProps<HTMLInputElement>, MetaProps, Props>(
+    RadioInput,
+    Meta,
+    [
+        "onChange",
+    ]) as DefaultComponent<React.HTMLProps<HTMLInputElement>, MetaProps>;
 
 export default component;

@@ -1,11 +1,9 @@
 import * as React from "react";
 
-import * as classNames from "classnames";
-
 import {
     createDefaultComponent,
-    default as BaseMeta,
     DefaultComponent,
+    MetaAdapter,
 } from "@react-mdc/base/lib/meta";
 
 import {
@@ -28,28 +26,19 @@ export type ChildProps = {
 /**
  * List divider component
  */
-export class Meta extends BaseMeta<ChildProps, MetaProps, {}> {
+export class Meta extends MetaAdapter<ChildProps, MetaProps, {}> {
     public static defaultProps = {
         inset: false,
     };
 
-    protected renderProps(childProps: ChildProps) {
-        const {
-      inset,
-    } = this.props;
+    protected getBaseClassName() {
+        return CLASS_NAME;
+    }
 
-        const className = classNames(
-            CLASS_NAME,
-            {
-                [propertyClassNames.INSET]: inset,
-            },
-            childProps.className,
-        );
-
-        return {
-            ...childProps,
-            className,
-        };
+    protected getClassValues() {
+        return [{
+            [propertyClassNames.INSET]: this.props.inset,
+        }];
     }
 }
 
@@ -58,11 +47,15 @@ function SeparatorLi(props: React.HTMLProps<HTMLLIElement>) {
     return <li role="separator" {...props} />;
 }
 
-// Maybe related to this
+export type Props = React.HTMLProps<HTMLLIElement> & MetaProps;
+
+// TypeScript Bug
 // https://github.com/Microsoft/TypeScript/issues/5938
-const component: DefaultComponent<React.HTMLProps<HTMLLIElement>, ChildProps, MetaProps> =
-    createDefaultComponent<React.HTMLProps<HTMLLIElement>, ChildProps, MetaProps>(
-        SeparatorLi, Meta, ["inset"],
-    );
+const component = createDefaultComponent<React.HTMLProps<HTMLLIElement>, MetaProps, Props>(
+    SeparatorLi,
+    Meta,
+    [
+        "inset",
+    ]) as DefaultComponent<React.HTMLProps<HTMLLIElement>, MetaProps>;
 
 export default component;

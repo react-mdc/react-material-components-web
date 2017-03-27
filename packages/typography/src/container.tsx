@@ -1,11 +1,9 @@
 import * as React from "react";
 
-import * as classNames from "classnames";
-
 import {
     createDefaultComponent,
-    default as BaseMeta,
     DefaultComponent,
+    MetaAdapter,
 } from "@react-mdc/base/lib/meta";
 
 import { BASE_CLASS_NAME } from "./constants";
@@ -22,23 +20,19 @@ export type ChildProps = {
 /**
  * Wrapper component of mdc-typography
  */
-export class Meta extends BaseMeta<ChildProps, MetaProps, {}> {
-    protected renderProps(childProps: ChildProps) {
-        const className = classNames(CLASS_NAME, childProps.className);
-
-        return {
-            ...childProps,
-            className,
-        }
+export class Meta extends MetaAdapter<ChildProps, MetaProps, {}> {
+    protected getBaseClassName() {
+        return CLASS_NAME;
     }
 }
 
+export type Props = React.HTMLProps<HTMLDivElement> & MetaProps;
 
-// Maybe related to this
+// TypeScript Bug
 // https://github.com/Microsoft/TypeScript/issues/5938
-const component: DefaultComponent<React.HTMLProps<HTMLDivElement>, ChildProps, MetaProps> =
-    createDefaultComponent<React.HTMLProps<HTMLDivElement>, ChildProps, MetaProps>(
-        "div", Meta, [],
-    );
+const component = createDefaultComponent<React.HTMLProps<HTMLDivElement>, MetaProps, Props>(
+    "div",
+    Meta,
+    []) as DefaultComponent<React.HTMLProps<HTMLDivElement>, MetaProps>;
 
 export default component;

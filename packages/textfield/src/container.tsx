@@ -1,13 +1,12 @@
 import * as React from "react";
 
 import { MDCTextfieldFoundation } from "@material/textfield/dist/mdc.textfield";
-import * as classNames from "classnames";
 import { OrderedSet, Set } from "immutable";
 
 import {
     createDefaultComponent,
-    default as BaseMeta,
     DefaultComponent,
+    MetaAdapter,
 } from "@react-mdc/base/lib/meta";
 
 import { ContainerAdapter, FoundationAdapter } from "./adapter";
@@ -45,7 +44,7 @@ export type ChildContext = {
 /**
  * Textfield input container component
  */
-export class Meta extends BaseMeta<ChildProps, MetaProps, State> {
+export class Meta extends MetaAdapter<ChildProps, MetaProps, State> {
     public static childContextTypes = {
         adapter: React.PropTypes.instanceOf(FoundationAdapter),
     };
@@ -79,22 +78,15 @@ export class Meta extends BaseMeta<ChildProps, MetaProps, State> {
             adapter: this.adapter,
         };
     }
+    protected getBaseClassName() {
+        return CLASS_NAME;
+    }
 
-    protected renderProps(childProps: ChildProps) {
-        const className = classNames(
-            CLASS_NAME,
-            {
-                [propertyClassNames.MULTILINE]: this.props.multiline,
-                [propertyClassNames.FULLWIDTH]: this.props.fullwidth,
-            },
-            childProps.className,
-            this.state.foundationClasses.toJS(),
-        );
-
-        return {
-            ...childProps,
-            className,
-        };
+    protected getClassValues() {
+        return [{
+            [propertyClassNames.MULTILINE]: this.props.multiline,
+            [propertyClassNames.FULLWIDTH]: this.props.fullwidth,
+        }, this.state.foundationClasses.toJS()];
     }
 };
 
@@ -117,15 +109,17 @@ class ContainerAdapterImpl extends ContainerAdapter {
     }
 }
 
-// Maybe related to this
+export type Props = React.HTMLProps<HTMLDivElement> & MetaProps;
+
+// TypeScript Bug
 // https://github.com/Microsoft/TypeScript/issues/5938
-const component: DefaultComponent<React.HTMLProps<HTMLDivElement>, ChildProps, MetaProps> =
-    createDefaultComponent<React.HTMLProps<HTMLDivElement>, ChildProps, MetaProps>(
-        "div", Meta, [
-            "disabled",
-            "multiline",
-            "fullwidth",
-        ],
-    );
+const component = createDefaultComponent<React.HTMLProps<HTMLDivElement>, MetaProps, Props>(
+    "div",
+    Meta,
+    [
+        "disabled",
+        "multiline",
+        "fullwidth",
+    ]) as DefaultComponent<React.HTMLProps<HTMLDivElement>, MetaProps>;
 
 export default component;

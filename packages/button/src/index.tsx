@@ -1,11 +1,9 @@
 import * as React from "react";
 
-import * as classNames from "classnames";
-
 import {
     createDefaultComponent,
-    default as BaseMeta,
     DefaultComponent,
+    MetaAdapter,
 } from "@react-mdc/base/lib/meta";
 
 import {
@@ -38,7 +36,7 @@ export type ChildProps = {
 /**
  * Button meta component
  */
-export class Meta extends BaseMeta<ChildProps, MetaProps, {}> {
+export class Meta extends MetaAdapter<ChildProps, MetaProps, {}> {
     public static defaultProps = {
         dense: false,
         raised: false,
@@ -47,47 +45,38 @@ export class Meta extends BaseMeta<ChildProps, MetaProps, {}> {
         accent: false,
     };
 
-    protected renderProps(childProps: ChildProps) {
-        let {
-            dense,
-            raised,
-            compact,
-            primary,
-            accent,
-        } = this.props;
-        const className = classNames(
-            CLASS_NAME,
-            {
-                [propertyClassNames.DENSE]: dense,
-                [propertyClassNames.RAISED]: raised,
-                [propertyClassNames.COMPACT]: compact,
-                [propertyClassNames.PRIMARY]: primary,
-                [propertyClassNames.ACCENT]: accent,
-            },
-            childProps.className,
-        );
-        return {
-            ...childProps,
-            className,
-        };
+    protected getBaseClassName() {
+        return CLASS_NAME;
+    }
+
+    protected getClassValues() {
+        return [{
+            [propertyClassNames.DENSE]: this.props.dense,
+            [propertyClassNames.RAISED]: this.props.raised,
+            [propertyClassNames.COMPACT]: this.props.compact,
+            [propertyClassNames.PRIMARY]: this.props.primary,
+            [propertyClassNames.ACCENT]: this.props.accent,
+        }];
     }
 }
 
-// Maybe related to this
-// https://github.com/Microsoft/TypeScript/issues/5938
-const component: DefaultComponent<React.HTMLProps<HTMLButtonElement>, ChildProps, MetaProps> =
-    createDefaultComponent<React.HTMLProps<HTMLButtonElement>, ChildProps, MetaProps>(
-        "button", Meta, [
-            "dense",
-            "raised",
-            "compact",
-            "primary",
-            "accent",
-        ],
-    );
+export type Props = React.HTMLProps<HTMLButtonElement> & MetaProps;
 
-// tslint:disable:variable-name
-export const Button = component;
-// tslint:enable:variable-name
+// TypeScript Bug
+// https://github.com/Microsoft/TypeScript/issues/5938
+const component = createDefaultComponent<React.HTMLProps<HTMLButtonElement>, MetaProps, Props>(
+    "button",
+    Meta,
+    [
+        "dense",
+        "raised",
+        "compact",
+        "primary",
+        "accent",
+    ]) as DefaultComponent<React.HTMLProps<HTMLButtonElement>, MetaProps>;
+
+export {
+    component as Button,
+};
 
 export default component;

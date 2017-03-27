@@ -2,7 +2,6 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 
 import { MDCTemporaryDrawerFoundation } from "@material/drawer/dist/mdc.drawer";
-import * as classNames from "classnames";
 import {
     Map,
     OrderedSet,
@@ -11,10 +10,9 @@ import {
 
 import {
     createDefaultComponent,
-    default as BaseMeta,
     DefaultComponent,
+    MetaAdapter,
 } from "@react-mdc/base/lib/meta";
-import NativeDOMAdapter from "@react-mdc/base/lib/native-dom-adapter";
 import { eventHandlerDecorator } from "@react-mdc/base/lib/util";
 
 import { DrawerAdapter, FoundationAdapter } from "./adapter";
@@ -47,7 +45,7 @@ export type Context = {
     adapter: FoundationAdapter,
 };
 
-export class Meta extends BaseMeta<ChildProps, MetaProps, State> {
+export class Meta extends MetaAdapter<ChildProps, MetaProps, State> {
     public static contextTypes = {
         adapter: React.PropTypes.instanceOf(FoundationAdapter).isRequired,
     };
@@ -67,26 +65,25 @@ export class Meta extends BaseMeta<ChildProps, MetaProps, State> {
         this.context.adapter.setDrawerAdapter(new DrawerAdapter());
     }
 
-    public render() {
-        return (
-            <NativeDOMAdapter
-                cssVariables={this.state.foundationCssVars.toJS()}
-                eventListeners={this.state.foundationEventListeners.toJS()}>
-                {super.render()}
-            </NativeDOMAdapter>
-        );
+    protected getBaseClassName() {
+        return CLASS_NAME;
     }
 
     protected renderProps(childProps: ChildProps) {
         const {
             onClick,
         } = this.props;
-        const className = classNames(CLASS_NAME, childProps.className);
 
         return {
-            ...childProps,
+            ...super.renderProps(childProps),
             onClick: (eventHandlerDecorator(this.handleClick)(onClick || null) as React.ReactEventHandler<any>),
-            className,
+        };
+    }
+
+    protected getNativeDOMProps() {
+        return {
+            cssVariables: this.state.foundationCssVars.toJS(),
+            eventListeners: this.state.foundationEventListeners.toJS(),
         };
     }
 
@@ -119,6 +116,7 @@ class DrawerAdapterImpl extends DrawerAdapter {
             ),
         }));
     }
+
     public deregisterDrawerInteractionHandler(evt: string, handler: EventListener) {
         // Don't use click event handler of MDCTemporaryDrawerFoundation
         // See `TemporaryDrawer.handleClick()` for more detail.
@@ -163,11 +161,13 @@ class DrawerAdapterImpl extends DrawerAdapter {
     }
 }
 
-// Maybe related to this
+export type Props = React.HTMLProps<HTMLElement> & MetaProps;
+
+// TypeScript Bug
 // https://github.com/Microsoft/TypeScript/issues/5938
-const component: DefaultComponent<React.HTMLProps<HTMLElement>, ChildProps, MetaProps> =
-    createDefaultComponent<React.HTMLProps<HTMLElement>, ChildProps, MetaProps>(
-        "nav", Meta, [],
-    );
+const component = createDefaultComponent<React.HTMLProps<HTMLElement>, MetaProps, Props>(
+    "nav",
+    Meta,
+    []) as DefaultComponent<React.HTMLProps<HTMLElement>, MetaProps>;
 
 export default component;

@@ -11,10 +11,9 @@ import {
 
 import {
     createDefaultComponent,
-    default as BaseMeta,
     DefaultComponent,
+    MetaAdapter,
 } from "@react-mdc/base/lib/meta";
-import NativeDOMAdapter from "@react-mdc/base/lib/native-dom-adapter";
 import { eventHandlerDecorator } from "@react-mdc/base/lib/util";
 
 import { FoundationAdapter, NativeControlAdapter } from "./adapter";
@@ -42,7 +41,7 @@ export type Context = {
 /**
  * Checkbox input component
  */
-export class Meta extends BaseMeta<ChildProps, MetaProps, State> {
+export class Meta extends MetaAdapter<ChildProps, MetaProps, State> {
     public static contextTypes = {
         adapter: React.PropTypes.instanceOf(FoundationAdapter).isRequired,
     };
@@ -63,25 +62,24 @@ export class Meta extends BaseMeta<ChildProps, MetaProps, State> {
         this.context.adapter.setNativeControlAdapter(new NativeControlAdapter());
     }
 
-    public render() {
-        return (
-            <NativeDOMAdapter
-                eventListeners={this.state.foundationEventListeners.toJS()}>
-                {super.render()}
-            </NativeDOMAdapter>
-        );
+    protected getBaseClassName() {
+        return CLASS_NAME;
+    }
+
+    protected getNativeDOMProps() {
+        return {
+            eventListeners: this.state.foundationEventListeners.toJS(),
+        };
     }
 
     protected renderProps(childProps: ChildProps) {
-        let {
+        const {
             onChange,
         } = this.props;
-        const className = classNames(CLASS_NAME, childProps.className);
 
         return {
-            ...childProps,
+            ...super.renderProps(childProps),
             onChange: (eventHandlerDecorator(this.handleChange)(onChange || null) as React.ChangeEventHandler<any>),
-            className,
             checked: this.context.adapter.isChecked() || undefined,
         };
     }
@@ -132,11 +130,15 @@ function CheckboxInput(props: React.HTMLProps<HTMLInputElement>) {
     );
 }
 
-// Maybe related to this
+export type Props = React.HTMLProps<HTMLButtonElement> & MetaProps;
+
+// TypeScript Bug
 // https://github.com/Microsoft/TypeScript/issues/5938
-const component: DefaultComponent<React.HTMLProps<HTMLInputElement>, ChildProps, MetaProps> =
-    createDefaultComponent<React.HTMLProps<HTMLInputElement>, ChildProps, MetaProps>(
-        CheckboxInput, Meta, ["onChange"],
-    );
+const component = createDefaultComponent<React.HTMLProps<HTMLInputElement>, MetaProps, Props>(
+    CheckboxInput,
+    Meta,
+    [
+        "onChange",
+    ]) as DefaultComponent<React.HTMLProps<HTMLInputElement>, MetaProps>;
 
 export default component;

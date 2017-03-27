@@ -1,11 +1,9 @@
 import * as React from "react";
 
-import * as classNames from "classnames";
-
 import {
     createDefaultComponent,
-    default as BaseMeta,
     DefaultComponent,
+    MetaAdapter,
 } from "@react-mdc/base/lib/meta";
 
 import {
@@ -29,32 +27,31 @@ export type ChildProps = {
 /**
  * Actions section component
  */
-export class Meta extends BaseMeta<ChildProps, MetaProps, {}> {
-    protected renderProps(childProps: ChildProps) {
-        const {
-            vertical,
-        } = this.props;
+export class Meta extends MetaAdapter<ChildProps, MetaProps, {}> {
+    public static defaultProps = {
+        vertical: false,
+    };
 
-        const className = classNames(
-            CLASS_NAME,
-            {
-                [propertyClassNames.VERTICAL]: vertical,
-            },
-            childProps.className,
-        );
+    protected getBaseClassName() {
+        return CLASS_NAME;
+    }
 
-        return {
-            ...childProps,
-            className,
-        };
+    protected getClassValues() {
+        return [{
+            [propertyClassNames.VERTICAL]: this.props.vertical,
+        }];
     }
 }
 
-// Maybe related to this
+export type Props = React.HTMLProps<HTMLElement> & MetaProps;
+
+// TypeScript Bug
 // https://github.com/Microsoft/TypeScript/issues/5938
-const component: DefaultComponent<React.HTMLProps<HTMLElement>, ChildProps, MetaProps> =
-    createDefaultComponent<React.HTMLProps<HTMLElement>, ChildProps, MetaProps>(
-        "section", Meta, ["vertical"],
-    );
+const component = createDefaultComponent<React.HTMLProps<HTMLElement>, MetaProps, Props>(
+    "section",
+    Meta,
+    [
+        "vertical",
+    ]) as DefaultComponent<React.HTMLProps<HTMLElement>, MetaProps>;
 
 export default component;

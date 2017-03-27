@@ -1,8 +1,8 @@
 import * as React from "react";
 
-import * as classNames from "classnames";
-
-import { default as BaseMeta } from "@react-mdc/base/lib/meta";
+import {
+    MetaAdapter,
+} from "@react-mdc/base/lib/meta";
 
 import { BASE_CLASS_NAME } from "./constants";
 import { classNameForTextStyle } from "./helpers";
@@ -27,32 +27,23 @@ export type ChildProps = {
 /**
  * Text meta component decorated by mdc-typography
  */
-export class Meta extends BaseMeta<ChildProps, MetaProps, {}> {
+export class Meta extends MetaAdapter<ChildProps, MetaProps, {}> {
     public static defaultProps = {
         adjustMargin: false,
     };
 
-    protected renderProps(childProps: ChildProps) {
-        let {
-            textStyle,
-            adjustMargin,
-        } = this.props;
-        const className = classNames(
-            classNameForTextStyle(textStyle),
-            {
-                [propertyClassNames.ADJUST_MARGIN]: adjustMargin,
-            },
-            childProps.className,
-        );
-        return {
-            ...childProps,
-            className,
-        };
+    protected getBaseClassName() {
+        return classNameForTextStyle(this.props.textStyle);
+    }
+
+    protected getClassValues() {
+        return [{
+            [propertyClassNames.ADJUST_MARGIN]: this.props.adjustMargin,
+        }];
     }
 }
 
 export type Props = React.HTMLProps<HTMLButtonElement>
-    & ChildProps
     & MetaProps;
 
 export default class Text extends React.Component<Props, {}> {

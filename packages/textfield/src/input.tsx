@@ -1,18 +1,16 @@
 import * as React from "react";
-import ReactDOM from "react-dom";
+import * as ReactDOM from "react-dom";
 
-import * as classNames from "classnames";
 import {
     Map,
     OrderedSet,
     Set,
 } from "immutable";
 
-import { NativeDOMAdapter } from "@react-mdc/base";
 import {
     createDefaultComponent,
-    default as BaseMeta,
     DefaultComponent,
+    MetaAdapter,
 } from "@react-mdc/base/lib/meta";
 
 import { FoundationAdapter, InputAdapter } from "./adapter";
@@ -42,7 +40,7 @@ export type Context = {
 /**
  * Textfield input component
  */
-export class Meta extends BaseMeta<ChildProps, MetaProps, State> {
+export class Meta extends MetaAdapter<ChildProps, MetaProps, State> {
     public static contextTypes = {
         adapter: React.PropTypes.instanceOf(FoundationAdapter).isRequired,
     };
@@ -61,24 +59,13 @@ export class Meta extends BaseMeta<ChildProps, MetaProps, State> {
         this.context.adapter.setInputAdapter(new InputAdapter());
     }
 
-    public render() {
-        return (
-            <NativeDOMAdapter
-                eventListeners={this.state.foundationEventListeners.toJS()}>
-                {super.render()}
-            </NativeDOMAdapter>
-        );
+    protected getBaseClassName() {
+        return CLASS_NAME;
     }
 
-    protected renderProps(childProps: ChildProps) {
-        const className = classNames(
-            CLASS_NAME,
-            childProps.className,
-        );
-
+    protected getNativeDOMProps() {
         return {
-            ...childProps,
-            className,
+            eventListeners: this.state.foundationEventListeners.toJS(),
         };
     }
 };
@@ -147,11 +134,13 @@ function TextInput(props: React.HTMLProps<HTMLInputElement>) {
     );
 }
 
-// Maybe related to this
+export type Props = React.HTMLProps<HTMLInputElement> & MetaProps;
+
+// TypeScript Bug
 // https://github.com/Microsoft/TypeScript/issues/5938
-const component: DefaultComponent<React.HTMLProps<HTMLInputElement>, ChildProps, MetaProps> =
-    createDefaultComponent<React.HTMLProps<HTMLInputElement>, ChildProps, MetaProps>(
-        TextInput, Meta, [],
-    );
+const component = createDefaultComponent<React.HTMLProps<HTMLInputElement>, MetaProps, Props>(
+    TextInput,
+    Meta,
+    []) as DefaultComponent<React.HTMLProps<HTMLInputElement>, MetaProps>;
 
 export default component;

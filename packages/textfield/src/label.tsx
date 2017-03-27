@@ -1,6 +1,5 @@
 import * as React from "react";
 
-import * as classNames from "classnames";
 import {
     OrderedSet,
     Set,
@@ -8,8 +7,8 @@ import {
 
 import {
     createDefaultComponent,
-    default as BaseMeta,
     DefaultComponent,
+    MetaAdapter,
 } from "@react-mdc/base/lib/meta";
 
 import { FoundationAdapter, LabelAdapter } from "./adapter";
@@ -34,7 +33,7 @@ export type Context = {
 /**
  * Textfield label component
  */
-export class Meta extends BaseMeta<ChildProps, MetaProps, State> {
+export class Meta extends MetaAdapter<ChildProps, MetaProps, State> {
     public static contextTypes = {
         adapter: React.PropTypes.instanceOf(FoundationAdapter).isRequired,
     };
@@ -53,16 +52,12 @@ export class Meta extends BaseMeta<ChildProps, MetaProps, State> {
         this.context.adapter.setLabelAdapter(new LabelAdapter());
     }
 
-    protected renderProps(childProps: ChildProps) {
-        const className = classNames(
-            CLASS_NAME,
-            childProps.classNames,
-            this.state.foundationClasses.toJS(),
-        );
-        return {
-            ...childProps,
-            className,
-        };
+    protected getBaseClassName() {
+        return CLASS_NAME;
+    }
+
+    protected getClassValues() {
+        return this.state.foundationClasses.toJS();
     }
 }
 
@@ -86,11 +81,13 @@ class LabelAdapterImpl<P> extends LabelAdapter {
     }
 }
 
-// Maybe related to this
+export type Props = React.HTMLProps<HTMLLabelElement> & MetaProps;
+
+// TypeScript Bug
 // https://github.com/Microsoft/TypeScript/issues/5938
-const component: DefaultComponent<React.HTMLProps<HTMLLabelElement>, ChildProps, MetaProps> =
-    createDefaultComponent<React.HTMLProps<HTMLLabelElement>, ChildProps, MetaProps>(
-        "label", Meta, [],
-    );
+const component = createDefaultComponent<React.HTMLProps<HTMLLabelElement>, MetaProps, Props>(
+    "label",
+    Meta,
+    []) as DefaultComponent<React.HTMLProps<HTMLLabelElement>, MetaProps>;
 
 export default component;

@@ -1,11 +1,9 @@
 import * as React from "react";
 
-import * as classNames from "classnames";
-
 import {
     createDefaultComponent,
-    default as BaseMeta,
     DefaultComponent,
+    MetaAdapter,
 } from "@react-mdc/base/lib/meta";
 
 import * as helpers from "./helpers";
@@ -22,9 +20,13 @@ export type MetaProps = {
     onColor?: OnColor,
 };
 
-export class Meta extends BaseMeta<ChildProps, MetaProps, {}> {
-    protected renderProps(childProps: ChildProps) {
-        let {
+export class Meta extends MetaAdapter<ChildProps, MetaProps, {}> {
+    protected getBaseClassName() {
+        return null;
+    }
+
+    protected getClassValues() {
+        const {
             color,
             backgroundColor,
             textColor,
@@ -41,25 +43,23 @@ export class Meta extends BaseMeta<ChildProps, MetaProps, {}> {
         if (textColor != null && onColor != null) {
             classes.push(helpers.classNameForTextColor(textColor, onColor));
         }
-        const className = classNames(classes, childProps.className);
 
-        return {
-            ...childProps,
-            className,
-        };
+        return classes;
     }
 };
 
-// Maybe related to this
+export type Props = React.HTMLProps<HTMLDivElement> & MetaProps;
+
+// TypeScript Bug
 // https://github.com/Microsoft/TypeScript/issues/5938
-const component: DefaultComponent<React.HTMLProps<HTMLDivElement>, ChildProps, MetaProps> =
-    createDefaultComponent<React.HTMLProps<HTMLDivElement>, ChildProps, MetaProps>(
-        "div", Meta, [
-            "color",
-            "backgroundColor",
-            "textColor",
-            "onColor",
-        ],
-    );
+const component = createDefaultComponent<React.HTMLProps<HTMLDivElement>, MetaProps, Props>(
+    "div",
+    Meta,
+    [
+        "color",
+        "backgroundColor",
+        "textColor",
+        "onColor",
+    ]) as DefaultComponent<React.HTMLProps<HTMLDivElement>, MetaProps>;
 
 export default component;

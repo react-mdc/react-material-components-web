@@ -1,11 +1,9 @@
 import * as React from "react";
 
-import * as classNames from "classnames";
-
 import {
     createDefaultComponent,
-    default as BaseMeta,
     DefaultComponent,
+    MetaAdapter,
 } from "@react-mdc/base/lib/meta";
 
 import { BASE_CLASS_NAME } from "./constants";
@@ -28,39 +26,36 @@ export type ChildProps = {
 /**
  * Elevation component
  */
-export class Meta extends BaseMeta<ChildProps, MetaProps, {}> {
+export class Meta extends MetaAdapter<ChildProps, MetaProps, {}> {
     public static defaultProps = {
         transition: false,
     };
 
-    protected renderProps(childProps: ChildProps) {
-        const {
-            zSpace,
-            transition,
-        } = this.props;
-        const className = classNames(
-            classNameForZSpace(zSpace),
-            {
-                [propertyClassNames.TRANSITION]: transition,
-            },
-            childProps.className,
-        );
-        return {
-            ...childProps,
-            className,
-        };
+    protected getBaseClassName() {
+        return classNameForZSpace(this.props.zSpace);
+    }
+
+    protected getClassValues() {
+        return [{
+            [propertyClassNames.TRANSITION]: this.props.transition,
+        }];
     }
 }
 
-// Maybe related to this
-// https://github.com/Microsoft/TypeScript/issues/5938
-const component: DefaultComponent<React.HTMLProps<HTMLParagraphElement>, ChildProps, MetaProps> =
-    createDefaultComponent<React.HTMLProps<HTMLParagraphElement>, ChildProps, MetaProps>(
-        "p", Meta, ["zSpace", "transition"],
-    );
+export type Props = React.HTMLProps<HTMLParagraphElement> & MetaProps;
 
-// tslint:disable:variable-name
-export const Elevation = component;
-// tslint:enable:variable-name
+// TypeScript Bug
+// https://github.com/Microsoft/TypeScript/issues/5938
+const component = createDefaultComponent<React.HTMLProps<HTMLParagraphElement>, MetaProps, Props>(
+    "p",
+    Meta,
+    [
+        "zSpace",
+        "transition",
+    ]) as DefaultComponent<React.HTMLProps<HTMLParagraphElement>, MetaProps>;
+
+export {
+    component as Elevation,
+}
 
 export default component;

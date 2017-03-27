@@ -1,7 +1,5 @@
 import * as React from "react";
 
-import * as classNames from "classnames";
-
 import { getCorrectEventName } from "@material/animation/dist/mdc.animation";
 import { MDCCheckboxFoundation } from "@material/checkbox/dist/mdc.checkbox";
 
@@ -13,10 +11,9 @@ import {
 
 import {
     createDefaultComponent,
-    default as BaseMeta,
     DefaultComponent,
+    MetaAdapter,
 } from "@react-mdc/base/lib/meta";
-import NativeDOMAdapter from "@react-mdc/base/lib/native-dom-adapter";
 
 import { ContainerAdapter, FoundationAdapter } from "./adapter";
 
@@ -48,7 +45,7 @@ export type ChildContext = {
 /**
  * Checkbox input container component
  */
-export class Meta extends BaseMeta<ChildProps, MetaProps, State> {
+export class Meta extends MetaAdapter<ChildProps, MetaProps, State> {
     public static childContextTypes = {
         adapter: React.PropTypes.instanceOf(FoundationAdapter),
     };
@@ -96,24 +93,19 @@ export class Meta extends BaseMeta<ChildProps, MetaProps, State> {
         this.syncFoundation(props);
     }
 
-    public render() {
-        return (
-            <NativeDOMAdapter
-                eventListeners={this.state.foundationEventListeners.toJS()}>
-                {super.render()}
-            </NativeDOMAdapter>
-        );
+    protected getBaseClassName() {
+        return CLASS_NAME;
     }
 
-    protected renderProps(childProps: ChildProps) {
-        const className = classNames(
-            CLASS_NAME,
+    protected getClassValues() {
+        return [
             this.state.foundationClasses.toJS(),
-            childProps.className,
-        );
+        ];
+    }
+
+    protected getNativeDOMProps() {
         return {
-            ...childProps,
-            className,
+            eventListeners: this.state.foundationEventListeners.toJS(),
         };
     }
 
@@ -186,15 +178,17 @@ class ContainerAdapterImpl extends ContainerAdapter {
     }
 }
 
-// Maybe related to this
+export type Props = React.HTMLProps<HTMLDivElement> & MetaProps;
+
+// TypeScript Bug
 // https://github.com/Microsoft/TypeScript/issues/5938
-const component: DefaultComponent<React.HTMLProps<HTMLDivElement>, ChildProps, MetaProps> =
-    createDefaultComponent<React.HTMLProps<HTMLDivElement>, ChildProps, MetaProps>(
-        "div", Meta, [
-            "checked",
-            "disabled",
-            "indeterminate",
-        ],
-    );
+const component = createDefaultComponent<React.HTMLProps<HTMLDivElement>, MetaProps, Props>(
+    "div",
+    Meta,
+    [
+        "checked",
+        "disabled",
+        "indeterminate",
+    ]) as DefaultComponent<React.HTMLProps<HTMLDivElement>, MetaProps>;
 
 export default component;

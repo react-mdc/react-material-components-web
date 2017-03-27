@@ -23,7 +23,7 @@ export type Props = {
 export default class Checkbox extends React.Component<Props, {}> {
     public render() {
         let {
-      inputId,
+            inputId,
             name,
             value,
             onChange,
@@ -32,7 +32,7 @@ export default class Checkbox extends React.Component<Props, {}> {
             indeterminate,
             defaultChecked,
             ...props,
-    } = this.props;
+        } = this.props;
         return (
             <Container
                 disabled={disabled}

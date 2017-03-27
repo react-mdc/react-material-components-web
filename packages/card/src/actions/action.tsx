@@ -1,11 +1,9 @@
 import * as React from "react";
 
-import * as classNames from "classnames";
-
 import {
     createDefaultComponent,
-    default as BaseMeta,
     DefaultComponent,
+    MetaAdapter,
 } from "@react-mdc/base/lib/meta";
 import * as button from "@react-mdc/button/lib";
 import { default as Button } from "@react-mdc/button/lib";
@@ -26,32 +24,26 @@ export type ChildProps = {
 /**
  * Actions section action component
  */
-export class Meta extends BaseMeta<ChildProps, MetaProps, {}> {
-    protected renderProps(childProps: ChildProps) {
-        const className = classNames(CLASS_NAME, childProps.className);
-
-        return {
-            ...childProps,
-            className,
-        };
+export class Meta extends MetaAdapter<ChildProps, MetaProps, {}> {
+    protected getBaseClassName() {
+        return CLASS_NAME;
     }
 }
 
 // Button with compact as default
-function CompactButton(props: React.HTMLProps<HTMLButtonElement> & button.ChildProps & button.MetaProps) {
+function CompactButton(props: button.Props) {
     return React.createElement(Button, {
         compact: true,
         ...props,
     });
 }
 
-// Maybe related to this
+export type Props = button.Props & MetaProps;
+
+// TypeScript Bug
 // https://github.com/Microsoft/TypeScript/issues/5938
-const component: DefaultComponent<React.HTMLProps<HTMLButtonElement> & button.ChildProps & button.MetaProps,
-    ChildProps, MetaProps> =
-    createDefaultComponent<React.HTMLProps<HTMLButtonElement> & button.ChildProps & button.MetaProps,
-        ChildProps, MetaProps>(
-        CompactButton, Meta, [],
-    );
+const component = createDefaultComponent<button.Props, MetaProps, Props>(
+    CompactButton,
+    Meta, []) as DefaultComponent<React.HTMLProps<HTMLButtonElement> & button.ChildProps, MetaProps>;
 
 export default component;

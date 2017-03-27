@@ -1,11 +1,9 @@
 import * as React from "react";
 
-import * as classNames from "classnames";
-
 import {
     createDefaultComponent,
-    default as BaseMeta,
     DefaultComponent,
+    MetaAdapter,
 } from "@react-mdc/base/lib/meta";
 
 import { BASE_CLASS_NAME } from "./constants";
@@ -27,37 +25,31 @@ export type ChildProps = {
 /**
  * Form field component
  */
-export class Meta extends BaseMeta<ChildProps, MetaProps, {}> {
-    protected renderProps(childProps: ChildProps) {
-        const {
-            alignEnd,
-        } = this.props;
+export class Meta extends MetaAdapter<ChildProps, MetaProps, {}> {
+    protected getBaseClassName() {
+        return CLASS_NAME;
+    }
 
-        const className = classNames(
-            CLASS_NAME,
-            {
-                [propertyClassNames.ALIGN_END]: alignEnd,
-            },
-            childProps.className,
-        );
-        return {
-            ...childProps,
-            className,
-        };
+    protected getClassValues() {
+        return [{
+            [propertyClassNames.ALIGN_END]: this.props.alignEnd,
+        }];
     }
 }
 
-// Maybe related to this
-// https://github.com/Microsoft/TypeScript/issues/5938
-const component: DefaultComponent<React.HTMLProps<HTMLDivElement>, ChildProps, MetaProps> =
-    createDefaultComponent<React.HTMLProps<HTMLDivElement>, ChildProps, MetaProps>(
-        "div", Meta, [
-            "alignEnd",
-        ],
-    );
+export type Props = React.HTMLProps<HTMLDivElement> & MetaProps;
 
-// tslint:disable:variable-name
-export const FormField = component;
-// tslint:enable:variable-name
+// TypeScript Bug
+// https://github.com/Microsoft/TypeScript/issues/5938
+const component = createDefaultComponent<React.HTMLProps<HTMLDivElement>, MetaProps, Props>(
+    "div",
+    Meta,
+    [
+        "alignEnd",
+    ]) as DefaultComponent<React.HTMLProps<HTMLDivElement>, MetaProps>;
+
+export {
+    component as FormField,
+}
 
 export default component;

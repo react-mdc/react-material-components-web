@@ -1,11 +1,9 @@
 import * as React from "react";
 
-import * as classNames from "classnames";
-
 import {
     createDefaultComponent,
-    default as BaseMeta,
     DefaultComponent,
+    MetaAdapter,
 } from "@react-mdc/base/lib/meta";
 
 import { SECTION_BASE_CLASS_NAME } from "./constants";
@@ -20,38 +18,37 @@ export type MetaProps = {
 
 export type ChildProps = {
     className?: string,
-}
+};
 
 /**
- * Toolbar section meta
+ * Toolbar section component
  */
-export class Meta extends BaseMeta<ChildProps, MetaProps, {}> {
-    protected renderProps(childProps: ChildProps) {
-        let {
+export class Meta extends MetaAdapter<ChildProps, MetaProps, {}> {
+    protected getBaseClassName() {
+        return CLASS_NAME;
+    }
+
+    protected getClassValues() {
+        const {
             align,
         } = this.props;
         let classes: string[] = [];
         if (align != null) {
             classes.push(helpers.classNameForSectionAlignment(align));
         }
-        const className = classNames(
-            CLASS_NAME,
-            classes,
-            childProps.className,
-        );
-        return {
-            ...childProps,
-            className,
-        };
+        return classes;
     }
 };
 
+export type Props = React.HTMLProps<HTMLElement> & MetaProps;
 
-// Maybe related to this
+// TypeScript Bug
 // https://github.com/Microsoft/TypeScript/issues/5938
-const component: DefaultComponent<React.HTMLProps<HTMLHeadingElement>, ChildProps, MetaProps> =
-    createDefaultComponent<React.HTMLProps<HTMLHeadingElement>, ChildProps, MetaProps>(
-        "section", Meta, ["align"],
-    );
+const component = createDefaultComponent<React.HTMLProps<HTMLElement>, MetaProps, Props>(
+    "section",
+    Meta,
+    [
+        "align",
+    ]) as DefaultComponent<React.HTMLProps<HTMLElement>, MetaProps>;
 
 export default component;

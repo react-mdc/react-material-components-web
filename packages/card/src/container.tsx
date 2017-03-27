@@ -1,11 +1,9 @@
 import * as React from "react";
 
-import * as classNames from "classnames";
-
 import {
     createDefaultComponent,
-    default as BaseMeta,
     DefaultComponent,
+    MetaAdapter,
 } from "@react-mdc/base/lib/meta";
 
 import {
@@ -29,35 +27,31 @@ export type ChildProps = {
 /**
  * Card component
  */
-export class Meta extends BaseMeta<ChildProps, MetaProps, {}> {
+export class Meta extends MetaAdapter<ChildProps, MetaProps, {}> {
     public static defaultProps = {
         dark: false,
     };
 
-    protected renderProps(childProps: ChildProps) {
-        const {
-            dark,
-        } = this.props;
-        const className = classNames(
-            CLASS_NAME,
-            {
-                [propertyClassNames.DARK]: dark,
-            },
-            childProps.className,
-        );
+    protected getBaseClassName() {
+        return CLASS_NAME;
+    }
 
-        return {
-            ...childProps,
-            className,
-        };
+    protected getClassValues() {
+        return [{
+            [propertyClassNames.DARK]: this.props.dark,
+        }];
     }
 }
 
-// Maybe related to this
+export type Props = React.HTMLProps<HTMLDivElement> & MetaProps;
+
+// TypeScript Bug
 // https://github.com/Microsoft/TypeScript/issues/5938
-const component: DefaultComponent<React.HTMLProps<HTMLDivElement>, ChildProps, MetaProps> =
-    createDefaultComponent<React.HTMLProps<HTMLDivElement>, ChildProps, MetaProps>(
-        "div", Meta, ["dark"],
-    );
+const component = createDefaultComponent<React.HTMLProps<HTMLDivElement>, MetaProps, Props>(
+    "div",
+    Meta,
+    [
+        "dark",
+    ]) as DefaultComponent<React.HTMLProps<HTMLDivElement>, MetaProps>;
 
 export default component;

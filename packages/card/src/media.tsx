@@ -1,11 +1,9 @@
 import * as React from "react";
 
-import * as classNames from "classnames";
-
 import {
     createDefaultComponent,
-    default as BaseMeta,
     DefaultComponent,
+    MetaAdapter,
 } from "@react-mdc/base/lib/meta";
 
 import {
@@ -24,22 +22,19 @@ export type ChildProps = {
 /**
  * Media section component
  */
-export class Meta extends BaseMeta<ChildProps, MetaProps, {}> {
-    protected renderProps(childProps: ChildProps) {
-        const className = classNames(CLASS_NAME, childProps.className);
-
-        return {
-            ...childProps,
-            className,
-        };
+export class Meta extends MetaAdapter<ChildProps, MetaProps, {}> {
+    protected getBaseClassName() {
+        return CLASS_NAME;
     }
 }
 
-// Maybe related to this
+export type Props = React.HTMLProps<HTMLElement> & MetaProps;
+
+// TypeScript Bug
 // https://github.com/Microsoft/TypeScript/issues/5938
-const component: DefaultComponent<React.HTMLProps<HTMLElement>, ChildProps, MetaProps> =
-    createDefaultComponent<React.HTMLProps<HTMLElement>, ChildProps, MetaProps>(
-        "section", Meta, [],
-    );
+const component = createDefaultComponent<React.HTMLProps<HTMLElement>, MetaProps, Props>(
+    "section",
+    Meta,
+    []) as DefaultComponent<React.HTMLProps<HTMLElement>, MetaProps>;
 
 export default component;

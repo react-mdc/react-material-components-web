@@ -23,7 +23,7 @@ class TextFieldInternal<C, I> extends React.Component<TextFieldInternalProps<C, 
 
         return (
             <Container {...containerProps}>
-                <Input {...inputProps} />;
+                <Input {...inputProps} />
             </Container >
         );
     }

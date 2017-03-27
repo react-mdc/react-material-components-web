@@ -1,11 +1,9 @@
 import * as React from "react";
 
-import * as classNames from "classnames";
-
 import {
     createDefaultComponent,
-    default as BaseMeta,
     DefaultComponent,
+    MetaAdapter,
 } from "@react-mdc/base/lib/meta";
 
 import {
@@ -33,45 +31,37 @@ export type ChildProps = {
 /**
  * List container component
  */
-export class Meta extends BaseMeta<ChildProps, MetaProps, {}> {
+export class Meta extends MetaAdapter<ChildProps, MetaProps, {}> {
     public static defaultProps = {
         dense: false,
         twoLine: false,
         avartarList: false,
     };
 
-    protected renderProps(childProps: ChildProps) {
-        const {
-            dense,
-            twoLine,
-            avartarList,
-        } = this.props;
-        const className = classNames(
-            CLASS_NAME,
-            {
-                [propertyClassNames.DENSE]: dense,
-                [propertyClassNames.TWO_LINE]: twoLine,
-                [propertyClassNames.AVARTAR_LIST]: avartarList,
-            },
-            childProps.className,
-        );
+    protected getBaseClassName() {
+        return CLASS_NAME;
+    }
 
-        return {
-            ...childProps,
-            className,
-        };
+    protected getClassValues() {
+        return [{
+            [propertyClassNames.DENSE]: this.props.dense,
+            [propertyClassNames.TWO_LINE]: this.props.twoLine,
+            [propertyClassNames.AVARTAR_LIST]: this.props.avartarList,
+        }];
     }
 }
 
-// Maybe related to this
+export type Props = React.HTMLProps<HTMLUListElement> & MetaProps;
+
+// TypeScript Bug
 // https://github.com/Microsoft/TypeScript/issues/5938
-const component: DefaultComponent<React.HTMLProps<HTMLUListElement>, ChildProps, MetaProps> =
-    createDefaultComponent<React.HTMLProps<HTMLUListElement>, ChildProps, MetaProps>(
-        "ul", Meta, [
-            "dense",
-            "twoLine",
-            "avartarList"
-        ],
-    );
+const component = createDefaultComponent<React.HTMLProps<HTMLUListElement>, MetaProps, Props>(
+    "ul",
+    Meta,
+    [
+        "dense",
+        "twoLine",
+        "avartarList",
+    ]) as DefaultComponent<React.HTMLProps<HTMLUListElement>, MetaProps>;
 
 export default component;

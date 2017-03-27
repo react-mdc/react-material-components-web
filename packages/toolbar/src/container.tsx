@@ -1,11 +1,9 @@
 import * as React from "react";
 
-import * as classNames from "classnames";
-
 import {
     createDefaultComponent,
-    default as BaseMeta,
     DefaultComponent,
+    MetaAdapter,
 } from "@react-mdc/base/lib/meta";
 
 import {
@@ -29,34 +27,31 @@ export type ChildProps = {
 /**
  * Toolbar container meta
  */
-export class Meta extends BaseMeta<ChildProps, MetaProps, {}> {
+export class Meta extends MetaAdapter<ChildProps, MetaProps, {}> {
     public static defaultProps = {
         fixed: false,
     };
 
-    protected renderProps(childProps: ChildProps) {
-        let {
-            fixed,
-        } = this.props;
-        const className = classNames(
-            CLASS_NAME,
-            {
-                [propertyClassNames.FIXED]: fixed,
-            },
-            childProps.className,
-        );
-        return {
-            ...childProps,
-            className,
-        };
+    protected getBaseClassName() {
+        return CLASS_NAME;
     }
-};
 
-// Maybe related to this
+    protected getClassValues() {
+        return [{
+            [propertyClassNames.FIXED]: this.props.fixed,
+        }];
+    }
+}
+
+export type Props = React.HTMLProps<HTMLElement> & MetaProps;
+
+// TypeScript Bug
 // https://github.com/Microsoft/TypeScript/issues/5938
-const component: DefaultComponent<React.HTMLProps<HTMLElement>, ChildProps, MetaProps> =
-    createDefaultComponent<React.HTMLProps<HTMLElement>, ChildProps, MetaProps>(
-        "header", Meta, ["fixed"],
-    );
+const component = createDefaultComponent<React.HTMLProps<HTMLElement>, MetaProps, Props>(
+    "header",
+    Meta,
+    [
+        "fixed",
+    ]) as DefaultComponent<React.HTMLProps<HTMLElement>, MetaProps>;
 
 export default component;

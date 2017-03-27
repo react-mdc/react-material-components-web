@@ -1,13 +1,10 @@
 import * as React from "react";
 
-import * as classNames from "classnames";
-
 import {
     createDefaultComponent,
-    default as BaseMeta,
     DefaultComponent,
+    MetaAdapter,
 } from "@react-mdc/base/lib/meta";
-import NativeDOMAdapter from "@react-mdc/base/lib/native-dom-adapter";
 
 import {
     BASE_CLASS_NAME,
@@ -30,8 +27,12 @@ export type ChildProps = {
 /**
  * Wrapper component of mdc-layout-grid
  */
-export class Meta extends BaseMeta<ChildProps, MetaProps, {}> {
-    public render() {
+export class Meta extends MetaAdapter<ChildProps, MetaProps, {}> {
+    protected getBaseClassName() {
+        return CLASS_NAME;
+    }
+
+    protected getNativeDOMProps() {
         let cssVariables = {};
         if (this.props.margin != null) {
             cssVariables[MARGIN_CSS_VARIABLE] = this.normalizeMarginAndGutter(this.props.margin);
@@ -39,19 +40,7 @@ export class Meta extends BaseMeta<ChildProps, MetaProps, {}> {
         if (this.props.gutter != null) {
             cssVariables[GUTTER_CSS_VARIABLE] = this.normalizeMarginAndGutter(this.props.gutter);
         }
-        return (
-            <NativeDOMAdapter cssVariables={cssVariables}>
-                {super.render()}
-            </NativeDOMAdapter>
-        );
-    }
-    protected renderProps(childProps: ChildProps) {
-        const className = classNames(CLASS_NAME, childProps.className);
-
-        return {
-            ...childProps,
-            className,
-        };
+        return {cssVariables};
     }
 
     private normalizeMarginAndGutter(value: Margin | Gutter): string {
@@ -63,14 +52,16 @@ export class Meta extends BaseMeta<ChildProps, MetaProps, {}> {
     }
 }
 
-// Maybe related to this
+export type Props = React.HTMLProps<HTMLDivElement> & MetaProps;
+
+// TypeScript Bug
 // https://github.com/Microsoft/TypeScript/issues/5938
-const component: DefaultComponent<React.HTMLProps<HTMLDivElement>, ChildProps, MetaProps> =
-    createDefaultComponent<React.HTMLProps<HTMLDivElement>, ChildProps, MetaProps>(
-        "div", Meta, [
-            "margin",
-            "gutter",
-        ],
-    );
+const component = createDefaultComponent<React.HTMLProps<HTMLDivElement>, MetaProps, Props>(
+    "div",
+    Meta,
+    [
+        "margin",
+        "gutter"
+    ]) as DefaultComponent<React.HTMLProps<HTMLDivElement>, MetaProps>;
 
 export default component;

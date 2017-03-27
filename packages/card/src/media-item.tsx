@@ -1,11 +1,9 @@
 import * as React from "react";
 
-import * as classNames from "classnames";
-
 import {
     createDefaultComponent,
-    default as BaseMeta,
     DefaultComponent,
+    MetaAdapter,
 } from "@react-mdc/base/lib/meta";
 
 import {
@@ -40,35 +38,27 @@ export type ChildProps = {
 /**
  * Media item component
  */
-export class Meta extends BaseMeta<ChildProps, MetaProps, {}> {
-    protected renderProps(childProps: ChildProps) {
-        let {
-            size,
-        } = this.props;
+export class Meta extends MetaAdapter<ChildProps, MetaProps, {}> {
+    protected getBaseClassName() {
+        return CLASS_NAME;
+    }
 
-        let classes: string[] = [];
-        if (size != null) {
-            classes.push(classNameForSize(size));
-        }
-
-        const className = classNames(
-            CLASS_NAME,
-            classes,
-            childProps.className,
-        );
-
-        return {
-            ...childProps,
-            className,
-        };
+    protected getClassValues() {
+        return [
+            this.props.size == null ? null : classNameForSize(this.props.size),
+        ];
     }
 }
 
-// Maybe related to this
+export type Props = React.HTMLProps<HTMLImageElement> & MetaProps;
+
+// TypeScript Bug
 // https://github.com/Microsoft/TypeScript/issues/5938
-const component: DefaultComponent<React.HTMLProps<HTMLImageElement>, ChildProps, MetaProps> =
-    createDefaultComponent<React.HTMLProps<HTMLImageElement>, ChildProps, MetaProps>(
-        "img", Meta, [],
-    );
+const component = createDefaultComponent<React.HTMLProps<HTMLImageElement>, MetaProps, Props>(
+    "img",
+    Meta,
+    [
+        "size",
+    ]) as DefaultComponent<React.HTMLProps<HTMLImageElement>, MetaProps>;
 
 export default component;
