@@ -6,14 +6,12 @@
   ],
   "commands": {
     "publish": {
-      "ignore": ["docs/*"]
+      "ignore": [
+        "docs/*",
+        "*.md",
+        "src/"
+      ]
     }
   },
-  "version": "independent",
-  "publishConfig": {
-    "ignore": [
-      "*.md",
-      "src/"
-    ]
-  }
+  "version": "independent"
 }
