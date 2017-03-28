@@ -20,13 +20,16 @@
         "react-dom": "^15.4.2"
     },
     "devDependencies": {
+        "shelljs": "^0.7.7",
+        "shx": "^0.2.2",
         "tslint": "^4.5.1",
-        "typescript": "^2.2.1",
-        "tslint-react": "^2.5.0"
+        "tslint-react": "^2.5.0",
+        "typescript": "^2.2.1"
     },
     "scripts": {
         "build": "tsc",
         "watch": "tsc --watch",
-        "prepublish": "npm run build"
+        "prepublish": "npm run build",
+        "clean": "shx rm -rf lib/"
     }
 }
