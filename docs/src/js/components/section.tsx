@@ -124,9 +124,7 @@ export class SectionSubtitle extends React.Component<{
 /**
  * Demo
  */
-export class Demo extends React.Component<{
-    children?: Children<any>,
-}, {}> {
+export class Demo extends React.Component<{ children?: Children<any> }, {}> {
     public render() {
         let {
             children,
@@ -138,15 +136,12 @@ export class Demo extends React.Component<{
                     <Typography className={styles["demo-title"]}>
                         <SectionSubtitle>
                             Demo
-                    </SectionSubtitle>
+                        </SectionSubtitle>
                     </Typography>
-                    <Elevation.Meta zSpace={4}>
-                        <div>
-                            <div className={styles["demo-content"]}>
-                                {children}
-                            </div>
-                        </div>
-                    </Elevation.Meta>
+                    <hr />
+                    <div className={styles["demo-content"]}>
+                        {children}
+                    </div>
                 </Cell>
             </Elevation.Meta>
         );

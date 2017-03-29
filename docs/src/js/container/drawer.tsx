@@ -79,6 +79,12 @@ export default class MainDrawer extends React.Component<Props, {}> {
                 <div>
                     <LinkListItem
                         activeClassName={SELECTED_CLASS_NAME}
+                        to="/basics"
+                        onClick={this.handleClickLink}>
+                        Basics
+                    </LinkListItem>
+                    <LinkListItem
+                        activeClassName={SELECTED_CLASS_NAME}
                         to="/typography"
                         onClick={this.handleClickLink}>
                         Typography
