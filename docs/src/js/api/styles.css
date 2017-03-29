@@ -7,6 +7,8 @@
   border-collapse: collapse;
   font-size: 0.8em;
   text-align: left;
+  margin-top: 24px;
+  margin-bottom: 24px;
 
   thead tr {
     &:last-child {

@@ -1,5 +1,7 @@
 import * as React from "react";
 
+import { Typography } from "@react-mdc/typography";
+
 import * as classNames from "classnames";
 
 import * as styles from "./styles.css";
@@ -11,6 +13,6 @@ export default function PageContainer(props: { className?: string, [key: string]
     } = props;
     className = classNames(className, styles["page-container"]);
     return (
-        <div className={className} {...p} />
+        <Typography className={className} {...p} />
     );
 }

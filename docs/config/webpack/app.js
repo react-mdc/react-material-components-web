@@ -73,7 +73,7 @@ module.exports = {
         loaders: [
             {
                 test: /\.(ts|tsx)$/,
-                // exclude: /(node_modules)|(\.example\.tsx?$)/,
+                exclude: /(node_modules)|(\.example\.tsx?$)/,
                 loader: "awesome-typescript-loader"
             },
             /* Styles */
