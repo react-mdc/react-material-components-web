@@ -42,17 +42,17 @@ export class Meta extends MetaAdapter<ChildProps, MetaProps, {}> {
     }
 }
 
-export type Props = React.HTMLProps<HTMLParagraphElement> & MetaProps;
+export type Props = React.HTMLProps<HTMLDivElement> & MetaProps;
 
 // TypeScript Bug
 // https://github.com/Microsoft/TypeScript/issues/5938
-const component = createDefaultComponent<React.HTMLProps<HTMLParagraphElement>, MetaProps, Props>(
-    "p",
+const component = createDefaultComponent<React.HTMLProps<HTMLDivElement>, MetaProps, Props>(
+    "div",
     Meta,
     [
         "zSpace",
         "transition",
-    ]) as DefaultComponent<React.HTMLProps<HTMLParagraphElement>, MetaProps>;
+    ]) as DefaultComponent<React.HTMLProps<HTMLDivElement>, MetaProps>;
 
 export {
     component as Elevation,
