@@ -17,7 +17,7 @@ export const propertyClassNames = {
 };
 
 export type MetaProps = {
-    inset: boolean,
+    inset?: boolean,
 };
 
 export type ChildProps = {

@@ -17,7 +17,7 @@ export const propertyClassNames = {
 };
 
 export type MetaProps = {
-    fixed: boolean,
+    fixed?: boolean,
 };
 
 export type ChildProps = {
