@@ -1,4 +1,11 @@
 import * as React from "react";
+import * as ReactDOM from "react-dom";
+
+import {
+    Map,
+    OrderedSet,
+    Set,
+} from "immutable";
 
 import {
     createDefaultComponent,
@@ -7,8 +14,17 @@ import {
 } from "@react-mdc/base/lib/meta";
 
 import {
-  BASE_CLASS_NAME,
+    MDCDialogFoundation,
+    util as dialogUtil,
+} from "@material/dialog/dist/mdc.dialog";
+import { SurfaceAdapter, FoundationAdapter } from "./adapter";
+import {
+    BASE_CLASS_NAME,
 } from "./constants";
+
+const {
+    strings: { FOCUSABLE_ELEMENTS }
+} = MDCDialogFoundation;
 
 export const CLASS_NAME = `${BASE_CLASS_NAME}__surface`;
 
@@ -19,12 +35,87 @@ export type ChildProps = {
     className?: string,
 };
 
+export type State = {
+    foundationClasses: Set<string>,
+    foundationEventListeners: Map<string, Set<EventListener>>,
+};
+
+export type Context = {
+    adapter: FoundationAdapter,
+};
+
 /**
  * Surface component
  */
-export class Meta extends MetaAdapter<ChildProps, MetaProps, {}> {
+export class Meta extends MetaAdapter<ChildProps, MetaProps, State> {
+    public static contextTypes = {
+        adapter: React.PropTypes.instanceOf(FoundationAdapter).isRequired,
+    };
+
+    public context: Context;
+
+    public state: State = {
+        foundationClasses: OrderedSet<string>(),
+        foundationEventListeners: Map<string, Set<EventListener>>(),
+    }
+
+    public componentDidMount() {
+        this.context.adapter.setSurfaceAdapter(new SurfaceAdapterImpl(this));
+    }
+
+    public componentWillUnmount() {
+        this.context.adapter.setSurfaceAdapter(new SurfaceAdapter());
+    }
+
     protected getBaseClassName() {
         return CLASS_NAME;
+    }
+
+    protected getNativeDOMProps() {
+        return {
+            eventListeners: this.state.foundationEventListeners.toJS(),
+        };
+    }
+}
+
+class SurfaceAdapterImpl extends SurfaceAdapter {
+    private element: Meta;
+
+    constructor(element: Meta) {
+        super();
+        this.element = element;
+    }
+    public registerSurfaceInteractionHandler(evt: string, handler: EventListener) {
+        this.element.setState((state) => ({
+            foundationEventListeners: state.foundationEventListeners.update(
+                evt,
+                OrderedSet<EventListener>(),
+                (x) => x.add(handler),
+            ),
+        }));
+    }
+    public deregisterSurfaceInteractionHandler(evt: string, handler: EventListener) {
+        this.element.setState((state) => ({
+            foundationEventListeners: state.foundationEventListeners.update(
+                evt,
+                OrderedSet<EventListener>(),
+                (x) => x.delete(handler),
+            ),
+        }));
+    }
+    public numFocusableTargets(): number {
+        return this.getDOMNode().querySelectorAll(FOCUSABLE_ELEMENTS)[0].length;
+    }
+    public setDialogFocusFirstTarget() {
+        return this.getDOMNode().querySelectorAll(FOCUSABLE_ELEMENTS)[0].focus();
+    }
+    public setInitialFocus() {
+    }
+    public getFocusableElements(): Element[] {
+        return this.getDOMNode().querySelectorAll(FOCUSABLE_ELEMENTS);
+    }
+    public getDOMNode(): Element {
+        return ReactDOM.findDOMNode(this.element);
     }
 }
 

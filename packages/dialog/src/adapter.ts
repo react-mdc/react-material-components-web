@@ -2,6 +2,10 @@
  * Foundation adapters.
  */
 
+import {
+    util as dialogUtil,
+} from "@material/dialog/dist/mdc.dialog";
+
 /**
  * Container adapter
  */
@@ -19,16 +23,9 @@ export class ContainerAdapter {
     }
     public deregisterInteractionHandler(evt: string, handler: EventListener) {
     }
-}
-
-export class BodyAdapter {
-    public addBodyClass(className: string) {
+    public notifyAccept() {
     }
-    public removeBodyClass(className: string) {
-    }
-    public setBodyAttr(attr: string, val: string) {
-    }
-    public rmBodyAttr(attr: string) {
+    public notifyCancel() {
     }
 }
 
@@ -54,21 +51,15 @@ export class SurfaceAdapter {
  */
 export class FoundationAdapter {
     private containerAdapter: ContainerAdapter;
-    private bodyAdapter: BodyAdapter;
     private surfaceAdapter: SurfaceAdapter;
 
     constructor() {
         this.containerAdapter = new ContainerAdapter();
-        this.bodyAdapter = new BodyAdapter();
         this.surfaceAdapter = new SurfaceAdapter();
     }
 
     public setContainerAdapter(containerAdapter: ContainerAdapter) {
         this.containerAdapter = containerAdapter;
-    }
-
-    public setBodyAdapter(bodyAdapter: BodyAdapter) {
-        this.bodyAdapter = bodyAdapter;
     }
 
     public setSurfaceAdapter(surfaceAdapter: SurfaceAdapter) {
@@ -89,23 +80,16 @@ export class FoundationAdapter {
         this.containerAdapter.setAttr(attr, val);
     }
     public registerInteractionHandler(evt: string, handler: EventListener) {
-        this.registerInteractionHandler(evt, handler);
+        this.containerAdapter.registerInteractionHandler(evt, handler);
     }
     public deregisterInteractionHandler(evt: string, handler: EventListener) {
-        this.deregisterInteractionHandler(evt, handler);
+        this.containerAdapter.deregisterInteractionHandler(evt, handler);
     }
-    /* Body */
-    public addBodyClass(className: string) {
-        this.bodyAdapter.addBodyClass(className);
+    public notifyAccept() {
+        this.containerAdapter.notifyAccept();
     }
-    public removeBodyClass(className: string) {
-        this.bodyAdapter.removeBodyClass(className);
-    }
-    public setBodyAttr(attr: string, val: string) {
-        this.bodyAdapter.setBodyAttr(attr, val);
-    }
-    public rmBodyAttr(attr: string) {
-        this.bodyAdapter.rmBodyAttr(attr);
+    public notifyCancel() {
+        this.containerAdapter.notifyCancel();
     }
     /* Surface */
     public registerSurfaceInteractionHandler(evt: string, handler: EventListener) {
@@ -153,14 +137,22 @@ export class FoundationAdapter {
         el.setAttribute("tabindex", "-1");
     }
     public saveElementTabState(el: Element) {
+        dialogUtil.saveElementTabState(el);
     }
     public restoreElementTabState(el: Element) {
+        dialogUtil.restoreElementTabState(el);
     }
-    public notifyAccept() {
-        // this.eventListener.onAccept();
+    public addBodyClass(className: string) {
+        document.body.classList.add(className);
     }
-    public notifyCancel() {
-        // this.eventListener.onCancel();
+    public removeBodyClass(className: string) {
+        document.body.classList.remove(className);
+    }
+    public setBodyAttr(attr: string, val: string) {
+        document.body.setAttribute(attr, val);
+    }
+    public rmBodyAttr(attr: string) {
+        document.body.removeAttribute(attr);
     }
     /**
      * MDCFoundation accepts only object as adapter
