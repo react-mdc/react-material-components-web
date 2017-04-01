@@ -28,3 +28,10 @@
   padding-right: 16px;
   cursor: pointer;
 }
+
+:global {
+  .mdc-dialog--open {
+    /* Codemirror has z-index > 3 */
+    z-index: calc(var(--app-drawer-z-index) + 1) !important;
+  }
+}

@@ -3,18 +3,19 @@ import * as React from "react";
 import { hashHistory, Route, Router } from "react-router";
 
 import Basics from "./pages/basics";
-import ButtonExample from "./pages/button";
-import CardExample from "./pages/card";
-import CheckboxExample from "./pages/checkbox";
-import ElevationExample from "./pages/elevation";
-import FabExample from "./pages/fab";
-import FormFieldExample from "./pages/form-field";
-import LayoutGridExample from "./pages/layout-grid";
-import RadioExample from "./pages/radio";
-import RippleExample from "./pages/ripple";
-import SwitchExample from "./pages/switch";
-import TextfieldExample from "./pages/textfield";
-import TypographyExample from "./pages/typography";
+import ButtonPage from "./pages/button";
+import CardPage from "./pages/card";
+import CheckboxPage from "./pages/checkbox";
+import DialogPage from "./pages/dialog";
+import ElevationPage from "./pages/elevation";
+import FabPage from "./pages/fab";
+import FormFieldPage from "./pages/form-field";
+import LayoutGridPage from "./pages/layout-grid";
+import RadioPage from "./pages/radio";
+import RipplePage from "./pages/ripple";
+import SwitchPage from "./pages/switch";
+import TextfieldPage from "./pages/textfield";
+import TypographyPage from "./pages/typography";
 
 import Container from "./container";
 import NotFound from "./pages/not-found";
@@ -38,18 +39,19 @@ export default function MainRouter() {
         <Router onUpdate={scrollToTop} history={hashHistory}>
             <Route path="/" component={MainContainer}>
                 <Route path="basics" component={Basics} />
-                <Route path="typography" component={TypographyExample} />
-                <Route path="elevation" component={ElevationExample} />
-                <Route path="button" component={ButtonExample} />
-                <Route path="fab" component={FabExample} />
-                <Route path="card" component={CardExample} />
-                <Route path="form-field" component={FormFieldExample} />
-                <Route path="radio" component={RadioExample} />
-                <Route path="ripple" component={RippleExample} />
-                <Route path="checkbox" component={CheckboxExample} />
-                <Route path="switch" component={SwitchExample} />
-                <Route path="textfield" component={TextfieldExample} />
-                <Route path="layout-grid" component={LayoutGridExample} />
+                <Route path="typography" component={TypographyPage} />
+                <Route path="elevation" component={ElevationPage} />
+                <Route path="button" component={ButtonPage} />
+                <Route path="fab" component={FabPage} />
+                <Route path="card" component={CardPage} />
+                <Route path="form-field" component={FormFieldPage} />
+                <Route path="radio" component={RadioPage} />
+                <Route path="ripple" component={RipplePage} />
+                <Route path="checkbox" component={CheckboxPage} />
+                <Route path="switch" component={SwitchPage} />
+                <Route path="textfield" component={TextfieldPage} />
+                <Route path="layout-grid" component={LayoutGridPage} />
+                <Route path="dialog" component={DialogPage} />
                 <Route path="*" component={NotFound} />
             </Route>
         </Router>

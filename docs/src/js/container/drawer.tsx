@@ -156,6 +156,12 @@ export default class MainDrawer extends React.Component<Props, {}> {
                         Layout Grid
                     </LinkListItem>
                     <LinkListItem
+                        activeClassName={SELECTED_CLASS_NAME}
+                        to="/dialog"
+                        onClick={this.handleClickLink}>
+                        Dialog
+                    </LinkListItem>
+                    <LinkListItem
                         href="https://github.com/Hardtack/react-material-components-web"
                         target="_blank">
                         GitHub Repository
