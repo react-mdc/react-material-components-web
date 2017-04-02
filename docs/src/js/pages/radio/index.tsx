@@ -1,7 +1,7 @@
 import * as React from "react";
 
 import { FormField } from "@react-mdc/form-field";
-import { Radio } from "@react-mdc/radio";
+import Radio from "@react-mdc/radio";
 import { Caption, Typography } from "@react-mdc/typography";
 
 import PageTitle from "app/js/components/page-title";

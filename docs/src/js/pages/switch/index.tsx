@@ -1,7 +1,7 @@
 import * as React from "react";
 
 import { FormField } from "@react-mdc/form-field";
-import { Label, Switch } from "@react-mdc/switch";
+import { default as Switch, Label } from "@react-mdc/switch";
 import { Caption, Typography } from "@react-mdc/typography";
 
 import PageTitle from "app/js/components/page-title";

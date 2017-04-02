@@ -1,7 +1,7 @@
 import * as React from "react";
 
 import { Button } from "@react-mdc/button";
-import { Checkbox } from "@react-mdc/checkbox";
+import Checkbox from "@react-mdc/checkbox";
 import { FormField } from "@react-mdc/form-field";
 import { Caption, Typography } from "@react-mdc/typography";
 

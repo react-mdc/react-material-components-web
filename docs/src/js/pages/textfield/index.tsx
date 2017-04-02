@@ -3,10 +3,9 @@ import * as React from "react";
 import { FormField } from "@react-mdc/form-field";
 import {
     Container as TextFieldContainer,
+    default as Textfield,
     Input,
     Label,
-    TextareaTextfield,
-    Textfield,
 } from "@react-mdc/textfield";
 
 import PageTitle from "app/js/components/page-title";
@@ -55,13 +54,15 @@ export default class TextfieldExample extends React.Component<{}, {}> {
                         inputId="textfield3"
                         placeholder="Title"
                         fullwidth />
-                    <TextareaTextfield
-                        rows="8"
-                        cols="40"
-                        inputId="textfield4"
-                        multiline
-                        placeholder="Content"
-                        fullwidth />
+                    <TextFieldContainer fullwidth multiline>
+                        <Input.Meta>
+                            <textarea
+                                rows={8}
+                                cols={40}
+                                id="textfield4"
+                                placeholder="Content" />
+                        </Input.Meta>
+                    </TextFieldContainer>
                 </Section>
             </div>
         );
