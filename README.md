@@ -149,49 +149,46 @@ $ npm run watch
 Supported Components
 --------------------
 
-- Button
+- [x] Button
 
-- Card
+- [x] Card
 
-- Checkbox
+- [x] Checkbox
 
-- Dialog
+- [x] Dialog
 
-- Drawer
+- [x] Drawer
 
-- Elevation
+- [x] Elevation
 
-- Fab
+- [x] Fab
 
-- Form Field
+- [x] Form Field
 
-- Layout Grid
+- [ ] Icon Toggle
 
-- List
+- [x] Layout Grid
 
-- Radio
+- [x] List
 
-- Ripple
+- [ ] Menu
 
-- Switch
+- [x] Radio
 
-- Textfield
+- [x] Ripple
 
-- Theme
+- [ ] Rtl
 
-- Toolbar
+- [ ] Select
 
-- Typography
+- [ ] Snackbar
 
-Ongoing Components
-------------------
+- [x] Switch
 
-- Icon Toggle
+- [x] Textfield
 
-- Menu
+- [x] Theme
 
-- Rtl
+- [x] Toolbar
 
-- Select
-
-- Snackbar
+- [x] Typography
