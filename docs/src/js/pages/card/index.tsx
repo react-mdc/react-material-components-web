@@ -27,7 +27,6 @@ import { stripIgnored } from "app/js/utils/code";
 
 import * as BasicDemoCode from "raw-loader!./basic.example.tsx";
 
-
 import * as Image1x1 from "app/images/1-1.jpg";
 import * as Image16x9 from "app/images/16-9.jpg";
 
