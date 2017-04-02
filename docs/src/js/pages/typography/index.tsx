@@ -101,7 +101,7 @@ export default function () {
                 </ul>
             </Text.Meta>
 
-            <Title>Demo</Title>
+            <Title>Usage</Title>
             <Code value={stripIgnored(TextExampleCode)} />
             <Demo>
                 <Typography>
@@ -151,7 +151,7 @@ export default function () {
             <Body2>
                 You can find a list of shortcuts from following example
             </Body2>
-            <Title>Demo</Title>
+            <Title>Usage</Title>
             <Code value={stripIgnored(ShortcutsExampleCode)} />
             <Demo>
                 <Typography>

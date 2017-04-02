@@ -103,7 +103,7 @@ class BasicDemo extends React.Component<{}, {}> {
     }
 }
 
-export default function () {
+export default function DialogPage() {
     return (
         <PageContainer>
             <PageTitle>
@@ -251,7 +251,7 @@ export default function () {
                 </tbody>
             </Table>
 
-            <Title>Demo</Title>
+            <Title>Usage</Title>
             <Code value={stripIgnored(BasicExampleCode)} />
             <Demo>
                 <BasicDemo />
