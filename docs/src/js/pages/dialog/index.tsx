@@ -1,25 +1,16 @@
 import * as React from "react";
 
-import { Button } from "@react-mdc/button";
+import Button from "@react-mdc/button";
 import * as dialog from "@react-mdc/dialog";
 import {
-    Body1,
     Body2,
-    Caption,
     Display1,
-    Display2,
-    Display3,
-    Display4,
-    Headline,
-    Subheading1,
-    Text,
     Title,
-    Typography,
 } from "@react-mdc/typography";
 
 import Code from "app/js/components/code";
-import PageContainer from "app/js/components/page-container";
 import Lib from "app/js/components/lib";
+import PageContainer from "app/js/components/page-container";
 import PageTitle from "app/js/components/page-title";
 import {
     Demo,

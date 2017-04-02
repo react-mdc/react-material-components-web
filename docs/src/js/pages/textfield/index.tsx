@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { FormField } from "@react-mdc/form-field";
+import FormField from "@react-mdc/form-field";
 import {
     Container as TextFieldContainer,
     default as Textfield,
