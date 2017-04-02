@@ -154,21 +154,23 @@ $ npm run watch
 Supported Components
 --------------------
 
-- Theme
+- Button
 
-- Typography
+- Card
+
+- Checkbox
+
+- Dialog
 
 - Drawer
 
 - Elevation
 
-- Button
-
 - Fab
 
-- Card
-
 - Form Field
+
+- Layout Grid
 
 - List
 
@@ -176,24 +178,24 @@ Supported Components
 
 - Ripple
 
-- Checkbox
+- Switch
 
 - Textfield
 
-- Switch
-
-- Layout Grid
+- Theme
 
 - Toolbar
+
+- Typography
 
 Ongoing Components
 ------------------
 
+- Icon Toggle
+
 - Menu
 
 - Rtl
-
-- Icon Toggle
 
 - Select
 
