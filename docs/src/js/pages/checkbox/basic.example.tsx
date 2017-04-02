@@ -29,9 +29,6 @@ class BasicDemo extends React.Component<{}, State> {
     public render() {
         return (
             <div>
-                <PageTitle>
-                    Checkbox Examples
-                </PageTitle>
                 <FieldSet>
                     <legend>Checkbox</legend>
                     <FormField>
