@@ -64,7 +64,7 @@ export default class MainDrawer extends React.Component<Props, {}> {
                     </Header>
                     <Content.Meta>
                         <group.ListGroup>
-                                {this.renderMenu()}
+                            {this.renderMenu()}
                         </group.ListGroup>
 
                     </Content.Meta>
@@ -85,27 +85,9 @@ export default class MainDrawer extends React.Component<Props, {}> {
                     </LinkListItem>
                     <LinkListItem
                         activeClassName={SELECTED_CLASS_NAME}
-                        to="/typography"
-                        onClick={this.handleClickLink}>
-                        Typography
-                    </LinkListItem>
-                    <LinkListItem
-                        activeClassName={SELECTED_CLASS_NAME}
-                        to="/elevation"
-                        onClick={this.handleClickLink}>
-                        Elevation
-                    </LinkListItem>
-                    <LinkListItem
-                        activeClassName={SELECTED_CLASS_NAME}
                         to="/button"
                         onClick={this.handleClickLink}>
                         Button
-                    </LinkListItem>
-                    <LinkListItem
-                        activeClassName={SELECTED_CLASS_NAME}
-                        to="/fab"
-                        onClick={this.handleClickLink}>
-                        Fab
                     </LinkListItem>
                     <LinkListItem
                         activeClassName={SELECTED_CLASS_NAME}
@@ -115,9 +97,39 @@ export default class MainDrawer extends React.Component<Props, {}> {
                     </LinkListItem>
                     <LinkListItem
                         activeClassName={SELECTED_CLASS_NAME}
+                        to="/checkbox"
+                        onClick={this.handleClickLink}>
+                        Checkbox
+                    </LinkListItem>
+                    <LinkListItem
+                        activeClassName={SELECTED_CLASS_NAME}
+                        to="/dialog"
+                        onClick={this.handleClickLink}>
+                        Dialog
+                    </LinkListItem>
+                    <LinkListItem
+                        activeClassName={SELECTED_CLASS_NAME}
+                        to="/elevation"
+                        onClick={this.handleClickLink}>
+                        Elevation
+                    </LinkListItem>
+                    <LinkListItem
+                        activeClassName={SELECTED_CLASS_NAME}
+                        to="/fab"
+                        onClick={this.handleClickLink}>
+                        Fab
+                    </LinkListItem>
+                    <LinkListItem
+                        activeClassName={SELECTED_CLASS_NAME}
                         to="/form-field"
                         onClick={this.handleClickLink}>
                         Form Field
+                    </LinkListItem>
+                    <LinkListItem
+                        activeClassName={SELECTED_CLASS_NAME}
+                        to="/layout-grid"
+                        onClick={this.handleClickLink}>
+                        Layout Grid
                     </LinkListItem>
                     <LinkListItem
                         activeClassName={SELECTED_CLASS_NAME}
@@ -133,12 +145,6 @@ export default class MainDrawer extends React.Component<Props, {}> {
                     </LinkListItem>
                     <LinkListItem
                         activeClassName={SELECTED_CLASS_NAME}
-                        to="/checkbox"
-                        onClick={this.handleClickLink}>
-                        Checkbox
-                    </LinkListItem>
-                    <LinkListItem
-                        activeClassName={SELECTED_CLASS_NAME}
                         to="/switch"
                         onClick={this.handleClickLink}>
                         Switch
@@ -151,15 +157,9 @@ export default class MainDrawer extends React.Component<Props, {}> {
                     </LinkListItem>
                     <LinkListItem
                         activeClassName={SELECTED_CLASS_NAME}
-                        to="/layout-grid"
+                        to="/typography"
                         onClick={this.handleClickLink}>
-                        Layout Grid
-                    </LinkListItem>
-                    <LinkListItem
-                        activeClassName={SELECTED_CLASS_NAME}
-                        to="/dialog"
-                        onClick={this.handleClickLink}>
-                        Dialog
+                        Typography
                     </LinkListItem>
                     <Divider />
                     <LinkListItem
