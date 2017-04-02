@@ -20,7 +20,7 @@ We **do not** recommend you to use this library for product now.
 Documentation
 -------------
 
-You can find a document with live examples at https://hardtack.github.io/react-material-components-web/
+You can find a document with live demo from https://hardtack.github.io/react-material-components-web/
 
 Features
 --------
@@ -125,11 +125,6 @@ Build
 $ npm run build
 
 ```
-
-Documentation
--------------
-
-TBD
 
 
 Run Docs
