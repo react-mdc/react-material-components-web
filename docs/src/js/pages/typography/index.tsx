@@ -15,13 +15,13 @@ import {
     Typography,
 } from "@react-mdc/typography";
 
-import API from "app/js/api";
 import Code from "app/js/components/code";
 import PageContainer from "app/js/components/page-container";
 import PageTitle from "app/js/components/page-title";
 import {
     Demo,
 } from "app/js/components/section";
+import Table from "app/js/components/table";
 import { stripIgnored } from "app/js/utils/code";
 
 import * as TextExampleCode from "raw-loader!./text.example.tsx";
@@ -57,12 +57,49 @@ export default function () {
             </Body2>
 
             <Title>Properties</Title>
-            <API name="Property"
-                value="Description"
-                items={{
-                    textStyle: "Style of text",
-                    adjustMargin: "Mark as margin adjusted component",
-                }} />
+            <Table>
+                <thead>
+                    <tr>
+                        <th>Property</th>
+                        <th>Type</th>
+                        <th>Required</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>textStyle</code></td>
+                        <td>String value of below list</td>
+                        <td>&#10004;</td>
+                        <td>Style of text component.</td>
+                    </tr>
+                    <tr>
+                        <td><code>adjustMargin</code></td>
+                        <td><code>boolean</code></td>
+                        <td />
+                        <td>
+                            Enable adjustment of component's margin.
+                        </td>
+                    </tr>
+                </tbody>
+            </Table>
+
+            <Title>Text Styles</Title>
+            <Text.Meta textStyle="body2">
+                <ul>
+                    <li><code>display4</code></li>
+                    <li><code>display3</code></li>
+                    <li><code>display2</code></li>
+                    <li><code>display1</code></li>
+                    <li><code>headline</code></li>
+                    <li><code>title</code></li>
+                    <li><code>subheading2</code></li>
+                    <li><code>subheading1</code></li>
+                    <li><code>body2</code></li>
+                    <li><code>body1</code></li>
+                    <li><code>caption</code></li>
+                </ul>
+            </Text.Meta>
 
             <Title>Demo</Title>
             <Code value={stripIgnored(TextExampleCode)} />
@@ -84,12 +121,33 @@ export default function () {
             <Body2>
                 There are coresponding shortcut components for each text styles.
             </Body2>
+            <Caption>
+                Shorcuts don't have meta components. Use <code>Text.Meta</code>
+                instead.
+            </Caption>
+
             <Title>Properties</Title>
-            <API name="Property"
-                value="Description"
-                items={{
-                    adjustMargin: "Mark as margin adjusted component",
-                }} />
+            <Table>
+                <thead>
+                    <tr>
+                        <th>Property</th>
+                        <th>Type</th>
+                        <th>Required</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>adjustMargin</code></td>
+                        <td><code>boolean</code></td>
+                        <td />
+                        <td>
+                            Enable adjustment of component's margin.
+                        </td>
+                    </tr>
+                </tbody>
+            </Table>
+
             <Body2>
                 You can find a list of shortcuts from following example
             </Body2>

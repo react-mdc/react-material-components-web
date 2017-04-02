@@ -2,6 +2,7 @@
 :root {
     --app-section-margin: 16px;
     --app-section-padding: 16px;
+    --app-api-table-border-color: #CCC;
 }
 
 .icon {
@@ -90,4 +91,40 @@
 .demo-title {
     padding: 8px;
     padding-bottom: 0;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.8em;
+  text-align: left;
+  margin-top: 24px;
+  margin-bottom: 24px;
+
+  thead tr {
+    &:last-child {
+      border: 0;
+      border-bottom: 1px;
+      border-style: solid;
+      border-color: var(--app-api-table-border-color);
+    }
+  }
+
+  tbody tr {
+    border: 0;
+    border-bottom: 1px;
+    border-style: solid;
+    border-color: var(--app-api-table-border-color);
+
+    &:last-child {
+      border-bottom: 0;
+    }
+    &:hover {
+      background: #EEEEEE;
+    }
+  }
+
+  td, th {
+    padding: 8px;
+  }
 }

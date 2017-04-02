@@ -161,6 +161,7 @@ export default class MainDrawer extends React.Component<Props, {}> {
                         onClick={this.handleClickLink}>
                         Dialog
                     </LinkListItem>
+                    <Divider />
                     <LinkListItem
                         href="https://github.com/Hardtack/react-material-components-web"
                         target="_blank">

@@ -14,11 +14,11 @@ import {
     DefaultComponent,
     MetaAdapter,
 } from "@react-mdc/base/lib/meta";
+import { includes } from "@react-mdc/base/lib/util";
 
 import {
     BASE_CLASS_NAME,
 } from "./constants";
-import { eventHandlerDecorator, includes } from "@react-mdc/base/lib/util";
 
 import { ContainerAdapter, FoundationAdapter } from "./adapter";
 
