@@ -18,7 +18,7 @@ import {
 import Table from "app/js/components/table";
 import { stripIgnored } from "app/js/utils/code";
 
-import * as BasicExampleCode from "raw-loader!./basic.example.tsx";
+import * as BasicDemoCode from "raw-loader!./basic.example.tsx";
 
 class BasicDemo extends React.Component<{}, {}> {
     public state: {
@@ -252,7 +252,7 @@ export default function DialogPage() {
             </Table>
 
             <Title>Usage</Title>
-            <Code value={stripIgnored(BasicExampleCode)} />
+            <Code value={stripIgnored(BasicDemoCode)} />
             <Demo>
                 <BasicDemo />
             </Demo>
