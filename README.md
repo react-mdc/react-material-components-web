@@ -72,8 +72,8 @@ $mdc-theme-background: #fff;
 
 `app.js`
 ``` javascript
-import React from 'react';
-import ReactDOM from 'react-dom';
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
 
 import "./stylesheets/my-mdc.scss";
 import Main from './main.js';
@@ -82,7 +82,7 @@ ReactDOM.render(<Main />, document.getElementById('root'));
 
 ```
 
-And import *@react-mdc* and try it.
+And import *@react-mdc* then try it.
 
 `main.js`
 ``` typescript
