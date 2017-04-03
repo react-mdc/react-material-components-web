@@ -1,7 +1,7 @@
 import * as React from "react";
 
 import Background from "./background";
-import { default as Container, ChildProps as ContainerChildProps } from "./container";
+import { ChildProps as ContainerChildProps, default as Container } from "./container";
 import InnerCircle from "./inner-circle";
 import NativeControl from "./native-control";
 import OuterCircle from "./outer-circle";
@@ -22,7 +22,7 @@ export type Props = {
 export default class Radio extends React.Component<Props, {}> {
     public render() {
         let {
-      inputId,
+            inputId,
             name,
             value,
             onChange,
