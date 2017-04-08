@@ -15,9 +15,7 @@ export default class Container extends React.Component<{ children?: Children<any
             <div className={styles.layout}>
                 <Toolbar />
                 <FixedToolbarAdjusted className={styles["content-layout"]}>
-                    <FixedToolbarAdjusted className={styles["left-layout"]} >
-                        <Drawer className={styles["drawer-layout"]} />
-                    </FixedToolbarAdjusted>
+                    <Drawer className={styles["drawer-layout"]} />
                     <div className={styles["inner-layout"]}>
                         {this.props.children}
                     </div>

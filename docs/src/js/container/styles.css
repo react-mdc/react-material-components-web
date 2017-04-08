@@ -1,5 +1,5 @@
 :root {
-    --app-toolbar-z-index: 10;
+    --app-drawer-z-index: 10;
     --app-toolbar-height: 64px;
     --app-content-padding: 16px;
     --app-drawer-width: 240px;
@@ -13,25 +13,23 @@
 
 .content-layout {
     display: flex;
-    padding-left: var(--app-drawer-width);
-}
-
-.left-layout {
-    position: fixed;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: var(--app-drawer-width);
+    flex-direction: row;
+    height: 100%;
 }
 
 .drawer-layout {
-    width: 100%;
+    width: var(--app-drawer-width);
+    z-index: var(--app-drawer-z-index);
     height: 100%;
     overflow: auto;
+    /* For Safari */
+    -webkit-overflow-scrolling: touch;
 }
 
 .inner-layout {
     flex: 1;
+    height: 100%;
+    overflow: auto;
     padding-left: var(--app-content-padding);
     padding-right: var(--app-content-padding);
 }
@@ -41,7 +39,7 @@
 
 .toolbar {
     /* Codemirror has z-index > 3 */
-    z-index: calc(var(--app-toolbar-z-index)) !important;
+    z-index: calc(var(--app-drawer-z-index) + 1) !important;
 }
 
 .toolbar-title {
@@ -56,6 +54,6 @@
 :global {
     .mdc-dialog--open {
         /* Codemirror has z-index > 3 */
-        z-index: calc(var(--app-toolbar-z-index) + 1) !important;
+        z-index: calc(var(--app-drawer-z-index) + 2) !important;
     }
 }
