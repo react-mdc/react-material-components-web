@@ -44,9 +44,13 @@
     z-index: calc(var(--app-toolbar-z-index)) !important;
 }
 
+.toolbar-title {
+    color: var(--mdc-theme-text-primary-on-primary, white);
+    text-decoration: none;
+}
+
 .toolbar-icon {
     padding-right: 16px;
-    cursor: pointer;
 }
 
 :global {

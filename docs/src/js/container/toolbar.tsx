@@ -1,4 +1,5 @@
 import * as React from "react";
+import { Link } from "react-router";
 
 import * as classNames from "classnames";
 
@@ -24,14 +25,16 @@ export default class MainToolbar extends React.Component<Props, {}> {
         return (
             <Toolbar className={classNames(this.props.className, styles.toolbar)} fixed={true}>
                 <Row>
-                    <Section align="start">
-                        <MaterialIcon className={styles["toolbar-icon"]}>
-                            layers
-                        </MaterialIcon>
-                        <Title>
-                            React Material Components Web
-                        </Title>
-                    </Section>
+                    <Section.Meta align="start">
+                        <Link to="/" className={styles["toolbar-title"]}>
+                            <MaterialIcon className={styles["toolbar-icon"]}>
+                                layers
+                            </MaterialIcon>
+                            <Title>
+                                React Material Components Web
+                            </Title>
+                        </Link>
+                    </Section.Meta>
                 </Row>
             </Toolbar>
         );
