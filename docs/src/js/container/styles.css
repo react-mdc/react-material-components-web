@@ -1,27 +1,47 @@
 :root {
-    --app-drawer-z-index: 10;
+    --app-toolbar-z-index: 10;
+    --app-toolbar-height: 64px;
+    --app-content-padding: 16px;
+    --app-drawer-width: 240px;
 }
 
 .layout {
     display: flex;
     flex: 1;
     flex-direction: column;
-    padding-left: 16px;
-    padding-right: 16px;
+}
+
+.content-layout {
+    display: flex;
+    padding-left: var(--app-drawer-width);
+}
+
+.left-layout {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: var(--app-drawer-width);
+}
+
+.drawer-layout {
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+}
+
+.inner-layout {
+    flex: 1;
+    padding-left: var(--app-content-padding);
+    padding-right: var(--app-content-padding);
 }
 
 .drawer {
-    /* Codemirror has z-index > 3 */
-    z-index: var(--app-drawer-z-index) !important;
-}
-
-.headerLink {
-    text-decoration: none;
 }
 
 .toolbar {
     /* Codemirror has z-index > 3 */
-    z-index: calc(var(--app-drawer-z-index) - 1) !important;
+    z-index: calc(var(--app-toolbar-z-index)) !important;
 }
 
 .menu-button {
@@ -32,6 +52,6 @@
 :global {
     .mdc-dialog--open {
         /* Codemirror has z-index > 3 */
-        z-index: calc(var(--app-drawer-z-index) + 1) !important;
+        z-index: calc(var(--app-toolbar-z-index) + 1) !important;
     }
 }

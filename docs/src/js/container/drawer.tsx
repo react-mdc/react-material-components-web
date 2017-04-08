@@ -1,13 +1,12 @@
 import * as React from "react";
 import { Link } from "react-router";
 
+import * as classNames from "classnames";
+
 import {
     Content,
-    Drawer,
-    Header,
-    HeaderContent,
-    TemporaryDrawer,
-} from "@react-mdc/drawer/lib/temporary";
+    PermanentDrawer,
+} from "@react-mdc/drawer/lib/permanent";
 import { SELECTED_CLASS_NAME } from "@react-mdc/drawer/lib/temporary/constants";
 import {
     Divider,
@@ -15,176 +14,97 @@ import {
     item,
     List,
 } from "@react-mdc/list";
-import { Themed } from "@react-mdc/theme";
 
 import * as styles from "./styles.css";
 
-export type Props = {
-    onOpenDrawer: () => void,
-    onCloseDrawer: () => void,
-    open: boolean,
-};
-
-function LinkListItem(props) {
+function MenuItem(props) {
     return (
         <item.ListItem.Meta>
-            <Link {...props} />
-        </item.ListItem.Meta>
+            <Link activeClassName={SELECTED_CLASS_NAME} {...props} />
+        </item.ListItem.Meta >
     );
 }
 
-export default class MainDrawer extends React.Component<Props, {}> {
-    public static defaultProps = {
-        onOpenDrawer: () => { },
-        onCloseDrawer: () => { },
+export default class Drawer extends React.Component<{}, {}> {
+    public props: {
+        className?: string,
     };
 
     public render() {
+        let {
+            className,
+            ...props,
+        } = this.props;
+        className = classNames(styles["drawer"], className);
         return (
-            <TemporaryDrawer
-                className={styles.drawer}
-                open={this.props.open}
-                onOpenDrawer={this.handleOpenDrawer}
-                onCloseDrawer={this.handleCloseDrawer}>
-                <Drawer>
-                    <Header>
-                        <Themed.Meta
-                            textColor="primary"
-                            onColor="primary"
-                            backgroundColor="primary">
-                            <HeaderContent.Meta>
-                                <Link
-                                    className={styles.headerLink}
-                                    onClick={this.handleClickHeader}
-                                    to="/">
-                                    React Material Components Web
-                                </Link>
-                            </HeaderContent.Meta>
-                        </Themed.Meta>
-                    </Header>
-                    <Content.Meta>
-                        <group.ListGroup>
-                            {this.renderMenu()}
-                        </group.ListGroup>
-
-                    </Content.Meta>
-                </Drawer>
-            </TemporaryDrawer>
+            <PermanentDrawer className={className} {...props}>
+                <Content>
+                    {this.renderMenu()}
+                </Content>
+            </PermanentDrawer>
         );
     }
 
     private renderMenu() {
         return (
-            <List.Meta>
-                <div>
-                    <LinkListItem
-                        activeClassName={SELECTED_CLASS_NAME}
-                        to="/basics"
-                        onClick={this.handleClickLink}>
-                        Basics
-                    </LinkListItem>
-                    <LinkListItem
-                        activeClassName={SELECTED_CLASS_NAME}
-                        to="/button"
-                        onClick={this.handleClickLink}>
-                        Button
-                    </LinkListItem>
-                    <LinkListItem
-                        activeClassName={SELECTED_CLASS_NAME}
-                        to="/card"
-                        onClick={this.handleClickLink}>
-                        Card
-                    </LinkListItem>
-                    <LinkListItem
-                        activeClassName={SELECTED_CLASS_NAME}
-                        to="/checkbox"
-                        onClick={this.handleClickLink}>
-                        Checkbox
-                    </LinkListItem>
-                    <LinkListItem
-                        activeClassName={SELECTED_CLASS_NAME}
-                        to="/dialog"
-                        onClick={this.handleClickLink}>
-                        Dialog
-                    </LinkListItem>
-                    <LinkListItem
-                        activeClassName={SELECTED_CLASS_NAME}
-                        to="/elevation"
-                        onClick={this.handleClickLink}>
-                        Elevation
-                    </LinkListItem>
-                    <LinkListItem
-                        activeClassName={SELECTED_CLASS_NAME}
-                        to="/fab"
-                        onClick={this.handleClickLink}>
-                        Fab
-                    </LinkListItem>
-                    <LinkListItem
-                        activeClassName={SELECTED_CLASS_NAME}
-                        to="/form-field"
-                        onClick={this.handleClickLink}>
-                        Form Field
-                    </LinkListItem>
-                    <LinkListItem
-                        activeClassName={SELECTED_CLASS_NAME}
-                        to="/layout-grid"
-                        onClick={this.handleClickLink}>
-                        Layout Grid
-                    </LinkListItem>
-                    <LinkListItem
-                        activeClassName={SELECTED_CLASS_NAME}
-                        to="/radio"
-                        onClick={this.handleClickLink}>
-                        Radio
-                    </LinkListItem>
-                    <LinkListItem
-                        activeClassName={SELECTED_CLASS_NAME}
-                        to="/ripple"
-                        onClick={this.handleClickLink}>
-                        Ripple
-                    </LinkListItem>
-                    <LinkListItem
-                        activeClassName={SELECTED_CLASS_NAME}
-                        to="/switch"
-                        onClick={this.handleClickLink}>
-                        Switch
-                    </LinkListItem>
-                    <LinkListItem
-                        activeClassName={SELECTED_CLASS_NAME}
-                        to="/textfield"
-                        onClick={this.handleClickLink}>
-                        Textfield
-                    </LinkListItem>
-                    <LinkListItem
-                        activeClassName={SELECTED_CLASS_NAME}
-                        to="/typography"
-                        onClick={this.handleClickLink}>
-                        Typography
-                    </LinkListItem>
-                    <Divider />
-                    <LinkListItem
-                        href="https://github.com/Hardtack/react-material-components-web"
-                        target="_blank">
-                        GitHub Repository
-                    </LinkListItem>
-                </div>
-            </List.Meta>
+            <group.ListGroup>
+                <List.Meta>
+                    <div>
+                        <MenuItem to="/" onlyActiveOnIndex>
+                            Home
+                        </MenuItem>
+                        <Divider />
+                        <MenuItem to="/basics">
+                            Basics
+                        </MenuItem>
+                        <MenuItem to="/button">
+                            Button
+                        </MenuItem>
+                        <MenuItem to="/card">
+                            Card
+                        </MenuItem>
+                        <MenuItem to="/checkbox">
+                            Checkbox
+                        </MenuItem>
+                        <MenuItem to="/dialog">
+                            Dialog
+                        </MenuItem>
+                        <MenuItem to="/elevation">
+                            Elevation
+                        </MenuItem>
+                        <MenuItem to="/fab">
+                            Fab
+                        </MenuItem>
+                        <MenuItem to="/form-field">
+                            Form Field
+                        </MenuItem>
+                        <MenuItem to="/layout-grid">
+                            Layout Grid
+                        </MenuItem>
+                        <MenuItem to="/radio">
+                            Radio
+                        </MenuItem>
+                        <MenuItem to="/ripple">
+                            Ripple
+                        </MenuItem>
+                        <MenuItem to="/switch">
+                            Switch
+                        </MenuItem>
+                        <MenuItem to="/textfield">
+                            Textfield
+                        </MenuItem>
+                        <MenuItem to="/typography">
+                            Typography
+                        </MenuItem>
+                        <Divider />
+                        <MenuItem
+                            href="https://github.com/Hardtack/react-material-components-web"
+                            target="_blank">
+                            GitHub Repository
+                        </MenuItem>
+                    </div>
+                </List.Meta>
+            </group.ListGroup>
         );
-    }
-
-    private handleOpenDrawer = () => {
-        this.props.onOpenDrawer();
-    }
-
-    private handleCloseDrawer = () => {
-        this.props.onCloseDrawer();
-    }
-
-    private handleClickLink = () => {
-        this.props.onCloseDrawer();
-    }
-
-    private handleClickHeader = () => {
-        this.props.onCloseDrawer();
     }
 }

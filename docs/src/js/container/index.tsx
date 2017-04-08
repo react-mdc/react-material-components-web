@@ -17,33 +17,16 @@ export default class Container extends React.Component<{ children?: Children<any
     public render() {
         return (
             <div className={styles.layout}>
-                <Drawer
-                    onOpenDrawer={this.handleOpenDrawer}
-                    onCloseDrawer={this.handleCloseDrawer}
-                    open={this.state.drawerOpen} />
-                <Toolbar onMenuButtonClick={this.handleMenuButtonClick} />
-                <FixedToolbarAdjusted>
-                    {this.props.children}
+                <Toolbar />
+                <FixedToolbarAdjusted className={styles["content-layout"]}>
+                    <FixedToolbarAdjusted className={styles["left-layout"]} >
+                        <Drawer className={styles["drawer-layout"]} />
+                    </FixedToolbarAdjusted>
+                    <div className={styles["inner-layout"]}>
+                        {this.props.children}
+                    </div>
                 </FixedToolbarAdjusted>
             </div>
         );
-    }
-
-    private handleOpenDrawer = () => {
-        this.setState({
-            drawerOpen: true,
-        });
-    }
-
-    private handleCloseDrawer = () => {
-        this.setState({
-            drawerOpen: false,
-        });
-    }
-
-    private handleMenuButtonClick = () => {
-        this.setState({
-            drawerOpen: true,
-        });
     }
 }

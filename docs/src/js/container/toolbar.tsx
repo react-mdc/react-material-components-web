@@ -14,7 +14,7 @@ import * as styles from "./styles.css";
 
 export type Props = {
     className?: string,
-    onMenuButtonClick: () => void,
+    onMenuButtonClick?: () => void,
 };
 
 export default class MainToolbar extends React.Component<Props, {}> {
