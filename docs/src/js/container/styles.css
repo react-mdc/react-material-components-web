@@ -2,7 +2,6 @@
     --app-drawer-z-index: 10;
     --app-toolbar-height: 64px;
     --app-content-padding: 16px;
-    --app-drawer-width: 240px;
 }
 
 .layout {
@@ -14,13 +13,12 @@
 .content-layout {
     display: flex;
     flex-direction: row;
-    height: 100%;
+    flex: 1;
 }
 
 .drawer-layout {
-    width: var(--app-drawer-width);
+    height: auto;
     z-index: var(--app-drawer-z-index);
-    height: 100%;
     overflow: auto;
     /* For Safari */
     -webkit-overflow-scrolling: touch;
@@ -28,10 +26,11 @@
 
 .inner-layout {
     flex: 1;
-    height: 100%;
     overflow: auto;
     padding-left: var(--app-content-padding);
     padding-right: var(--app-content-padding);
+    /* For Safari */
+    -webkit-overflow-scrolling: touch;
 }
 
 .drawer {
