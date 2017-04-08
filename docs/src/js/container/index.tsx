@@ -10,10 +10,6 @@ import { Children } from "app/js/common/types";
 import * as styles from "./styles.css";
 
 export default class Container extends React.Component<{ children?: Children<any> }, {}> {
-    public state = {
-        drawerOpen: false,
-    };
-
     public render() {
         return (
             <div className={styles.layout}>

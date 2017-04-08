@@ -44,7 +44,7 @@
     z-index: calc(var(--app-toolbar-z-index)) !important;
 }
 
-.menu-button {
+.toolbar-icon {
     padding-right: 16px;
     cursor: pointer;
 }
