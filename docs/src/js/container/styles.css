@@ -5,32 +5,22 @@
 }
 
 .layout {
-    display: flex;
-    flex: 1;
-    flex-direction: column;
+    width: 100%;
 }
 
 .content-layout {
     display: flex;
     flex-direction: row;
-    flex: 1;
 }
 
 .drawer-layout {
-    height: auto;
     z-index: var(--app-drawer-z-index);
-    overflow: auto;
-    /* For Safari */
-    -webkit-overflow-scrolling: touch;
+    height: auto;
 }
 
 .inner-layout {
-    flex: 1;
-    overflow: auto;
     padding-left: var(--app-content-padding);
     padding-right: var(--app-content-padding);
-    /* For Safari */
-    -webkit-overflow-scrolling: touch;
 }
 
 .drawer {
