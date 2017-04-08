@@ -30,9 +30,13 @@ function MainContainer(props) {
     return <Container children={children} {...p} />;
 }
 
+function scrollToTop() {
+    window.scrollTo(0, 0);
+}
+
 export default function MainRouter() {
     return (
-        <Router history={hashHistory}>
+        <Router onUpdate={scrollToTop} history={hashHistory}>
             <Route path="/" component={MainContainer}>
                 <Route path="basics" component={Basics} />
                 <Route path="typography" component={TypographyPage} />

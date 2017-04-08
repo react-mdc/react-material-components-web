@@ -2,6 +2,7 @@
     --app-drawer-z-index: 10;
     --app-toolbar-height: 64px;
     --app-content-padding: 16px;
+    --app-drawer-width: 240px;
 }
 
 .layout {
@@ -14,6 +15,7 @@
 }
 
 .drawer-layout {
+    flex-shrink: 0;
     z-index: var(--app-drawer-z-index);
     height: auto;
 }

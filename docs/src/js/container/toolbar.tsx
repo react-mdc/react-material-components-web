@@ -23,7 +23,7 @@ export default class MainToolbar extends React.Component<Props, {}> {
 
     public render() {
         return (
-            <Toolbar className={classNames(this.props.className, styles.toolbar)}>
+            <Toolbar className={classNames(this.props.className, styles.toolbar)} fixed>
                 <Row>
                     <Section.Meta align="start">
                         <Link to="/" className={styles["toolbar-title"]}>
