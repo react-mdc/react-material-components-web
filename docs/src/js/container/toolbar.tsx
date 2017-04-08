@@ -3,6 +3,7 @@ import * as React from "react";
 import * as classNames from "classnames";
 
 import {
+    Row,
     Section,
     Toolbar,
 } from "@react-mdc/toolbar";
@@ -26,13 +27,15 @@ export default class MainToolbar extends React.Component<Props, {}> {
     public render() {
         return (
             <Toolbar className={classNames(this.props.className, styles.toolbar)} fixed={true}>
-                <Section align="start">
-                    <MaterialIcon
-                        className={styles["menu-button"]}
-                        onClick={this.props.onMenuButtonClick}>
-                        menu
-                    </MaterialIcon>
-                </Section>
+                <Row>
+                    <Section align="start">
+                        <MaterialIcon
+                            className={styles["menu-button"]}
+                            onClick={this.props.onMenuButtonClick}>
+                            menu
+                        </MaterialIcon>
+                    </Section>
+                </Row>
             </Toolbar>
         );
     }
