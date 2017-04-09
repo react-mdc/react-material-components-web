@@ -21,6 +21,8 @@
 }
 
 .inner-layout {
+    width: 100%;
+    min-width: 512px;
     padding-left: var(--app-content-padding);
     padding-right: var(--app-content-padding);
 }
