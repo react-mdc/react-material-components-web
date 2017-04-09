@@ -50,6 +50,6 @@ export type Props = React.HTMLProps<HTMLHeadingElement> & MetaProps;
 const component = createDefaultComponent<React.HTMLProps<HTMLHeadingElement>, MetaProps, Props>(
     "h1",
     Meta,
-    []) as DefaultComponent<React.HTMLProps<HTMLHeadingElement>, MetaProps>;
+    ["large"]) as DefaultComponent<React.HTMLProps<HTMLHeadingElement>, MetaProps>;
 
 export default component;
