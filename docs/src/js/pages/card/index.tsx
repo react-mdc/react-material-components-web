@@ -247,6 +247,50 @@ export default function CardPage() {
                 Card action component.
             </Body2>
 
+            <Display1>Primary</Display1>
+            <Lib>@react-mdc/button/lib/actions/container</Lib>
+            <Body2>
+                Card primary text / title content block.
+            </Body2>
+
+            <Display1>Primary</Display1>
+            <Lib>@react-mdc/button/lib/primary/container</Lib>
+            <Body2>
+                Card primary text / title content block.
+            </Body2>
+
+            <Display1>Title</Display1>
+            <Lib>@react-mdc/button/lib/primary/title</Lib>
+            <Body2>
+                Card title block
+            </Body2>
+
+            <Title>Properties</Title>
+            <Table>
+                <thead>
+                    <tr>
+                        <th>Property</th>
+                        <th>Type</th>
+                        <th>Required</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>large</code></td>
+                        <td><code>boolean</code></td>
+                        <td />
+                        <td>Render large title.</td>
+                    </tr>
+                </tbody>
+            </Table>
+
+            <Display1>Subtitle</Display1>
+            <Lib>@react-mdc/button/lib/primary/subtitle</Lib>
+            <Body2>
+                Card subtitle block
+            </Body2>
+
             <Title>Usage</Title>
             <Code value={stripIgnored(BasicDemoCode)} />
             <Demo>

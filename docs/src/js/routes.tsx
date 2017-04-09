@@ -23,9 +23,9 @@ import Welcome from "./pages/welcome";
 
 function MainContainer(props) {
     let {
-    children,
-        ...p
-  } = props;
+        children,
+        ...p,
+    } = props;
     children = children || <Welcome />;
     return <Container children={children} {...p} />;
 }
@@ -52,8 +52,8 @@ export default function MainRouter() {
                 <Route path="textfield" component={TextfieldPage} />
                 <Route path="layout-grid" component={LayoutGridPage} />
                 <Route path="dialog" component={DialogPage} />
-                <Route path="*" component={NotFound} />
             </Route>
+            <Route path="*" component={NotFound} />
         </Router>
     );
 }
