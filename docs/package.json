@@ -6,7 +6,7 @@
   "dependencies": {
     "@react-mdc/base": "^0.1.2",
     "@react-mdc/button": "^0.1.0",
-    "@react-mdc/card": "^0.1.0",
+    "@react-mdc/card": "^0.1.3",
     "@react-mdc/checkbox": "^0.1.5",
     "@react-mdc/dialog": "^0.1.0",
     "@react-mdc/drawer": "^0.1.1",
