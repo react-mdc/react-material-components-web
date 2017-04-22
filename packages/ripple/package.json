@@ -1,35 +1,35 @@
 {
-    "name": "@react-mdc/ripple",
-    "description": "React wrapper of @material/ripple",
-    "version": "0.1.4",
-    "license": "MIT",
-    "main": "lib/index",
-    "typings": "lib/index.d.ts",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/react-mdc/react-material-components-web.git"
-    },
-    "dependencies": {
-        "@material/ripple": "^0.2.0",
-        "@react-mdc/base": "^0.1.5",
-        "@types/classnames": "0.0.32",
-        "@types/react": "^15.0.18",
-        "classnames": "^2.2.5",
-        "immutable": "^3.8.1",
-        "react": "^15.4.2",
-        "react-dom": "^15.4.2"
-    },
-    "devDependencies": {
-        "shelljs": "^0.7.7",
-        "shx": "^0.2.2",
-        "tslint": "^4.5.1",
-        "tslint-react": "^2.5.0",
-        "typescript": "^2.2.1"
-    },
-    "scripts": {
-        "build": "tsc",
-        "watch": "tsc --watch",
-        "prepublish": "npm run build",
-        "clean": "shx rm -rf lib/"
-    }
+  "name": "@react-mdc/ripple",
+  "description": "React wrapper of @material/ripple",
+  "version": "0.1.5",
+  "license": "MIT",
+  "main": "lib/index",
+  "typings": "lib/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/react-mdc/react-material-components-web.git"
+  },
+  "dependencies": {
+    "@material/ripple": "^0.2.0",
+    "@react-mdc/base": "^0.1.6",
+    "@types/classnames": "0.0.32",
+    "@types/react": "^15.0.18",
+    "classnames": "^2.2.5",
+    "immutable": "^3.8.1",
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2"
+  },
+  "devDependencies": {
+    "shelljs": "^0.7.7",
+    "shx": "^0.2.2",
+    "tslint": "^4.5.1",
+    "tslint-react": "^2.5.0",
+    "typescript": "^2.2.1"
+  },
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "prepublish": "npm run build",
+    "clean": "shx rm -rf lib/"
+  }
 }
