@@ -4,8 +4,7 @@ const webpack = require("webpack");
 const {
   DOCS_ROOT,
   BUILD_PATH,
-  PRODUCTION,
-  URL_PREFIX
+  PRODUCTION
 } = require("./constants");
 
 const ENV_PLUGINS = PRODUCTION ? [
@@ -35,7 +34,7 @@ module.exports = {
   ].concat(ENV_PLUGINS),
   output: {
     path: BUILD_PATH,
-    publicPath: URL_PREFIX + "build/",
+    publicPath: "/build/",
     filename: "[name].dll.js",
     library: "[name]_dll"
   },

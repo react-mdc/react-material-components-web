@@ -98,7 +98,7 @@ export default class Drawer extends React.Component<{}, {}> {
                         </MenuItem>
                         <Divider />
                         <MenuItem
-                            href="https://github.com/Hardtack/react-material-components-web"
+                            href="https://github.com/react-mdc/react-material-components-web"
                             target="_blank">
                             GitHub Repository
                         </MenuItem>

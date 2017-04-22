@@ -6,4 +6,3 @@ const BUILD_PATH = module.exports.BUILD_PATH = path.resolve(DOCS_ROOT, "build");
 const SRC_ROOT = module.exports.SRC_ROOT = path.resolve(DOCS_ROOT, "src");
 
 const PRODUCTION = module.exports.PRODUCTION = process.env.NODE_ENV === "production";
-const URL_PREFIX = module.exports.URL_PREFIX = `/${process.env.URL_PREFIX || ""}`;

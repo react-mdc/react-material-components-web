@@ -1,4 +1,6 @@
 ### Project ###
+# Docs
+/docs/build/
 # Don't use yarn for library project
 yarn.lock
 # Transpiled source directory

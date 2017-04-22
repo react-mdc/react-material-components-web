@@ -9,8 +9,7 @@ const {
     DOCS_ROOT,
     BUILD_PATH,
     SRC_ROOT,
-    PRODUCTION,
-    URL_PREFIX
+    PRODUCTION
 } = require("./constants");
 
 function loadManifest(name) {
@@ -60,7 +59,7 @@ module.exports = {
     ].concat(ENV_PLUGINS),
     output: {
         path: BUILD_PATH,
-        publicPath: URL_PREFIX + "build/",
+        publicPath: "/build/",
         filename: "bundle.js"
     },
     resolve: {
