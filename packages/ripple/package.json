@@ -1,7 +1,7 @@
 {
   "name": "@react-mdc/ripple",
   "description": "React wrapper of @material/ripple",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "license": "MIT",
   "main": "lib/index",
   "typings": "lib/index.d.ts",

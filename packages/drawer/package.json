@@ -1,7 +1,7 @@
 {
   "name": "@react-mdc/drawer",
   "description": "React wrapper of @material/drawer",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "license": "MIT",
   "main": "lib/index",
   "typings": "lib/index.d.ts",

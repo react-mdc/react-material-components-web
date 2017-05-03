@@ -1,7 +1,7 @@
 {
   "name": "@react-mdc/checkbox",
   "description": "React wrapper of @material/checkbox",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "license": "MIT",
   "main": "lib/index",
   "typings": "lib/index.d.ts",
