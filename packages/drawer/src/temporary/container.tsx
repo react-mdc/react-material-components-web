@@ -1,6 +1,7 @@
 import * as React from "react";
 
 import * as classNames from "classnames";
+import * as PropTypes from "prop-types";
 
 import { MDCTemporaryDrawerFoundation } from "@material/drawer/dist/mdc.drawer";
 import {
@@ -58,7 +59,7 @@ const {
 
 export class Meta extends MetaAdapter<ChildProps, MetaProps, State> {
     public static childContextTypes = {
-        adapter: React.PropTypes.instanceOf(FoundationAdapter),
+        adapter: PropTypes.instanceOf(FoundationAdapter),
     };
 
     public static defaultProps = {

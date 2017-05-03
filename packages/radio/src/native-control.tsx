@@ -1,12 +1,13 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 
+import * as PropTypes from "prop-types";
+
 import {
     createDefaultComponent,
     DefaultComponent,
     MetaAdapter,
 } from "@react-mdc/base/lib/meta";
-
 import { eventHandlerDecorator } from "@react-mdc/base/lib/util";
 
 import { FoundationAdapter, NativeControlAdapter } from "./adapter";
@@ -41,7 +42,7 @@ export type Context = {
  */
 export class Meta extends MetaAdapter<ChildProps, MetaProps, {}> {
     public static contextTypes = {
-        adapter: React.PropTypes.instanceOf(FoundationAdapter).isRequired,
+        adapter: PropTypes.instanceOf(FoundationAdapter).isRequired,
     };
 
     public defaultOnChange: React.ChangeEventHandler<ChildProps>;

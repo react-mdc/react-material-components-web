@@ -1,6 +1,7 @@
 import * as React from "react";
 
 import { OrderedSet, Set } from "immutable";
+import * as PropTypes from "prop-types";
 
 import { MDCRadioFoundation } from "@material/radio/dist/mdc.radio";
 import {
@@ -39,7 +40,7 @@ export type ChildContext = {
  */
 export class Meta extends MetaAdapter<ChildProps, MetaProps, State> {
     public static childContextTypes = {
-        adapter: React.PropTypes.instanceOf(FoundationAdapter),
+        adapter: PropTypes.instanceOf(FoundationAdapter),
     };
 
     public state: State = {

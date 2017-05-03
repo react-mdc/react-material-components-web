@@ -1,6 +1,7 @@
 import * as React from "react";
 
 import * as classNames from "classnames";
+import * as PropTypes from "prop-types";
 
 import { MDCDialogFoundation } from "@material/dialog/dist/mdc.dialog";
 import {
@@ -63,7 +64,7 @@ export type ChildContext = {
  */
 export class Meta extends MetaAdapter<ChildProps, MetaProps, State> {
     public static childContextTypes = {
-        adapter: React.PropTypes.instanceOf(FoundationAdapter),
+        adapter: PropTypes.instanceOf(FoundationAdapter),
     };
 
     public static defaultProps = {

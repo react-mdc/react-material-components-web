@@ -1,5 +1,6 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
+import * as PropTypes from "prop-types";
 
 import {
     Map,
@@ -41,7 +42,7 @@ export type Context = {
  */
 export class Meta extends MetaAdapter<ChildProps, MetaProps, State> {
     public static contextTypes = {
-        adapter: React.PropTypes.instanceOf(FoundationAdapter).isRequired,
+        adapter: PropTypes.instanceOf(FoundationAdapter).isRequired,
     };
 
     public context: Context;

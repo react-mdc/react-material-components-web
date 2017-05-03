@@ -2,6 +2,7 @@ import * as React from "react";
 
 import { MDCTextfieldFoundation } from "@material/textfield/dist/mdc.textfield";
 import { OrderedSet, Set } from "immutable";
+import * as PropTypes from "prop-types";
 
 import {
     createDefaultComponent,
@@ -46,7 +47,7 @@ export type ChildContext = {
  */
 export class Meta extends MetaAdapter<ChildProps, MetaProps, State> {
     public static childContextTypes = {
-        adapter: React.PropTypes.instanceOf(FoundationAdapter),
+        adapter: PropTypes.instanceOf(FoundationAdapter),
     };
 
     public state: State = {

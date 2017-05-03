@@ -4,6 +4,7 @@ import {
     OrderedSet,
     Set,
 } from "immutable";
+import * as PropTypes from "prop-types";
 
 import {
     createDefaultComponent,
@@ -35,7 +36,7 @@ export type Context = {
  */
 export class Meta extends MetaAdapter<ChildProps, MetaProps, State> {
     public static contextTypes = {
-        adapter: React.PropTypes.instanceOf(FoundationAdapter).isRequired,
+        adapter: PropTypes.instanceOf(FoundationAdapter).isRequired,
     };
 
     public context: Context;

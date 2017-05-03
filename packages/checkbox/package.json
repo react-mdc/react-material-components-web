@@ -13,10 +13,12 @@
     "@material/checkbox": "^0.1.2",
     "@react-mdc/base": "^0.1.6",
     "@types/classnames": "0.0.32",
+    "@types/prop-types": "^15.5.1",
     "@types/react": "^15.0.18",
     "@types/react-dom": "^0.14.23",
     "classnames": "^2.2.5",
     "immutable": "^3.8.1",
+    "prop-types": "^15.5.8",
     "react": "^15.4.2",
     "react-dom": "^15.4.2"
   },

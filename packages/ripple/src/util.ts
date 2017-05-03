@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-export function supportsCssVariables (windowObj: any): boolean {
+export function supportsCssVariables(windowObj: any): boolean {
   const supportsFunctionPresent = windowObj.CSS && typeof windowObj.CSS.supports === "function";
   if (!supportsFunctionPresent) {
     return false;
@@ -32,7 +32,7 @@ export function supportsCssVariables (windowObj: any): boolean {
   return explicitlySupportsCssVars || weAreFeatureDetectingSafari10plus;
 }
 
-export function getMatchesProperty (htmlElementPrototype: any): string {
+export function getMatchesProperty(htmlElementPrototype: any): string {
   return [
     "webkitMatchesSelector", "msMatchesSelector", "matches",
   ].filter((p) => p in htmlElementPrototype).pop() || "matches";
