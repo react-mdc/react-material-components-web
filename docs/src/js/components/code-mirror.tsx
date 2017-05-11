@@ -72,7 +72,7 @@ export default class ReactCodemirror extends React.Component<Props, State> {
             nextProps.value !== undefined &&
             normalizeLineEndings(this.codeMirror.getValue()) !== normalizeLineEndings(nextProps.value)) {
             if (this.props.preserveScrollPosition) {
-                let prevScrollPosition = this.codeMirror.getScrollInfo();
+                const prevScrollPosition = this.codeMirror.getScrollInfo();
                 this.codeMirror.setValue(nextProps.value);
                 this.codeMirror.scrollTo(prevScrollPosition.left, prevScrollPosition.top);
             } else {
@@ -80,7 +80,7 @@ export default class ReactCodemirror extends React.Component<Props, State> {
             }
         }
         if (typeof nextProps.options === "object") {
-            for (let optionName in nextProps.options) {
+            for (const optionName in nextProps.options) {
                 if (nextProps.options.hasOwnProperty(optionName)) {
                     this.codeMirror.setOption(optionName, nextProps.options[optionName]);
                 }

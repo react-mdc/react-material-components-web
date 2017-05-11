@@ -63,7 +63,7 @@ export function applyPassive(globalObj: any = window, forceRefresh = false) {
   if (_supportsPassive === undefined || forceRefresh) {
     let isSupported = false;
     try {
-      let checker = {};
+      const checker = {};
       Object.defineProperty(checker, "passive", { get: () => { isSupported = true; } });
       globalObj.document.addEventListener("test", null, checker);
     } catch (e) { }

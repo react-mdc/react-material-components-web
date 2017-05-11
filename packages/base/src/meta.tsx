@@ -2,10 +2,21 @@ import * as React from "react";
 
 import * as classNames from "classnames";
 
-import { default as NativeDOMAdapter, Props as NativeDOMProps } from "./native-dom-adapter";
+import {
+    Attributes,
+    CSSVariables,
+    default as NativeDOMAdapter,
+    EventListeners,
+} from "./native-dom-adapter";
 
 export type Props<ChildProps> = {
     children?: React.ReactElement<ChildProps>,
+};
+
+export type NativeDOMProps = {
+    cssVariables?: CSSVariables,
+    eventListeners?: EventListeners,
+    attributes?: Attributes,
 };
 
 export default class Meta<ChildProps, P, S> extends React.Component<P & Props<ChildProps>, S> {
@@ -45,9 +56,9 @@ export class MetaAdapter<ChildProps extends ClassNameChildProps, P extends Class
         const nativeDOMProps = this.getNativeDOMProps();
         return (
             <NativeDOMAdapter {...nativeDOMProps}>
-                {super.render()}
+                {super.render() || undefined}
             </NativeDOMAdapter>
-        )
+        );
     }
 
     protected renderProps(childProps: ChildProps): ChildProps {
@@ -63,7 +74,7 @@ export class MetaAdapter<ChildProps extends ClassNameChildProps, P extends Class
             this.getBaseClassName(),
             ...this.getClassValues(childProps),
             this.props.className,
-            childProps.className
+            childProps.className,
         );
     }
 
@@ -91,8 +102,8 @@ export function
     React.StatelessComponent<Props> & { Meta: React.ComponentClass<MetaProps> } {
     // FIXME: This is typecasting hell
     function Component(props: ChildProps & MetaProps) {
-        let metaProps: Partial<MetaProps> = {};
-        let childProps: Partial<ChildProps> = {};
+        const metaProps: Partial<MetaProps> = {};
+        const childProps: Partial<ChildProps> = {};
 
         for (const key in props) {
             if (!props.hasOwnProperty(key)) {

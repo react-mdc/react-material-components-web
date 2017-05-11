@@ -1,12 +1,24 @@
 import * as React from "react";
 
 import Container from "./container";
-import Input from "./input";
+
+// Typescript transpiler does not compile following line.
+// I don't know why, and it seems to be bug of typescript
+//
+// import Input from "./input";
+//
+// We bypass the bug using following lines
+/* ---from here --- */
+import * as InputModule from "./input";
+// tslint:disable:variable-name
+const Input = InputModule.default;
+// tslint:enable:variable-name
+/* --- to here --- */
 
 export type ContainerProps = any;
 export type InputProps = any;
 
-type TextFieldInternalProps<C, I> = {
+type TextFieldInternalProps = {
     containerProps: ContainerProps,
     inputProps: InputProps,
 };
@@ -14,9 +26,9 @@ type TextFieldInternalProps<C, I> = {
 /**
  * Internal default composed component
  */
-class TextFieldInternal<C, I> extends React.Component<TextFieldInternalProps<C, I>, {}> {
+class TextFieldInternal extends React.Component<TextFieldInternalProps, {}> {
     public render() {
-        let {
+        const {
             containerProps,
             inputProps,
         } = this.props;
@@ -43,7 +55,7 @@ export type Props = ContainerProps & {
  */
 export class Textfield extends React.Component<Props, {}> {
     public render() {
-        let {
+        const {
             inputId,
             name,
             value,

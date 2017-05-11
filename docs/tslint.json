@@ -6,6 +6,8 @@
     "rules": {
         // Common
         "object-literal-sort-keys": false,
+        "interface-over-type-literal": false,
+        "prefer-const": [true, {"destructuring": "all"}],
         "no-unused-variable": [
             true,
             "react",

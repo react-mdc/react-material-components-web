@@ -42,7 +42,7 @@ export default class NativeDOMAdapter extends React.Component<Props, {}> {
         attributes: {},
     };
 
-    public props: Props
+    public props: Props;
 
     // Last known DOM node
     private lastDOMNode: HTMLElement;

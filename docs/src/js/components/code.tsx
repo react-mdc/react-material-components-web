@@ -34,7 +34,7 @@ export default function Code(p: Props) {
     } = p;
 
     className = classNames(styles.code, className);
-    let mergedOptions: {
+    const mergedOptions: {
         [key: string]: any,
     } = {};
     mergedOptions.mode = ifNull<string>(mode, "jsx");

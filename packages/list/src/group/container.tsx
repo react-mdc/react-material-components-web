@@ -7,7 +7,7 @@ import {
 } from "@react-mdc/base/lib/meta";
 
 import {
-    BASE_CLASS_NAME
+    BASE_CLASS_NAME,
 } from "./constants";
 
 export const CLASS_NAME = BASE_CLASS_NAME;

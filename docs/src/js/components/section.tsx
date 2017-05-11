@@ -9,7 +9,6 @@ import {
 } from "@react-mdc/layout-grid";
 import { Subheading2, Title, Typography } from "@react-mdc/typography";
 
-import { Children } from "app/js/common/types";
 import * as styles from "./styles.css";
 
 /**
@@ -18,7 +17,7 @@ import * as styles from "./styles.css";
 export class Section extends React.Component<{
     title?: string,
     className?: string,
-    children?: Children<any>,
+    children?: React.ReactChild,
 }, {}> {
     public render() {
         const {
@@ -52,10 +51,10 @@ export class Section extends React.Component<{
  * Section Title
  */
 export class SectionTitle extends React.Component<{
-    children?: Children<any>,
+    children?: React.ReactChild,
 }, {}> {
     public render() {
-        let {
+        const {
             children,
             ...props,
         } = this.props;
@@ -73,7 +72,7 @@ export class SectionTitle extends React.Component<{
 
 type SectionPanelProps = {
     title: string,
-    children?: Children<any>,
+    children?: React.ReactChild,
     [key: string]: any,
 };
 
@@ -102,10 +101,10 @@ export function SectionPanel(props: SectionPanelProps) {
  * Section Subtitle
  */
 export class SectionSubtitle extends React.Component<{
-    children?: Children<any>,
+    children?: React.ReactChild,
 }, {}> {
     public render() {
-        let {
+        const {
             children,
             ...props,
         } = this.props;
@@ -124,9 +123,9 @@ export class SectionSubtitle extends React.Component<{
 /**
  * Demo
  */
-export class Demo extends React.Component<{ children?: Children<any> }, {}> {
+export class Demo extends React.Component<{ children?: React.ReactChild }, {}> {
     public render() {
-        let {
+        const {
             children,
             ...props,
         } = this.props;

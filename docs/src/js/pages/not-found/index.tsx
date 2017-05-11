@@ -5,10 +5,10 @@ import { Button } from "@react-mdc/button";
 import {
     actions,
     Card,
-    primary
+    primary,
 } from "@react-mdc/card";
 
-import { CenterFullSize } from "../../components/full-size";
+import { CenterFullSize } from "app/js/components/full-size";
 
 export default class NotFound extends React.Component<{}, {}> {
     public render() {
@@ -17,7 +17,7 @@ export default class NotFound extends React.Component<{}, {}> {
                 <Card>
                     <primary.Primary
                         style={{
-                            borderBottom: 1
+                            borderBottom: 1,
                         }}>
                         <primary.Title large>
                             Sorry, but nothing in here

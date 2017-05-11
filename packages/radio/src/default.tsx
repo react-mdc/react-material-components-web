@@ -21,7 +21,7 @@ export type Props = {
  */
 export default class Radio extends React.Component<Props, {}> {
     public render() {
-        let {
+        const {
             inputId,
             name,
             value,
@@ -29,8 +29,9 @@ export default class Radio extends React.Component<Props, {}> {
             checked,
             disabled,
             defaultChecked,
+            children: _children, // Ignore original children
             ...props,
-    } = this.props;
+        } = this.props;
         return (
             <Container
                 disabled={disabled}

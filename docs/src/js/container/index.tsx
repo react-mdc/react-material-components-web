@@ -5,11 +5,9 @@ import { FixedToolbarAdjusted } from "@react-mdc/toolbar";
 import Drawer from "./drawer";
 import Toolbar from "./toolbar";
 
-import { Children } from "app/js/common/types";
-
 import * as styles from "./styles.css";
 
-export default class Container extends React.Component<{ children?: Children<any> }, {}> {
+export default class Container extends React.Component<{ children?: React.ReactChild }, {}> {
     public render() {
         return (
             <div className={styles.layout}>
