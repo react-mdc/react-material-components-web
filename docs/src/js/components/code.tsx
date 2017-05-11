@@ -1,13 +1,11 @@
-/// <reference types="react-codemirror"/>
-
 import * as React from "react";
 
 import * as classNames from "classnames";
-import * as CodeMirror from "react-codemirror";
+import { default as CodeMirror, Props as CodeMirrorProps } from "./code-mirror";
 
 import * as styles from "./styles.css";
 
-type Props = ReactCodeMirror.ReactCodeMirrorProps & {
+type Props = CodeMirrorProps & {
     className?: string,
     options?: any,
     mode?: string,

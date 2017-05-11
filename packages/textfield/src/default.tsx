@@ -1,7 +1,7 @@
 import * as React from "react";
 
-import { default as Container } from "./container";
-import { default as Input } from "./input";
+import Container from "./container";
+import Input from "./input";
 
 export type ContainerProps = any;
 export type InputProps = any;
@@ -24,7 +24,7 @@ class TextFieldInternal<C, I> extends React.Component<TextFieldInternalProps<C, 
         return (
             <Container {...containerProps}>
                 <Input {...inputProps} />
-            </Container >
+            </Container>
         );
     }
 }
