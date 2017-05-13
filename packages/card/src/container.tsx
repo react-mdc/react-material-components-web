@@ -1,10 +1,11 @@
 import * as React from "react";
 
 import {
+    ClassNameMeta,
+    ClassNamePropMakerAdapter,
     createDefaultComponent,
     DefaultComponent,
-    MetaAdapter,
-} from "@react-mdc/base/lib/meta";
+} from "@react-mdc/base";
 
 import {
   BASE_CLASS_NAME,
@@ -27,31 +28,21 @@ export type ChildProps = {
 /**
  * Card component
  */
-export class Meta extends MetaAdapter<ChildProps, MetaProps, {}> {
-    public static defaultProps = {
-        dark: false,
-    };
-
+class PropMaker extends ClassNamePropMakerAdapter<ChildProps, MetaProps, {}> {
     protected getBaseClassName() {
         return CLASS_NAME;
     }
 
-    protected getClassValues() {
+    protected getClassValues(_, props: MetaProps) {
         return [{
-            [propertyClassNames.DARK]: this.props.dark,
+            [propertyClassNames.DARK]: props.dark,
         }];
     }
 }
 
-export type Props = React.HTMLProps<HTMLDivElement> & MetaProps;
-
-// TypeScript Bug
-// https://github.com/Microsoft/TypeScript/issues/5938
-const component = createDefaultComponent<React.HTMLProps<HTMLDivElement>, MetaProps, Props>(
+export default createDefaultComponent<React.HTMLProps<HTMLDivElement>, MetaProps>(
     "div",
-    Meta,
+    ClassNameMeta.simple(new PropMaker(), "Container"),
     [
         "dark",
-    ]) as DefaultComponent<React.HTMLProps<HTMLDivElement>, MetaProps>;
-
-export default component;
+    ]);

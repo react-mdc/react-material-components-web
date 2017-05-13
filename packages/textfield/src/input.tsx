@@ -9,10 +9,11 @@ import {
 import * as PropTypes from "prop-types";
 
 import {
+    ClassNameMeta,
+    ClassNamePropMakerAdapter,
     createDefaultComponent,
     DefaultComponent,
-    MetaAdapter,
-} from "@react-mdc/base/lib/meta";
+} from "@react-mdc/base";
 
 import { FoundationAdapter, InputAdapter } from "./adapter";
 import { BASE_CLASS_NAME } from "./constants";
@@ -41,7 +42,19 @@ export type Context = {
 /**
  * Textfield input component
  */
-export class Meta extends MetaAdapter<ChildProps, MetaProps, State> {
+export class PropMaker extends ClassNamePropMakerAdapter<ChildProps, MetaProps, State> {
+    public makeNativeDOMProps(_c, _p, state: State) {
+        return {
+            eventListeners: state.foundationEventListeners.toJS(),
+        };
+    }
+
+    protected getBaseClassName() {
+        return CLASS_NAME;
+    }
+}
+
+class Input extends ClassNameMeta<ChildProps, MetaProps, State> {
     public static contextTypes = {
         adapter: PropTypes.instanceOf(FoundationAdapter).isRequired,
     };
@@ -52,6 +65,8 @@ export class Meta extends MetaAdapter<ChildProps, MetaProps, State> {
         foundationEventListeners: Map<string, Set<EventListener>>(),
     };
 
+    protected propMaker = new PropMaker();
+
     public componentDidMount() {
         this.context.adapter.setInputAdapter(new InputAdapterImpl(this));
     }
@@ -59,22 +74,12 @@ export class Meta extends MetaAdapter<ChildProps, MetaProps, State> {
     public componentWillUnmount() {
         this.context.adapter.setInputAdapter(new InputAdapter());
     }
-
-    protected getBaseClassName() {
-        return CLASS_NAME;
-    }
-
-    protected getNativeDOMProps() {
-        return {
-            eventListeners: this.state.foundationEventListeners.toJS(),
-        };
-    }
 }
 
-class InputAdapterImpl<P> extends InputAdapter {
-    private element: Meta;
+class InputAdapterImpl extends InputAdapter {
+    private element: Input;
 
-    constructor(element: Meta) {
+    constructor(element: Input) {
         super();
         this.element = element;
     }
@@ -135,13 +140,8 @@ function TextInput(props: React.HTMLProps<HTMLInputElement>) {
     );
 }
 
-export type Props = React.HTMLProps<HTMLInputElement> & MetaProps;
-
-// TypeScript Bug
-// https://github.com/Microsoft/TypeScript/issues/5938
-const component = createDefaultComponent<React.HTMLProps<HTMLInputElement>, MetaProps, Props>(
+export default createDefaultComponent<React.HTMLProps<HTMLInputElement>, MetaProps>(
     TextInput,
-    Meta,
-    []) as DefaultComponent<React.HTMLProps<HTMLInputElement>, MetaProps>;
-
-export default component;
+    Input,
+    [],
+);

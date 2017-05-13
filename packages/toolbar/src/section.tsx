@@ -1,10 +1,11 @@
 import * as React from "react";
 
 import {
+    ClassNameMeta,
+    ClassNamePropMakerAdapter,
     createDefaultComponent,
     DefaultComponent,
-    MetaAdapter,
-} from "@react-mdc/base/lib/meta";
+} from "@react-mdc/base";
 
 import { SECTION_BASE_CLASS_NAME } from "./constants";
 import * as helpers from "./helpers";
@@ -23,15 +24,15 @@ export type ChildProps = {
 /**
  * Toolbar section component
  */
-export class Meta extends MetaAdapter<ChildProps, MetaProps, {}> {
+export class PropMaker extends ClassNamePropMakerAdapter<ChildProps, MetaProps, {}> {
     protected getBaseClassName() {
         return CLASS_NAME;
     }
 
-    protected getClassValues() {
+    protected getClassValues(_c, props: MetaProps) {
         const {
             align,
-        } = this.props;
+        } = props;
         const classes: string[] = [];
         if (align != null) {
             classes.push(helpers.classNameForSectionAlignment(align));
@@ -40,15 +41,10 @@ export class Meta extends MetaAdapter<ChildProps, MetaProps, {}> {
     }
 }
 
-export type Props = React.HTMLProps<HTMLElement> & MetaProps;
-
-// TypeScript Bug
-// https://github.com/Microsoft/TypeScript/issues/5938
-const component = createDefaultComponent<React.HTMLProps<HTMLElement>, MetaProps, Props>(
+export default createDefaultComponent<React.HTMLProps<HTMLElement>, MetaProps>(
     "section",
-    Meta,
+    ClassNameMeta.simple(new PropMaker(), "Section"),
     [
         "align",
-    ]) as DefaultComponent<React.HTMLProps<HTMLElement>, MetaProps>;
-
-export default component;
+    ],
+);

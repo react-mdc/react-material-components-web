@@ -9,10 +9,12 @@ import {
 } from "immutable";
 
 import {
+    ClassNameMeta,
+    ClassNamePropMakerAdapter,
     createDefaultComponent,
     DefaultComponent,
-    MetaAdapter,
-} from "@react-mdc/base/lib/meta";
+} from "@react-mdc/base";
+
 import { eventHandlerDecorator } from "@react-mdc/base/lib/util";
 
 import { FoundationAdapter, NativeControlAdapter } from "./adapter";
@@ -37,10 +39,22 @@ export type Context = {
     adapter: FoundationAdapter,
 };
 
+export class PropMaker extends ClassNamePropMakerAdapter<ChildProps, MetaProps, State> {
+    public makeNativeDOMProps(_c, _p, state: State) {
+        return {
+            eventListeners: state.foundationEventListeners.toJS(),
+        };
+    }
+
+    protected getBaseClassName() {
+        return CLASS_NAME;
+    }
+}
+
 /**
  * Checkbox input component
  */
-export class Meta extends MetaAdapter<ChildProps, MetaProps, State> {
+class NativeControl extends ClassNameMeta<ChildProps, MetaProps, State> {
     public static contextTypes = {
         adapter: PropTypes.instanceOf(FoundationAdapter).isRequired,
     };
@@ -51,6 +65,8 @@ export class Meta extends MetaAdapter<ChildProps, MetaProps, State> {
         foundationEventListeners: Map<string, Set<EventListener>>(),
     };
 
+    protected propMaker = new PropMaker();
+
     public defaultOnChange: React.ChangeEventHandler<any> = () => { };
 
     public componentDidMount() {
@@ -59,16 +75,6 @@ export class Meta extends MetaAdapter<ChildProps, MetaProps, State> {
 
     public componentWillUnmount() {
         this.context.adapter.setNativeControlAdapter(new NativeControlAdapter());
-    }
-
-    protected getBaseClassName() {
-        return CLASS_NAME;
-    }
-
-    protected getNativeDOMProps() {
-        return {
-            eventListeners: this.state.foundationEventListeners.toJS(),
-        };
     }
 
     protected renderProps(childProps: ChildProps) {
@@ -89,9 +95,9 @@ export class Meta extends MetaAdapter<ChildProps, MetaProps, State> {
 }
 
 class NativeControlAdapterImpl extends NativeControlAdapter {
-    private element: Meta;
+    private element: NativeControl;
 
-    constructor(element: Meta) {
+    constructor(element: NativeControl) {
         super();
         this.element = element;
     }
@@ -131,13 +137,10 @@ function CheckboxInput(props: React.HTMLProps<HTMLInputElement>) {
 
 export type Props = React.HTMLProps<HTMLButtonElement> & MetaProps;
 
-// TypeScript Bug
-// https://github.com/Microsoft/TypeScript/issues/5938
-const component = createDefaultComponent<React.HTMLProps<HTMLInputElement>, MetaProps, Props>(
+export default createDefaultComponent<React.HTMLProps<HTMLInputElement>, MetaProps>(
     CheckboxInput,
-    Meta,
+    NativeControl,
     [
         "onChange",
-    ]) as DefaultComponent<React.HTMLProps<HTMLInputElement>, MetaProps>;
-
-export default component;
+    ],
+);

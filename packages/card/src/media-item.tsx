@@ -1,10 +1,11 @@
 import * as React from "react";
 
 import {
+    ClassNameMeta,
+    ClassNamePropMakerAdapter,
     createDefaultComponent,
     DefaultComponent,
-    MetaAdapter,
-} from "@react-mdc/base/lib/meta";
+} from "@react-mdc/base";
 
 import {
     BASE_CLASS_NAME,
@@ -38,27 +39,22 @@ export type ChildProps = {
 /**
  * Media item component
  */
-export class Meta extends MetaAdapter<ChildProps, MetaProps, {}> {
+class PropMaker extends ClassNamePropMakerAdapter<ChildProps, MetaProps, {}> {
     protected getBaseClassName() {
         return CLASS_NAME;
     }
 
-    protected getClassValues() {
+    protected getClassValues(_, props: MetaProps) {
         return [
-            this.props.size == null ? null : classNameForSize(this.props.size),
+            props.size == null ? null : classNameForSize(props.size),
         ];
     }
 }
 
-export type Props = React.HTMLProps<HTMLImageElement> & MetaProps;
-
-// TypeScript Bug
-// https://github.com/Microsoft/TypeScript/issues/5938
-const component = createDefaultComponent<React.HTMLProps<HTMLImageElement>, MetaProps, Props>(
+export default createDefaultComponent<React.HTMLProps<HTMLImageElement>, MetaProps>(
     "img",
-    Meta,
+    ClassNameMeta.simple(new PropMaker(), "MediaItem"),
     [
         "size",
-    ]) as DefaultComponent<React.HTMLProps<HTMLImageElement>, MetaProps>;
-
-export default component;
+    ],
+);

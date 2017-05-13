@@ -7,10 +7,11 @@ import {
 import * as PropTypes from "prop-types";
 
 import {
+    ClassNameMeta,
+    ClassNamePropMakerAdapter,
     createDefaultComponent,
     DefaultComponent,
-    MetaAdapter,
-} from "@react-mdc/base/lib/meta";
+} from "@react-mdc/base";
 
 import { FoundationAdapter, LabelAdapter } from "./adapter";
 import { BASE_CLASS_NAME } from "./constants";
@@ -34,7 +35,17 @@ export type Context = {
 /**
  * Textfield label component
  */
-export class Meta extends MetaAdapter<ChildProps, MetaProps, State> {
+export class PropMaker extends ClassNamePropMakerAdapter<ChildProps, MetaProps, {}> {
+    protected getBaseClassName() {
+        return CLASS_NAME;
+    }
+
+    protected getClassValues(_c, _p, state: State) {
+        return state.foundationClasses.toJS();
+    }
+}
+
+class Label extends ClassNameMeta<ChildProps, MetaProps, State> {
     public static contextTypes = {
         adapter: PropTypes.instanceOf(FoundationAdapter).isRequired,
     };
@@ -45,6 +56,8 @@ export class Meta extends MetaAdapter<ChildProps, MetaProps, State> {
         foundationClasses: OrderedSet<string>(),
     };
 
+    protected propMaker = new PropMaker();
+
     public componentDidMount() {
         this.context.adapter.setLabelAdapter(new LabelAdapterImpl(this));
     }
@@ -52,20 +65,12 @@ export class Meta extends MetaAdapter<ChildProps, MetaProps, State> {
     public componentWillUnmount() {
         this.context.adapter.setLabelAdapter(new LabelAdapter());
     }
-
-    protected getBaseClassName() {
-        return CLASS_NAME;
-    }
-
-    protected getClassValues() {
-        return this.state.foundationClasses.toJS();
-    }
 }
 
-class LabelAdapterImpl<P> extends LabelAdapter {
-    public element: Meta;
+class LabelAdapterImpl extends LabelAdapter {
+    public element: Label;
 
-    constructor(element: Meta) {
+    constructor(element: Label) {
         super();
         this.element = element;
     }
@@ -82,13 +87,8 @@ class LabelAdapterImpl<P> extends LabelAdapter {
     }
 }
 
-export type Props = React.HTMLProps<HTMLLabelElement> & MetaProps;
-
-// TypeScript Bug
-// https://github.com/Microsoft/TypeScript/issues/5938
-const component = createDefaultComponent<React.HTMLProps<HTMLLabelElement>, MetaProps, Props>(
+export default createDefaultComponent<React.HTMLProps<HTMLLabelElement>, MetaProps>(
     "label",
-    Meta,
-    []) as DefaultComponent<React.HTMLProps<HTMLLabelElement>, MetaProps>;
-
-export default component;
+    Label,
+    [],
+);

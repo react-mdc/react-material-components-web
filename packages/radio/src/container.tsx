@@ -5,10 +5,11 @@ import * as PropTypes from "prop-types";
 
 import { MDCRadioFoundation } from "@material/radio/dist/mdc.radio";
 import {
+    ClassNameMeta,
+    ClassNamePropMakerAdapter,
     createDefaultComponent,
     DefaultComponent,
-    MetaAdapter,
-} from "@react-mdc/base/lib/meta";
+} from "@react-mdc/base";
 
 import { ContainerAdapter, FoundationAdapter } from "./adapter";
 
@@ -38,7 +39,18 @@ export type ChildContext = {
 /**
  * Radio input container component
  */
-export class Meta extends MetaAdapter<ChildProps, MetaProps, State> {
+export class PropMaker extends ClassNamePropMakerAdapter<ChildProps, MetaProps, State> {
+
+    protected getBaseClassName() {
+        return CLASS_NAME;
+    }
+
+    protected getClassValues(_c, _p, state: State) {
+        return state.foundationClasses.toJS();
+    }
+}
+
+class Container extends ClassNameMeta<ChildProps, MetaProps, State> {
     public static childContextTypes = {
         adapter: PropTypes.instanceOf(FoundationAdapter),
     };
@@ -46,6 +58,8 @@ export class Meta extends MetaAdapter<ChildProps, MetaProps, State> {
     public state: State = {
         foundationClasses: OrderedSet<string>(),
     };
+
+    protected propMaker = new PropMaker();
 
     private adapter: FoundationAdapter<ChildProps>;
     private foundation: MDCRadioFoundation;
@@ -85,14 +99,6 @@ export class Meta extends MetaAdapter<ChildProps, MetaProps, State> {
         this.syncFoundation(props);
     }
 
-    protected getBaseClassName() {
-        return CLASS_NAME;
-    }
-
-    protected getClassValues() {
-        return this.state.foundationClasses.toJS();
-    }
-
     private syncFoundation(props: MetaProps) {
         if (props.checked != null && this.foundation.isChecked() !== props.checked) {
             this.foundation.setChecked(props.checked);
@@ -114,9 +120,9 @@ export class Meta extends MetaAdapter<ChildProps, MetaProps, State> {
 }
 
 class ContainerAdapterImpl extends ContainerAdapter {
-    private element: Meta;
+    private element: Container;
 
-    constructor(element: Meta) {
+    constructor(element: Container) {
         super();
         this.element = element;
     }
@@ -135,16 +141,11 @@ class ContainerAdapterImpl extends ContainerAdapter {
     }
 }
 
-export type Props = React.HTMLProps<HTMLDivElement> & MetaProps;
-
-// TypeScript Bug
-// https://github.com/Microsoft/TypeScript/issues/5938
-const component = createDefaultComponent<React.HTMLProps<HTMLDivElement>, MetaProps, Props>(
+export default createDefaultComponent<React.HTMLProps<HTMLDivElement>, MetaProps>(
     "div",
-    Meta,
+    Container,
     [
         "checked",
         "disabled",
-    ]) as DefaultComponent<React.HTMLProps<HTMLDivElement>, MetaProps>;
-
-export default component;
+    ],
+);

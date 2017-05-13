@@ -1,10 +1,16 @@
 import * as React from "react";
 
-import { BaseMetaProps, ChildProps, Props as TextProps } from "./text";
-import Text from "./text";
+import {
+    BaseMetaProps,
+    ChildProps,
+    default as Text,
+    MetaProps,
+} from "./text";
 import { TextStyle } from "./types";
 
 export type Props = React.HTMLProps<HTMLElement> & ChildProps & BaseMetaProps;
+
+type TextProps = React.HTMLProps<HTMLElement> & MetaProps;
 
 function withTextStyle(props: Props, textStyle: TextStyle): TextProps {
     return {

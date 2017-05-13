@@ -1,10 +1,11 @@
 import * as React from "react";
 
 import {
+    ClassNameMeta,
+    ClassNamePropMakerAdapter,
     createDefaultComponent,
     DefaultComponent,
-    MetaAdapter,
-} from "@react-mdc/base/lib/meta";
+} from "@react-mdc/base";
 
 import * as helpers from "./helpers";
 import { BackgroundColor, Color, OnColor, TextColor } from "./types";
@@ -20,18 +21,18 @@ export type MetaProps = {
     onColor?: OnColor,
 };
 
-export class Meta extends MetaAdapter<ChildProps, MetaProps, {}> {
+export class PropMaker extends ClassNamePropMakerAdapter<ChildProps, MetaProps, {}> {
     protected getBaseClassName() {
         return null;
     }
 
-    protected getClassValues() {
+    protected getClassValues(_c, props: MetaProps) {
         const {
             color,
             backgroundColor,
             textColor,
             onColor,
-        } = this.props;
+        } = props;
 
         const classes: string[] = [];
         if (color != null) {
@@ -48,18 +49,13 @@ export class Meta extends MetaAdapter<ChildProps, MetaProps, {}> {
     }
 }
 
-export type Props = React.HTMLProps<HTMLDivElement> & MetaProps;
-
-// TypeScript Bug
-// https://github.com/Microsoft/TypeScript/issues/5938
-const component = createDefaultComponent<React.HTMLProps<HTMLDivElement>, MetaProps, Props>(
+export default createDefaultComponent<React.HTMLProps<HTMLDivElement>, MetaProps>(
     "div",
-    Meta,
+    ClassNameMeta.simple(new PropMaker(), "Themed"),
     [
         "color",
         "backgroundColor",
         "textColor",
         "onColor",
-    ]) as DefaultComponent<React.HTMLProps<HTMLDivElement>, MetaProps>;
-
-export default component;
+    ],
+);

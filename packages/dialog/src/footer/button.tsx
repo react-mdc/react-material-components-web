@@ -1,18 +1,17 @@
-import * as React from "react";
-
 import {
+    ClassNameMeta,
+    ClassNamePropMakerAdapter,
     createDefaultComponent,
     DefaultComponent,
-    MetaAdapter,
-} from "@react-mdc/base/lib/meta";
+} from "@react-mdc/base";
+
 import {
-    Button,
-    ChildProps as ButtonChildProps,
+    default as Button,
     MetaProps as ButtonMetaProps,
 } from "@react-mdc/button";
 
 import {
-  BASE_CLASS_NAME,
+    BASE_CLASS_NAME,
 } from "./constants";
 
 export const CLASS_NAME = `${BASE_CLASS_NAME}__button`;
@@ -33,28 +32,21 @@ export const propertyClassNames = {
 /**
  * Button component
  */
-export class Meta extends MetaAdapter<ChildProps, MetaProps, {}> {
+export class PropMaker extends ClassNamePropMakerAdapter<ChildProps, MetaProps, {}> {
     protected getBaseClassName() {
         return CLASS_NAME;
     }
 
-    protected getClassValues() {
+    protected getClassValues(_c, props: MetaProps) {
         return [{
-            [propertyClassNames.TYPE_ACCEPT]: this.props.type === "accept",
-            [propertyClassNames.TYPE_CANCEL]: this.props.type === "cancel",
+            [propertyClassNames.TYPE_ACCEPT]: props.type === "accept",
+            [propertyClassNames.TYPE_CANCEL]: props.type === "cancel",
         }];
     }
 }
 
-export type Props = ButtonChildProps & ButtonMetaProps & MetaProps;
-
-// TypeScript Bug
-// https://github.com/Microsoft/TypeScript/issues/5938
-const component = createDefaultComponent<ButtonChildProps & ButtonMetaProps, MetaProps, Props>(
+export default createDefaultComponent<React.HTMLProps<HTMLButtonElement> & ButtonMetaProps, MetaProps>(
     Button,
-    Meta,
-    [
-        "type",
-    ]) as DefaultComponent<ButtonChildProps & ButtonMetaProps, MetaProps>;
-
-export default component;
+    ClassNameMeta.simple(new PropMaker(), "Button"),
+    [],
+);

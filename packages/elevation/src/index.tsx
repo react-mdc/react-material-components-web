@@ -1,10 +1,11 @@
 import * as React from "react";
 
 import {
+    ClassNameMeta,
+    ClassNamePropMakerAdapter,
     createDefaultComponent,
     DefaultComponent,
-    MetaAdapter,
-} from "@react-mdc/base/lib/meta";
+} from "@react-mdc/base";
 
 import { BASE_CLASS_NAME } from "./constants";
 import { classNameForZSpace } from "./helpers";
@@ -26,36 +27,29 @@ export type ChildProps = {
 /**
  * Elevation component
  */
-export class Meta extends MetaAdapter<ChildProps, MetaProps, {}> {
-    public static defaultProps = {
-        transition: false,
-    };
 
-    protected getBaseClassName() {
-        return classNameForZSpace(this.props.zSpace);
+export class PropMaker extends ClassNamePropMakerAdapter<ChildProps, MetaProps, {}> {
+    protected getBaseClassName(_c, props: MetaProps) {
+        return classNameForZSpace(props.zSpace);
     }
 
-    protected getClassValues() {
+    protected getClassValues(_c: ChildProps, props: MetaProps) {
         return [{
-            [propertyClassNames.TRANSITION]: this.props.transition,
+            [propertyClassNames.TRANSITION]: props.transition,
         }];
     }
 }
 
-export type Props = React.HTMLProps<HTMLDivElement> & MetaProps;
-
-// TypeScript Bug
-// https://github.com/Microsoft/TypeScript/issues/5938
-const component = createDefaultComponent<React.HTMLProps<HTMLDivElement>, MetaProps, Props>(
+const component = createDefaultComponent<React.HTMLProps<HTMLDivElement>, MetaProps>(
     "div",
-    Meta,
+    ClassNameMeta.simple(new PropMaker(), "Elevation"),
     [
         "zSpace",
         "transition",
-    ]) as DefaultComponent<React.HTMLProps<HTMLDivElement>, MetaProps>;
+    ],
+);
 
 export {
     component as Elevation,
+    component as default,
 };
-
-export default component;

@@ -1,10 +1,11 @@
 import * as React from "react";
 
 import {
+    ClassNameMeta,
+    ClassNamePropMakerAdapter,
     createDefaultComponent,
     DefaultComponent,
-    MetaAdapter,
-} from "@react-mdc/base/lib/meta";
+} from "@react-mdc/base";
 
 import {
     BASE_CLASS_NAME,
@@ -27,20 +28,20 @@ export type ChildProps = {
 /**
  * Wrapper component of mdc-layout-grid
  */
-export class Meta extends MetaAdapter<ChildProps, MetaProps, {}> {
-    protected getBaseClassName() {
-        return CLASS_NAME;
-    }
-
-    protected getNativeDOMProps() {
+export class PropMaker extends ClassNamePropMakerAdapter<ChildProps, MetaProps, {}> {
+    public makeNativeDOMProps(_c, props: MetaProps) {
         const cssVariables = {};
-        if (this.props.margin != null) {
-            cssVariables[MARGIN_CSS_VARIABLE] = this.normalizeMarginAndGutter(this.props.margin);
+        if (props.margin != null) {
+            cssVariables[MARGIN_CSS_VARIABLE] = this.normalizeMarginAndGutter(props.margin);
         }
-        if (this.props.gutter != null) {
-            cssVariables[GUTTER_CSS_VARIABLE] = this.normalizeMarginAndGutter(this.props.gutter);
+        if (props.gutter != null) {
+            cssVariables[GUTTER_CSS_VARIABLE] = this.normalizeMarginAndGutter(props.gutter);
         }
         return {cssVariables};
+    }
+
+    protected getBaseClassName() {
+        return CLASS_NAME;
     }
 
     private normalizeMarginAndGutter(value: Margin | Gutter): string {
@@ -52,16 +53,11 @@ export class Meta extends MetaAdapter<ChildProps, MetaProps, {}> {
     }
 }
 
-export type Props = React.HTMLProps<HTMLDivElement> & MetaProps;
-
-// TypeScript Bug
-// https://github.com/Microsoft/TypeScript/issues/5938
-const component = createDefaultComponent<React.HTMLProps<HTMLDivElement>, MetaProps, Props>(
+export default createDefaultComponent<React.HTMLProps<HTMLDivElement>, MetaProps>(
     "div",
-    Meta,
+    ClassNameMeta.simple(new PropMaker(), "Container"),
     [
         "margin",
         "gutter",
-    ]) as DefaultComponent<React.HTMLProps<HTMLDivElement>, MetaProps>;
-
-export default component;
+    ],
+);

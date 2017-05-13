@@ -1,10 +1,11 @@
 import * as React from "react";
 
 import {
+    ClassNameMeta,
+    ClassNamePropMakerAdapter,
     createDefaultComponent,
     DefaultComponent,
-    MetaAdapter,
-} from "@react-mdc/base/lib/meta";
+} from "@react-mdc/base";
 
 import {
     BASE_CLASS_NAME,
@@ -31,37 +32,26 @@ export type ChildProps = {
 /**
  * List container component
  */
-export class Meta extends MetaAdapter<ChildProps, MetaProps, {}> {
-    public static defaultProps = {
-        dense: false,
-        twoLine: false,
-        avartarList: false,
-    };
-
+export class PropMaker extends ClassNamePropMakerAdapter<ChildProps, MetaProps, {}> {
     protected getBaseClassName() {
         return CLASS_NAME;
     }
 
-    protected getClassValues() {
+    protected getClassValues(_c, props: MetaProps) {
         return [{
-            [propertyClassNames.DENSE]: this.props.dense,
-            [propertyClassNames.TWO_LINE]: this.props.twoLine,
-            [propertyClassNames.AVARTAR_LIST]: this.props.avartarList,
+            [propertyClassNames.DENSE]: props.dense,
+            [propertyClassNames.TWO_LINE]: props.twoLine,
+            [propertyClassNames.AVARTAR_LIST]: props.avartarList,
         }];
     }
 }
 
-export type Props = React.HTMLProps<HTMLUListElement> & MetaProps;
-
-// TypeScript Bug
-// https://github.com/Microsoft/TypeScript/issues/5938
-const component = createDefaultComponent<React.HTMLProps<HTMLUListElement>, MetaProps, Props>(
+export default createDefaultComponent<React.HTMLProps<HTMLUListElement>, MetaProps>(
     "ul",
-    Meta,
+    ClassNameMeta.simple(new PropMaker(), "Container"),
     [
         "dense",
         "twoLine",
         "avartarList",
-    ]) as DefaultComponent<React.HTMLProps<HTMLUListElement>, MetaProps>;
-
-export default component;
+    ],
+);

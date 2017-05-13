@@ -1,10 +1,11 @@
 import * as React from "react";
 
 import {
+    ClassNameMeta,
+    ClassNamePropMakerAdapter,
     createDefaultComponent,
     DefaultComponent,
-    MetaAdapter,
-} from "@react-mdc/base/lib/meta";
+} from "@react-mdc/base";
 
 import {
     BASE_CLASS_NAME,
@@ -24,34 +25,21 @@ export type ChildProps = {
     className?: string,
 };
 
-/**
- * Actions section component
- */
-export class Meta extends MetaAdapter<ChildProps, MetaProps, {}> {
-    public static defaultProps = {
-        vertical: false,
-    };
-
+class PropMaker extends ClassNamePropMakerAdapter<ChildProps, MetaProps, {}> {
     protected getBaseClassName() {
         return CLASS_NAME;
     }
 
-    protected getClassValues() {
+    protected getClassValues(_c, props: MetaProps) {
         return [{
-            [propertyClassNames.VERTICAL]: this.props.vertical,
+            [propertyClassNames.VERTICAL]: props.vertical,
         }];
     }
 }
 
-export type Props = React.HTMLProps<HTMLElement> & MetaProps;
-
-// TypeScript Bug
-// https://github.com/Microsoft/TypeScript/issues/5938
-const component = createDefaultComponent<React.HTMLProps<HTMLElement>, MetaProps, Props>(
+export default createDefaultComponent<React.HTMLProps<HTMLElement>, MetaProps>(
     "section",
-    Meta,
+    ClassNameMeta.simple(new PropMaker(), "Container"),
     [
         "vertical",
-    ]) as DefaultComponent<React.HTMLProps<HTMLElement>, MetaProps>;
-
-export default component;
+    ]);

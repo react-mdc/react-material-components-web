@@ -4,10 +4,11 @@ import * as ReactDOM from "react-dom";
 import * as PropTypes from "prop-types";
 
 import {
+    ClassNameMeta,
+    ClassNamePropMakerAdapter,
     createDefaultComponent,
     DefaultComponent,
-    MetaAdapter,
-} from "@react-mdc/base/lib/meta";
+} from "@react-mdc/base";
 import { eventHandlerDecorator } from "@react-mdc/base/lib/util";
 
 import { FoundationAdapter, NativeControlAdapter } from "./adapter";
@@ -40,13 +41,21 @@ export type Context = {
 /**
  * Radio input component
  */
-export class Meta extends MetaAdapter<ChildProps, MetaProps, {}> {
+export class PropMaker extends ClassNamePropMakerAdapter<ChildProps, MetaProps, {}> {
+    protected getBaseClassName() {
+        return CLASS_NAME;
+    }
+}
+
+class NativeControl extends ClassNameMeta<ChildProps, MetaProps, {}> {
     public static contextTypes = {
         adapter: PropTypes.instanceOf(FoundationAdapter).isRequired,
     };
 
     public defaultOnChange: React.ChangeEventHandler<ChildProps>;
     public context: Context;
+
+    protected propMaker = new PropMaker();
 
     public componentDidMount() {
         this.context.adapter.setNativeControlAdapter(new NativeControlAdapterImpl(this));
@@ -67,19 +76,15 @@ export class Meta extends MetaAdapter<ChildProps, MetaProps, {}> {
         };
     }
 
-    protected getBaseClassName() {
-        return CLASS_NAME;
-    }
-
     private handleChange: React.ChangeEventHandler<any> = (evt: React.ChangeEvent<ChildProps>) => {
         this.defaultOnChange(evt);
     }
 }
 
 class NativeControlAdapterImpl extends NativeControlAdapter<ChildProps> {
-    private element: Meta;
+    private element: NativeControl;
 
-    constructor(element: Meta) {
+    constructor(element: NativeControl) {
         super();
         this.element = element;
     }
@@ -98,15 +103,10 @@ function RadioInput(props: React.HTMLProps<HTMLInputElement>) {
     );
 }
 
-export type Props = React.HTMLProps<HTMLInputElement> & MetaProps;
-
-// TypeScript Bug
-// https://github.com/Microsoft/TypeScript/issues/5938
-const component = createDefaultComponent<React.HTMLProps<HTMLInputElement>, MetaProps, Props>(
+export default createDefaultComponent<React.HTMLProps<HTMLInputElement>, MetaProps>(
     RadioInput,
-    Meta,
+    NativeControl,
     [
         "onChange",
-    ]) as DefaultComponent<React.HTMLProps<HTMLInputElement>, MetaProps>;
-
-export default component;
+    ],
+);

@@ -1,10 +1,11 @@
 import * as React from "react";
 
 import {
+    ClassNameMeta,
+    ClassNamePropMakerAdapter,
     createDefaultComponent,
     DefaultComponent,
-    MetaAdapter,
-} from "@react-mdc/base/lib/meta";
+} from "@react-mdc/base";
 
 import {
     BASE_CLASS_NAME,
@@ -33,50 +34,34 @@ export type ChildProps = {
     className?: string,
 };
 
-/**
- * Button meta component
- */
-export class Meta extends MetaAdapter<ChildProps, MetaProps, {}> {
-    public static defaultProps = {
-        dense: false,
-        raised: false,
-        compact: false,
-        primary: false,
-        accent: false,
-    };
-
+export class PropMaker extends ClassNamePropMakerAdapter<ChildProps, MetaProps, {}> {
     protected getBaseClassName() {
         return CLASS_NAME;
     }
 
-    protected getClassValues() {
+    protected getClassValues(_childProps: ChildProps, props: MetaProps) {
         return [{
-            [propertyClassNames.DENSE]: this.props.dense,
-            [propertyClassNames.RAISED]: this.props.raised,
-            [propertyClassNames.COMPACT]: this.props.compact,
-            [propertyClassNames.PRIMARY]: this.props.primary,
-            [propertyClassNames.ACCENT]: this.props.accent,
+            [propertyClassNames.DENSE]: props.dense,
+            [propertyClassNames.RAISED]: props.raised,
+            [propertyClassNames.COMPACT]: props.compact,
+            [propertyClassNames.PRIMARY]: props.primary,
+            [propertyClassNames.ACCENT]: props.accent,
         }];
     }
 }
 
-export type Props = React.HTMLProps<HTMLButtonElement> & MetaProps;
-
-// TypeScript Bug
-// https://github.com/Microsoft/TypeScript/issues/5938
-const component = createDefaultComponent<React.HTMLProps<HTMLButtonElement>, MetaProps, Props>(
+const component = createDefaultComponent<React.HTMLProps<HTMLButtonElement>, MetaProps>(
     "button",
-    Meta,
+    ClassNameMeta.simple(new PropMaker(), "Button"),
     [
         "dense",
         "raised",
         "compact",
         "primary",
         "accent",
-    ]) as DefaultComponent<React.HTMLProps<HTMLButtonElement>, MetaProps>;
+    ]);
 
 export {
     component as Button,
+    component as default,
 };
-
-export default component;

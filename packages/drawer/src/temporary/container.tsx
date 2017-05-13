@@ -11,10 +11,11 @@ import {
 } from "immutable";
 
 import {
+    ClassNameMeta,
+    ClassNamePropMakerAdapter,
     createDefaultComponent,
     DefaultComponent,
-    MetaAdapter,
-} from "@react-mdc/base/lib/meta";
+} from "@react-mdc/base";
 import { eventHandlerDecorator, includes } from "@react-mdc/base/lib/util";
 
 import { ContainerAdapter, FoundationAdapter } from "./adapter";
@@ -57,7 +58,33 @@ const {
     },
 } = MDCTemporaryDrawerFoundation;
 
-export class Meta extends MetaAdapter<ChildProps, MetaProps, State> {
+export class PropMaker extends ClassNamePropMakerAdapter<ChildProps, MetaProps, State> {
+    public getClassName(_props: MetaProps, state: State): string {
+        return classNames(
+            CLASS_NAME,
+            state.foundationClasses.toJS(),
+        );
+    }
+
+    public makeNativeDOMProps(_c, _p, state: State) {
+        return {
+            cssVariables: state.foundationCssVars.toJS(),
+            eventListeners: state.foundationEventListeners.toJS(),
+        };
+    }
+
+    protected getBaseClassName() {
+        return CLASS_NAME;
+    }
+
+    protected getClassValues(_c, props: MetaProps, state: State) {
+        return [this.getClassName(props, state)];
+    }
+
+}
+
+export class Meta extends ClassNameMeta<ChildProps, MetaProps, State> {
+    public static displayName = "Container";
     public static childContextTypes = {
         adapter: PropTypes.instanceOf(FoundationAdapter),
     };
@@ -74,6 +101,8 @@ export class Meta extends MetaAdapter<ChildProps, MetaProps, State> {
         open: false,
     };
 
+    public propMaker = new PropMaker();
+
     private adapter: FoundationAdapter;
     private foundation: MDCTemporaryDrawerFoundation;
 
@@ -87,13 +116,6 @@ export class Meta extends MetaAdapter<ChildProps, MetaProps, State> {
         return {
             adapter: this.adapter,
         };
-    }
-
-    public getClassName(props: MetaProps, state: State): string {
-        return classNames(
-            CLASS_NAME,
-            state.foundationClasses.toJS(),
-        );
     }
 
     // Sync props and internal state
@@ -118,10 +140,6 @@ export class Meta extends MetaAdapter<ChildProps, MetaProps, State> {
         this.adapter.setContainerAdapter(new ContainerAdapter());
     }
 
-    protected getBaseClassName() {
-        return CLASS_NAME;
-    }
-
     protected renderProps(childProps: ChildProps) {
         const {
             onClick,
@@ -130,17 +148,6 @@ export class Meta extends MetaAdapter<ChildProps, MetaProps, State> {
         return {
             ...super.renderProps(childProps),
             onClick: (eventHandlerDecorator(this.handleClick)(onClick || null) as React.MouseEventHandler<any>),
-        };
-    }
-
-    protected getClassValues() {
-        return [this.getClassName(this.props, this.state)];
-    }
-
-    protected getNativeDOMProps() {
-        return {
-            cssVariables: this.state.foundationCssVars.toJS(),
-            eventListeners: this.state.foundationEventListeners.toJS(),
         };
     }
 
@@ -195,7 +202,7 @@ class ContainerAdapterImpl extends ContainerAdapter {
     }
     public hasClass(className: string): boolean {
         return includes(
-            this.element.getClassName(this.element.props, this.element.state).split(/\s+/),
+            this.element.propMaker.getClassName(this.element.props, this.element.state).split(/\s+/),
             className);
     }
     public registerInteractionHandler(evt: string, handler: EventListener) {
@@ -259,11 +266,7 @@ class ContainerAdapterImpl extends ContainerAdapter {
     }
 }
 
-export type Props = React.HTMLProps<HTMLElement> & MetaProps;
-
-// TypeScript Bug
-// https://github.com/Microsoft/TypeScript/issues/5938
-const component = createDefaultComponent<React.HTMLProps<HTMLElement>, MetaProps, Props>(
+export default createDefaultComponent<React.HTMLProps<HTMLElement>, MetaProps>(
     "aside",
     Meta,
     [
@@ -273,6 +276,5 @@ const component = createDefaultComponent<React.HTMLProps<HTMLElement>, MetaProps
         "onOpenDrawer",
         "onCloseDrawer",
         "onClick",
-    ]) as DefaultComponent<React.HTMLProps<HTMLElement>, MetaProps>;
-
-export default component;
+    ],
+);

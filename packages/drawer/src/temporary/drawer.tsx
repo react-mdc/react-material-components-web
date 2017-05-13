@@ -10,10 +10,11 @@ import {
 import * as PropTypes from "prop-types";
 
 import {
+    ClassNameMeta,
+    ClassNamePropMakerAdapter,
     createDefaultComponent,
     DefaultComponent,
-    MetaAdapter,
-} from "@react-mdc/base/lib/meta";
+} from "@react-mdc/base";
 import { eventHandlerDecorator } from "@react-mdc/base/lib/util";
 
 import { DrawerAdapter, FoundationAdapter } from "./adapter";
@@ -46,7 +47,16 @@ export type Context = {
     adapter: FoundationAdapter,
 };
 
-export class Meta extends MetaAdapter<ChildProps, MetaProps, State> {
+export class PropMaker extends ClassNamePropMakerAdapter<ChildProps, MetaProps, State> {
+    public makeNativeDOMProps(_c, _p, state: State) {
+        return {
+            cssVariables: state.foundationCssVars.toJS(),
+            eventListeners: state.foundationEventListeners.toJS(),
+        };
+    }
+}
+
+class Drawer extends ClassNameMeta<ChildProps, MetaProps, State> {
     public static contextTypes = {
         adapter: PropTypes.instanceOf(FoundationAdapter).isRequired,
     };
@@ -57,6 +67,8 @@ export class Meta extends MetaAdapter<ChildProps, MetaProps, State> {
         foundationCssVars: Map<string, string | null>(),
         foundationEventListeners: Map<string, Set<EventListener>>(),
     };
+
+    protected propMaker = new PropMaker();
 
     public componentDidMount() {
         this.context.adapter.setDrawerAdapter(new DrawerAdapterImpl(this));
@@ -81,13 +93,6 @@ export class Meta extends MetaAdapter<ChildProps, MetaProps, State> {
         };
     }
 
-    protected getNativeDOMProps() {
-        return {
-            cssVariables: this.state.foundationCssVars.toJS(),
-            eventListeners: this.state.foundationEventListeners.toJS(),
-        };
-    }
-
     private handleClick: React.ReactEventHandler<any> = (evt: React.SyntheticEvent<any>) => {
         // Don't use click event handler of MDCTemporaryDrawerFoundation
         // See `TemporaryDrawer.handleClick()` for more detail.
@@ -96,9 +101,9 @@ export class Meta extends MetaAdapter<ChildProps, MetaProps, State> {
 }
 
 class DrawerAdapterImpl extends DrawerAdapter {
-    private element: Meta;
+    private element: Drawer;
 
-    constructor(element: Meta) {
+    constructor(element: Drawer) {
         super();
         this.element = element;
     }
@@ -162,13 +167,8 @@ class DrawerAdapterImpl extends DrawerAdapter {
     }
 }
 
-export type Props = React.HTMLProps<HTMLElement> & MetaProps;
-
-// TypeScript Bug
-// https://github.com/Microsoft/TypeScript/issues/5938
-const component = createDefaultComponent<React.HTMLProps<HTMLElement>, MetaProps, Props>(
+export default createDefaultComponent<React.HTMLProps<HTMLElement>, MetaProps>(
     "nav",
-    Meta,
-    []) as DefaultComponent<React.HTMLProps<HTMLElement>, MetaProps>;
-
-export default component;
+    Drawer,
+    [],
+);

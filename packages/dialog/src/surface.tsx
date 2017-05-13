@@ -9,14 +9,14 @@ import {
 import * as PropTypes from "prop-types";
 
 import {
+    ClassNameMeta,
+    ClassNamePropMakerAdapter,
     createDefaultComponent,
     DefaultComponent,
-    MetaAdapter,
-} from "@react-mdc/base/lib/meta";
+} from "@react-mdc/base";
 
 import {
     MDCDialogFoundation,
-    util as dialogUtil,
 } from "@material/dialog/dist/mdc.dialog";
 import { FoundationAdapter, SurfaceAdapter } from "./adapter";
 import {
@@ -45,10 +45,23 @@ export type Context = {
     adapter: FoundationAdapter,
 };
 
+export class PropMaker extends ClassNamePropMakerAdapter<ChildProps, MetaProps, State> {
+    public makeNativeDOMProps(_c, _p, state: State) {
+        return {
+            eventListeners: state.foundationEventListeners.toJS(),
+        };
+    }
+
+    protected getBaseClassName() {
+        return CLASS_NAME;
+    }
+
+}
+
 /**
  * Surface component
  */
-export class Meta extends MetaAdapter<ChildProps, MetaProps, State> {
+class Surface extends ClassNameMeta<ChildProps, MetaProps, State> {
     public static contextTypes = {
         adapter: PropTypes.instanceOf(FoundationAdapter).isRequired,
     };
@@ -60,6 +73,8 @@ export class Meta extends MetaAdapter<ChildProps, MetaProps, State> {
         foundationEventListeners: Map<string, Set<EventListener>>(),
     };
 
+    protected propMaker = new PropMaker();
+
     public componentDidMount() {
         this.context.adapter.setSurfaceAdapter(new SurfaceAdapterImpl(this));
     }
@@ -67,22 +82,12 @@ export class Meta extends MetaAdapter<ChildProps, MetaProps, State> {
     public componentWillUnmount() {
         this.context.adapter.setSurfaceAdapter(new SurfaceAdapter());
     }
-
-    protected getBaseClassName() {
-        return CLASS_NAME;
-    }
-
-    protected getNativeDOMProps() {
-        return {
-            eventListeners: this.state.foundationEventListeners.toJS(),
-        };
-    }
 }
 
 class SurfaceAdapterImpl extends SurfaceAdapter {
-    private element: Meta;
+    private element: Surface;
 
-    constructor(element: Meta) {
+    constructor(element: Surface) {
         super();
         this.element = element;
     }
@@ -120,13 +125,8 @@ class SurfaceAdapterImpl extends SurfaceAdapter {
     }
 }
 
-export type Props = React.HTMLProps<HTMLDivElement> & MetaProps;
-
-// TypeScript Bug
-// https://github.com/Microsoft/TypeScript/issues/5938
-const component = createDefaultComponent<React.HTMLProps<HTMLDivElement>, MetaProps, Props>(
+export default createDefaultComponent<React.HTMLProps<HTMLDivElement>, MetaProps>(
     "div",
-    Meta,
-    []) as DefaultComponent<React.HTMLProps<HTMLDivElement>, MetaProps>;
-
-export default component;
+    Surface,
+    [],
+);

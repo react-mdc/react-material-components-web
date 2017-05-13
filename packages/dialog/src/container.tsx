@@ -11,10 +11,11 @@ import {
 } from "immutable";
 
 import {
+    ClassNameMeta,
+    ClassNamePropMakerAdapter,
     createDefaultComponent,
     DefaultComponent,
-    MetaAdapter,
-} from "@react-mdc/base/lib/meta";
+} from "@react-mdc/base";
 import { includes } from "@react-mdc/base/lib/util";
 
 import {
@@ -59,17 +60,37 @@ export type ChildContext = {
     adapter: FoundationAdapter,
 };
 
+export class PropMaker extends ClassNamePropMakerAdapter<ChildProps, MetaProps, State> {
+    public makeNativeDOMProps(_c, _p, state: State) {
+        return {
+            attributes: state.foundationAttributes.toJS(),
+            eventListeners: state.foundationEventListeners.toJS(),
+        };
+    }
+
+    public getClassName(props: MetaProps, state: State): string {
+        return classNames(
+            CLASS_NAME,
+            {
+                [propertyClassNames.DARK]: props.dark,
+            },
+            state.foundationClasses.toJS(),
+        );
+    }
+
+    protected getClassValues(_c, props: MetaProps, state: State) {
+        return [this.getClassName(props, state)];
+    }
+}
+
 /**
  * Dialog component
  */
-export class Meta extends MetaAdapter<ChildProps, MetaProps, State> {
+export class Meta extends ClassNameMeta<ChildProps, MetaProps, State> {
+    public static displayName = "Container";
+
     public static childContextTypes = {
         adapter: PropTypes.instanceOf(FoundationAdapter),
-    };
-
-    public static defaultProps = {
-        dark: false,
-        open: false,
     };
 
     public state: State = {
@@ -78,6 +99,8 @@ export class Meta extends MetaAdapter<ChildProps, MetaProps, State> {
         foundationEventListeners: Map<string, Set<EventListener>>(),
         open: false,
     };
+
+    public propMaker = new PropMaker();
 
     private adapter: FoundationAdapter;
     private foundation: MDCDialogFoundation;
@@ -116,19 +139,6 @@ export class Meta extends MetaAdapter<ChildProps, MetaProps, State> {
         this.adapter.setContainerAdapter(new ContainerAdapter());
     }
 
-    /**
-     * Internal, but public API
-     */
-    public getClassName(props: MetaProps, state: State): string {
-        return classNames(
-            CLASS_NAME,
-            {
-                [propertyClassNames.DARK]: this.props.dark,
-            },
-            state.foundationClasses.toJS(),
-        );
-    }
-
     /* Public APIs */
 
     public accept(notifyChange: boolean = false) {
@@ -137,21 +147,6 @@ export class Meta extends MetaAdapter<ChildProps, MetaProps, State> {
 
     public cancel(notifyChange: boolean = false) {
         this.foundation.cancel(notifyChange);
-    }
-
-    protected getBaseClassName() {
-        return null;
-    }
-
-    protected getClassValues() {
-        return [this.getClassName(this.props, this.state)];
-    }
-
-    protected getNativeDOMProps() {
-        return {
-            attributes: this.state.foundationAttributes.toJS(),
-            eventListeners: this.state.foundationEventListeners.toJS(),
-        };
     }
 }
 
@@ -165,7 +160,7 @@ class ContainerAdapterImpl extends ContainerAdapter {
 
     public hasClass(className: string): boolean {
         return includes(
-            this.element.getClassName(this.element.props, this.element.state).split(/\s+/),
+            this.element.propMaker.getClassName(this.element.props, this.element.state).split(/\s+/),
             className,
         );
     }
@@ -236,11 +231,7 @@ class ContainerAdapterImpl extends ContainerAdapter {
     }
 }
 
-export type Props = React.HTMLProps<HTMLElement> & MetaProps;
-
-// TypeScript Bug
-// https://github.com/Microsoft/TypeScript/issues/5938
-const component = createDefaultComponent<React.HTMLProps<HTMLElement>, MetaProps, Props>(
+export default createDefaultComponent<React.HTMLProps<HTMLElement>, MetaProps>(
     "aside",
     Meta,
     [
@@ -250,6 +241,5 @@ const component = createDefaultComponent<React.HTMLProps<HTMLElement>, MetaProps
         "onCancel",
         "onOpen",
         "onClose",
-    ]) as DefaultComponent<React.HTMLProps<HTMLElement>, MetaProps>;
-
-export default component;
+    ],
+);

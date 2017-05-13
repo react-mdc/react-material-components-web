@@ -1,6 +1,7 @@
 {
     "compileOnSave": true,
     "compilerOptions": {
+        "outDir": "./lib/",
         "declaration": true,
         "strictNullChecks": true,
         "sourceMap": true,
@@ -8,10 +9,9 @@
         "target": "es5",
         "jsx": "react",
         "moduleResolution": "node",
-        "noEmitOnError": true,
-        "outDir": "./lib/"
+        "noEmitOnError": true
     },
     "include": [
         "./src/**/*"
     ]
-}
+} 

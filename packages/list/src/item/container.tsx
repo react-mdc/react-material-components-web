@@ -1,10 +1,11 @@
 import * as React from "react";
 
 import {
+    ClassNameMeta,
+    ClassNamePropMakerAdapter,
     createDefaultComponent,
     DefaultComponent,
-    MetaAdapter,
-} from "@react-mdc/base/lib/meta";
+} from "@react-mdc/base";
 
 import {
     BASE_CLASS_NAME,
@@ -19,22 +20,14 @@ export type ChildProps = {
     className?: string,
 };
 
-/**
- * List item component
- */
-export class Meta extends MetaAdapter<ChildProps, MetaProps, {}> {
+export class PropMaker extends ClassNamePropMakerAdapter<ChildProps, MetaProps, {}> {
     protected getBaseClassName() {
         return CLASS_NAME;
     }
 }
 
-export type Props = React.HTMLProps<HTMLLIElement> & MetaProps;
-
-// TypeScript Bug
-// https://github.com/Microsoft/TypeScript/issues/5938
-const component = createDefaultComponent<React.HTMLProps<HTMLLIElement>, MetaProps, Props>(
+export default createDefaultComponent<React.HTMLProps<HTMLLIElement>, MetaProps>(
     "li",
-    Meta,
-    []) as DefaultComponent<React.HTMLProps<HTMLLIElement>, MetaProps>;
-
-export default component;
+    ClassNameMeta.simple(new PropMaker(), "Container"),
+    [],
+);

@@ -1,10 +1,11 @@
 import * as React from "react";
 
 import {
+    ClassNameMeta,
+    ClassNamePropMakerAdapter,
     createDefaultComponent,
     DefaultComponent,
-    MetaAdapter,
-} from "@react-mdc/base/lib/meta";
+} from "@react-mdc/base";
 
 import { BASE_CLASS_NAME } from "./constants";
 
@@ -25,31 +26,27 @@ export type ChildProps = {
 /**
  * Form field component
  */
-export class Meta extends MetaAdapter<ChildProps, MetaProps, {}> {
+export class PropMaker extends ClassNamePropMakerAdapter<ChildProps, MetaProps, {}> {
     protected getBaseClassName() {
         return CLASS_NAME;
     }
 
-    protected getClassValues() {
+    protected getClassValues(_c, props: MetaProps) {
         return [{
-            [propertyClassNames.ALIGN_END]: this.props.alignEnd,
+            [propertyClassNames.ALIGN_END]: props.alignEnd,
         }];
     }
 }
 
-export type Props = React.HTMLProps<HTMLDivElement> & MetaProps;
-
-// TypeScript Bug
-// https://github.com/Microsoft/TypeScript/issues/5938
-const component = createDefaultComponent<React.HTMLProps<HTMLDivElement>, MetaProps, Props>(
+const component = createDefaultComponent<React.HTMLProps<HTMLDivElement>, MetaProps>(
     "div",
-    Meta,
+    ClassNameMeta.simple(new PropMaker(), "FormField"),
     [
         "alignEnd",
-    ]) as DefaultComponent<React.HTMLProps<HTMLDivElement>, MetaProps>;
+    ],
+);
 
 export {
     component as FormField,
+    component as default,
 };
-
-export default component;

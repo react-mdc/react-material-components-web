@@ -1,12 +1,15 @@
 import * as React from "react";
 
 import {
+    ClassNameMeta,
+    ClassNamePropMakerAdapter,
     createDefaultComponent,
     DefaultComponent,
-    MetaAdapter,
-} from "@react-mdc/base/lib/meta";
-import * as button from "@react-mdc/button/lib";
-import { default as Button } from "@react-mdc/button/lib";
+} from "@react-mdc/base";
+import {
+    default as Button,
+    MetaProps as ButtonMetaProps,
+} from "@react-mdc/button";
 
 import {
     BASE_CLASS_NAME,
@@ -21,29 +24,22 @@ export type ChildProps = {
     className?: string,
 };
 
-/**
- * Actions section action component
- */
-export class Meta extends MetaAdapter<ChildProps, MetaProps, {}> {
+class PropMaker extends ClassNamePropMakerAdapter<ChildProps, MetaProps, {}> {
     protected getBaseClassName() {
         return CLASS_NAME;
     }
 }
 
 // Button with compact as default
-function CompactButton(props: button.Props) {
+function CompactButton(props: React.HTMLProps<HTMLButtonElement> & ButtonMetaProps) {
     return React.createElement(Button, {
         compact: true,
         ...props,
     });
 }
 
-export type Props = button.Props & MetaProps;
-
-// TypeScript Bug
-// https://github.com/Microsoft/TypeScript/issues/5938
-const component = createDefaultComponent<button.Props, MetaProps, Props>(
+export default createDefaultComponent<React.HTMLProps<HTMLButtonElement> & ButtonMetaProps, MetaProps>(
     CompactButton,
-    Meta, []) as DefaultComponent<React.HTMLProps<HTMLButtonElement> & button.ChildProps, MetaProps>;
-
-export default component;
+    ClassNameMeta.simple(new PropMaker(), "Action"),
+    [],
+);

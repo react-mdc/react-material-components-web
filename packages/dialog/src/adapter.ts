@@ -10,18 +10,18 @@ import {
  * Container adapter
  */
 export class ContainerAdapter {
-    public hasClass(className: string): boolean {
+    public hasClass(_className: string): boolean {
         return false;
     }
-    public addClass(className: string) {
+    public addClass(_className: string) {
     }
-    public removeClass(className: string) {
+    public removeClass(_className: string) {
     }
-    public setAttr(attr: string, val: string) {
+    public setAttr(_attr: string, _val: string) {
     }
-    public registerInteractionHandler(evt: string, handler: EventListener) {
+    public registerInteractionHandler(_evt: string, _handler: EventListener) {
     }
-    public deregisterInteractionHandler(evt: string, handler: EventListener) {
+    public deregisterInteractionHandler(_evt: string, _handler: EventListener) {
     }
     public notifyAccept() {
     }
@@ -30,9 +30,9 @@ export class ContainerAdapter {
 }
 
 export class SurfaceAdapter {
-    public registerSurfaceInteractionHandler(evt: string, handler: EventListener) {
+    public registerSurfaceInteractionHandler(_evt: string, _handler: EventListener) {
     }
-    public deregisterSurfaceInteractionHandler(evt: string, handler: EventListener) {
+    public deregisterSurfaceInteractionHandler(_evt: string, _handler: EventListener) {
     }
     public numFocusableTargets(): number {
         return 0;

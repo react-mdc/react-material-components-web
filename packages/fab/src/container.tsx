@@ -1,10 +1,11 @@
 import * as React from "react";
 
 import {
+    ClassNameMeta,
+    ClassNamePropMakerAdapter,
     createDefaultComponent,
     DefaultComponent,
-    MetaAdapter,
-} from "@react-mdc/base/lib/meta";
+} from "@react-mdc/base";
 
 import {
     BASE_CLASS_NAME,
@@ -29,34 +30,24 @@ export type ChildProps = {
 /**
  * Fab container
  */
-export class Meta extends MetaAdapter<ChildProps, MetaProps, {}> {
-    public static defaultProps = {
-        mini: false,
-        plain: false,
-    };
-
+export class PropMaker extends ClassNamePropMakerAdapter<ChildProps, MetaProps, {}> {
     protected getBaseClassName() {
         return CLASS_NAME;
     }
 
-    protected getClassValues() {
+    protected getClassValues(_c, props: MetaProps) {
         return [{
-            [propertyClassNames.MINI]: this.props.mini,
-            [propertyClassNames.PLAIN]: this.props.plain,
+            [propertyClassNames.MINI]: props.mini,
+            [propertyClassNames.PLAIN]: props.plain,
         }];
     }
 }
 
-export type Props = React.HTMLProps<HTMLButtonElement> & MetaProps;
-
-// TypeScript Bug
-// https://github.com/Microsoft/TypeScript/issues/5938
-const component = createDefaultComponent<React.HTMLProps<HTMLButtonElement>, MetaProps, Props>(
+export default createDefaultComponent<React.HTMLProps<HTMLButtonElement>, MetaProps>(
     "button",
-    Meta,
+    ClassNameMeta.simple(new PropMaker(), "Container"),
     [
         "mini",
         "plain",
-    ]) as DefaultComponent<React.HTMLProps<HTMLButtonElement>, MetaProps>;
-
-export default component;
+    ],
+);

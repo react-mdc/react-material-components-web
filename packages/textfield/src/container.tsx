@@ -5,10 +5,11 @@ import { OrderedSet, Set } from "immutable";
 import * as PropTypes from "prop-types";
 
 import {
+    ClassNameMeta,
+    ClassNamePropMakerAdapter,
     createDefaultComponent,
     DefaultComponent,
-    MetaAdapter,
-} from "@react-mdc/base/lib/meta";
+} from "@react-mdc/base";
 
 import { ContainerAdapter, FoundationAdapter } from "./adapter";
 
@@ -45,7 +46,20 @@ export type ChildContext = {
 /**
  * Textfield input container component
  */
-export class Meta extends MetaAdapter<ChildProps, MetaProps, State> {
+export class PropMaker extends ClassNamePropMakerAdapter<ChildProps, MetaProps, {}> {
+    protected getBaseClassName() {
+        return CLASS_NAME;
+    }
+
+    protected getClassValues(_c, props: MetaProps, state: State) {
+        return [{
+            [propertyClassNames.MULTILINE]: props.multiline,
+            [propertyClassNames.FULLWIDTH]: props.fullwidth,
+        }, state.foundationClasses.toJS()];
+    }
+}
+
+class Container extends ClassNameMeta<ChildProps, MetaProps, State> {
     public static childContextTypes = {
         adapter: PropTypes.instanceOf(FoundationAdapter),
     };
@@ -53,6 +67,8 @@ export class Meta extends MetaAdapter<ChildProps, MetaProps, State> {
     public state: State = {
         foundationClasses: OrderedSet<string>(),
     };
+
+    protected propMaker = new PropMaker();
 
     private adapter: FoundationAdapter;
     private foundation: MDCTextfieldFoundation;
@@ -79,22 +95,12 @@ export class Meta extends MetaAdapter<ChildProps, MetaProps, State> {
             adapter: this.adapter,
         };
     }
-    protected getBaseClassName() {
-        return CLASS_NAME;
-    }
-
-    protected getClassValues() {
-        return [{
-            [propertyClassNames.MULTILINE]: this.props.multiline,
-            [propertyClassNames.FULLWIDTH]: this.props.fullwidth,
-        }, this.state.foundationClasses.toJS()];
-    }
 }
 
 class ContainerAdapterImpl extends ContainerAdapter {
-    private element: Meta;
+    private element: Container;
 
-    constructor(element: Meta) {
+    constructor(element: Container) {
         super();
         this.element = element;
     }
@@ -110,17 +116,11 @@ class ContainerAdapterImpl extends ContainerAdapter {
     }
 }
 
-export type Props = React.HTMLProps<HTMLDivElement> & MetaProps;
-
-// TypeScript Bug
-// https://github.com/Microsoft/TypeScript/issues/5938
-const component = createDefaultComponent<React.HTMLProps<HTMLDivElement>, MetaProps, Props>(
+export default createDefaultComponent<React.HTMLProps<HTMLDivElement>, MetaProps>(
     "div",
-    Meta,
+    Container,
     [
         "disabled",
         "multiline",
         "fullwidth",
-    ]) as DefaultComponent<React.HTMLProps<HTMLDivElement>, MetaProps>;
-
-export default component;
+    ]);

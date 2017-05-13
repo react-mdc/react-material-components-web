@@ -12,10 +12,11 @@ import {
 } from "immutable";
 
 import {
+    ClassNameMeta,
+    ClassNamePropMakerAdapter,
     createDefaultComponent,
     DefaultComponent,
-    MetaAdapter,
-} from "@react-mdc/base/lib/meta";
+} from "@react-mdc/base";
 
 import { FoundationAdapter, RippleAdapter } from "./adapter";
 import * as helpers from "./helpers";
@@ -48,7 +49,31 @@ export type State = {
 /**
  * Ripple foundation component
  */
-export class Meta extends MetaAdapter<ChildProps, MetaProps, State> {
+export class PropMaker extends ClassNamePropMakerAdapter<ChildProps, MetaProps, State> {
+    public makeNativeDOMProps(_c, _p, state: State) {
+        return {
+            cssVariables: state.foundationCssVars.toJS(),
+            eventListeners: state.foundationEventListeners.toJS(),
+        };
+    }
+
+    protected getBaseClassName() {
+        return CLASS_NAME;
+    }
+
+    protected getClassValues(_c, props: MetaProps, state: State) {
+        const classes: string[] = [];
+        if (props.color != null) {
+            classes.push(helpers.classNameForColor(props.color));
+        }
+        return [
+            classes,
+            state.foundationClasses.toJS(),
+        ];
+    }
+}
+
+class Ripple extends ClassNameMeta<ChildProps, MetaProps, State> {
     public static defaultProps = {
         unbounded: false,
     };
@@ -58,6 +83,8 @@ export class Meta extends MetaAdapter<ChildProps, MetaProps, State> {
         foundationCssVars: OrderedMap<string, string | null>(),
         foundationEventListeners: OrderedMap<string, Set<EventListener>>(),
     };
+
+    protected propMaker = new PropMaker();
 
     private adapter: FoundationAdapter;
     private foundation: MDCRippleFoundation;
@@ -91,34 +118,12 @@ export class Meta extends MetaAdapter<ChildProps, MetaProps, State> {
         this.foundation.destroy();
         this.adapter.setRippleAdapter(new RippleAdapter());
     }
-
-    protected getBaseClassName() {
-        return CLASS_NAME;
-    }
-
-    protected getClassValues() {
-        const classes: string[] = [];
-        if (this.props.color != null) {
-            classes.push(helpers.classNameForColor(this.props.color));
-        }
-        return [
-            classes,
-            this.state.foundationClasses.toJS(),
-        ];
-    }
-
-    protected getNativeDOMProps() {
-        return {
-            cssVariables: this.state.foundationCssVars.toJS(),
-            eventListeners: this.state.foundationEventListeners.toJS(),
-        };
-    }
 }
 
-class RippleAdapterImpl<P> extends RippleAdapter {
-    private element: Meta;
+class RippleAdapterImpl extends RippleAdapter {
+    private element: Ripple;
 
-    constructor(element: Meta) {
+    constructor(element: Ripple) {
         super();
         this.element = element;
     }
@@ -184,17 +189,14 @@ class RippleAdapterImpl<P> extends RippleAdapter {
     }
 }
 
-export type Props = React.HTMLProps<HTMLDivElement> & MetaProps;
-
-// TypeScript Bug
-// https://github.com/Microsoft/TypeScript/issues/5938
-const component = createDefaultComponent<React.HTMLProps<HTMLDivElement>, MetaProps, Props>(
+const component = createDefaultComponent<React.HTMLProps<HTMLDivElement>, MetaProps>(
     "div",
-    Meta,
+    Ripple,
     [
         "unbounded",
         "color",
-    ]) as DefaultComponent<React.HTMLProps<HTMLDivElement>, MetaProps>;
+    ],
+);
 
 export {
     component as Ripple,
