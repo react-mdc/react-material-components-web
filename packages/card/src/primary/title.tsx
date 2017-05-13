@@ -28,7 +28,7 @@ export type ChildProps = {
 /**
  * Primary section title component
  */
-class PropMaker extends ClassNamePropMakerAdapter<ChildProps, MetaProps, {}> {
+export class PropMaker extends ClassNamePropMakerAdapter<ChildProps, MetaProps, {}> {
     public static defaultProps = {
         large: false,
     };

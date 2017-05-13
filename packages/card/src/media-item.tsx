@@ -39,7 +39,7 @@ export type ChildProps = {
 /**
  * Media item component
  */
-class PropMaker extends ClassNamePropMakerAdapter<ChildProps, MetaProps, {}> {
+export class PropMaker extends ClassNamePropMakerAdapter<ChildProps, MetaProps, {}> {
     protected getBaseClassName() {
         return CLASS_NAME;
     }

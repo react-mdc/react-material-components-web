@@ -40,7 +40,7 @@ export type State = {
     foundationEventListeners: Map<string, Set<EventListener>>,
 };
 
-class PropMaker extends ClassNamePropMakerAdapter<ChildProps, MetaProps, State> {
+export class PropMaker extends ClassNamePropMakerAdapter<ChildProps, MetaProps, State> {
     public makeNativeDOMProps(_c, _p, state: State) {
         return {
             eventListeners: state.foundationEventListeners.toJS(),
