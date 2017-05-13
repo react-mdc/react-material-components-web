@@ -38,6 +38,7 @@
     "@types/react": "^15.0.18"
   },
   "devDependencies": {
+    "npm-run-all": "^4.0.2",
     "shelljs": "^0.7.7",
     "shx": "^0.2.2",
     "tslint": "^5.2.0",
@@ -45,9 +46,11 @@
     "typescript": "^2.3.2"
   },
   "scripts": {
-    "build": "tsc",
+    "build": "npm-run-all build:ts lint",
     "watch": "tsc --watch",
     "prepublish": "npm run build",
-    "clean": "shx rm -rf lib/"
+    "clean": "shx rm -rf lib/",
+    "lint": "tslint 'src/**/*.ts?(x)'",
+    "build:ts": "tsc"
   }
 }

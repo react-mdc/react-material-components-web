@@ -59,7 +59,7 @@ def load_pacakge_json(filename: str):
 
 def dump_pacakge_json(package, filename):
     with open(filename, 'w') as f:
-        decoded = json.dumps(package, ensure_ascii=False, indent=4)
+        decoded = json.dumps(package, ensure_ascii=False, indent=2)
         f.write(decoded)
         f.write('\n')  # Add line feed @ EOF
 

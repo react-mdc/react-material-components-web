@@ -21,10 +21,9 @@
   },
   "scripts": {
     "bootstrap": "lerna bootstrap",
-    "build": "lerna run build --stream",
-    "lint": "tslint packages/*/src/**/*.ts{,x}",
-    "lint:fix": "tslint --fix packages/*/src/**/*.ts{,x}",
+    "build": "lerna run build --stream --concurrency=5",
+    "lint": "lerna run lint --no-sort --concurrency=5",
     "watch": "lerna run watch --stream --no-sort --concurrency=50",
-    "prepublish": "npm run lint && npm run build"
+    "prepublish": "npm run build"
   }
 }
