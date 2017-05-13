@@ -1,3 +1,6 @@
+### Typescript ###
+.awcache/
+
 ### Node ###
 # Logs
 logs
