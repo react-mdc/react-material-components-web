@@ -17,7 +17,7 @@ function ExternalLink(props: React.HTMLProps<HTMLAnchorElement>) {
 
 const EL = ExternalLink;
 
-export default function () {
+export default function() {
     return (
         <PageContainer>
             <PageTitle>

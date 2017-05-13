@@ -160,7 +160,7 @@ export class FoundationAdapter {
      */
     public toObject(): {} {
         const keys = Object.getOwnPropertyNames(Object.getPrototypeOf(this));
-        let object = {};
+        const object = {};
         keys.forEach((key: string) => {
             object[key] = (...args) => this[key](...args);
         });

@@ -23,7 +23,6 @@ import { stripIgnored } from "app/js/utils/code";
 
 import * as BasicDemoCode from "raw-loader!./basic.example.tsx";
 
-
 function DemoGrid(p) {
     let { style, ...props } = p;
     style = {
@@ -143,7 +142,6 @@ function BasicDemo() {
         </Typography>
     );
 }
-
 
 export default function LayoutGridPage() {
     return (

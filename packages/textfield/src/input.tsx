@@ -69,7 +69,7 @@ export class Meta extends MetaAdapter<ChildProps, MetaProps, State> {
             eventListeners: this.state.foundationEventListeners.toJS(),
         };
     }
-};
+}
 
 class InputAdapterImpl<P> extends InputAdapter {
     private element: Meta;

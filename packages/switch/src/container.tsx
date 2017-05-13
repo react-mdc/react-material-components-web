@@ -42,7 +42,7 @@ export class Meta extends MetaAdapter<ChildProps, MetaProps, {}> {
             [propertyClassNames.DISABLED]: this.props.disabled,
         }];
     }
-};
+}
 
 export type Props = React.HTMLProps<HTMLDivElement> & MetaProps;
 

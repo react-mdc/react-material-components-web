@@ -30,4 +30,3 @@ export const Body2 = createShorcutComponent("body2");
 export const Body1 = createShorcutComponent("body1");
 export const Caption = createShorcutComponent("caption");
 /* tslint:enable:variable-name */
-

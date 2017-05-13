@@ -26,7 +26,7 @@ export class Meta extends MetaAdapter<ChildProps, MetaProps, {}> {
     protected getBaseClassName() {
         return CLASS_NAME;
     }
-};
+}
 
 // Input with type="checkbox" as default
 function CheckboxInput(props: React.HTMLProps<HTMLInputElement>) {

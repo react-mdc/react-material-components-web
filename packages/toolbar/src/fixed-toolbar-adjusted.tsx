@@ -29,7 +29,7 @@ export class Meta extends MetaAdapter<ChildProps, MetaProps, {}> {
     protected getBaseClassName() {
         return classNames(CLASS_NAME, DEPRECATED_CLASS_NAME);
     }
-};
+}
 
 export type Props = React.HTMLProps<HTMLDivElement> & MetaProps;
 

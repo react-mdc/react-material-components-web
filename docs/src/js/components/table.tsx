@@ -4,9 +4,8 @@ import * as classNames from "classnames";
 
 import * as styles from "./styles.css";
 
-
 export default function Table(props: React.HTMLAttributes<HTMLTableElement>) {
-    let {
+    const {
         className,
         ...p,
     } = props;

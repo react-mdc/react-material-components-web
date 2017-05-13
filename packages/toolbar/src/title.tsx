@@ -26,7 +26,7 @@ export class Meta extends MetaAdapter<ChildProps, MetaProps, {}> {
     protected getBaseClassName() {
         return CLASS_NAME;
     }
-};
+}
 
 export type Props = React.HTMLProps<HTMLSpanElement> & MetaProps;
 

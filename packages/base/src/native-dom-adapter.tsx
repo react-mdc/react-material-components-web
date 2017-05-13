@@ -118,8 +118,8 @@ export default class NativeDOMAdapter extends React.Component<Props, {}> {
     private updateCssVariables(dom: HTMLElement,
                                prev: CSSVariables,
                                next: CSSVariables) {
-        let toRemove: CSSVariables = {};
-        let toAdd: CSSVariables = {};
+        const toRemove: CSSVariables = {};
+        const toAdd: CSSVariables = {};
         forEach(prev, (value: any, key: string) => {
             if (next[key] !== value) {
                 toRemove[key] = value;
@@ -160,8 +160,8 @@ export default class NativeDOMAdapter extends React.Component<Props, {}> {
 
         // Find listeners to add / remove with order preservation
         const diff = allKeys.map((event: string) => {
-            let prevListeners: EventListener[] = prev[event] || [];
-            let nextListeners: EventListener[] = next[event] || [];
+            const prevListeners: EventListener[] = prev[event] || [];
+            const nextListeners: EventListener[] = next[event] || [];
             let diffStart;
             for (diffStart = 0; diffStart < Math.min(prevListeners.length, nextListeners.length); diffStart++) {
                 if (prevListeners[diffStart] !== nextListeners[diffStart]) {
@@ -203,8 +203,8 @@ export default class NativeDOMAdapter extends React.Component<Props, {}> {
     private updateAttributes(dom: HTMLElement,
                              prev: Attributes,
                              next: Attributes) {
-        let toRemove: Attributes = {};
-        let toAdd: Attributes = {};
+        const toRemove: Attributes = {};
+        const toAdd: Attributes = {};
         forEach(prev, (value: string, key: string) => {
             if (next[key] !== value) {
                 toRemove[key] = value;

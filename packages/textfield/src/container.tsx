@@ -89,7 +89,7 @@ export class Meta extends MetaAdapter<ChildProps, MetaProps, State> {
             [propertyClassNames.FULLWIDTH]: this.props.fullwidth,
         }, this.state.foundationClasses.toJS()];
     }
-};
+}
 
 class ContainerAdapterImpl extends ContainerAdapter {
     private element: Meta;

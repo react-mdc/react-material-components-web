@@ -28,7 +28,7 @@ import * as TextExampleCode from "raw-loader!./text.example.tsx";
 
 import * as ShortcutsExampleCode from "raw-loader!./shortcuts.example.tsx";
 
-export default function () {
+export default function() {
     return (
         <PageContainer>
             <PageTitle>

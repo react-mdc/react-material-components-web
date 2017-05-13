@@ -60,4 +60,3 @@ const component = createDefaultComponent<React.HTMLProps<HTMLButtonElement>, Met
     ]) as DefaultComponent<React.HTMLProps<HTMLButtonElement>, MetaProps>;
 
 export default component;
-

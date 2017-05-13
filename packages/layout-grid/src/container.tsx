@@ -33,7 +33,7 @@ export class Meta extends MetaAdapter<ChildProps, MetaProps, {}> {
     }
 
     protected getNativeDOMProps() {
-        let cssVariables = {};
+        const cssVariables = {};
         if (this.props.margin != null) {
             cssVariables[MARGIN_CSS_VARIABLE] = this.normalizeMarginAndGutter(this.props.margin);
         }
@@ -61,7 +61,7 @@ const component = createDefaultComponent<React.HTMLProps<HTMLDivElement>, MetaPr
     Meta,
     [
         "margin",
-        "gutter"
+        "gutter",
     ]) as DefaultComponent<React.HTMLProps<HTMLDivElement>, MetaProps>;
 
 export default component;

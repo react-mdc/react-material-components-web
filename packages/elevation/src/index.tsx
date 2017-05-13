@@ -56,6 +56,6 @@ const component = createDefaultComponent<React.HTMLProps<HTMLDivElement>, MetaPr
 
 export {
     component as Elevation,
-}
+};
 
 export default component;

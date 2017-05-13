@@ -6,7 +6,6 @@ import {
     MetaAdapter,
 } from "@react-mdc/base/lib/meta";
 
-
 import { CELL_BASE_CLASS_NAME } from "./constants";
 import * as helpers from "./helpers";
 import { Alignment, GridNumber } from "./types";
@@ -44,7 +43,7 @@ export class Meta extends MetaAdapter<ChildProps, MetaProps, {}> {
             align,
         } = this.props;
 
-        let classes: string[] = [];
+        const classes: string[] = [];
         if (span != null) {
             classes.push(helpers.classNameForCellSpan(span));
         }
@@ -63,7 +62,7 @@ export class Meta extends MetaAdapter<ChildProps, MetaProps, {}> {
         if (order != null) {
             classes.push(helpers.classNameForCellOrder(order));
         }
-        return classes
+        return classes;
     }
 }
 

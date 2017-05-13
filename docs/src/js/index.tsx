@@ -14,6 +14,5 @@ import "codemirror/mode/shell/shell";
 
 import "../style/index.css";
 
-let element = document.getElementById("root");
-
+const element = document.getElementById("root");
 ReactDOM.render(<MainRouter />, element, () => { });

@@ -22,7 +22,7 @@ export default class Checkbox extends React.Component<Props, {}> {
     public props: Props;
 
     public render() {
-        let {
+        const {
             inputId,
             name,
             value,

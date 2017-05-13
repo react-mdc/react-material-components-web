@@ -11,5 +11,5 @@ export {
     Subheading1,
     Body2,
     Body1,
-    Caption
+    Caption,
 } from "./shortcuts";

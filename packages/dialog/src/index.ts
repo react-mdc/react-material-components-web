@@ -8,5 +8,5 @@ import * as header from "./header";
 
 export {
     footer,
-    header
+    header,
 };

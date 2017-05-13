@@ -43,6 +43,8 @@ export default class ReactCodemirror extends React.Component<Props, State> {
 
     private codeMirror: CodeMirror.EditorFromTextArea;
 
+    private textArea: React.ReactNode | null;
+
     public componentWillMount() {
         this.componentWillReceiveProps = _.debounce(this.componentWillReceiveProps, 0);
     }
@@ -95,7 +97,7 @@ export default class ReactCodemirror extends React.Component<Props, State> {
         );
         return (
             <div className={editorClassName}>
-                <textarea ref="textarea"
+                <textarea ref={this.handleTextAreaRef}
                     name={this.props.path}
                     defaultValue={this.props.value}
                     autoComplete="off" />
@@ -115,6 +117,10 @@ export default class ReactCodemirror extends React.Component<Props, State> {
 
     private getCodeMirrorInstance(): CodemirrorType {
         return this.props.codeMirrorInstance || CodeMirror;
+    }
+
+    private handleTextAreaRef = (textArea: React.ReactNode) => {
+        this.textArea = textArea;
     }
 
     private focusChanged = (focused) => {

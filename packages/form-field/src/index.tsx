@@ -50,6 +50,6 @@ const component = createDefaultComponent<React.HTMLProps<HTMLDivElement>, MetaPr
 
 export {
     component as FormField,
-}
+};
 
 export default component;

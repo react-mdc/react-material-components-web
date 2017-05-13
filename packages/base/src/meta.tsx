@@ -97,8 +97,9 @@ export type DefaultComponent<ChildProps, MetaProps> = React.StatelessComponent<C
 
 export function
     createDefaultComponent
-    <ChildProps extends ClassNameChildProps, MetaProps extends ClassNameProps, Props extends ChildProps & MetaProps>
-    (defaultComponent: React.ReactType, meta: React.ComponentClass<MetaProps>, metaKeys: Array<keyof MetaProps>):
+    <ChildProps extends ClassNameChildProps, MetaProps extends ClassNameProps, Props extends ChildProps & MetaProps>(
+    defaultComponent: React.ReactType, meta: React.ComponentClass<MetaProps>, metaKeys: Array<keyof MetaProps>,
+    ):
     React.StatelessComponent<Props> & { Meta: React.ComponentClass<MetaProps> } {
     // FIXME: This is typecasting hell
     function Component(props: ChildProps & MetaProps) {

@@ -26,5 +26,5 @@ export {
   formField,
   radio,
   ripple,
-  typography
+  typography,
 };

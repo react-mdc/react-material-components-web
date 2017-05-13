@@ -32,13 +32,13 @@ export class Meta extends MetaAdapter<ChildProps, MetaProps, {}> {
         const {
             align,
         } = this.props;
-        let classes: string[] = [];
+        const classes: string[] = [];
         if (align != null) {
             classes.push(helpers.classNameForSectionAlignment(align));
         }
         return classes;
     }
-};
+}
 
 export type Props = React.HTMLProps<HTMLElement> & MetaProps;
 

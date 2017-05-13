@@ -36,7 +36,7 @@ export function eventHandlerDecorator<T>(defaultHandler: React.ReactEventHandler
 export function includes<T>(array: T[], item: T, predicate: (left, right) => boolean = (x, y) => x === y): boolean {
     // tslint:disable:prefer-for-of
     for (let i = 0; i < array.length; i++) {
-        let itemAtIndex = array[i];
+        const itemAtIndex = array[i];
         if (predicate(item, itemAtIndex)) {
             return true;
         }

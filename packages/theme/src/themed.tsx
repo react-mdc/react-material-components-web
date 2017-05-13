@@ -33,7 +33,7 @@ export class Meta extends MetaAdapter<ChildProps, MetaProps, {}> {
             onColor,
         } = this.props;
 
-        let classes: string[] = [];
+        const classes: string[] = [];
         if (color != null) {
             classes.push(helpers.classNameForColor(color));
         }
@@ -46,7 +46,7 @@ export class Meta extends MetaAdapter<ChildProps, MetaProps, {}> {
 
         return classes;
     }
-};
+}
 
 export type Props = React.HTMLProps<HTMLDivElement> & MetaProps;
 

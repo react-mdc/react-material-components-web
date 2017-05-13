@@ -97,7 +97,7 @@ export class Meta extends MetaAdapter<ChildProps, MetaProps, State> {
     }
 
     protected getClassValues() {
-        let classes: string[] = [];
+        const classes: string[] = [];
         if (this.props.color != null) {
             classes.push(helpers.classNameForColor(this.props.color));
         }
@@ -198,6 +198,6 @@ const component = createDefaultComponent<React.HTMLProps<HTMLDivElement>, MetaPr
 
 export {
     component as Ripple,
-}
+};
 
 export default component;

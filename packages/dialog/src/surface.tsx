@@ -18,13 +18,13 @@ import {
     MDCDialogFoundation,
     util as dialogUtil,
 } from "@material/dialog/dist/mdc.dialog";
-import { SurfaceAdapter, FoundationAdapter } from "./adapter";
+import { FoundationAdapter, SurfaceAdapter } from "./adapter";
 import {
     BASE_CLASS_NAME,
 } from "./constants";
 
 const {
-    strings: { FOCUSABLE_ELEMENTS }
+    strings: { FOCUSABLE_ELEMENTS },
 } = MDCDialogFoundation;
 
 export const CLASS_NAME = `${BASE_CLASS_NAME}__surface`;
@@ -58,7 +58,7 @@ export class Meta extends MetaAdapter<ChildProps, MetaProps, State> {
     public state: State = {
         foundationClasses: OrderedSet<string>(),
         foundationEventListeners: Map<string, Set<EventListener>>(),
-    }
+    };
 
     public componentDidMount() {
         this.context.adapter.setSurfaceAdapter(new SurfaceAdapterImpl(this));
