@@ -79,6 +79,15 @@ module.exports = {
                     useCache: true,
                 }
             },
+            {
+                test: /\.tsx?$/,
+                exclude: /(node_modules)|(\.example\.tsx?$)/,
+                enforce: 'pre',
+                loader: 'tslint-loader',
+                options: {
+                    emitErrors: true
+                }
+            },
             /* Styles */
             {
                 // Don't compile external stylesheets
