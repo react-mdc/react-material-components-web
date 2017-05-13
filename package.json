@@ -25,5 +25,20 @@
     "lint": "lerna run lint --no-sort --concurrency=5",
     "watch": "lerna run watch --stream --no-sort --concurrency=50",
     "prepublish": "npm run build"
+  },
+  "jest": {
+    "transform": {
+      ".(ts|tsx)": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+    },
+    "testRegex": "packages/[^/]+/src/.*(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ]
+  },
+  "dependencies": {
+    "jest": "^20.0.1",
+    "ts-jest": "^20.0.3"
   }
 }
