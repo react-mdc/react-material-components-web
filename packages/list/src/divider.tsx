@@ -1,10 +1,10 @@
 import * as React from "react";
 
 import {
-    ClassNameMeta,
     ClassNamePropMakerAdapter,
     createDefaultComponent,
     DefaultComponent,
+    PropMakerMetaComponent,
 } from "@react-mdc/base";
 
 import {
@@ -46,7 +46,7 @@ function SeparatorLi(props: React.HTMLProps<HTMLLIElement>) {
 
 export default createDefaultComponent<React.HTMLProps<HTMLLIElement>, MetaProps>(
     SeparatorLi,
-    ClassNameMeta.simple(new PropMaker(), "Divider"),
+    PropMakerMetaComponent.simple(new PropMaker(), "Divider"),
     [
         "inset",
     ],

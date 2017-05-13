@@ -5,10 +5,10 @@ import * as PropTypes from "prop-types";
 
 import { MDCRadioFoundation } from "@material/radio/dist/mdc.radio";
 import {
-    ClassNameMeta,
     ClassNamePropMakerAdapter,
     createDefaultComponent,
     DefaultComponent,
+    PropMakerMetaComponent,
 } from "@react-mdc/base";
 
 import { ContainerAdapter, FoundationAdapter } from "./adapter";
@@ -50,7 +50,7 @@ export class PropMaker extends ClassNamePropMakerAdapter<ChildProps, MetaProps, 
     }
 }
 
-class Container extends ClassNameMeta<ChildProps, MetaProps, State> {
+class Container extends PropMakerMetaComponent<ChildProps, MetaProps, State> {
     public static childContextTypes = {
         adapter: PropTypes.instanceOf(FoundationAdapter),
     };

@@ -1,10 +1,10 @@
 import * as React from "react";
 
 import {
-    ClassNameMeta,
     ClassNamePropMakerAdapter,
     createDefaultComponent,
     DefaultComponent,
+    PropMakerMetaComponent,
 } from "@react-mdc/base";
 
 import {
@@ -33,6 +33,6 @@ export type Props = React.HTMLProps<HTMLElement> & MetaProps;
 
 export default createDefaultComponent<React.HTMLProps<HTMLElement>, MetaProps>(
     "footer",
-    ClassNameMeta.simple(new PropMaker(), "Container"),
+    PropMakerMetaComponent.simple(new PropMaker(), "Container"),
     [],
 );

@@ -11,10 +11,10 @@ import {
 } from "immutable";
 
 import {
-    ClassNameMeta,
     ClassNamePropMakerAdapter,
     createDefaultComponent,
     DefaultComponent,
+    PropMakerMetaComponent,
 } from "@react-mdc/base";
 import { eventHandlerDecorator, includes } from "@react-mdc/base/lib/util";
 
@@ -83,7 +83,7 @@ export class PropMaker extends ClassNamePropMakerAdapter<ChildProps, MetaProps, 
 
 }
 
-export class Meta extends ClassNameMeta<ChildProps, MetaProps, State> {
+export class Meta extends PropMakerMetaComponent<ChildProps, MetaProps, State> {
     public static displayName = "Container";
     public static childContextTypes = {
         adapter: PropTypes.instanceOf(FoundationAdapter),

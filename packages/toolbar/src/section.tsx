@@ -1,10 +1,10 @@
 import * as React from "react";
 
 import {
-    ClassNameMeta,
     ClassNamePropMakerAdapter,
     createDefaultComponent,
     DefaultComponent,
+    PropMakerMetaComponent,
 } from "@react-mdc/base";
 
 import { SECTION_BASE_CLASS_NAME } from "./constants";
@@ -43,7 +43,7 @@ export class PropMaker extends ClassNamePropMakerAdapter<ChildProps, MetaProps, 
 
 export default createDefaultComponent<React.HTMLProps<HTMLElement>, MetaProps>(
     "section",
-    ClassNameMeta.simple(new PropMaker(), "Section"),
+    PropMakerMetaComponent.simple(new PropMaker(), "Section"),
     [
         "align",
     ],

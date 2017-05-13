@@ -9,10 +9,10 @@ import {
 } from "immutable";
 
 import {
-    ClassNameMeta,
     ClassNamePropMakerAdapter,
     createDefaultComponent,
     DefaultComponent,
+    PropMakerMetaComponent,
 } from "@react-mdc/base";
 
 import { eventHandlerDecorator } from "@react-mdc/base/lib/util";
@@ -54,7 +54,7 @@ export class PropMaker extends ClassNamePropMakerAdapter<ChildProps, MetaProps, 
 /**
  * Checkbox input component
  */
-class NativeControl extends ClassNameMeta<ChildProps, MetaProps, State> {
+class NativeControl extends PropMakerMetaComponent<ChildProps, MetaProps, State> {
     public static contextTypes = {
         adapter: PropTypes.instanceOf(FoundationAdapter).isRequired,
     };

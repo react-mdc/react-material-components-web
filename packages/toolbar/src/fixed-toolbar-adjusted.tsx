@@ -1,10 +1,10 @@
 import * as React from "react";
 
 import {
-    ClassNameMeta,
     ClassNamePropMakerAdapter,
     createDefaultComponent,
     DefaultComponent,
+    PropMakerMetaComponent,
 } from "@react-mdc/base";
 
 import { BASE_CLASS_NAME } from "./constants";
@@ -29,6 +29,6 @@ export class PropMaker extends ClassNamePropMakerAdapter<ChildProps, MetaProps, 
 
 export default createDefaultComponent<React.HTMLProps<HTMLDivElement>, MetaProps>(
     "div",
-    ClassNameMeta.simple(new PropMaker(), "FixedToolbarAdjusted"),
+    PropMakerMetaComponent.simple(new PropMaker(), "FixedToolbarAdjusted"),
     [],
 );

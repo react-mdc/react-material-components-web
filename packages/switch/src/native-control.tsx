@@ -1,10 +1,10 @@
 import * as React from "react";
 
 import {
-    ClassNameMeta,
     ClassNamePropMakerAdapter,
     createDefaultComponent,
     DefaultComponent,
+    PropMakerMetaComponent,
 } from "@react-mdc/base";
 
 import {
@@ -40,6 +40,6 @@ export type Props = React.HTMLProps<HTMLInputElement> & MetaProps;
 
 export default createDefaultComponent<React.HTMLProps<HTMLInputElement>, MetaProps>(
     CheckboxInput,
-    ClassNameMeta.simple(new PropMaker(), "NativeControl"),
+    PropMakerMetaComponent.simple(new PropMaker(), "NativeControl"),
     [],
 );

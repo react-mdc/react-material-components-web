@@ -11,10 +11,10 @@ import {
 import * as PropTypes from "prop-types";
 
 import {
-    ClassNameMeta,
     ClassNamePropMakerAdapter,
     createDefaultComponent,
     DefaultComponent,
+    PropMakerMetaComponent,
 } from "@react-mdc/base";
 
 import { ContainerAdapter, FoundationAdapter } from "./adapter";
@@ -65,7 +65,7 @@ export type ChildContext = {
 /**
  * Checkbox input container component
  */
-class Container extends ClassNameMeta<ChildProps, MetaProps, State> {
+class Container extends PropMakerMetaComponent<ChildProps, MetaProps, State> {
     public static childContextTypes = {
         adapter: PropTypes.instanceOf(FoundationAdapter),
     };

@@ -1,9 +1,9 @@
 import * as React from "react";
 
 import {
-    ClassNameMeta,
     ClassNamePropMakerAdapter,
     DefaultComponent,
+    PropMakerMetaComponent,
 } from "@react-mdc/base";
 
 import { BASE_CLASS_NAME } from "./constants";
@@ -45,7 +45,7 @@ export class PropMaker extends ClassNamePropMakerAdapter<ChildProps, MetaProps, 
     }
 }
 
-export class Meta extends ClassNameMeta<ChildProps, MetaProps, {}> {
+export class Meta extends PropMakerMetaComponent<ChildProps, MetaProps, {}> {
     public static displayName = "Text";
 
     protected propMaker = new PropMaker();

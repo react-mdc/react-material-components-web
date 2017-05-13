@@ -4,10 +4,10 @@ import * as ReactDOM from "react-dom";
 import * as PropTypes from "prop-types";
 
 import {
-    ClassNameMeta,
     ClassNamePropMakerAdapter,
     createDefaultComponent,
     DefaultComponent,
+    PropMakerMetaComponent,
 } from "@react-mdc/base";
 import { eventHandlerDecorator } from "@react-mdc/base/lib/util";
 
@@ -47,7 +47,7 @@ export class PropMaker extends ClassNamePropMakerAdapter<ChildProps, MetaProps, 
     }
 }
 
-class NativeControl extends ClassNameMeta<ChildProps, MetaProps, {}> {
+class NativeControl extends PropMakerMetaComponent<ChildProps, MetaProps, {}> {
     public static contextTypes = {
         adapter: PropTypes.instanceOf(FoundationAdapter).isRequired,
     };

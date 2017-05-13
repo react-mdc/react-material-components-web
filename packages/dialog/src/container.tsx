@@ -11,10 +11,10 @@ import {
 } from "immutable";
 
 import {
-    ClassNameMeta,
     ClassNamePropMakerAdapter,
     createDefaultComponent,
     DefaultComponent,
+    PropMakerMetaComponent,
 } from "@react-mdc/base";
 import { includes } from "@react-mdc/base/lib/util";
 
@@ -86,7 +86,7 @@ export class PropMaker extends ClassNamePropMakerAdapter<ChildProps, MetaProps, 
 /**
  * Dialog component
  */
-export class Meta extends ClassNameMeta<ChildProps, MetaProps, State> {
+export class Meta extends PropMakerMetaComponent<ChildProps, MetaProps, State> {
     public static displayName = "Container";
 
     public static childContextTypes = {

@@ -12,10 +12,10 @@ import {
 } from "immutable";
 
 import {
-    ClassNameMeta,
     ClassNamePropMakerAdapter,
     createDefaultComponent,
     DefaultComponent,
+    PropMakerMetaComponent,
 } from "@react-mdc/base";
 
 import { FoundationAdapter, RippleAdapter } from "./adapter";
@@ -73,7 +73,7 @@ export class PropMaker extends ClassNamePropMakerAdapter<ChildProps, MetaProps, 
     }
 }
 
-class Ripple extends ClassNameMeta<ChildProps, MetaProps, State> {
+class Ripple extends PropMakerMetaComponent<ChildProps, MetaProps, State> {
     public static defaultProps = {
         unbounded: false,
     };

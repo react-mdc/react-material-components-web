@@ -9,7 +9,6 @@ import {
     Typography,
 } from "@react-mdc/typography";
 
-
 function DemoGrid(p) {
     let { style, ...props } = p;
     style = {

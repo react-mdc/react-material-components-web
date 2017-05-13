@@ -6,7 +6,6 @@ import * as React from "react";
 import * as classNames from "classnames";
 
 import {
-    default as Meta,
     NativeDOMProps,
 } from "./base";
 import { IPropMaker } from "./prop-maker";
@@ -54,42 +53,3 @@ export abstract class ClassNamePropMakerAdapter
 export type Props<ChildProps> = {
     children?: React.ReactElement<ChildProps>,
 };
-
-/**
- * Common meta with className property implementation adapter.
- */
-export abstract class ClassNameMeta
-    <ChildProps extends ClassNameChildProps, Props extends ClassNameProps, State>
-    extends Meta<ChildProps, Props, State> {
-
-    /**
-     * Simple meta factory that has no extra implementations
-     */
-    public static simple<ChildProps, Props>(
-        propMaker: IPropMaker<ChildProps, Props, {}>, displayName: string): React.ComponentClass<Props> {
-        class SimpleMeta extends ClassNameMeta<ChildProps, Props, {}> {
-            public static displayName = displayName;
-            public propMaker = propMaker;
-        }
-        return SimpleMeta;
-    }
-
-    protected abstract propMaker: IPropMaker<ChildProps, Props, State>;
-
-    protected renderProps(childProps: ChildProps): ChildProps {
-        return this.propMaker.makeProps(childProps, this.getMetaProps(), this.state);
-    }
-
-    protected getNativeDOMProps(childProps: ChildProps): NativeDOMProps {
-        return this.propMaker.makeNativeDOMProps(childProps, this.getMetaProps(), this.state);
-    }
-
-    private getMetaProps(): Props {
-        // Typecheck always fails on following lines. So we use casting with any
-        const {
-            children,
-            ...rest,
-        } = this.props as any;
-        return rest;
-    }
-}

@@ -1,10 +1,10 @@
 import * as React from "react";
 
 import {
-    ClassNameMeta,
     ClassNamePropMakerAdapter,
     createDefaultComponent,
     DefaultComponent,
+    PropMakerMetaComponent,
 } from "@react-mdc/base";
 import {
     default as Button,
@@ -40,6 +40,6 @@ function CompactButton(props: React.HTMLProps<HTMLButtonElement> & ButtonMetaPro
 
 export default createDefaultComponent<React.HTMLProps<HTMLButtonElement> & ButtonMetaProps, MetaProps>(
     CompactButton,
-    ClassNameMeta.simple(new PropMaker(), "Action"),
+    PropMakerMetaComponent.simple(new PropMaker(), "Action"),
     [],
 );

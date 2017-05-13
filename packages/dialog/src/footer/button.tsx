@@ -1,8 +1,8 @@
 import {
-    ClassNameMeta,
     ClassNamePropMakerAdapter,
     createDefaultComponent,
     DefaultComponent,
+    PropMakerMetaComponent,
 } from "@react-mdc/base";
 
 import {
@@ -47,6 +47,6 @@ export class PropMaker extends ClassNamePropMakerAdapter<ChildProps, MetaProps, 
 
 export default createDefaultComponent<React.HTMLProps<HTMLButtonElement> & ButtonMetaProps, MetaProps>(
     Button,
-    ClassNameMeta.simple(new PropMaker(), "Button"),
+    PropMakerMetaComponent.simple(new PropMaker(), "Button"),
     [],
 );

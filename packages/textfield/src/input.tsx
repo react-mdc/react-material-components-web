@@ -9,10 +9,10 @@ import {
 import * as PropTypes from "prop-types";
 
 import {
-    ClassNameMeta,
     ClassNamePropMakerAdapter,
     createDefaultComponent,
     DefaultComponent,
+    PropMakerMetaComponent,
 } from "@react-mdc/base";
 
 import { FoundationAdapter, InputAdapter } from "./adapter";
@@ -54,7 +54,7 @@ export class PropMaker extends ClassNamePropMakerAdapter<ChildProps, MetaProps, 
     }
 }
 
-class Input extends ClassNameMeta<ChildProps, MetaProps, State> {
+class Input extends PropMakerMetaComponent<ChildProps, MetaProps, State> {
     public static contextTypes = {
         adapter: PropTypes.instanceOf(FoundationAdapter).isRequired,
     };
