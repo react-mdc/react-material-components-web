@@ -7,14 +7,9 @@
         // Common
         "object-literal-sort-keys": false,
         "interface-over-type-literal": false,
-        "prefer-const": [true, {"destructuring": "all"}],
-        "no-unused-variable": [
-            true,
-            "react",
-            {
-                "ignore-pattern": "^_"
-            }
-        ],
+        "prefer-const": [true, {
+            "destructuring": "all"
+        }],
         "no-empty": false,
         "variable-name": [
             true,
@@ -25,6 +20,7 @@
         "max-classes-per-file": [
             false
         ],
+        "no-string-literal": false,
         // React
         "jsx-no-lambda": true,
         "jsx-alignment": false,

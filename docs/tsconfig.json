@@ -1,4 +1,5 @@
 {
+    "compileOnSave": true,
     "compilerOptions": {
         "baseUrl": ".",
         "outDir": "./build/",
@@ -9,6 +10,8 @@
         "jsx": "react",
         "allowJs": true,
         "allowSyntheticDefaultImports": true,
+        "noUnusedParameters": true,
+        "noUnusedLocals": true,
         "paths": {
             "app/*": [
                 "src/*"
