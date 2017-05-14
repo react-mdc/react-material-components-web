@@ -3,6 +3,7 @@ React Material Components Web
 
 [![License: MIT](https://img.shields.io/github/license/mashape/apistatus.svg)](https://opensource.org/licenses/MIT)
 [![npm version](https://badge.fury.io/js/react-material-components-web.svg)](https://badge.fury.io/js/react-material-components-web)
+[![Build Status](https://img.shields.io/travis/react-mdc/react-material-components-web.svg)](https://travis-ci.org/react-mdc/react-material-components-web)
 
 
 React wrapper of [Material Components Web](
