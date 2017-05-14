@@ -10,5 +10,8 @@ cache:
   directories:
     - "node_modules"
 
+before_script:
+  - lerna bootstrap
+
 script:
   - yarn run test
