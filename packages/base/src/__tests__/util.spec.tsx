@@ -50,5 +50,54 @@ describe("util", () => {
             }
             ReactTestUtils.Simulate.click(button);
         });
+
+        it("should not call wrapper when default is prevented", (done) => {
+            function wrapper() {
+                fail("It should not be called!");
+            }
+
+            function handler(e: React.SyntheticEvent<any>) {
+                e.preventDefault();
+            }
+
+            const wrapped = util.eventHandlerDecorator(wrapper)(handler);
+
+            function proxy(e: React.SyntheticEvent<any>) {
+                // We should call `done()` after handler ends.
+                // So we proxy the event.
+                wrapped(e);
+                done();
+            }
+
+            const button = ReactTestUtils.renderIntoDocument(
+                <button onClick={proxy} />,
+            );
+
+            if (button == null) {
+                fail("Button was not rendered!");
+                return;
+            }
+
+            ReactTestUtils.Simulate.click(button);
+        });
+
+        it("should call wrapper even if original handler is a kind of null", (done) => {
+            function wrapper() {
+                done();
+            }
+
+            const wrapped = util.eventHandlerDecorator(wrapper)(null);
+
+            const button = ReactTestUtils.renderIntoDocument(
+                <button onClick={wrapped} />,
+            );
+
+            if (button == null) {
+                fail("Button was not rendered!");
+                return;
+            }
+
+            ReactTestUtils.Simulate.click(button);
+        });
     });
 });
