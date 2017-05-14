@@ -104,7 +104,7 @@ class Ripple extends PropMakerMetaComponent<ChildProps, MetaProps, State> {
         this.foundation.deactivate();
     }
 
-    public getDOMNode(): HTMLElement {
+    public getDOMNode(): Element {
         return ReactDOM.findDOMNode(this);
     }
 

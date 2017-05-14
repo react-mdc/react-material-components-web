@@ -109,7 +109,7 @@ class InputAdapterImpl extends InputAdapter {
         this.deregisterInputHandler("keydown", handler);
     }
     public getNativeInput(): { value: string, disabled: boolean, checkValidity: () => boolean } | null {
-        return ReactDOM.findDOMNode(this.element);
+        return ReactDOM.findDOMNode(this.element) as HTMLInputElement;
     }
 
     private registerInputHandler(evt: string, handler: EventListener) {
