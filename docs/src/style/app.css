@@ -1,4 +1,11 @@
-html,body {
+:global {
+    :root {
+        --mdc-theme-primary: #212121;
+        --mdc-theme-accent: #64DD17;
+    }
+}
+
+html, body {
     height: 100%;
 }
 

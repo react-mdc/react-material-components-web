@@ -30,7 +30,7 @@ export default class MainToolbar extends React.Component<Props, {}> {
                             <MaterialIcon className={styles["toolbar-icon"]}>
                                 layers
                             </MaterialIcon>
-                            <Title>
+                            <Title className={styles["toolbar-title-text"]}>
                                 React Material Components Web
                             </Title>
                         </Link>
