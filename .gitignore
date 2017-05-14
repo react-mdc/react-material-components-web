@@ -6,6 +6,9 @@ yarn.lock
 # Transpiled source directory
 lib/
 
+### VS Code ###
+.vscode/
+
 ### Node ###
 # Logs
 logs

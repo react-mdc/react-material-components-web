@@ -17,12 +17,18 @@
     "immutable": "^3.8.1",
     "lodash.foreach": "^4.5.0",
     "react": "^15.4.2",
-    "react-dom": "^15.4.2"
+    "react-dom": "^15.5.4",
+    "remove": "^0.1.5"
   },
   "devDependencies": {
+    "@types/enzyme": "^2.8.0",
     "@types/jest": "^19.2.3",
+    "@types/jsdom": "^2.0.30",
+    "enzyme": "^2.8.2",
     "jest": "^20.0.1",
+    "jsdom": "^10.1.0",
     "npm-run-all": "^4.0.2",
+    "react-addons-test-utils": "^15.5.1",
     "shelljs": "^0.7.7",
     "shx": "^0.2.2",
     "ts-jest": "^20.0.3",

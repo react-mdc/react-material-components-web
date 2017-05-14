@@ -10,7 +10,7 @@ export type EventListeners = {
 };
 
 export type CSSVariables = {
-    [name: string]: any,
+    [name: string]: string,
 };
 
 export type Attributes = {

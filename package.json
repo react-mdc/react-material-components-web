@@ -17,28 +17,29 @@
     "npm-run-all": "^4.0.1",
     "tslint": "^5.2.0",
     "tslint-react": "^3.0.0",
-    "typescript": "^2.3.2"
+    "typescript": "^2.3.2",
+    "jest": "^20.0.1",
+    "ts-jest": "^20.0.3"
   },
   "scripts": {
     "bootstrap": "lerna bootstrap",
+    "clean": "lerna run clean --no-sort --concurrency=10",
     "build": "lerna run build --stream --concurrency=5",
     "lint": "lerna run lint --no-sort --concurrency=5",
     "watch": "lerna run watch --stream --no-sort --concurrency=50",
-    "prepublish": "npm run build"
+    "test": "jest",
+    "test:watch": "jest --watchAll",
+    "prepublish": "lerna run prepublish --stream --concurrency=5"
   },
   "jest": {
     "transform": {
       ".(ts|tsx)": "<rootDir>/node_modules/ts-jest/preprocessor.js"
     },
-    "testRegex": "packages/[^/]+/src/.*(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
+    "testRegex": "packages/[^/]+/src/.*(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js|jsx)$",
     "moduleFileExtensions": [
       "ts",
       "tsx",
       "js"
     ]
-  },
-  "dependencies": {
-    "jest": "^20.0.1",
-    "ts-jest": "^20.0.3"
   }
 }
