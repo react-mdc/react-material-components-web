@@ -147,6 +147,24 @@ $ npm run watch
 
 ```
 
+
+Run Test
+--------
+
+``` shell
+
+$ npm test
+
+```
+
+to watch
+
+``` shell
+
+$ npm test:watch
+
+```
+
 Supported Components
 --------------------
 
