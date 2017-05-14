@@ -6,7 +6,6 @@ node_js:
 sudo: false
 
 cache:
-  yarn: true
   directories:
     - "node_modules"
 
@@ -14,4 +13,4 @@ before_script:
   - lerna bootstrap
 
 script:
-  - yarn run test
+  - npm run test
