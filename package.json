@@ -22,14 +22,12 @@
     "ts-jest": "^20.0.3"
   },
   "scripts": {
-    "bootstrap": "lerna bootstrap",
     "clean": "lerna run clean --no-sort --concurrency=10",
     "build": "lerna run build --stream --concurrency=5",
     "lint": "lerna run lint --no-sort --concurrency=5",
     "watch": "lerna run watch --stream --no-sort --concurrency=50",
     "test": "jest",
-    "test:watch": "jest --watchAll",
-    "prepublish": "lerna run prepublish --stream --concurrency=5"
+    "test:watch": "jest --watchAll"
   },
   "jest": {
     "transform": {
