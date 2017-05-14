@@ -88,5 +88,5 @@ describe("Meta", () => {
                 <a href="https://www.google.com" />
             </NativeDOMAdapter>,
         )).toBeTruthy();
-    })
+    });
 });
