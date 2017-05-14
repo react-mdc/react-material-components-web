@@ -115,9 +115,7 @@ export default class NativeDOMAdapter extends React.Component<Props, {}> {
         });
     }
 
-    private updateCssVariables(dom: HTMLElement,
-                               prev: CSSVariables,
-                               next: CSSVariables) {
+    private updateCssVariables(dom: HTMLElement, prev: CSSVariables, next: CSSVariables) {
         const toRemove: CSSVariables = {};
         const toAdd: CSSVariables = {};
         forEach(prev, (value: any, key: string) => {
@@ -136,22 +134,22 @@ export default class NativeDOMAdapter extends React.Component<Props, {}> {
 
     // Manage event listeners
     private removeEventListeners(dom: HTMLElement, toRemove: EventListeners) {
-        forEach(toRemove, (item) => {
-            const [event, listener] = item;
-            dom.removeEventListener(event, listener);
+        forEach(toRemove, (listeners: EventListener[], event: string) => {
+            listeners.forEach((listener) => {
+                dom.removeEventListener(event, listener);
+            });
         });
     }
 
     private addEventListeners(dom: HTMLElement, toAdd: EventListeners) {
-        forEach(toAdd, (item) => {
-            const [event, listener] = item;
-            dom.addEventListener(event, listener);
+        forEach(toAdd, (listeners: EventListener[], event: string) => {
+            listeners.forEach((listener) => {
+                dom.addEventListener(event, listener);
+            });
         });
     }
 
-    private updateEventListeners(dom: HTMLElement,
-                                 prev: EventListeners,
-                                 next: EventListeners) {
+    private updateEventListeners(dom: HTMLElement, prev: EventListeners, next: EventListeners) {
         const prevKeys = Object.keys(prev);
         const nextKeys = Object.keys(next);
         const allKeys: string[] = OrderedSet
@@ -159,7 +157,12 @@ export default class NativeDOMAdapter extends React.Component<Props, {}> {
             .toJS();
 
         // Find listeners to add / remove with order preservation
-        const diff = allKeys.map((event: string) => {
+        type Diff = {
+            event: string,
+            toAdd: EventListener[],
+            toRemove: EventListener[],
+        };
+        const diff: Diff[] = allKeys.map((event: string) => {
             const prevListeners: EventListener[] = prev[event] || [];
             const nextListeners: EventListener[] = next[event] || [];
             let diffStart;
@@ -174,13 +177,17 @@ export default class NativeDOMAdapter extends React.Component<Props, {}> {
                 toAdd: nextListeners.slice(diffStart),
             };
         });
+        const toAdd: EventListeners = diff.reduce((listeners, item) => ({
+            ...listeners,
+            [item.event]: item.toAdd,
+        }), {} as EventListeners);
+        const toRemove: EventListeners = diff.reduce((listeners, item) => ({
+            ...listeners,
+            [item.event]: item.toRemove,
+        }), {} as EventListeners);
 
-        forEach(diff, ({ event, toRemove, toAdd }) => {
-            toRemove = toRemove.map((x) => [event, x]);
-            toAdd = toAdd.map((x) => [event, x]);
-            this.removeEventListeners(dom, toRemove);
-            this.addEventListeners(dom, toAdd);
-        });
+        this.removeEventListeners(dom, toRemove);
+        this.addEventListeners(dom, toAdd);
     }
 
     // Manage attributes
@@ -200,9 +207,7 @@ export default class NativeDOMAdapter extends React.Component<Props, {}> {
         });
     }
 
-    private updateAttributes(dom: HTMLElement,
-                             prev: Attributes,
-                             next: Attributes) {
+    private updateAttributes(dom: HTMLElement, prev: Attributes, next: Attributes) {
         const toRemove: Attributes = {};
         const toAdd: Attributes = {};
         forEach(prev, (value: string, key: string) => {

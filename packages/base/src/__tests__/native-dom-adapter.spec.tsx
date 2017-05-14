@@ -99,4 +99,71 @@ describe("NativeDOMAdapter", () => {
         expect(node.style.getPropertyValue("padding")).toBe("0px");
         expect(node.style.getPropertyValue("display")).toBe("");
     });
+
+    it("should add native event listeners by order", (done) => {
+        let firstCalled = false;
+        const first = () => {
+            firstCalled = true;
+        };
+        const second = () => {
+            if (!firstCalled) {
+                fail("First listener not called!");
+            } else {
+                done();
+            }
+        };
+
+        const wrapper = enzyme.mount(
+            <NativeDOMAdapter eventListeners={{
+                click: [first, second],
+            }}>
+                <div />
+            </NativeDOMAdapter>,
+        );
+
+        const node = wrapper.getDOMNode() as HTMLDivElement;
+
+        const event = new MouseEvent("click");
+        node.dispatchEvent(event);
+    });
+
+    it("should remove removed native event listeners from node", (done) => {
+        let firstCalled = false;
+        let secondCalled = false;
+        const first = () => {
+            if (firstCalled) {
+                fail("First should not be called twice!");
+            }
+            firstCalled = true;
+        };
+        const second = () => {
+            if (!firstCalled) {
+                fail("First listener not called!");
+            }
+            if (secondCalled) {
+                done();
+            }
+            secondCalled = true;
+        };
+
+        const wrapper = enzyme.mount(
+            <NativeDOMAdapter eventListeners={{
+                click: [first, second],
+            }}>
+                <div />
+            </NativeDOMAdapter>,
+        );
+
+        const node = wrapper.getDOMNode() as HTMLDivElement;
+
+        node.dispatchEvent(new MouseEvent("click"));
+
+        wrapper.setProps({
+            eventListeners: {
+                click: [second],
+            },
+        });
+
+        node.dispatchEvent(new MouseEvent("click"));
+    });
 });
