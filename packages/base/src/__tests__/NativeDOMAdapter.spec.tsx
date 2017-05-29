@@ -4,7 +4,7 @@ import * as React from "react";
 
 import * as enzyme from "enzyme";
 
-import NativeDOMAdapter from "../native-dom-adapter";
+import NativeDOMAdapter from "../NativeDOMAdapter";
 
 describe("NativeDOMAdapter", () => {
     it("Should render native DOM given as child", () => {

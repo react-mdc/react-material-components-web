@@ -4,19 +4,19 @@ import * as React from "react";
 
 import * as enzyme from "enzyme";
 
-import Meta from "../../meta/base";
-import NativeDOMAdapter from "../../native-dom-adapter";
+import MetaBase from "../MetaBase";
+import NativeDOMAdapter from "../NativeDOMAdapter";
 
-describe("Meta", () => {
+describe("MetaBase", () => {
     it("Should update child's props", () => {
-        class MetaImpl extends Meta<{ href?: string }, { link: string }, {}> {
+        class MetaImpl extends MetaBase<{ href?: string }, { link: string }, {}> {
             protected renderProps(childProps: { href: string }) {
                 return {
                     href: this.props.link,
                 };
             }
 
-            protected getNativeDOMProps(childProps: { href: string }) {
+            protected renderNativeDOMProps(childProps: { href: string }) {
                 return {};
             }
         }
@@ -35,14 +35,14 @@ describe("Meta", () => {
     });
 
     it("Should update NativeDOMAdapter's props", () => {
-        class MetaImpl extends Meta<{ href?: string }, { link: string, name: string }, {}> {
+        class MetaImpl extends MetaBase<{ href?: string }, { link: string, name: string }, {}> {
             protected renderProps(childProps: { href: string }) {
                 return {
                     href: this.props.link,
                 };
             }
 
-            protected getNativeDOMProps(childProps: { href: string }) {
+            protected renderNativeDOMProps(childProps: { href: string }) {
                 return {
                     attributes: {
                         "data-sitename": this.props.name,
@@ -65,14 +65,14 @@ describe("Meta", () => {
     });
 
     it("should overwrite child's props if conflicted", () => {
-        class MetaImpl extends Meta<{ href?: string }, { link: string }, {}> {
+        class MetaImpl extends MetaBase<{ href?: string }, { link: string }, {}> {
             protected renderProps(childProps: { href: string }) {
                 return {
                     href: this.props.link,
                 };
             }
 
-            protected getNativeDOMProps(childProps: { href: string }) {
+            protected renderNativeDOMProps(childProps: { href: string }) {
                 return {};
             }
         }

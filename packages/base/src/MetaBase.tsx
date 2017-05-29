@@ -8,7 +8,7 @@ import {
     CSSVariables,
     default as NativeDOMAdapter,
     EventListeners,
-} from "../native-dom-adapter";
+} from "./NativeDOMAdapter";
 
 export type Props<ChildProps> = {
     children: React.ReactElement<ChildProps>,
@@ -20,7 +20,7 @@ export type NativeDOMProps = {
     attributes?: Attributes,
 };
 
-export default abstract class Meta<ChildProps, MetaProps, State>
+export default abstract class BaseMeta<ChildProps, MetaProps, State>
     extends React.Component<MetaProps & Props<ChildProps>, State> {
     public render() {
         const {
@@ -28,7 +28,7 @@ export default abstract class Meta<ChildProps, MetaProps, State>
         } = this.props;
 
         const props = this.renderProps(children.props);
-        const nativeDOMProps = this.getNativeDOMProps(children.props);
+        const nativeDOMProps = this.renderNativeDOMProps(children.props);
 
         return (
             <NativeDOMAdapter {...nativeDOMProps}>
@@ -39,5 +39,5 @@ export default abstract class Meta<ChildProps, MetaProps, State>
 
     protected abstract renderProps(childProps: ChildProps): ChildProps;
 
-    protected abstract getNativeDOMProps(childProps: ChildProps): NativeDOMProps;
+    protected abstract renderNativeDOMProps(childProps: ChildProps): NativeDOMProps;
 }
