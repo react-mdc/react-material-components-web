@@ -1,10 +1,8 @@
 import * as React from "react";
 
 import {
-    ClassNamePropMakerAdapter,
-    createDefaultComponent,
-    DefaultComponent,
-    PropMakerMetaComponent,
+    ClassNameMetaBase,
+    DefaultComponentBase,
 } from "@react-mdc/base";
 
 import {
@@ -34,34 +32,42 @@ export type ChildProps = {
     className?: string,
 };
 
-export class PropMaker extends ClassNamePropMakerAdapter<ChildProps, MetaProps, {}> {
-    protected getBaseClassName() {
+export class Meta extends ClassNameMetaBase<ChildProps, MetaProps, {}> {
+    protected renderBaseClassName() {
         return CLASS_NAME;
     }
 
-    protected getClassValues(_childProps: ChildProps, props: MetaProps) {
+    protected renderClassValues(_childProps: ChildProps) {
         return [{
-            [propertyClassNames.DENSE]: props.dense,
-            [propertyClassNames.RAISED]: props.raised,
-            [propertyClassNames.COMPACT]: props.compact,
-            [propertyClassNames.PRIMARY]: props.primary,
-            [propertyClassNames.ACCENT]: props.accent,
+            [propertyClassNames.DENSE]: this.props.dense,
+            [propertyClassNames.RAISED]: this.props.raised,
+            [propertyClassNames.COMPACT]: this.props.compact,
+            [propertyClassNames.PRIMARY]: this.props.primary,
+            [propertyClassNames.ACCENT]: this.props.accent,
         }];
     }
 }
 
-const component = createDefaultComponent<React.HTMLProps<HTMLButtonElement>, MetaProps>(
-    "button",
-    PropMakerMetaComponent.simple(new PropMaker(), "Button"),
-    [
-        "dense",
-        "raised",
-        "compact",
-        "primary",
-        "accent",
-    ]);
+export class Button extends DefaultComponentBase<React.HTMLProps<HTMLButtonElement>, MetaProps, {}> {
+    public static Meta = Meta;
 
-export {
-    component as Button,
-    component as default,
-};
+    protected getMetaComponent() {
+        return Meta;
+    }
+
+    protected getMetaPropNames() {
+        return [
+            "dense",
+            "raised",
+            "compact",
+            "primary",
+            "accent",
+        ];
+    }
+
+    protected getChildComponent() {
+        return "button";
+    }
+}
+
+export default Button;

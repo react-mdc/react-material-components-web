@@ -21,6 +21,7 @@
         // React
         "jsx-no-lambda": true,
         "jsx-alignment": false,
+        "jsx-boolean-value": false,
         "jsx-no-multiline-js": false
     }
 }
