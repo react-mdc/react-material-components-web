@@ -24,6 +24,7 @@
     "enzyme": "^2.8.2",
     "jest": "^20.0.1",
     "npm-run-all": "^4.0.2",
+    "react-addons-test-utils": "^15.5.1",
     "shelljs": "^0.7.7",
     "shx": "^0.2.2",
     "ts-jest": "^20.0.3",
