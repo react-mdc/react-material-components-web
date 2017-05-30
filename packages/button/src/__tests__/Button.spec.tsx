@@ -4,7 +4,7 @@ import * as React from "react";
 
 import * as enzyme from "enzyme";
 
-import Button from "..";
+import Button from "../Button";
 
 describe("Button", () => {
     it("Should have mdc-button classname", () => {

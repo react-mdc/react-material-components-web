@@ -4,7 +4,7 @@ import * as React from "react";
 
 import * as enzyme from "enzyme";
 
-import Elevation from "..";
+import Elevation from "../Elevation";
 
 describe("Elevation", () => {
     it("Should have mdc-elevation--z{zSpace} classname", () => {
