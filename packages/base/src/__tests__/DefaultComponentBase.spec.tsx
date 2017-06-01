@@ -20,7 +20,6 @@ describe("DefaultComponentBase", () => {
                 }];
             }
         }
-
         class Default extends DefaultComponentBase<{}, { bar?: boolean }, {}> {
             protected getMetaPropNames() {
                 return ["bar"];
