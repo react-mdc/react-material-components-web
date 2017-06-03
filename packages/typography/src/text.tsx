@@ -29,16 +29,16 @@ export type ChildProps = {
 /**
  * Text meta component decorated by mdc-typography
  */
-export class PropMaker extends ClassNamePropMakerAdapter<ChildProps, MetaProps, {}> {
+export class Meta extends ClassNameMetaBase<ChildProps, MetaProps, {}> {
     public static defaultProps = {
         adjustMargin: false,
     };
 
-    protected getBaseClassName(_c, props: MetaProps) {
+    protected renderBaseClassName(_c, props: MetaProps) {
         return classNameForTextStyle(props.textStyle);
     }
 
-    protected getClassValues(_c, props: MetaProps) {
+    protected renderClassValues(_c, props: MetaProps) {
         return [{
             [propertyClassNames.ADJUST_MARGIN]: props.adjustMargin,
         }];

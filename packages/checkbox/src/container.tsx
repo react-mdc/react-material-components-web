@@ -11,10 +11,8 @@ import {
 import * as PropTypes from "prop-types";
 
 import {
-    ClassNamePropMakerAdapter,
-    createDefaultComponent,
-    DefaultComponent,
-    PropMakerMetaComponent,
+    ClassNameMetaBase,
+    DefaultComponentBase,
 } from "@react-mdc/base";
 
 import { ContainerAdapter, FoundationAdapter } from "./adapter";
@@ -41,17 +39,17 @@ export type State = {
 };
 
 export class PropMaker extends ClassNamePropMakerAdapter<ChildProps, MetaProps, State> {
-    public makeNativeDOMProps(_c, _p, state: State) {
+    protected renderNativeDOMProps_c, _p, state: State) {
         return {
             eventListeners: state.foundationEventListeners.toJS(),
         };
     }
 
-    protected getBaseClassName() {
+    protected renderBaseClassName() {
         return CLASS_NAME;
     }
 
-    protected getClassValues(_c: ChildProps, _p: MetaProps, state: State) {
+    protected renderClassValues(_c: ChildProps, _p: MetaProps, state: State) {
         return [
             state.foundationClasses.toJS(),
         ];
@@ -183,7 +181,7 @@ class ContainerAdapterImpl extends ContainerAdapter {
     }
 }
 
-export default createDefaultComponent<React.HTMLProps<HTMLDivElement>, MetaProps>(
+export default class Actions extends DefaultComponentBase<React.HTMLProps<HTMLDivElement>, MetaProps>(
     "div",
     Container,
     [

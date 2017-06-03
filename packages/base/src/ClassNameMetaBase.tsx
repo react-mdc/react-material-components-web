@@ -21,14 +21,14 @@ export type ClassNameProps = {
 export default abstract class ClassNameMetaBase
     <ChildProps extends ClassNameChildProps, Props extends ClassNameProps, State>
     extends MetaBase<ChildProps, Props, State> {
-    public renderProps(childProps: ChildProps): ChildProps {
+    protected renderProps(childProps: ChildProps): ChildProps {
         return {
             ...childProps as any,
             className: this.renderClassName(childProps),
         };
     }
 
-    public renderNativeDOMProps(childProps: ChildProps) {
+    protected renderNativeDOMProps(childProps: ChildProps) {
         return {};
     }
 

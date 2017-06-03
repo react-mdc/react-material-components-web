@@ -7,10 +7,8 @@ import {
 import * as PropTypes from "prop-types";
 
 import {
-    ClassNamePropMakerAdapter,
-    createDefaultComponent,
-    DefaultComponent,
-    PropMakerMetaComponent,
+    ClassNameMetaBase,
+    DefaultComponentBase,
 } from "@react-mdc/base";
 
 import { FoundationAdapter, LabelAdapter } from "./adapter";
@@ -35,12 +33,12 @@ export type Context = {
 /**
  * Textfield label component
  */
-export class PropMaker extends ClassNamePropMakerAdapter<ChildProps, MetaProps, {}> {
-    protected getBaseClassName() {
+export class Meta extends ClassNameMetaBase<ChildProps, MetaProps, {}> {
+    protected renderBaseClassName() {
         return CLASS_NAME;
     }
 
-    protected getClassValues(_c, _p, state: State) {
+    protected renderClassValues(_c, _p, state: State) {
         return state.foundationClasses.toJS();
     }
 }
@@ -87,7 +85,7 @@ class LabelAdapterImpl extends LabelAdapter {
     }
 }
 
-export default createDefaultComponent<React.HTMLProps<HTMLLabelElement>, MetaProps>(
+export default class Actions extends DefaultComponentBase<React.HTMLProps<HTMLLabelElement>, MetaProps>(
     "label",
     Label,
     [],

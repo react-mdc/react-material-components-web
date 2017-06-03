@@ -1,12 +1,18 @@
-export { default as NativeDOMAdapter } from "./NativeDOMAdapter";
-export { default as ClassNameMetaBase } from "./ClassNameMetaBase";
-export { default as DefaultComponentBase } from "./DefaultComponentBase";
-export { default as MetaBase } from "./MetaBase";
-
-import * as types from "./types";
-import * as util from "./util";
+import ClassNameMetaBase from "./ClassNameMetaBase";
+import DefaultComponentBase from "./DefaultComponentBase";
+import MetaBase from "./MetaBase";
+import NativeDOMAdapter from "./NativeDOMAdapter";
 
 export {
-    types,
-    util,
+    ClassNameMetaBase,
+    DefaultComponentBase,
+    MetaBase,
+    NativeDOMAdapter,
+};
+
+export default {
+    ClassNameMetaBase,
+    DefaultComponentBase,
+    MetaBase,
+    NativeDOMAdapter,
 };

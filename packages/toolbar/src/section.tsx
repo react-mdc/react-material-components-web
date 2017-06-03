@@ -1,10 +1,8 @@
 import * as React from "react";
 
 import {
-    ClassNamePropMakerAdapter,
-    createDefaultComponent,
-    DefaultComponent,
-    PropMakerMetaComponent,
+    ClassNameMetaBase,
+    DefaultComponentBase,
 } from "@react-mdc/base";
 
 import { SECTION_BASE_CLASS_NAME } from "./constants";
@@ -24,12 +22,12 @@ export type ChildProps = {
 /**
  * Toolbar section component
  */
-export class PropMaker extends ClassNamePropMakerAdapter<ChildProps, MetaProps, {}> {
-    protected getBaseClassName() {
+export class Meta extends ClassNameMetaBase<ChildProps, MetaProps, {}> {
+    protected renderBaseClassName() {
         return CLASS_NAME;
     }
 
-    protected getClassValues(_c, props: MetaProps) {
+    protected renderClassValues(_c, props: MetaProps) {
         const {
             align,
         } = props;
@@ -41,7 +39,7 @@ export class PropMaker extends ClassNamePropMakerAdapter<ChildProps, MetaProps, 
     }
 }
 
-export default createDefaultComponent<React.HTMLProps<HTMLElement>, MetaProps>(
+export default class Actions extends DefaultComponentBase<React.HTMLProps<HTMLElement>, MetaProps>(
     "section",
     PropMakerMetaComponent.simple(new PropMaker(), "Section"),
     [

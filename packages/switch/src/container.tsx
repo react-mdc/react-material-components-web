@@ -1,10 +1,8 @@
 import * as React from "react";
 
 import {
-    ClassNamePropMakerAdapter,
-    createDefaultComponent,
-    DefaultComponent,
-    PropMakerMetaComponent,
+    ClassNameMetaBase,
+    DefaultComponentBase,
 } from "@react-mdc/base";
 
 import {
@@ -29,19 +27,19 @@ export type ChildProps = {
 /**
  * Switch input container component
  */
-export class PropMaker extends ClassNamePropMakerAdapter<ChildProps, MetaProps, {}> {
-    protected getBaseClassName() {
+export class Meta extends ClassNameMetaBase<ChildProps, MetaProps, {}> {
+    protected renderBaseClassName() {
         return CLASS_NAME;
     }
 
-    protected getClassValues(_c, props: MetaProps) {
+    protected renderClassValues(_c, props: MetaProps) {
         return [{
             [propertyClassNames.DISABLED]: props.disabled,
         }];
     }
 }
 
-export default createDefaultComponent<React.HTMLProps<HTMLDivElement>, MetaProps>(
+export default class Actions extends DefaultComponentBase<React.HTMLProps<HTMLDivElement>, MetaProps>(
     "div",
     PropMakerMetaComponent.simple(new PropMaker(), "Container"),
     [

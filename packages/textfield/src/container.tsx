@@ -5,10 +5,8 @@ import { OrderedSet, Set } from "immutable";
 import * as PropTypes from "prop-types";
 
 import {
-    ClassNamePropMakerAdapter,
-    createDefaultComponent,
-    DefaultComponent,
-    PropMakerMetaComponent,
+    ClassNameMetaBase,
+    DefaultComponentBase,
 } from "@react-mdc/base";
 
 import { ContainerAdapter, FoundationAdapter } from "./adapter";
@@ -46,12 +44,12 @@ export type ChildContext = {
 /**
  * Textfield input container component
  */
-export class PropMaker extends ClassNamePropMakerAdapter<ChildProps, MetaProps, {}> {
-    protected getBaseClassName() {
+export class Meta extends ClassNameMetaBase<ChildProps, MetaProps, {}> {
+    protected renderBaseClassName() {
         return CLASS_NAME;
     }
 
-    protected getClassValues(_c, props: MetaProps, state: State) {
+    protected renderClassValues(_c, props: MetaProps, state: State) {
         return [{
             [propertyClassNames.MULTILINE]: props.multiline,
             [propertyClassNames.FULLWIDTH]: props.fullwidth,
@@ -116,7 +114,7 @@ class ContainerAdapterImpl extends ContainerAdapter {
     }
 }
 
-export default createDefaultComponent<React.HTMLProps<HTMLDivElement>, MetaProps>(
+export default class Actions extends DefaultComponentBase<React.HTMLProps<HTMLDivElement>, MetaProps>(
     "div",
     Container,
     [

@@ -28,7 +28,7 @@ export type ChildProps = {
  * Wrapper component of mdc-layout-grid
  */
 export class Meta extends ClassNameMetaBase<ChildProps, MetaProps, {}> {
-    public renderNativeDOMProps() {
+    protected renderNativeDOMProps() {
         const cssVariables = {};
         if (this.props.margin != null) {
             cssVariables[MARGIN_CSS_VARIABLE] = utils.normalizeMarginAndGutter(this.props.margin);

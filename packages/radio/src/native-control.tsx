@@ -4,10 +4,8 @@ import * as ReactDOM from "react-dom";
 import * as PropTypes from "prop-types";
 
 import {
-    ClassNamePropMakerAdapter,
-    createDefaultComponent,
-    DefaultComponent,
-    PropMakerMetaComponent,
+    ClassNameMetaBase,
+    DefaultComponentBase,
 } from "@react-mdc/base";
 import { eventHandlerDecorator } from "@react-mdc/base/lib/util";
 
@@ -41,8 +39,8 @@ export type Context = {
 /**
  * Radio input component
  */
-export class PropMaker extends ClassNamePropMakerAdapter<ChildProps, MetaProps, {}> {
-    protected getBaseClassName() {
+export class Meta extends ClassNameMetaBase<ChildProps, MetaProps, {}> {
+    protected renderBaseClassName() {
         return CLASS_NAME;
     }
 }
@@ -103,7 +101,7 @@ function RadioInput(props: React.HTMLProps<HTMLInputElement>) {
     );
 }
 
-export default createDefaultComponent<React.HTMLProps<HTMLInputElement>, MetaProps>(
+export default class Actions extends DefaultComponentBase<React.HTMLProps<HTMLInputElement>, MetaProps>(
     RadioInput,
     NativeControl,
     [

@@ -1,8 +1,6 @@
 import {
-    ClassNamePropMakerAdapter,
-    createDefaultComponent,
-    DefaultComponent,
-    PropMakerMetaComponent,
+    ClassNameMetaBase,
+    DefaultComponentBase,
 } from "@react-mdc/base";
 
 import {
@@ -32,12 +30,12 @@ export const propertyClassNames = {
 /**
  * Button component
  */
-export class PropMaker extends ClassNamePropMakerAdapter<ChildProps, MetaProps, {}> {
-    protected getBaseClassName() {
+export class Meta extends ClassNameMetaBase<ChildProps, MetaProps, {}> {
+    protected renderBaseClassName() {
         return CLASS_NAME;
     }
 
-    protected getClassValues(_c, props: MetaProps) {
+    protected renderClassValues(_c, props: MetaProps) {
         return [{
             [propertyClassNames.TYPE_ACCEPT]: props.type === "accept",
             [propertyClassNames.TYPE_CANCEL]: props.type === "cancel",
@@ -45,7 +43,7 @@ export class PropMaker extends ClassNamePropMakerAdapter<ChildProps, MetaProps, 
     }
 }
 
-export default createDefaultComponent<React.HTMLProps<HTMLButtonElement> & ButtonMetaProps, MetaProps>(
+export default class Actions extends DefaultComponentBase<React.HTMLProps<HTMLButtonElement> & ButtonMetaProps, MetaProps>(
     Button,
     PropMakerMetaComponent.simple(new PropMaker(), "Button"),
     [],

@@ -1,10 +1,8 @@
 import * as React from "react";
 
 import {
-    ClassNamePropMakerAdapter,
-    createDefaultComponent,
-    DefaultComponent,
-    PropMakerMetaComponent,
+    ClassNameMetaBase,
+    DefaultComponentBase,
 } from "@react-mdc/base";
 
 import {
@@ -23,8 +21,8 @@ export type ChildProps = {
 /**
  * Native control component
  */
-export class PropMaker extends ClassNamePropMakerAdapter<ChildProps, MetaProps, {}> {
-    protected getBaseClassName() {
+export class Meta extends ClassNameMetaBase<ChildProps, MetaProps, {}> {
+    protected renderBaseClassName() {
         return CLASS_NAME;
     }
 }
@@ -38,7 +36,7 @@ function CheckboxInput(props: React.HTMLProps<HTMLInputElement>) {
 
 export type Props = React.HTMLProps<HTMLInputElement> & MetaProps;
 
-export default createDefaultComponent<React.HTMLProps<HTMLInputElement>, MetaProps>(
+export default class Actions extends DefaultComponentBase<React.HTMLProps<HTMLInputElement>, MetaProps>(
     CheckboxInput,
     PropMakerMetaComponent.simple(new PropMaker(), "NativeControl"),
     [],

@@ -9,10 +9,8 @@ import {
 import * as PropTypes from "prop-types";
 
 import {
-    ClassNamePropMakerAdapter,
-    createDefaultComponent,
-    DefaultComponent,
-    PropMakerMetaComponent,
+    ClassNameMetaBase,
+    DefaultComponentBase,
 } from "@react-mdc/base";
 
 import { FoundationAdapter, InputAdapter } from "./adapter";
@@ -43,13 +41,13 @@ export type Context = {
  * Textfield input component
  */
 export class PropMaker extends ClassNamePropMakerAdapter<ChildProps, MetaProps, State> {
-    public makeNativeDOMProps(_c, _p, state: State) {
+    protected renderNativeDOMProps_c, _p, state: State) {
         return {
             eventListeners: state.foundationEventListeners.toJS(),
         };
     }
 
-    protected getBaseClassName() {
+    protected renderBaseClassName() {
         return CLASS_NAME;
     }
 }
@@ -140,7 +138,7 @@ function TextInput(props: React.HTMLProps<HTMLInputElement>) {
     );
 }
 
-export default createDefaultComponent<React.HTMLProps<HTMLInputElement>, MetaProps>(
+export default class Actions extends DefaultComponentBase<React.HTMLProps<HTMLInputElement>, MetaProps>(
     TextInput,
     Input,
     [],

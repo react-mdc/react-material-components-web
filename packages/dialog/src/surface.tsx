@@ -9,10 +9,8 @@ import {
 import * as PropTypes from "prop-types";
 
 import {
-    ClassNamePropMakerAdapter,
-    createDefaultComponent,
-    DefaultComponent,
-    PropMakerMetaComponent,
+    ClassNameMetaBase,
+    DefaultComponentBase,
 } from "@react-mdc/base";
 
 import {
@@ -46,13 +44,13 @@ export type Context = {
 };
 
 export class PropMaker extends ClassNamePropMakerAdapter<ChildProps, MetaProps, State> {
-    public makeNativeDOMProps(_c, _p, state: State) {
+    protected renderNativeDOMProps_c, _p, state: State) {
         return {
             eventListeners: state.foundationEventListeners.toJS(),
         };
     }
 
-    protected getBaseClassName() {
+    protected renderBaseClassName() {
         return CLASS_NAME;
     }
 
@@ -125,7 +123,7 @@ class SurfaceAdapterImpl extends SurfaceAdapter {
     }
 }
 
-export default createDefaultComponent<React.HTMLProps<HTMLDivElement>, MetaProps>(
+export default class Actions extends DefaultComponentBase<React.HTMLProps<HTMLDivElement>, MetaProps>(
     "div",
     Surface,
     [],

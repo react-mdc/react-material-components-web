@@ -11,10 +11,8 @@ import {
 } from "immutable";
 
 import {
-    ClassNamePropMakerAdapter,
-    createDefaultComponent,
-    DefaultComponent,
-    PropMakerMetaComponent,
+    ClassNameMetaBase,
+    DefaultComponentBase,
 } from "@react-mdc/base";
 import { includes } from "@react-mdc/base/lib/util";
 
@@ -61,7 +59,7 @@ export type ChildContext = {
 };
 
 export class PropMaker extends ClassNamePropMakerAdapter<ChildProps, MetaProps, State> {
-    public makeNativeDOMProps(_c, _p, state: State) {
+    protected renderNativeDOMProps_c, _p, state: State) {
         return {
             attributes: state.foundationAttributes.toJS(),
             eventListeners: state.foundationEventListeners.toJS(),
@@ -78,7 +76,7 @@ export class PropMaker extends ClassNamePropMakerAdapter<ChildProps, MetaProps, 
         );
     }
 
-    protected getClassValues(_c, props: MetaProps, state: State) {
+    protected renderClassValues(_c, props: MetaProps, state: State) {
         return [this.getClassName(props, state)];
     }
 }
@@ -231,7 +229,7 @@ class ContainerAdapterImpl extends ContainerAdapter {
     }
 }
 
-export default createDefaultComponent<React.HTMLProps<HTMLElement>, MetaProps>(
+export default class Actions extends DefaultComponentBase<React.HTMLProps<HTMLElement>, MetaProps>(
     "aside",
     Meta,
     [

@@ -1,15 +1,13 @@
 import * as React from "react";
 
 import {
-    ClassNamePropMakerAdapter,
-    createDefaultComponent,
-    DefaultComponent,
-    PropMakerMetaComponent,
+    ClassNameMetaBase,
+    DefaultComponentBase,
 } from "@react-mdc/base";
 
 import {
     BASE_CLASS_NAME,
-} from "../constants";
+} from "./constants";
 
 export const CLASS_NAME = `${BASE_CLASS_NAME}__title`;
 
@@ -28,23 +26,23 @@ export type ChildProps = {
 /**
  * Primary section title component
  */
-export class PropMaker extends ClassNamePropMakerAdapter<ChildProps, MetaProps, {}> {
+export class Meta extends ClassNameMetaBase<ChildProps, MetaProps, {}> {
     public static defaultProps = {
         large: false,
     };
 
-    protected getBaseClassName() {
+    protected renderBaseClassName() {
         return CLASS_NAME;
     }
 
-    protected getClassValues(_, props: MetaProps) {
+    protected renderClassValues(_, props: MetaProps) {
         return [{
             [propertyClassNames.LARGE]: props.large,
         }];
     }
 }
 
-export default createDefaultComponent<React.HTMLProps<HTMLHeadingElement>, MetaProps>(
+export default class Actions extends DefaultComponentBase<React.HTMLProps<HTMLHeadingElement>, MetaProps>(
     "h1",
     PropMakerMetaComponent.simple(new PropMaker(), "Title"),
     [

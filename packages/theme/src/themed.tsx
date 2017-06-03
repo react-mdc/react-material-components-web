@@ -1,10 +1,8 @@
 import * as React from "react";
 
 import {
-    ClassNamePropMakerAdapter,
-    createDefaultComponent,
-    DefaultComponent,
-    PropMakerMetaComponent,
+    ClassNameMetaBase,
+    DefaultComponentBase,
 } from "@react-mdc/base";
 
 import * as helpers from "./helpers";
@@ -21,12 +19,12 @@ export type MetaProps = {
     onColor?: OnColor,
 };
 
-export class PropMaker extends ClassNamePropMakerAdapter<ChildProps, MetaProps, {}> {
-    protected getBaseClassName() {
+export class Meta extends ClassNameMetaBase<ChildProps, MetaProps, {}> {
+    protected renderBaseClassName() {
         return null;
     }
 
-    protected getClassValues(_c, props: MetaProps) {
+    protected renderClassValues(_c, props: MetaProps) {
         const {
             color,
             backgroundColor,
@@ -49,7 +47,7 @@ export class PropMaker extends ClassNamePropMakerAdapter<ChildProps, MetaProps, 
     }
 }
 
-export default createDefaultComponent<React.HTMLProps<HTMLDivElement>, MetaProps>(
+export default class Actions extends DefaultComponentBase<React.HTMLProps<HTMLDivElement>, MetaProps>(
     "div",
     PropMakerMetaComponent.simple(new PropMaker(), "Themed"),
     [

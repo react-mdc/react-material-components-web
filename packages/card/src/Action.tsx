@@ -1,19 +1,16 @@
 import * as React from "react";
 
 import {
-    ClassNamePropMakerAdapter,
-    createDefaultComponent,
-    DefaultComponent,
-    PropMakerMetaComponent,
+    ClassNameMetaBase,
+    DefaultComponentBase,
 } from "@react-mdc/base";
 import {
-    default as Button,
     MetaProps as ButtonMetaProps,
-} from "@react-mdc/button";
+} from "@react-mdc/button/lib/Button";
 
 import {
     BASE_CLASS_NAME,
-} from "../constants";
+} from "./constants";
 
 export const CLASS_NAME = `${BASE_CLASS_NAME}__action`;
 
@@ -24,8 +21,8 @@ export type ChildProps = {
     className?: string,
 };
 
-export class PropMaker extends ClassNamePropMakerAdapter<ChildProps, MetaProps, {}> {
-    protected getBaseClassName() {
+export class Meta extends ClassNameMetaBase<ChildProps, MetaProps, {}> {
+    protected renderBaseClassName() {
         return CLASS_NAME;
     }
 }
@@ -38,7 +35,7 @@ function CompactButton(props: React.HTMLProps<HTMLButtonElement> & ButtonMetaPro
     });
 }
 
-export default createDefaultComponent<React.HTMLProps<HTMLButtonElement> & ButtonMetaProps, MetaProps>(
+export default class Actions extends DefaultComponentBase<React.HTMLProps<HTMLButtonElement> & ButtonMetaProps, MetaProps>(
     CompactButton,
     PropMakerMetaComponent.simple(new PropMaker(), "Action"),
     [],

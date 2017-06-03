@@ -12,10 +12,8 @@ import {
 } from "immutable";
 
 import {
-    ClassNamePropMakerAdapter,
-    createDefaultComponent,
-    DefaultComponent,
-    PropMakerMetaComponent,
+    ClassNameMetaBase,
+    DefaultComponentBase,
 } from "@react-mdc/base";
 
 import { FoundationAdapter, RippleAdapter } from "./adapter";
@@ -50,18 +48,18 @@ export type State = {
  * Ripple foundation component
  */
 export class PropMaker extends ClassNamePropMakerAdapter<ChildProps, MetaProps, State> {
-    public makeNativeDOMProps(_c, _p, state: State) {
+    protected renderNativeDOMProps_c, _p, state: State) {
         return {
             cssVariables: state.foundationCssVars.toJS(),
             eventListeners: state.foundationEventListeners.toJS(),
         };
     }
 
-    protected getBaseClassName() {
+    protected renderBaseClassName() {
         return CLASS_NAME;
     }
 
-    protected getClassValues(_c, props: MetaProps, state: State) {
+    protected renderClassValues(_c, props: MetaProps, state: State) {
         const classes: string[] = [];
         if (props.color != null) {
             classes.push(helpers.classNameForColor(props.color));

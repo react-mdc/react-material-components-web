@@ -5,10 +5,8 @@ import * as PropTypes from "prop-types";
 
 import { MDCRadioFoundation } from "@material/radio/dist/mdc.radio";
 import {
-    ClassNamePropMakerAdapter,
-    createDefaultComponent,
-    DefaultComponent,
-    PropMakerMetaComponent,
+    ClassNameMetaBase,
+    DefaultComponentBase,
 } from "@react-mdc/base";
 
 import { ContainerAdapter, FoundationAdapter } from "./adapter";
@@ -41,11 +39,11 @@ export type ChildContext = {
  */
 export class PropMaker extends ClassNamePropMakerAdapter<ChildProps, MetaProps, State> {
 
-    protected getBaseClassName() {
+    protected renderBaseClassName() {
         return CLASS_NAME;
     }
 
-    protected getClassValues(_c, _p, state: State) {
+    protected renderClassValues(_c, _p, state: State) {
         return state.foundationClasses.toJS();
     }
 }
@@ -141,7 +139,7 @@ class ContainerAdapterImpl extends ContainerAdapter {
     }
 }
 
-export default createDefaultComponent<React.HTMLProps<HTMLDivElement>, MetaProps>(
+export default class Actions extends DefaultComponentBase<React.HTMLProps<HTMLDivElement>, MetaProps>(
     "div",
     Container,
     [

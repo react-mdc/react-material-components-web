@@ -1,15 +1,13 @@
 import * as React from "react";
 
 import {
-    ClassNamePropMakerAdapter,
-    createDefaultComponent,
-    DefaultComponent,
-    PropMakerMetaComponent,
+    ClassNameMetaBase,
+    DefaultComponentBase,
 } from "@react-mdc/base";
 
 import {
     BASE_CLASS_NAME,
-} from "../constants";
+} from "./constants";
 
 export const CLASS_NAME = `${BASE_CLASS_NAME}__subtitle`;
 
@@ -23,13 +21,13 @@ export type ChildProps = {
 /**
  * Primary section subtitle component
  */
-export class PropMaker extends ClassNamePropMakerAdapter<ChildProps, MetaProps, {}> {
-    protected getBaseClassName() {
+export class Meta extends ClassNameMetaBase<ChildProps, MetaProps, {}> {
+    protected renderBaseClassName() {
         return CLASS_NAME;
     }
 }
 
-export default createDefaultComponent<React.HTMLProps<HTMLHeadingElement>, MetaProps>(
+export default class Actions extends DefaultComponentBase<React.HTMLProps<HTMLHeadingElement>, MetaProps>(
     "h2",
     PropMakerMetaComponent.simple(new PropMaker(), "Subtitle"),
     [],

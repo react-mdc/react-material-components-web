@@ -9,10 +9,8 @@ import {
 } from "immutable";
 
 import {
-    ClassNamePropMakerAdapter,
-    createDefaultComponent,
-    DefaultComponent,
-    PropMakerMetaComponent,
+    ClassNameMetaBase,
+    DefaultComponentBase,
 } from "@react-mdc/base";
 
 import { eventHandlerDecorator } from "@react-mdc/base/lib/util";
@@ -40,13 +38,13 @@ export type Context = {
 };
 
 export class PropMaker extends ClassNamePropMakerAdapter<ChildProps, MetaProps, State> {
-    public makeNativeDOMProps(_c, _p, state: State) {
+    protected renderNativeDOMProps_c, _p, state: State) {
         return {
             eventListeners: state.foundationEventListeners.toJS(),
         };
     }
 
-    protected getBaseClassName() {
+    protected renderBaseClassName() {
         return CLASS_NAME;
     }
 }
@@ -137,7 +135,7 @@ function CheckboxInput(props: React.HTMLProps<HTMLInputElement>) {
 
 export type Props = React.HTMLProps<HTMLButtonElement> & MetaProps;
 
-export default createDefaultComponent<React.HTMLProps<HTMLInputElement>, MetaProps>(
+export default class Actions extends DefaultComponentBase<React.HTMLProps<HTMLInputElement>, MetaProps>(
     CheckboxInput,
     NativeControl,
     [
