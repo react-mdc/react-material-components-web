@@ -5,7 +5,7 @@ import Container from "./Container";
 // Typescript transpiler does not compile following line.
 // I don't know why, and it seems to be bug of typescript
 //
-// import Input from "./input";
+// import Input from "./Input";
 //
 // We bypass the bug using following lines
 /* ---from here --- */
