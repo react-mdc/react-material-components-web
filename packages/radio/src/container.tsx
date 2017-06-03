@@ -37,18 +37,7 @@ export type ChildContext = {
 /**
  * Radio input container component
  */
-export class PropMaker extends ClassNamePropMakerAdapter<ChildProps, MetaProps, State> {
-
-    protected renderBaseClassName() {
-        return CLASS_NAME;
-    }
-
-    protected renderClassValues(_c, _p, state: State) {
-        return state.foundationClasses.toJS();
-    }
-}
-
-class Container extends PropMakerMetaComponent<ChildProps, MetaProps, State> {
+export class Meta extends ClassNameMetaBase<ChildProps, MetaProps, State> {
     public static childContextTypes = {
         adapter: PropTypes.instanceOf(FoundationAdapter),
     };
@@ -56,8 +45,6 @@ class Container extends PropMakerMetaComponent<ChildProps, MetaProps, State> {
     public state: State = {
         foundationClasses: OrderedSet<string>(),
     };
-
-    protected propMaker = new PropMaker();
 
     private adapter: FoundationAdapter<ChildProps>;
     private foundation: MDCRadioFoundation;
@@ -97,6 +84,14 @@ class Container extends PropMakerMetaComponent<ChildProps, MetaProps, State> {
         this.syncFoundation(props);
     }
 
+    protected renderBaseClassName() {
+        return CLASS_NAME;
+    }
+
+    protected renderClassValues() {
+        return this.state.foundationClasses.toJS();
+    }
+
     private syncFoundation(props: MetaProps) {
         if (props.checked != null && this.foundation.isChecked() !== this.props.checked) {
             this.foundation.setChecked(props.checked);
@@ -118,9 +113,9 @@ class Container extends PropMakerMetaComponent<ChildProps, MetaProps, State> {
 }
 
 class ContainerAdapterImpl extends ContainerAdapter {
-    private element: Container;
+    private element: Meta;
 
-    constructor(element: Container) {
+    constructor(element: Meta) {
         super();
         this.element = element;
     }
@@ -148,16 +143,12 @@ export default class Container extends DefaultComponentBase<React.HTMLProps<HTML
 
     protected getMetaPropNames() {
         return [
-            ???
+        "checked",
+        "disabled",
         ];
     }
 
     protected getChildComponent() {
-        return
-    "div",
-    Container,
-    [
-        "checked",
-        "disabled",
-    ],
-);
+        return "div";
+    }
+}

@@ -1,10 +1,10 @@
 import * as React from "react";
 
-import Background from "./background";
-import { ChildProps as ContainerChildProps, default as Container } from "./container";
-import InnerCircle from "./inner-circle";
-import NativeControl from "./native-control";
-import OuterCircle from "./outer-circle";
+import Background from "./Background";
+import { ChildProps as ContainerChildProps, default as Container } from "./Container";
+import InnerCircle from "./InnerCircle";
+import NativeControl from "./NativeControl";
+import OuterCircle from "./OuterCircle";
 
 export type Props = {
     inputId?: string,
@@ -19,7 +19,7 @@ export type Props = {
 /**
  * Radio default composed component
  */
-export default class Radio extends React.Component<Props, {}> {
+export default class Simple extends React.Component<Props, {}> {
     public render() {
         const {
             inputId,
@@ -41,6 +41,7 @@ export default class Radio extends React.Component<Props, {}> {
                     id={inputId}
                     name={name}
                     onChange={onChange}
+                    checked={checked}
                     defaultChecked={defaultChecked}
                     value={value} />
                 <Background>

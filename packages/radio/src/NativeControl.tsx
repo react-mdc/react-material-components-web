@@ -40,12 +40,6 @@ export type Context = {
  * Radio input component
  */
 export class Meta extends ClassNameMetaBase<ChildProps, MetaProps, {}> {
-    protected renderBaseClassName() {
-        return CLASS_NAME;
-    }
-}
-
-class NativeControl extends PropMakerMetaComponent<ChildProps, MetaProps, {}> {
     public static contextTypes = {
         adapter: PropTypes.instanceOf(FoundationAdapter).isRequired,
     };
@@ -53,14 +47,16 @@ class NativeControl extends PropMakerMetaComponent<ChildProps, MetaProps, {}> {
     public defaultOnChange: React.ChangeEventHandler<ChildProps>;
     public context: Context;
 
-    protected propMaker = new PropMaker();
-
     public componentDidMount() {
         this.context.adapter.setNativeControlAdapter(new NativeControlAdapterImpl(this));
     }
 
     public componentWillUnmount() {
         this.context.adapter.setNativeControlAdapter(new NativeControlAdapter());
+    }
+
+    protected renderBaseClassName() {
+        return CLASS_NAME;
     }
 
     protected renderProps(childProps: ChildProps) {
@@ -80,9 +76,9 @@ class NativeControl extends PropMakerMetaComponent<ChildProps, MetaProps, {}> {
 }
 
 class NativeControlAdapterImpl extends NativeControlAdapter<ChildProps> {
-    private element: NativeControl;
+    private element: Meta;
 
-    constructor(element: NativeControl) {
+    constructor(element: Meta) {
         super();
         this.element = element;
     }
@@ -110,15 +106,11 @@ export default class NativeControl extends DefaultComponentBase<React.HTMLProps<
 
     protected getMetaPropNames() {
         return [
-            ???
+            "onChange",
         ];
     }
 
-    protected getChildComponent() {
-        return
-    RadioInput,
-    NativeControl,
-    [
-        "onChange",
-    ],
-);
+    protected getChildComponent(): React.SFC<React.HTMLProps<HTMLInputElement>> {
+        return RadioInput;
+    }
+}
