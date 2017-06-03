@@ -26,7 +26,7 @@
     "build": "lerna run build --stream --concurrency=5",
     "lint": "lerna run lint --no-sort --concurrency=5",
     "watch": "lerna run watch --stream --no-sort --concurrency=50",
-    "test": "jest",
+    "test": "lerna run test",
     "test:watch": "jest --watchAll"
   },
   "jest": {
