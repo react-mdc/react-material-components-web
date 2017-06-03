@@ -24,7 +24,21 @@ export class Meta extends ClassNameMetaBase<ChildProps, MetaProps, {}> {
     }
 }
 
-export default class Actions extends DefaultComponentBase<React.HTMLProps<HTMLLabelElement>, MetaProps>(
+export default class Actions extends DefaultComponentBase<React.HTMLProps<HTMLLabelElement>, MetaProps, {}> {
+    public static Meta = Meta;
+
+    protected getMetaComponent() {
+        return Meta;
+    }
+    
+    protected getMetaPropNames() {
+        return [
+            ???
+        ];
+    }
+
+    protected getChildComponent() {
+        return
     "label",
     PropMakerMetaComponent.simple(new PropMaker(), "Label"),
     [],

@@ -98,10 +98,10 @@ class Container extends PropMakerMetaComponent<ChildProps, MetaProps, State> {
     }
 
     private syncFoundation(props: MetaProps) {
-        if (props.checked != null && this.foundation.isChecked() !== props.checked) {
+        if (props.checked != null && this.foundation.isChecked() !== this.props.checked) {
             this.foundation.setChecked(props.checked);
         }
-        if (props.disabled != null && this.foundation.isDisabled() !== props.disabled) {
+        if (props.disabled != null && this.foundation.isDisabled() !== this.props.disabled) {
             this.foundation.setDisabled(props.disabled);
         }
     }
@@ -139,7 +139,21 @@ class ContainerAdapterImpl extends ContainerAdapter {
     }
 }
 
-export default class Actions extends DefaultComponentBase<React.HTMLProps<HTMLDivElement>, MetaProps>(
+export default class Actions extends DefaultComponentBase<React.HTMLProps<HTMLDivElement>, MetaProps, {}> {
+    public static Meta = Meta;
+
+    protected getMetaComponent() {
+        return Meta;
+    }
+    
+    protected getMetaPropNames() {
+        return [
+            ???
+        ];
+    }
+
+    protected getChildComponent() {
+        return
     "div",
     Container,
     [

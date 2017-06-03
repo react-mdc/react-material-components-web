@@ -24,13 +24,13 @@ export class Meta extends ClassNameMetaBase<ChildProps, MetaProps, {}> {
         return null;
     }
 
-    protected renderClassValues(_c, props: MetaProps) {
+    protected renderClassValues() {
         const {
             color,
             backgroundColor,
             textColor,
             onColor,
-        } = props;
+        } = this.props;
 
         const classes: string[] = [];
         if (color != null) {
@@ -47,7 +47,21 @@ export class Meta extends ClassNameMetaBase<ChildProps, MetaProps, {}> {
     }
 }
 
-export default class Actions extends DefaultComponentBase<React.HTMLProps<HTMLDivElement>, MetaProps>(
+export default class Actions extends DefaultComponentBase<React.HTMLProps<HTMLDivElement>, MetaProps, {}> {
+    public static Meta = Meta;
+
+    protected getMetaComponent() {
+        return Meta;
+    }
+    
+    protected getMetaPropNames() {
+        return [
+            ???
+        ];
+    }
+
+    protected getChildComponent() {
+        return
     "div",
     PropMakerMetaComponent.simple(new PropMaker(), "Themed"),
     [

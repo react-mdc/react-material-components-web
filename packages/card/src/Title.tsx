@@ -37,12 +37,26 @@ export class Meta extends ClassNameMetaBase<ChildProps, MetaProps, {}> {
 
     protected renderClassValues(_, props: MetaProps) {
         return [{
-            [propertyClassNames.LARGE]: props.large,
+            [propertyClassNames.LARGE]: this.props.large,
         }];
     }
 }
 
-export default class Actions extends DefaultComponentBase<React.HTMLProps<HTMLHeadingElement>, MetaProps>(
+export default class Actions extends DefaultComponentBase<React.HTMLProps<HTMLHeadingElement>, MetaProps, {}> {
+    public static Meta = Meta;
+
+    protected getMetaComponent() {
+        return Meta;
+    }
+    
+    protected getMetaPropNames() {
+        return [
+            ???
+        ];
+    }
+
+    protected getChildComponent() {
+        return
     "h1",
     PropMakerMetaComponent.simple(new PropMaker(), "Title"),
     [

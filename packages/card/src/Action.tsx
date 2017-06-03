@@ -35,7 +35,21 @@ function CompactButton(props: React.HTMLProps<HTMLButtonElement> & ButtonMetaPro
     });
 }
 
-export default class Actions extends DefaultComponentBase<React.HTMLProps<HTMLButtonElement> & ButtonMetaProps, MetaProps>(
+export default class Actions extends DefaultComponentBase<React.HTMLProps<HTMLButtonElement> & ButtonMetaProps, MetaProps, {}> {
+    public static Meta = Meta;
+
+    protected getMetaComponent() {
+        return Meta;
+    }
+    
+    protected getMetaPropNames() {
+        return [
+            ???
+        ];
+    }
+
+    protected getChildComponent() {
+        return
     CompactButton,
     PropMakerMetaComponent.simple(new PropMaker(), "Action"),
     [],

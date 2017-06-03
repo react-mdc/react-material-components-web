@@ -44,12 +44,26 @@ export class Meta extends ClassNameMetaBase<ChildProps, MetaProps, {}> {
 
     protected renderClassValues(_, props: MetaProps) {
         return [
-            props.size == null ? null : classNameForSize(props.size),
+            this.props.size == null ? null : classNameForSize(props.size),
         ];
     }
 }
 
-export default class Actions extends DefaultComponentBase<React.HTMLProps<HTMLImageElement>, MetaProps>(
+export default class Actions extends DefaultComponentBase<React.HTMLProps<HTMLImageElement>, MetaProps, {}> {
+    public static Meta = Meta;
+
+    protected getMetaComponent() {
+        return Meta;
+    }
+    
+    protected getMetaPropNames() {
+        return [
+            ???
+        ];
+    }
+
+    protected getChildComponent() {
+        return
     "img",
     PropMakerMetaComponent.simple(new PropMaker(), "MediaItem"),
     [

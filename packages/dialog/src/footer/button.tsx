@@ -35,15 +35,29 @@ export class Meta extends ClassNameMetaBase<ChildProps, MetaProps, {}> {
         return CLASS_NAME;
     }
 
-    protected renderClassValues(_c, props: MetaProps) {
+    protected renderClassValues() {
         return [{
-            [propertyClassNames.TYPE_ACCEPT]: props.type === "accept",
-            [propertyClassNames.TYPE_CANCEL]: props.type === "cancel",
+            [propertyClassNames.TYPE_ACCEPT]: this.props.type === "accept",
+            [propertyClassNames.TYPE_CANCEL]: this.props.type === "cancel",
         }];
     }
 }
 
-export default class Actions extends DefaultComponentBase<React.HTMLProps<HTMLButtonElement> & ButtonMetaProps, MetaProps>(
+export default class Actions extends DefaultComponentBase<React.HTMLProps<HTMLButtonElement> & ButtonMetaProps, MetaProps, {}> {
+    public static Meta = Meta;
+
+    protected getMetaComponent() {
+        return Meta;
+    }
+    
+    protected getMetaPropNames() {
+        return [
+            ???
+        ];
+    }
+
+    protected getChildComponent() {
+        return
     Button,
     PropMakerMetaComponent.simple(new PropMaker(), "Button"),
     [],

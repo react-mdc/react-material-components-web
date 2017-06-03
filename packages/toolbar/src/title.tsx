@@ -22,7 +22,21 @@ export class Meta extends ClassNameMetaBase<ChildProps, MetaProps, {}> {
     }
 }
 
-export default class Actions extends DefaultComponentBase<React.HTMLProps<HTMLSpanElement>, MetaProps>(
+export default class Actions extends DefaultComponentBase<React.HTMLProps<HTMLSpanElement>, MetaProps, {}> {
+    public static Meta = Meta;
+
+    protected getMetaComponent() {
+        return Meta;
+    }
+    
+    protected getMetaPropNames() {
+        return [
+            ???
+        ];
+    }
+
+    protected getChildComponent() {
+        return
     "span",
     PropMakerMetaComponent.simple(new PropMaker(), "Title"),
     [],

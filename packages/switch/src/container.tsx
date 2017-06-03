@@ -32,14 +32,28 @@ export class Meta extends ClassNameMetaBase<ChildProps, MetaProps, {}> {
         return CLASS_NAME;
     }
 
-    protected renderClassValues(_c, props: MetaProps) {
+    protected renderClassValues() {
         return [{
-            [propertyClassNames.DISABLED]: props.disabled,
+            [propertyClassNames.DISABLED]: this.props.disabled,
         }];
     }
 }
 
-export default class Actions extends DefaultComponentBase<React.HTMLProps<HTMLDivElement>, MetaProps>(
+export default class Actions extends DefaultComponentBase<React.HTMLProps<HTMLDivElement>, MetaProps, {}> {
+    public static Meta = Meta;
+
+    protected getMetaComponent() {
+        return Meta;
+    }
+    
+    protected getMetaPropNames() {
+        return [
+            ???
+        ];
+    }
+
+    protected getChildComponent() {
+        return
     "div",
     PropMakerMetaComponent.simple(new PropMaker(), "Container"),
     [

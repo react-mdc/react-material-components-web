@@ -38,9 +38,9 @@ export class Meta extends ClassNameMetaBase<ChildProps, MetaProps, {}> {
         return classNameForTextStyle(props.textStyle);
     }
 
-    protected renderClassValues(_c, props: MetaProps) {
+    protected renderClassValues() {
         return [{
-            [propertyClassNames.ADJUST_MARGIN]: props.adjustMargin,
+            [propertyClassNames.ADJUST_MARGIN]: this.props.adjustMargin,
         }];
     }
 }

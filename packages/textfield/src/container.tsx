@@ -51,8 +51,8 @@ export class Meta extends ClassNameMetaBase<ChildProps, MetaProps, {}> {
 
     protected renderClassValues(_c, props: MetaProps, state: State) {
         return [{
-            [propertyClassNames.MULTILINE]: props.multiline,
-            [propertyClassNames.FULLWIDTH]: props.fullwidth,
+            [propertyClassNames.MULTILINE]: this.props.multiline,
+            [propertyClassNames.FULLWIDTH]: this.props.fullwidth,
         }, state.foundationClasses.toJS()];
     }
 }
@@ -114,7 +114,21 @@ class ContainerAdapterImpl extends ContainerAdapter {
     }
 }
 
-export default class Actions extends DefaultComponentBase<React.HTMLProps<HTMLDivElement>, MetaProps>(
+export default class Actions extends DefaultComponentBase<React.HTMLProps<HTMLDivElement>, MetaProps, {}> {
+    public static Meta = Meta;
+
+    protected getMetaComponent() {
+        return Meta;
+    }
+    
+    protected getMetaPropNames() {
+        return [
+            ???
+        ];
+    }
+
+    protected getChildComponent() {
+        return
     "div",
     Container,
     [

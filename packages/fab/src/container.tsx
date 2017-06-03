@@ -33,15 +33,29 @@ export class Meta extends ClassNameMetaBase<ChildProps, MetaProps, {}> {
         return CLASS_NAME;
     }
 
-    protected renderClassValues(_c, props: MetaProps) {
+    protected renderClassValues() {
         return [{
-            [propertyClassNames.MINI]: props.mini,
-            [propertyClassNames.PLAIN]: props.plain,
+            [propertyClassNames.MINI]: this.props.mini,
+            [propertyClassNames.PLAIN]: this.props.plain,
         }];
     }
 }
 
-export default class Actions extends DefaultComponentBase<React.HTMLProps<HTMLButtonElement>, MetaProps>(
+export default class Actions extends DefaultComponentBase<React.HTMLProps<HTMLButtonElement>, MetaProps, {}> {
+    public static Meta = Meta;
+
+    protected getMetaComponent() {
+        return Meta;
+    }
+    
+    protected getMetaPropNames() {
+        return [
+            ???
+        ];
+    }
+
+    protected getChildComponent() {
+        return
     "button",
     PropMakerMetaComponent.simple(new PropMaker(), "Container"),
     [

@@ -27,10 +27,10 @@ export class Meta extends ClassNameMetaBase<ChildProps, MetaProps, {}> {
         return CLASS_NAME;
     }
 
-    protected renderClassValues(_c, props: MetaProps) {
+    protected renderClassValues() {
         const {
             align,
-        } = props;
+        } = this.props;
         const classes: string[] = [];
         if (align != null) {
             classes.push(helpers.classNameForSectionAlignment(align));
@@ -39,7 +39,21 @@ export class Meta extends ClassNameMetaBase<ChildProps, MetaProps, {}> {
     }
 }
 
-export default class Actions extends DefaultComponentBase<React.HTMLProps<HTMLElement>, MetaProps>(
+export default class Actions extends DefaultComponentBase<React.HTMLProps<HTMLElement>, MetaProps, {}> {
+    public static Meta = Meta;
+
+    protected getMetaComponent() {
+        return Meta;
+    }
+    
+    protected getMetaPropNames() {
+        return [
+            ???
+        ];
+    }
+
+    protected getChildComponent() {
+        return
     "section",
     PropMakerMetaComponent.simple(new PropMaker(), "Section"),
     [

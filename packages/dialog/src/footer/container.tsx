@@ -29,7 +29,21 @@ export class Meta extends ClassNameMetaBase<ChildProps, MetaProps, {}> {
 
 export type Props = React.HTMLProps<HTMLElement> & MetaProps;
 
-export default class Actions extends DefaultComponentBase<React.HTMLProps<HTMLElement>, MetaProps>(
+export default class Actions extends DefaultComponentBase<React.HTMLProps<HTMLElement>, MetaProps, {}> {
+    public static Meta = Meta;
+
+    protected getMetaComponent() {
+        return Meta;
+    }
+    
+    protected getMetaPropNames() {
+        return [
+            ???
+        ];
+    }
+
+    protected getChildComponent() {
+        return
     "footer",
     PropMakerMetaComponent.simple(new PropMaker(), "Container"),
     [],

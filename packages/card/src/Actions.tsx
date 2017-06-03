@@ -28,16 +28,27 @@ export class Meta extends ClassNameMetaBase<ChildProps, MetaProps, {}> {
         return CLASS_NAME;
     }
 
-    protected renderClassValues(_c, props: MetaProps) {
+    protected renderClassValues() {
         return [{
-            [propertyClassNames.VERTICAL]: props.vertical,
+            [propertyClassNames.VERTICAL]: this.props.vertical,
         }];
     }
 }
 
-export default class Actions extends DefaultComponentBase<React.HTMLProps<HTMLElement>, MetaProps>(
-    "section",
-    PropMakerMetaComponent.simple(new PropMaker(), "Container"),
-    [
-        "vertical",
-    ]);
+export default class Actions extends DefaultComponentBase<React.HTMLProps<HTMLElement>, MetaProps, {}> {
+    public static Meta = Meta;
+
+    protected getMetaComponent() {
+        return Meta;
+    }
+
+    protected getMetaPropNames() {
+        return [
+            "vertical",
+        ];
+    }
+
+    protected getChildComponent() {
+        return "section";
+    }
+}

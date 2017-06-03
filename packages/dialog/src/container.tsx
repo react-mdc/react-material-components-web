@@ -70,7 +70,7 @@ export class PropMaker extends ClassNamePropMakerAdapter<ChildProps, MetaProps, 
         return classNames(
             CLASS_NAME,
             {
-                [propertyClassNames.DARK]: props.dark,
+                [propertyClassNames.DARK]: this.props.dark,
             },
             state.foundationClasses.toJS(),
         );
@@ -229,7 +229,21 @@ class ContainerAdapterImpl extends ContainerAdapter {
     }
 }
 
-export default class Actions extends DefaultComponentBase<React.HTMLProps<HTMLElement>, MetaProps>(
+export default class Actions extends DefaultComponentBase<React.HTMLProps<HTMLElement>, MetaProps, {}> {
+    public static Meta = Meta;
+
+    protected getMetaComponent() {
+        return Meta;
+    }
+    
+    protected getMetaPropNames() {
+        return [
+            ???
+        ];
+    }
+
+    protected getChildComponent() {
+        return
     "aside",
     Meta,
     [
