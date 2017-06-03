@@ -1,0 +1,27 @@
+{
+    "extends": [
+        "tslint:recommended",
+        "tslint-react"
+    ],
+    "rules": {
+        // Common
+        "object-literal-sort-keys": false,
+        "interface-over-type-literal": false,
+        "prefer-const": [true, {"destructuring": "all"}],
+        "no-empty": false,
+        "variable-name": [
+            true,
+            "ban-keywords",
+            "check-format",
+            "allow-leading-underscore"
+        ],
+        "max-classes-per-file": [
+            false
+        ],
+        // React
+        "jsx-no-lambda": true,
+        "jsx-alignment": false,
+        "jsx-boolean-value": false,
+        "jsx-no-multiline-js": false
+    }
+}
