@@ -7,10 +7,6 @@ import {
 export const CLASS_NAME = `${BASE_CLASS_NAME}__checkmark`;
 export const PATH_CLASS_NAME = `${CLASS_NAME}__path`;
 
-export const propertyClassNames = {
-    PREFIX: CLASS_NAME,
-};
-
 /**
  * Checkbox checkmark svg component
  */

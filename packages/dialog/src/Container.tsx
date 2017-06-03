@@ -58,33 +58,10 @@ export type ChildContext = {
     adapter: FoundationAdapter,
 };
 
-export class PropMaker extends ClassNamePropMakerAdapter<ChildProps, MetaProps, State> {
-    protected renderNativeDOMProps_c, _p, state: State) {
-        return {
-            attributes: state.foundationAttributes.toJS(),
-            eventListeners: state.foundationEventListeners.toJS(),
-        };
-    }
-
-    public getClassName(props: MetaProps, state: State): string {
-        return classNames(
-            CLASS_NAME,
-            {
-                [propertyClassNames.DARK]: this.props.dark,
-            },
-            state.foundationClasses.toJS(),
-        );
-    }
-
-    protected renderClassValues(_c, props: MetaProps, state: State) {
-        return [this.getClassName(props, state)];
-    }
-}
-
 /**
  * Dialog component
  */
-export class Meta extends PropMakerMetaComponent<ChildProps, MetaProps, State> {
+export class Meta extends ClassNameMetaBase<ChildProps, MetaProps, State> {
     public static displayName = "Container";
 
     public static childContextTypes = {
@@ -97,8 +74,6 @@ export class Meta extends PropMakerMetaComponent<ChildProps, MetaProps, State> {
         foundationEventListeners: Map<string, Set<EventListener>>(),
         open: false,
     };
-
-    public propMaker = new PropMaker();
 
     private adapter: FoundationAdapter;
     private foundation: MDCDialogFoundation;
@@ -146,6 +121,27 @@ export class Meta extends PropMakerMetaComponent<ChildProps, MetaProps, State> {
     public cancel(notifyChange: boolean = false) {
         this.foundation.cancel(notifyChange);
     }
+
+    public getClassName(props: MetaProps, state: State): string {
+        return classNames(
+            CLASS_NAME,
+            {
+                [propertyClassNames.DARK]: this.props.dark,
+            },
+            state.foundationClasses.toJS(),
+        );
+    }
+
+    protected renderNativeDOMProps() {
+        return {
+            attributes: this.state.foundationAttributes.toJS(),
+            eventListeners: this.state.foundationEventListeners.toJS(),
+        };
+    }
+
+    protected renderClassValues() {
+        return [this.getClassName(this.props, this.state)];
+    }
 }
 
 class ContainerAdapterImpl extends ContainerAdapter {
@@ -158,7 +154,7 @@ class ContainerAdapterImpl extends ContainerAdapter {
 
     public hasClass(className: string): boolean {
         return includes(
-            this.element.propMaker.getClassName(this.element.props, this.element.state).split(/\s+/),
+            this.element.getClassName(this.element.props, this.element.state).split(/\s+/),
             className,
         );
     }
@@ -238,20 +234,16 @@ export default class Container extends DefaultComponentBase<React.HTMLProps<HTML
 
     protected getMetaPropNames() {
         return [
-            ???
+            "dark",
+            "open",
+            "onAccept",
+            "onCancel",
+            "onOpen",
+            "onClose",
         ];
     }
 
     protected getChildComponent() {
-        return
-    "aside",
-    Meta,
-    [
-        "dark",
-        "open",
-        "onAccept",
-        "onCancel",
-        "onOpen",
-        "onClose",
-    ],
-);
+        return "aside";
+    }
+}

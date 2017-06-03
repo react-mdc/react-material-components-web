@@ -43,23 +43,10 @@ export type Context = {
     adapter: FoundationAdapter,
 };
 
-export class PropMaker extends ClassNamePropMakerAdapter<ChildProps, MetaProps, State> {
-    protected renderNativeDOMProps_c, _p, state: State) {
-        return {
-            eventListeners: state.foundationEventListeners.toJS(),
-        };
-    }
-
-    protected renderBaseClassName() {
-        return CLASS_NAME;
-    }
-
-}
-
 /**
  * Surface component
  */
-class Surface extends PropMakerMetaComponent<ChildProps, MetaProps, State> {
+export class Meta extends ClassNameMetaBase<ChildProps, MetaProps, State> {
     public static contextTypes = {
         adapter: PropTypes.instanceOf(FoundationAdapter).isRequired,
     };
@@ -71,8 +58,6 @@ class Surface extends PropMakerMetaComponent<ChildProps, MetaProps, State> {
         foundationEventListeners: Map<string, Set<EventListener>>(),
     };
 
-    protected propMaker = new PropMaker();
-
     public componentDidMount() {
         this.context.adapter.setSurfaceAdapter(new SurfaceAdapterImpl(this));
     }
@@ -80,12 +65,22 @@ class Surface extends PropMakerMetaComponent<ChildProps, MetaProps, State> {
     public componentWillUnmount() {
         this.context.adapter.setSurfaceAdapter(new SurfaceAdapter());
     }
+
+    protected renderNativeDOMProps() {
+        return {
+            eventListeners: this.state.foundationEventListeners.toJS(),
+        };
+    }
+
+    protected renderBaseClassName() {
+        return CLASS_NAME;
+    }
 }
 
 class SurfaceAdapterImpl extends SurfaceAdapter {
-    private element: Surface;
+    private element: Meta;
 
-    constructor(element: Surface) {
+    constructor(element: Meta) {
         super();
         this.element = element;
     }
@@ -131,14 +126,10 @@ export default class Surface extends DefaultComponentBase<React.HTMLProps<HTMLDi
     }
 
     protected getMetaPropNames() {
-        return [
-            ???
-        ];
+        return [];
     }
 
     protected getChildComponent() {
-        return
-    "div",
-    Surface,
-    [],
-);
+        return "div";
+    }
+}

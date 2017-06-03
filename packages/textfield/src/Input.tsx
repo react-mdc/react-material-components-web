@@ -40,19 +40,7 @@ export type Context = {
 /**
  * Textfield input component
  */
-export class PropMaker extends ClassNamePropMakerAdapter<ChildProps, MetaProps, State> {
-    protected renderNativeDOMProps_c, _p, state: State) {
-        return {
-            eventListeners: state.foundationEventListeners.toJS(),
-        };
-    }
-
-    protected renderBaseClassName() {
-        return CLASS_NAME;
-    }
-}
-
-class Input extends PropMakerMetaComponent<ChildProps, MetaProps, State> {
+export class Meta extends ClassNameMetaBase<ChildProps, MetaProps, State> {
     public static contextTypes = {
         adapter: PropTypes.instanceOf(FoundationAdapter).isRequired,
     };
@@ -63,8 +51,6 @@ class Input extends PropMakerMetaComponent<ChildProps, MetaProps, State> {
         foundationEventListeners: Map<string, Set<EventListener>>(),
     };
 
-    protected propMaker = new PropMaker();
-
     public componentDidMount() {
         this.context.adapter.setInputAdapter(new InputAdapterImpl(this));
     }
@@ -72,12 +58,22 @@ class Input extends PropMakerMetaComponent<ChildProps, MetaProps, State> {
     public componentWillUnmount() {
         this.context.adapter.setInputAdapter(new InputAdapter());
     }
+
+    protected renderNativeDOMProps() {
+        return {
+            eventListeners: this.state.foundationEventListeners.toJS(),
+        };
+    }
+
+    protected renderBaseClassName() {
+        return CLASS_NAME;
+    }
 }
 
 class InputAdapterImpl extends InputAdapter {
-    private element: Input;
+    private element: Meta;
 
-    constructor(element: Input) {
+    constructor(element: Meta) {
         super();
         this.element = element;
     }
@@ -146,14 +142,10 @@ export default class Input extends DefaultComponentBase<React.HTMLProps<HTMLInpu
     }
 
     protected getMetaPropNames() {
-        return [
-            ???
-        ];
+        return [];
     }
 
-    protected getChildComponent() {
-        return
-    TextInput,
-    Input,
-    [],
-);
+    protected getChildComponent(): React.SFC<React.HTMLProps<HTMLInputElement>> {
+        return TextInput;
+    }
+}

@@ -38,24 +38,6 @@ export type State = {
     foundationEventListeners: Map<string, Set<EventListener>>,
 };
 
-export class PropMaker extends ClassNamePropMakerAdapter<ChildProps, MetaProps, State> {
-    protected renderNativeDOMProps_c, _p, state: State) {
-        return {
-            eventListeners: state.foundationEventListeners.toJS(),
-        };
-    }
-
-    protected renderBaseClassName() {
-        return CLASS_NAME;
-    }
-
-    protected renderClassValues(_c: ChildProps, _p: MetaProps, state: State) {
-        return [
-            state.foundationClasses.toJS(),
-        ];
-    }
-}
-
 export type ChildContext = {
     adapter: FoundationAdapter,
 };
@@ -63,7 +45,7 @@ export type ChildContext = {
 /**
  * Checkbox input container component
  */
-class Container extends PropMakerMetaComponent<ChildProps, MetaProps, State> {
+export class Meta extends ClassNameMetaBase<ChildProps, MetaProps, State> {
     public static childContextTypes = {
         adapter: PropTypes.instanceOf(FoundationAdapter),
     };
@@ -73,7 +55,6 @@ class Container extends PropMakerMetaComponent<ChildProps, MetaProps, State> {
         foundationEventListeners: Map<string, Set<EventListener>>(),
     };
 
-    protected propMaker = new PropMaker();
     private adapter: FoundationAdapter;
     private foundation: MDCCheckboxFoundation;
 
@@ -112,6 +93,22 @@ class Container extends PropMakerMetaComponent<ChildProps, MetaProps, State> {
         this.syncFoundation(props);
     }
 
+    protected renderNativeDOMProps() {
+        return {
+            eventListeners: this.state.foundationEventListeners.toJS(),
+        };
+    }
+
+    protected renderBaseClassName() {
+        return CLASS_NAME;
+    }
+
+    protected renderClassValues() {
+        return [
+            this.state.foundationClasses.toJS(),
+        ];
+    }
+
     private syncFoundation(props: MetaProps) {
         if (props.checked != null && this.foundation.isChecked() !== this.props.checked) {
             this.foundation.setChecked(props.checked);
@@ -136,9 +133,9 @@ class Container extends PropMakerMetaComponent<ChildProps, MetaProps, State> {
 }
 
 class ContainerAdapterImpl extends ContainerAdapter {
-    private element: Container;
+    private element: Meta;
 
-    constructor(element: Container) {
+    constructor(element: Meta) {
         super();
         this.element = element;
     }
@@ -190,16 +187,13 @@ export default class Container extends DefaultComponentBase<React.HTMLProps<HTML
 
     protected getMetaPropNames() {
         return [
-            ???
+            "checked",
+            "disabled",
+            "indeterminate",
         ];
     }
 
     protected getChildComponent() {
-        return
-    "div",
-    Container,
-    [
-        "checked",
-        "disabled",
-        "indeterminate",
-    ]);
+        return "div";
+    }
+}

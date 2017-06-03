@@ -47,31 +47,7 @@ export type State = {
 /**
  * Ripple foundation component
  */
-export class PropMaker extends ClassNamePropMakerAdapter<ChildProps, MetaProps, State> {
-    protected renderNativeDOMProps_c, _p, state: State) {
-        return {
-            cssVariables: state.foundationCssVars.toJS(),
-            eventListeners: state.foundationEventListeners.toJS(),
-        };
-    }
-
-    protected renderBaseClassName() {
-        return CLASS_NAME;
-    }
-
-    protected renderClassValues(_c, props: MetaProps, state: State) {
-        const classes: string[] = [];
-        if (props.color != null) {
-            classes.push(helpers.classNameForColor(props.color));
-        }
-        return [
-            classes,
-            state.foundationClasses.toJS(),
-        ];
-    }
-}
-
-class Ripple extends PropMakerMetaComponent<ChildProps, MetaProps, State> {
+export class Meta extends ClassNameMetaBase<ChildProps, MetaProps, State> {
     public static defaultProps = {
         unbounded: false,
     };
@@ -81,8 +57,6 @@ class Ripple extends PropMakerMetaComponent<ChildProps, MetaProps, State> {
         foundationCssVars: OrderedMap<string, string | null>(),
         foundationEventListeners: OrderedMap<string, Set<EventListener>>(),
     };
-
-    protected propMaker = new PropMaker();
 
     private adapter: FoundationAdapter;
     private foundation: MDCRippleFoundation;
@@ -116,12 +90,33 @@ class Ripple extends PropMakerMetaComponent<ChildProps, MetaProps, State> {
         this.foundation.destroy();
         this.adapter.setRippleAdapter(new RippleAdapter());
     }
+    protected renderNativeDOMProps() {
+        return {
+            cssVariables: this.state.foundationCssVars.toJS(),
+            eventListeners: this.state.foundationEventListeners.toJS(),
+        };
+    }
+
+    protected renderBaseClassName() {
+        return CLASS_NAME;
+    }
+
+    protected renderClassValues() {
+        const classes: string[] = [];
+        if (this.props.color != null) {
+            classes.push(helpers.classNameForColor(this.props.color));
+        }
+        return [
+            classes,
+            this.state.foundationClasses.toJS(),
+        ];
+    }
 }
 
 class RippleAdapterImpl extends RippleAdapter {
-    private element: Ripple;
+    private element: Meta;
 
-    constructor(element: Ripple) {
+    constructor(element: Meta) {
         super();
         this.element = element;
     }
@@ -187,7 +182,7 @@ class RippleAdapterImpl extends RippleAdapter {
     }
 }
 
-const component = createDefaultComponent<React.HTMLProps<HTMLDivElement>, MetaProps, {}> {
+export default class Ripple extends DefaultComponentBase<React.HTMLProps<HTMLDivElement>, MetaProps, {}> {
     public static Meta = Meta;
 
     protected getMetaComponent() {
@@ -196,22 +191,16 @@ const component = createDefaultComponent<React.HTMLProps<HTMLDivElement>, MetaPr
 
     protected getMetaPropNames() {
         return [
-            ???
+            "unbounded",
+            "color",
         ];
     }
 
     protected getChildComponent() {
-        return
-    "div",
-    Ripple,
-    [
-        "unbounded",
-        "color",
-    ],
-);
+        return "div";
+    }
+}
 
 export {
-    component as Ripple,
+    Ripple,
 };
-
-export default component;

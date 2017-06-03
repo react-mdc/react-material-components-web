@@ -37,22 +37,10 @@ export type Context = {
     adapter: FoundationAdapter,
 };
 
-export class PropMaker extends ClassNamePropMakerAdapter<ChildProps, MetaProps, State> {
-    protected renderNativeDOMProps_c, _p, state: State) {
-        return {
-            eventListeners: state.foundationEventListeners.toJS(),
-        };
-    }
-
-    protected renderBaseClassName() {
-        return CLASS_NAME;
-    }
-}
-
 /**
  * Checkbox input component
  */
-class NativeControl extends PropMakerMetaComponent<ChildProps, MetaProps, State> {
+export class Meta extends ClassNameMetaBase<ChildProps, MetaProps, State> {
     public static contextTypes = {
         adapter: PropTypes.instanceOf(FoundationAdapter).isRequired,
     };
@@ -63,8 +51,6 @@ class NativeControl extends PropMakerMetaComponent<ChildProps, MetaProps, State>
         foundationEventListeners: Map<string, Set<EventListener>>(),
     };
 
-    protected propMaker = new PropMaker();
-
     public defaultOnChange: React.ChangeEventHandler<any> = () => { };
 
     public componentDidMount() {
@@ -73,6 +59,16 @@ class NativeControl extends PropMakerMetaComponent<ChildProps, MetaProps, State>
 
     public componentWillUnmount() {
         this.context.adapter.setNativeControlAdapter(new NativeControlAdapter());
+    }
+
+    protected renderNativeDOMProps() {
+        return {
+            eventListeners: this.state.foundationEventListeners.toJS(),
+        };
+    }
+
+    protected renderBaseClassName() {
+        return CLASS_NAME;
     }
 
     protected renderProps(childProps: ChildProps) {
@@ -93,9 +89,9 @@ class NativeControl extends PropMakerMetaComponent<ChildProps, MetaProps, State>
 }
 
 class NativeControlAdapterImpl extends NativeControlAdapter {
-    private element: NativeControl;
+    private element: Meta;
 
-    constructor(element: NativeControl) {
+    constructor(element: Meta) {
         super();
         this.element = element;
     }
@@ -144,15 +140,11 @@ export default class NativeControl extends DefaultComponentBase<React.HTMLProps<
 
     protected getMetaPropNames() {
         return [
-            ???
+            "onChange",
         ];
     }
 
-    protected getChildComponent() {
-        return
-    CheckboxInput,
-    NativeControl,
-    [
-        "onChange",
-    ],
-);
+    protected getChildComponent(): React.SFC<React.HTMLProps<HTMLInputElement>> {
+        return CheckboxInput;
+    }
+}

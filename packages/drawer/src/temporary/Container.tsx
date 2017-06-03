@@ -56,32 +56,7 @@ const {
     },
 } = MDCTemporaryDrawerFoundation;
 
-export class PropMaker extends ClassNamePropMakerAdapter<ChildProps, MetaProps, State> {
-    public getClassName(_props: MetaProps, state: State): string {
-        return classNames(
-            CLASS_NAME,
-            state.foundationClasses.toJS(),
-        );
-    }
-
-    protected renderNativeDOMProps_c, _p, state: State) {
-        return {
-            cssVariables: state.foundationCssVars.toJS(),
-            eventListeners: state.foundationEventListeners.toJS(),
-        };
-    }
-
-    protected renderBaseClassName() {
-        return CLASS_NAME;
-    }
-
-    protected renderClassValues(_c, props: MetaProps, state: State) {
-        return [this.getClassName(props, state)];
-    }
-
-}
-
-export class Meta extends PropMakerMetaComponent<ChildProps, MetaProps, State> {
+export class Meta extends ClassNameMetaBase<ChildProps, MetaProps, State> {
     public static displayName = "Container";
     public static childContextTypes = {
         adapter: PropTypes.instanceOf(FoundationAdapter),
@@ -98,8 +73,6 @@ export class Meta extends PropMakerMetaComponent<ChildProps, MetaProps, State> {
         foundationEventListeners: Map<string, Set<EventListener>>(),
         open: false,
     };
-
-    public propMaker = new PropMaker();
 
     private adapter: FoundationAdapter;
     private foundation: MDCTemporaryDrawerFoundation;
@@ -138,6 +111,13 @@ export class Meta extends PropMakerMetaComponent<ChildProps, MetaProps, State> {
         this.adapter.setContainerAdapter(new ContainerAdapter());
     }
 
+    public getClassName(_props: MetaProps, state: State): string {
+        return classNames(
+            CLASS_NAME,
+            state.foundationClasses.toJS(),
+        );
+    }
+
     protected renderProps(childProps: ChildProps) {
         const {
             onClick,
@@ -147,6 +127,21 @@ export class Meta extends PropMakerMetaComponent<ChildProps, MetaProps, State> {
             ...super.renderProps(childProps),
             onClick: (eventHandlerDecorator(this.handleClick)(onClick || null) as React.MouseEventHandler<any>),
         };
+    }
+
+    protected renderNativeDOMProps() {
+        return {
+            cssVariables: this.state.foundationCssVars.toJS(),
+            eventListeners: this.state.foundationEventListeners.toJS(),
+        };
+    }
+
+    protected renderBaseClassName() {
+        return CLASS_NAME;
+    }
+
+    protected renderClassValues() {
+        return [this.getClassName(this.props, this.state)];
     }
 
     // Custom event handler
@@ -200,7 +195,7 @@ class ContainerAdapterImpl extends ContainerAdapter {
     }
     public hasClass(className: string): boolean {
         return includes(
-            this.element.propMaker.getClassName(this.element.props, this.element.state).split(/\s+/),
+            this.element.getClassName(this.element.props, this.element.state).split(/\s+/),
             className);
     }
     public registerInteractionHandler(evt: string, handler: EventListener) {
@@ -273,20 +268,16 @@ export default class Container extends DefaultComponentBase<React.HTMLProps<HTML
 
     protected getMetaPropNames() {
         return [
-            ???
-        ];
-    }
-
-    protected getChildComponent() {
-        return
-    "aside",
-    Meta,
-    [
         "open",
         "rtl",
         "style",
         "onOpenDrawer",
         "onCloseDrawer",
         "onClick",
-    ],
-);
+        ];
+    }
+
+    protected getChildComponent() {
+        return "aside";
+    }
+}

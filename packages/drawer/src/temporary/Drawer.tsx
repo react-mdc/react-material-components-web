@@ -45,16 +45,7 @@ export type Context = {
     adapter: FoundationAdapter,
 };
 
-export class PropMaker extends ClassNamePropMakerAdapter<ChildProps, MetaProps, State> {
-    protected renderNativeDOMProps_c, _p, state: State) {
-        return {
-            cssVariables: state.foundationCssVars.toJS(),
-            eventListeners: state.foundationEventListeners.toJS(),
-        };
-    }
-}
-
-class Drawer extends PropMakerMetaComponent<ChildProps, MetaProps, State> {
+export class Meta extends ClassNameMetaBase<ChildProps, MetaProps, State> {
     public static contextTypes = {
         adapter: PropTypes.instanceOf(FoundationAdapter).isRequired,
     };
@@ -66,14 +57,19 @@ class Drawer extends PropMakerMetaComponent<ChildProps, MetaProps, State> {
         foundationEventListeners: Map<string, Set<EventListener>>(),
     };
 
-    protected propMaker = new PropMaker();
-
     public componentDidMount() {
         this.context.adapter.setDrawerAdapter(new DrawerAdapterImpl(this));
     }
 
     public componentWillUnmount() {
         this.context.adapter.setDrawerAdapter(new DrawerAdapter());
+    }
+
+    protected renderNativeDOMProps() {
+        return {
+            cssVariables: this.state.foundationCssVars.toJS(),
+            eventListeners: this.state.foundationEventListeners.toJS(),
+        };
     }
 
     protected renderBaseClassName() {
@@ -99,9 +95,9 @@ class Drawer extends PropMakerMetaComponent<ChildProps, MetaProps, State> {
 }
 
 class DrawerAdapterImpl extends DrawerAdapter {
-    private element: Drawer;
+    private element: Meta;
 
-    constructor(element: Drawer) {
+    constructor(element: Meta) {
         super();
         this.element = element;
     }
@@ -173,14 +169,10 @@ export default class Drawer extends DefaultComponentBase<React.HTMLProps<HTMLEle
     }
 
     protected getMetaPropNames() {
-        return [
-            ???
-        ];
+        return [];
     }
 
     protected getChildComponent() {
-        return
-    "nav",
-    Drawer,
-    [],
-);
+        return "nav";
+    }
+}

@@ -1,10 +1,10 @@
 import * as React from "react";
 
-import Background from "./background";
-import Checkmark from "./checkmark";
-import Container from "./container";
-import Mixedmark from "./mixedmark";
-import NativeControl from "./native-control";
+import Background from "./Background";
+import Checkmark from "./Checkmark";
+import Container from "./Container";
+import Mixedmark from "./Mixedmark";
+import NativeControl from "./NativeControl";
 
 export type Props = {
     inputId?: string,
@@ -44,6 +44,7 @@ export default class Checkbox extends React.Component<Props, {}> {
                     id={inputId}
                     name={name}
                     onChange={onChange}
+                    checked={checked}
                     defaultChecked={defaultChecked}
                     value={value} />
                 <Background>
