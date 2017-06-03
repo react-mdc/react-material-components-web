@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import Container from "./container";
+import Container from "./Container";
 
 // Typescript transpiler does not compile following line.
 // I don't know why, and it seems to be bug of typescript
@@ -9,7 +9,7 @@ import Container from "./container";
 //
 // We bypass the bug using following lines
 /* ---from here --- */
-import * as InputModule from "./input";
+import * as InputModule from "./Input";
 // tslint:disable:variable-name
 const Input = InputModule.default;
 // tslint:enable:variable-name
@@ -51,9 +51,9 @@ export type Props = ContainerProps & {
 };
 
 /**
- * Textfield default composed component
+ * Textfield simple common composed component
  */
-export class Textfield extends React.Component<Props, {}> {
+export default class Simple extends React.Component<Props, {}> {
     public render() {
         const {
             inputId,
@@ -80,16 +80,3 @@ export class Textfield extends React.Component<Props, {}> {
         );
     }
 }
-
-export type TextareaProps = ContainerProps & {
-    inputId?: string,
-    name?: string,
-    value?: any,
-    onChange?: React.ChangeEventHandler<any>,
-    placeholder?: string,
-    disabled?: boolean,
-    rows: string | number,
-    cols: string | number,
-};
-
-export default Textfield;

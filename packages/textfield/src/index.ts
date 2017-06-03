@@ -1,4 +1,10 @@
-export { default } from "./default";
-export { default as Container, default as TextField } from "./container";
-export { default as Input } from "./input";
-export { default as Label } from "./label";
+import Container from "./Container";
+import Input from "./Input";
+import Label from "./Label";
+import Simple from "./Simple";
+
+export default class Textfield extends Container {
+    public static Input = Input;
+    public static Label = Label;
+    public static Simple = Simple;
+}

@@ -44,20 +44,7 @@ export type ChildContext = {
 /**
  * Textfield input container component
  */
-export class Meta extends ClassNameMetaBase<ChildProps, MetaProps, {}> {
-    protected renderBaseClassName() {
-        return CLASS_NAME;
-    }
-
-    protected renderClassValues(_c, props: MetaProps, state: State) {
-        return [{
-            [propertyClassNames.MULTILINE]: this.props.multiline,
-            [propertyClassNames.FULLWIDTH]: this.props.fullwidth,
-        }, state.foundationClasses.toJS()];
-    }
-}
-
-class Container extends PropMakerMetaComponent<ChildProps, MetaProps, State> {
+export class Meta extends ClassNameMetaBase<ChildProps, MetaProps, State> {
     public static childContextTypes = {
         adapter: PropTypes.instanceOf(FoundationAdapter),
     };
@@ -65,8 +52,6 @@ class Container extends PropMakerMetaComponent<ChildProps, MetaProps, State> {
     public state: State = {
         foundationClasses: OrderedSet<string>(),
     };
-
-    protected propMaker = new PropMaker();
 
     private adapter: FoundationAdapter;
     private foundation: MDCTextfieldFoundation;
@@ -93,12 +78,23 @@ class Container extends PropMakerMetaComponent<ChildProps, MetaProps, State> {
             adapter: this.adapter,
         };
     }
+
+    protected renderBaseClassName() {
+        return CLASS_NAME;
+    }
+
+    protected renderClassValues() {
+        return [{
+            [propertyClassNames.MULTILINE]: this.props.multiline,
+            [propertyClassNames.FULLWIDTH]: this.props.fullwidth,
+        }, this.state.foundationClasses.toJS()];
+    }
 }
 
 class ContainerAdapterImpl extends ContainerAdapter {
-    private element: Container;
+    private element: Meta;
 
-    constructor(element: Container) {
+    constructor(element: Meta) {
         super();
         this.element = element;
     }
@@ -123,16 +119,13 @@ export default class Container extends DefaultComponentBase<React.HTMLProps<HTML
 
     protected getMetaPropNames() {
         return [
-            ???
+            "disabled",
+            "multiline",
+            "fullwidth",
         ];
     }
 
     protected getChildComponent() {
-        return
-    "div",
-    Container,
-    [
-        "disabled",
-        "multiline",
-        "fullwidth",
-    ]);
+        return "div";
+    }
+}

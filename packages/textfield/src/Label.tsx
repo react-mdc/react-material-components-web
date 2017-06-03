@@ -33,17 +33,7 @@ export type Context = {
 /**
  * Textfield label component
  */
-export class Meta extends ClassNameMetaBase<ChildProps, MetaProps, {}> {
-    protected renderBaseClassName() {
-        return CLASS_NAME;
-    }
-
-    protected renderClassValues(_c, _p, state: State) {
-        return state.foundationClasses.toJS();
-    }
-}
-
-class Label extends PropMakerMetaComponent<ChildProps, MetaProps, State> {
+export class Meta extends ClassNameMetaBase<ChildProps, MetaProps, State> {
     public static contextTypes = {
         adapter: PropTypes.instanceOf(FoundationAdapter).isRequired,
     };
@@ -54,8 +44,6 @@ class Label extends PropMakerMetaComponent<ChildProps, MetaProps, State> {
         foundationClasses: OrderedSet<string>(),
     };
 
-    protected propMaker = new PropMaker();
-
     public componentDidMount() {
         this.context.adapter.setLabelAdapter(new LabelAdapterImpl(this));
     }
@@ -63,12 +51,19 @@ class Label extends PropMakerMetaComponent<ChildProps, MetaProps, State> {
     public componentWillUnmount() {
         this.context.adapter.setLabelAdapter(new LabelAdapter());
     }
+    protected renderBaseClassName() {
+        return CLASS_NAME;
+    }
+
+    protected renderClassValues() {
+        return this.state.foundationClasses.toJS();
+    }
 }
 
 class LabelAdapterImpl extends LabelAdapter {
-    public element: Label;
+    public element: Meta;
 
-    constructor(element: Label) {
+    constructor(element: Meta) {
         super();
         this.element = element;
     }
@@ -93,14 +88,10 @@ export default class Label extends DefaultComponentBase<React.HTMLProps<HTMLLabe
     }
 
     protected getMetaPropNames() {
-        return [
-            ???
-        ];
+        return [];
     }
 
     protected getChildComponent() {
-        return
-    "label",
-    Label,
-    [],
-);
+        return "label";
+    }
+}

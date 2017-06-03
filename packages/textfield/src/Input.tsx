@@ -18,10 +18,6 @@ import { BASE_CLASS_NAME } from "./constants";
 
 export const CLASS_NAME = `${BASE_CLASS_NAME}__input`;
 
-export const propertyClassNames = {
-    PREFIX: CLASS_NAME,
-};
-
 export type ChildProps = {
     className?: string,
 };
