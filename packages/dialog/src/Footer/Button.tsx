@@ -3,7 +3,7 @@ import {
     DefaultComponentBase,
 } from "@react-mdc/base";
 
-import { Button as MDCButton } from "@react-mdc/button";
+import MDCButton from "@react-mdc/button";
 import { MetaProps as MDCButtonMetaProps } from "@react-mdc/button/lib/Button";
 
 import {

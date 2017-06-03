@@ -3,7 +3,9 @@ import "jest";
 import {
     ContainerAdapter,
     FoundationAdapter,
-    NativeControlAdapter,
+    HelptextAdapter,
+    InputAdapter,
+    LabelAdapter,
 } from "../adapter";
 
 describe("ContainerAdapter", () => {
@@ -16,6 +18,14 @@ describe("FoundationAdapter", () => {
     // TODO: Add adapter tests
 });
 
-describe("NativeControlAdapter", () => {
+describe("InputAdapter", () => {
+    // TODO: Add adapter tests
+});
+
+describe("LabelAdapter", () => {
+    // TODO: Add adapter tests
+});
+
+describe("HelptextAdapter", () => {
     // TODO: Add adapter tests
 });
