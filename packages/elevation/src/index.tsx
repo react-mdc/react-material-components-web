@@ -1,1 +1,1 @@
-export { default, default as Elevation } from "./Elevation";
+export { default } from "./Elevation";
