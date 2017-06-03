@@ -193,7 +193,7 @@ const component = createDefaultComponent<React.HTMLProps<HTMLDivElement>, MetaPr
     protected getMetaComponent() {
         return Meta;
     }
-    
+
     protected getMetaPropNames() {
         return [
             ???

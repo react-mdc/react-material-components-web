@@ -41,25 +41,21 @@ export class Meta extends ClassNameMetaBase<ChildProps, MetaProps, {}> {
     }
 }
 
-export default class Actions extends DefaultComponentBase<React.HTMLProps<HTMLButtonElement>, MetaProps, {}> {
+export default class Container extends DefaultComponentBase<React.HTMLProps<HTMLButtonElement>, MetaProps, {}> {
     public static Meta = Meta;
 
     protected getMetaComponent() {
         return Meta;
     }
-    
+
     protected getMetaPropNames() {
         return [
-            ???
+            "mini",
+            "plain",
         ];
     }
 
     protected getChildComponent() {
-        return
-    "button",
-    PropMakerMetaComponent.simple(new PropMaker(), "Container"),
-    [
-        "mini",
-        "plain",
-    ],
-);
+        return "button";
+    }
+}

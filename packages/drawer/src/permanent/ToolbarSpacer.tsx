@@ -5,11 +5,9 @@ import {
     DefaultComponentBase,
 } from "@react-mdc/base";
 
-import {
-    BASE_CLASS_NAME,
-} from "./constants";
+import { BASE_CLASS_NAME } from "./constants";
 
-export const CLASS_NAME = `${BASE_CLASS_NAME}__content`;
+export const CLASS_NAME = `${BASE_CLASS_NAME}__toolbar-spacer`;
 
 export type MetaProps = {
 };
@@ -24,7 +22,7 @@ export class Meta extends ClassNameMetaBase<ChildProps, MetaProps, {}> {
     }
 }
 
-export default class Content extends DefaultComponentBase<React.HTMLProps<HTMLDivElement>, MetaProps, {}> {
+export default class ToolbarSpacer extends DefaultComponentBase<React.HTMLProps<HTMLDivElement>, MetaProps, {}> {
     public static Meta = Meta;
 
     protected getMetaComponent() {

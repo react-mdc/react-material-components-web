@@ -36,22 +36,18 @@ function CheckboxInput(props: React.HTMLProps<HTMLInputElement>) {
 
 export type Props = React.HTMLProps<HTMLInputElement> & MetaProps;
 
-export default class Actions extends DefaultComponentBase<React.HTMLProps<HTMLInputElement>, MetaProps, {}> {
+export default class NativeControl extends DefaultComponentBase<React.HTMLProps<HTMLInputElement>, MetaProps, {}> {
     public static Meta = Meta;
 
     protected getMetaComponent() {
         return Meta;
     }
-    
+
     protected getMetaPropNames() {
-        return [
-            ???
-        ];
+        return [];
     }
 
     protected getChildComponent() {
-        return
-    CheckboxInput,
-    PropMakerMetaComponent.simple(new PropMaker(), "NativeControl"),
-    [],
-);
+        return CheckboxInput;
+    }
+}

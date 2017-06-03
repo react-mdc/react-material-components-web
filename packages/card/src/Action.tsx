@@ -4,6 +4,7 @@ import {
     ClassNameMetaBase,
     DefaultComponentBase,
 } from "@react-mdc/base";
+import Button from "@react-mdc/button";
 import {
     MetaProps as ButtonMetaProps,
 } from "@react-mdc/button/lib/Button";
@@ -35,22 +36,19 @@ function CompactButton(props: React.HTMLProps<HTMLButtonElement> & ButtonMetaPro
     });
 }
 
-export default class Actions extends DefaultComponentBase<React.HTMLProps<HTMLButtonElement> & ButtonMetaProps, MetaProps, {}> {
+export default class Action
+    extends DefaultComponentBase<React.HTMLProps<HTMLButtonElement> & ButtonMetaProps, MetaProps, {}> {
     public static Meta = Meta;
 
     protected getMetaComponent() {
         return Meta;
     }
-    
+
     protected getMetaPropNames() {
-        return [
-            ???
-        ];
+        return [];
     }
 
-    protected getChildComponent() {
-        return
-    CompactButton,
-    PropMakerMetaComponent.simple(new PropMaker(), "Action"),
-    [],
-);
+    protected getChildComponent(): React.SFC<React.HTMLProps<HTMLButtonElement> & ButtonMetaProps> {
+        return CompactButton;
+    }
+}

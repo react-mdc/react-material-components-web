@@ -9,37 +9,49 @@ import {
     BASE_CLASS_NAME,
 } from "./constants";
 
-export const CLASS_NAME = `${BASE_CLASS_NAME}__toolbar-spacer`;
+export const CLASS_NAME = `${BASE_CLASS_NAME}__body`;
 
 export type MetaProps = {
+    scrollable?: boolean,
 };
 
 export type ChildProps = {
     className?: string,
 };
 
+export const propertyClassNames = {
+    SCROLLABLE: `${CLASS_NAME}--scrollable`,
+};
+
+/**
+ * Header title component
+ */
 export class Meta extends ClassNameMetaBase<ChildProps, MetaProps, {}> {
     protected renderBaseClassName() {
         return CLASS_NAME;
     }
+
+    protected renderClassValues() {
+        return [{
+            [propertyClassNames.SCROLLABLE]: this.props.scrollable,
+        }];
+    }
 }
 
-export default class Actions extends DefaultComponentBase<React.HTMLProps<HTMLDivElement>, MetaProps, {}> {
+export default class Body extends DefaultComponentBase<React.HTMLProps<HTMLElement>, MetaProps, {}> {
     public static Meta = Meta;
 
     protected getMetaComponent() {
         return Meta;
     }
-    
+
     protected getMetaPropNames() {
         return [
-            ???
+            "scrollable",
         ];
     }
 
     protected getChildComponent() {
-        return
-    "div",
-    PropMakerMetaComponent.simple(new PropMaker(), "ToolbarSpacer"),
-    [],
-);
+        return "section";
+    }
+}

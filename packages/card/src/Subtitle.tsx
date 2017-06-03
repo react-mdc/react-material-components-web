@@ -27,22 +27,18 @@ export class Meta extends ClassNameMetaBase<ChildProps, MetaProps, {}> {
     }
 }
 
-export default class Actions extends DefaultComponentBase<React.HTMLProps<HTMLHeadingElement>, MetaProps, {}> {
+export default class Subtitle extends DefaultComponentBase<React.HTMLProps<HTMLHeadingElement>, MetaProps, {}> {
     public static Meta = Meta;
 
     protected getMetaComponent() {
         return Meta;
     }
-    
+
     protected getMetaPropNames() {
-        return [
-            ???
-        ];
+        return [];
     }
 
     protected getChildComponent() {
-        return
-    "h2",
-    PropMakerMetaComponent.simple(new PropMaker(), "Subtitle"),
-    [],
-);
+        return "h2";
+    }
+}

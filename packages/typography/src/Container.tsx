@@ -5,11 +5,9 @@ import {
     DefaultComponentBase,
 } from "@react-mdc/base";
 
-import {
-    BASE_CLASS_NAME,
-} from "./constants";
+import { BASE_CLASS_NAME } from "./constants";
 
-export const CLASS_NAME = `${BASE_CLASS_NAME}__outer-circle`;
+export const CLASS_NAME = BASE_CLASS_NAME;
 
 export type MetaProps = {
 };
@@ -24,22 +22,18 @@ export class Meta extends ClassNameMetaBase<ChildProps, MetaProps, {}> {
     }
 }
 
-export default class Actions extends DefaultComponentBase<React.HTMLProps<HTMLDivElement>, MetaProps, {}> {
+export default class Container extends DefaultComponentBase<React.HTMLProps<HTMLDivElement>, MetaProps, {}> {
     public static Meta = Meta;
 
     protected getMetaComponent() {
         return Meta;
     }
-    
+
     protected getMetaPropNames() {
-        return [
-            ???
-        ];
+        return [];
     }
 
     protected getChildComponent() {
-        return
-    "div",
-    PropMakerMetaComponent.simple(new PropMaker(), "InnerCircle"),
-    [],
-);
+        return "div";
+    }
+}

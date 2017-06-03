@@ -101,13 +101,13 @@ function RadioInput(props: React.HTMLProps<HTMLInputElement>) {
     );
 }
 
-export default class Actions extends DefaultComponentBase<React.HTMLProps<HTMLInputElement>, MetaProps, {}> {
+export default class NativeControl extends DefaultComponentBase<React.HTMLProps<HTMLInputElement>, MetaProps, {}> {
     public static Meta = Meta;
 
     protected getMetaComponent() {
         return Meta;
     }
-    
+
     protected getMetaPropNames() {
         return [
             ???

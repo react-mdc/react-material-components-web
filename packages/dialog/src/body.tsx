@@ -38,24 +38,20 @@ export class Meta extends ClassNameMetaBase<ChildProps, MetaProps, {}> {
     }
 }
 
-export default class Actions extends DefaultComponentBase<React.HTMLProps<HTMLElement>, MetaProps, {}> {
+export default class Body extends DefaultComponentBase<React.HTMLProps<HTMLElement>, MetaProps, {}> {
     public static Meta = Meta;
 
     protected getMetaComponent() {
         return Meta;
     }
-    
+
     protected getMetaPropNames() {
         return [
-            ???
+            "scrollable",
         ];
     }
 
     protected getChildComponent() {
-        return
-    "section",
-    PropMakerMetaComponent.simple(new PropMaker(), "Body"),
-    [
-        "scrollable",
-    ],
-);
+        return "section";
+    }
+}

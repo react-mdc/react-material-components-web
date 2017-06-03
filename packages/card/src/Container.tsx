@@ -31,30 +31,27 @@ export class Meta extends ClassNameMetaBase<ChildProps, MetaProps, {}> {
         return CLASS_NAME;
     }
 
-    protected renderClassValues(_, props: MetaProps) {
+    protected renderClassValues() {
         return [{
             [propertyClassNames.DARK]: this.props.dark,
         }];
     }
 }
 
-export default class Actions extends DefaultComponentBase<React.HTMLProps<HTMLDivElement>, MetaProps, {}> {
+export default class Container extends DefaultComponentBase<React.HTMLProps<HTMLDivElement>, MetaProps, {}> {
     public static Meta = Meta;
 
     protected getMetaComponent() {
         return Meta;
     }
-    
+
     protected getMetaPropNames() {
         return [
-            ???
+            "dark",
         ];
     }
 
     protected getChildComponent() {
-        return
-    "div",
-    PropMakerMetaComponent.simple(new PropMaker(), "Container"),
-    [
-        "dark",
-    ]);
+        return "div";
+    }
+}

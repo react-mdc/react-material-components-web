@@ -42,31 +42,27 @@ export class Meta extends ClassNameMetaBase<ChildProps, MetaProps, {}> {
         return CLASS_NAME;
     }
 
-    protected renderClassValues(_, props: MetaProps) {
+    protected renderClassValues() {
         return [
-            this.props.size == null ? null : classNameForSize(props.size),
+            this.props.size == null ? null : classNameForSize(this.props.size),
         ];
     }
 }
 
-export default class Actions extends DefaultComponentBase<React.HTMLProps<HTMLImageElement>, MetaProps, {}> {
+export default class MediaItem extends DefaultComponentBase<React.HTMLProps<HTMLImageElement>, MetaProps, {}> {
     public static Meta = Meta;
 
     protected getMetaComponent() {
         return Meta;
     }
-    
+
     protected getMetaPropNames() {
         return [
-            ???
+            "size",
         ];
     }
 
     protected getChildComponent() {
-        return
-    "img",
-    PropMakerMetaComponent.simple(new PropMaker(), "MediaItem"),
-    [
-        "size",
-    ],
-);
+        return "img";
+    }
+}
