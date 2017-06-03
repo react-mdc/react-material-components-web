@@ -3,10 +3,8 @@ import {
     DefaultComponentBase,
 } from "@react-mdc/base";
 
-import {
-    default as Button,
-    MetaProps as ButtonMetaProps,
-} from "@react-mdc/button";
+import { Button as MDCButton } from "@react-mdc/button";
+import { MetaProps as MDCButtonMetaProps } from "@react-mdc/button/lib/Button";
 
 import {
     BASE_CLASS_NAME,
@@ -43,7 +41,8 @@ export class Meta extends ClassNameMetaBase<ChildProps, MetaProps, {}> {
     }
 }
 
-export default class Button extends DefaultComponentBase<React.HTMLProps<HTMLButtonElement> & ButtonMetaProps, MetaProps, {}> {
+export default class Button
+    extends DefaultComponentBase<React.HTMLProps<HTMLButtonElement> & MDCButtonMetaProps, MetaProps, {}> {
     public static Meta = Meta;
 
     protected getMetaComponent() {
@@ -51,10 +50,12 @@ export default class Button extends DefaultComponentBase<React.HTMLProps<HTMLBut
     }
 
     protected getMetaPropNames() {
-        return [];
+        return [
+            "type",
+        ];
     }
 
     protected getChildComponent() {
-        return Button;
+        return MDCButton;
     }
 }
