@@ -32,7 +32,8 @@
     "ts-jest": "^20.0.3",
     "tslint": "^5.2.0",
     "tslint-react": "^3.0.0",
-    "typescript": "^2.3.2"
+    "typescript": "^2.3.2",
+    "react-test-renderer": "^15.5.4"
   },
   "scripts": {
     "build": "npm-run-all build:ts lint",
