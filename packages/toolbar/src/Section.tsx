@@ -6,8 +6,8 @@ import {
 } from "@react-mdc/base";
 
 import { SECTION_BASE_CLASS_NAME } from "./constants";
-import * as helpers from "./helpers";
 import { Alignment } from "./types";
+import * as utils from "./utils";
 
 export const CLASS_NAME = SECTION_BASE_CLASS_NAME;
 
@@ -33,7 +33,7 @@ export class Meta extends ClassNameMetaBase<ChildProps, MetaProps, {}> {
         } = this.props;
         const classes: string[] = [];
         if (align != null) {
-            classes.push(helpers.classNameForSectionAlignment(align));
+            classes.push(utils.classNameForSectionAlignment(align));
         }
         return classes;
     }
