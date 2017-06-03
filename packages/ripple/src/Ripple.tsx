@@ -17,8 +17,8 @@ import {
 } from "@react-mdc/base";
 
 import { FoundationAdapter, RippleAdapter } from "./adapter";
-import { Color } from "./types";
 import { getMatchesProperty, supportsCssVariables } from "./rippleUtil";
+import { Color } from "./types";
 import * as utils from "./utils";
 
 import {
