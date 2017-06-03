@@ -9,7 +9,7 @@ import {
     BASE_CLASS_NAME,
 } from "./constants";
 
-export const CLASS_NAME = BASE_CLASS_NAME;
+export const CLASS_NAME = `${BASE_CLASS_NAME}__end-detail`;
 
 export type MetaProps = {
 };
@@ -24,7 +24,7 @@ export class Meta extends ClassNameMetaBase<ChildProps, MetaProps, {}> {
     }
 }
 
-export default class Container extends DefaultComponentBase<React.HTMLProps<HTMLDivElement>, MetaProps, {}> {
+export default class EndDetail extends DefaultComponentBase<React.HTMLProps<HTMLSpanElement>, MetaProps, {}> {
     public static Meta = Meta;
 
     protected getMetaComponent() {
@@ -36,6 +36,6 @@ export default class Container extends DefaultComponentBase<React.HTMLProps<HTML
     }
 
     protected getChildComponent() {
-        return "div";
+        return "span";
     }
 }

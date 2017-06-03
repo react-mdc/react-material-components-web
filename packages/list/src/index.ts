@@ -1,6 +1,10 @@
-export {default, default as List} from "./container";
-export {default as Divider} from "./divider";
+import Container from "./Container";
+import Divider from "./Divider";
+import Group from "./Group";
+import Item from "./Item";
 
-import * as group from "./group";
-import * as item from "./item";
-export {item, group};
+export default class List extends Container {
+    public static Divider = Divider;
+    public static Group = Group;
+    public static Item = Item;
+}
