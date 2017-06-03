@@ -5,7 +5,7 @@ import {
     ChildProps,
     default as Text,
     MetaProps,
-} from "./text";
+} from "./Text";
 import { TextStyle } from "./types";
 
 export type Props = React.HTMLProps<HTMLElement> & ChildProps & BaseMetaProps;
