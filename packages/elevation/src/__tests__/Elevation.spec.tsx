@@ -26,5 +26,9 @@ describe("Elevation", () => {
         wrapper = enzyme.mount(<Elevation zSpace={10} transition />);
         expect(wrapper.hasClass("mdc-elevation--z10")).toBeTruthy();
         expect(wrapper.hasClass("mdc-elevation-transition")).toBeTruthy();
+
+        wrapper = enzyme.mount(<Elevation zSpace={10} />);
+        expect(wrapper.hasClass("mdc-elevation--z10")).toBeTruthy();
+        expect(wrapper.hasClass("mdc-elevation-transition")).toBeFalsy();
     });
 });
