@@ -6,8 +6,8 @@ import {
 } from "@react-mdc/base";
 
 import { BASE_CLASS_NAME } from "./constants";
-import { classNameForZSpace } from "./helpers";
 import { ZSpace } from "./types";
+import { classNameForZSpace } from "./utils";
 
 export const propertyClassNames = {
     TRANSITION: `${BASE_CLASS_NAME}-transition`,
