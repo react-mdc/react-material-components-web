@@ -18,14 +18,5 @@ describe("Background", () => {
     });
 
     it("Should render property classnames", () => {
-        let wrapper;
-
-        wrapper = enzyme.mount(<Background vertical />);
-        expect(wrapper.hasClass("mdc-checkbox__background")).toBeTruthy();
-        expect(wrapper.hasClass("mdc-checkbox__background--vertical")).toBeTruthy();
-
-        wrapper = enzyme.mount(<Background />);
-        expect(wrapper.hasClass("mdc-checkbox__background")).toBeTruthy();
-        expect(wrapper.hasClass("mdc-checkbox__background--vertical")).toBeFalsy();
     });
 });
