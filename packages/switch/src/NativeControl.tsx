@@ -47,7 +47,7 @@ export default class NativeControl extends DefaultComponentBase<React.HTMLProps<
         return [];
     }
 
-    protected getChildComponent() {
+    protected getChildComponent(): React.SFC<React.HTMLProps<HTMLInputElement>> {
         return CheckboxInput;
     }
 }

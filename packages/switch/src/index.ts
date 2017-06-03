@@ -1,6 +1,14 @@
-export { default } from "./default";
-export { default as Container, default as Switch } from "./container";
-export { default as NativeControl} from "./native-control";
-export { default as Background } from "./background";
-export { default as Knob } from "./knob";
-export { default as Label } from "./label";
+import Background from "./Background";
+import Container from "./Container";
+import Knob from "./Knob";
+import Label from "./Label";
+import NativeControl from "./NativeControl";
+import Simple from "./Simple";
+
+export default class Switch extends Container {
+    public static Background = Background;
+    public static Knob = Knob;
+    public static Label = Label;
+    public static NativeControl = NativeControl;
+    public static Simple = Simple;
+}

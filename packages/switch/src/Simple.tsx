@@ -1,9 +1,9 @@
 import * as React from "react";
 
-import Background from "./background";
-import Container from "./container";
-import Knob from "./knob";
-import NativeControl from "./native-control";
+import Background from "./Background";
+import Container from "./Container";
+import Knob from "./Knob";
+import NativeControl from "./NativeControl";
 
 export type Props = {
     inputId?: string,
@@ -40,6 +40,7 @@ export default class Checkbox extends React.Component<Props, {}> {
                     id={inputId}
                     name={name}
                     onChange={onChange}
+                    checked={checked}
                     defaultChecked={defaultChecked}
                     disabled={disabled}
                     value={value} />
