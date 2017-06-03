@@ -5,8 +5,8 @@ import {
     DefaultComponentBase,
 } from "@react-mdc/base";
 
-import * as helpers from "./helpers";
 import { BackgroundColor, Color, OnColor, TextColor } from "./types";
+import * as utils from "./utils";
 
 export type ChildProps = {
     className?: string,
@@ -34,20 +34,20 @@ export class Meta extends ClassNameMetaBase<ChildProps, MetaProps, {}> {
 
         const classes: string[] = [];
         if (color != null) {
-            classes.push(helpers.classNameForColor(color));
+            classes.push(utils.classNameForColor(color));
         }
         if (backgroundColor != null) {
-            classes.push(helpers.classNameForBackground(backgroundColor));
+            classes.push(utils.classNameForBackground(backgroundColor));
         }
         if (textColor != null && onColor != null) {
-            classes.push(helpers.classNameForTextColor(textColor, onColor));
+            classes.push(utils.classNameForTextColor(textColor, onColor));
         }
 
         return classes;
     }
 }
 
-export default class Themed extends DefaultComponentBase<React.HTMLProps<HTMLDivElement>, MetaProps, {}> {
+export default class Theme extends DefaultComponentBase<React.HTMLProps<HTMLDivElement>, MetaProps, {}> {
     public static Meta = Meta;
 
     protected getMetaComponent() {
