@@ -30,13 +30,8 @@
     "test:watch": "jest --watchAll"
   },
   "jest": {
-    "transform": {
-      ".(ts|tsx)": "<rootDir>/node_modules/ts-jest/preprocessor.js"
-    },
-    "testRegex": "packages/[^/]+/src/.*(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js|jsx)$",
+    "testRegex": "packages/[^/]+/lib/.*(/__tests__/.*|\\.(test|spec))\\.(js)$",
     "moduleFileExtensions": [
-      "ts",
-      "tsx",
       "js"
     ]
   }
