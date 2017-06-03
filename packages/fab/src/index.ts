@@ -1,2 +1,6 @@
-export { default as Container, default as Fab } from "./container";
-export { default as Icon } from "./icon";
+import Container from "./container";
+import Icon from "./icon";
+
+export default class FAB extends Container {
+    public static Icon = Icon;
+}
