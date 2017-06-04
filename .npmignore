@@ -2,3 +2,5 @@
 node_modules/
 src/
 yarn.lock
+**/__mocks__/**
+**/__tests__/**
