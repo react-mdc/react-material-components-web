@@ -89,18 +89,18 @@ And import *@react-mdc* then try it.
 ``` typescript
 
 import * as React from "react";
-import { Typography, Title, Body2 } from "@react-mdc/typography";
+import Typography from "@react-mdc/typography";
 
 export default class Main extends React.Component<{}, {}> {
     render () {
         return (
             <Typography>
-                <Title>
+                <Typography.Title>
                     This is an example
-                </Title>
-                <Body2>
+                </Typography.Title>
+                <Typography.Body2>
                     Hello world!
-                </Body2>
+                </Typography.Body2>
             </Typography>
         );
     }
