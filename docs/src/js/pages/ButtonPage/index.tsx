@@ -165,7 +165,7 @@ export default function ButtonPage() {
             </PageTitle>
             <Body2>
                 {/* tslint:disable:max-line-length */}
-                <a href="https://github.com/material-components/material-components-web/tree/master/packages/mdc-buton"
+                <a href="https://github.com/material-components/material-components-web/tree/master/packages/mdc-button"
                     target="_blank>">
                     {/* tslint:enable:max-line-length */}
                     MDC Button
