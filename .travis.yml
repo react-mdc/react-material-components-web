@@ -11,6 +11,8 @@ cache:
 
 before_script:
   - lerna bootstrap
+  - npm run clean
 
 script:
+  - npm run build
   - npm run test
