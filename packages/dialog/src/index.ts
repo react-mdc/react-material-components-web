@@ -6,9 +6,9 @@ import Header from "./Header";
 import Surface from "./Surface";
 
 export default class Dialog extends Container {
-    public Backdrop = Backdrop;
-    public Body = Body;
-    public Footer = Footer;
-    public Header = Header;
-    public Surface = Surface;
+    public static Backdrop = Backdrop;
+    public static Body = Body;
+    public static Footer = Footer;
+    public static Header = Header;
+    public static Surface = Surface;
 }
