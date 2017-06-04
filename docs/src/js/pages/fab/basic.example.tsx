@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { Fab, Icon } from "@react-mdc/fab";
+import FAB from "@react-mdc/fab";
 import { MaterialIcon, Pen } from "app/js/components/icon";
 
 function FieldSet(props) {
@@ -19,19 +19,19 @@ function BasicDemo() {
         <div>
             <FieldSet>
                 <legend>FAB</legend>
-                <Fab><Icon><Pen /></Icon></Fab>
+                <FAB><FAB.Icon><Pen /></FAB.Icon></FAB>
             </FieldSet>
             <FieldSet>
                 <legend>Mini FAB</legend>
-                <Fab mini><Icon><Pen /></Icon></Fab>
+                <FAB mini><FAB.Icon><Pen /></FAB.Icon></FAB>
             </FieldSet>
             <FieldSet>
                 <legend>Plain FAB</legend>
-                <Fab plain><Icon><MaterialIcon>face</MaterialIcon></Icon></Fab>
+                <FAB plain><FAB.Icon><MaterialIcon>face</MaterialIcon></FAB.Icon></FAB>
             </FieldSet>
             <FieldSet>
                 <legend>Plain mini FAB</legend>
-                <Fab plain mini><Icon><MaterialIcon>face</MaterialIcon></Icon></Fab>
+                <FAB plain mini><FAB.Icon><MaterialIcon>face</MaterialIcon></FAB.Icon></FAB>
             </FieldSet>
         </div>
     );

@@ -1,17 +1,11 @@
 import * as React from "react";
 
-import { FormField } from "@react-mdc/form-field";
-import {
-    Background,
-    Container as SwitchContainer,
-    default as Switch,
-    Knob,
-    NativeControl,
-} from "@react-mdc/switch";
+import FormField from "@react-mdc/form-field";
+import Switch from "@react-mdc/switch";
+import Typography from "@react-mdc/typography";
 import {
     Caption,
-    Typography,
-} from "@react-mdc/typography";
+} from "@react-mdc/typography/lib/shortcuts";
 
 function FieldSet(props) {
     let { style } = props;
@@ -40,15 +34,15 @@ class BasicDemo extends React.Component<{}, State> {
                 <FieldSet>
                     <legend>Switch</legend>
                     <FormField>
-                        <SwitchContainer>
-                            <NativeControl
+                        <Switch>
+                            <Switch.NativeControl
                                 id="switch-1"
                                 name="switch-1"
                                 defaultChecked />
-                            <Background>
-                                <Knob />
-                            </Background>
-                        </SwitchContainer>
+                            <Switch.Background>
+                                <Switch.Knob />
+                            </Switch.Background>
+                        </Switch>
                         <label htmlFor="switch-1">
                             Switch 1
                         </label>
@@ -57,7 +51,7 @@ class BasicDemo extends React.Component<{}, State> {
                 <FieldSet>
                     <legend>Disabled Switch</legend>
                     <FormField>
-                        <Switch inputId="switch-1" name="switch-2" disabled />
+                        <Switch.Simple inputId="switch-1" name="switch-2" disabled />
                         <label htmlFor="switch-2">
                             Switch 2
                         </label>
@@ -71,7 +65,7 @@ class BasicDemo extends React.Component<{}, State> {
                         </Caption>
                     </Typography>
                     <FormField>
-                        <Switch
+                        <Switch.Simple
                             inputId="switch-3"
                             onChange={this.handleSwitch3Change}
                             checked={this.state.switch3State === "checked"} />

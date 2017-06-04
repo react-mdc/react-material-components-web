@@ -32,7 +32,7 @@ class BasicDemo extends React.Component<{}, State> {
                 <FieldSet>
                     <legend>Checkbox</legend>
                     <FormField>
-                        <Checkbox inputId="checkbox-1" name="checkbox-1" defaultChecked />
+                        <Checkbox.Simple inputId="checkbox-1" name="checkbox-1" defaultChecked />
                         <label htmlFor="checkbox-1">
                             Checkbox 1
                         </label>
@@ -41,7 +41,7 @@ class BasicDemo extends React.Component<{}, State> {
                 <FieldSet>
                     <legend>Disabled Checkbox</legend>
                     <FormField>
-                        <Checkbox inputId="checkbox-1" name="checkbox-2" disabled />
+                        <Checkbox.Simple inputId="checkbox-1" name="checkbox-2" disabled />
                         <label htmlFor="checkbox-2">
                             Checkbox 2
                         </label>
@@ -51,7 +51,7 @@ class BasicDemo extends React.Component<{}, State> {
                     <legend>Checkbox Controlled by React State</legend>
                     <div>State: {this.state.checkbox3State}</div>
                     <FormField>
-                        <Checkbox
+                        <Checkbox.Simple
                             inputId="checkbox-3"
                             onChange={this.handleCheckbox3Change}
                             indeterminate={this.state.checkbox3State === "indeterminate"}

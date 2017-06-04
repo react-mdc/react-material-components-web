@@ -3,29 +3,21 @@ import { Link } from "react-router";
 
 import * as classNames from "classnames";
 
-import {
-    Content,
-    PermanentDrawer,
-} from "@react-mdc/drawer/lib/permanent";
-import { SELECTED_CLASS_NAME } from "@react-mdc/drawer/lib/temporary/constants";
-import {
-    Divider,
-    group,
-    item,
-    List,
-} from "@react-mdc/list";
+import Drawer from "@react-mdc/drawer";
+import { SELECTED_CLASS_NAME } from "@react-mdc/drawer/lib/Temporary/constants";
+import List from "@react-mdc/list";
 
 import * as styles from "./styles.css";
 
 function MenuItem(props) {
     return (
-        <item.ListItem.Meta>
+        <List.Item.Meta>
             <Link activeClassName={SELECTED_CLASS_NAME} {...props} />
-        </item.ListItem.Meta >
+        </List.Item.Meta >
     );
 }
 
-export default class Drawer extends React.Component<{}, {}> {
+export default class MainDrawer extends React.Component<{}, {}> {
     public props: {
         className?: string,
     };
@@ -37,23 +29,23 @@ export default class Drawer extends React.Component<{}, {}> {
         } = this.props;
         className = classNames(styles["drawer"], className);
         return (
-            <PermanentDrawer className={className} {...props}>
-                <Content>
+            <Drawer.Permanent className={className} {...props}>
+                <Drawer.Permanent.Content>
                     {this.renderMenu()}
-                </Content>
-            </PermanentDrawer>
+                </Drawer.Permanent.Content>
+            </Drawer.Permanent>
         );
     }
 
     private renderMenu() {
         return (
-            <group.ListGroup>
+            <List.Group>
                 <List.Meta>
                     <div>
                         <MenuItem to="/" onlyActiveOnIndex>
                             Home
                         </MenuItem>
-                        <Divider />
+                        <List.Divider />
                         <MenuItem to="/basics">
                             Basics
                         </MenuItem>
@@ -96,7 +88,7 @@ export default class Drawer extends React.Component<{}, {}> {
                         <MenuItem to="/typography">
                             Typography
                         </MenuItem>
-                        <Divider />
+                        <List.Divider />
                         <MenuItem
                             href="https://github.com/react-mdc/react-material-components-web"
                             target="_blank">
@@ -104,7 +96,7 @@ export default class Drawer extends React.Component<{}, {}> {
                         </MenuItem>
                     </div>
                 </List.Meta>
-            </group.ListGroup>
+            </List.Group>
         );
     }
 }

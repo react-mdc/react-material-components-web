@@ -2,12 +2,13 @@ import * as React from "react";
 
 import * as classNames from "classnames";
 
-import { Elevation } from "@react-mdc/elevation";
+import Elevation from "@react-mdc/elevation";
+import LayoutGrid from "@react-mdc/layout-grid";
+import Typography from "@react-mdc/typography";
 import {
-    Cell,
-    Grid,
-} from "@react-mdc/layout-grid";
-import { Subheading2, Title, Typography } from "@react-mdc/typography";
+    Subheading2,
+    Title,
+} from "@react-mdc/typography/lib/shortcuts";
 
 import * as styles from "./styles.css";
 
@@ -29,20 +30,20 @@ export class Section extends React.Component<{
         let titleEl: React.ReactElement<any> | null = null;
         if (title != null) {
             titleEl = (
-                <Cell.Meta span={12}>
+                <LayoutGrid.Cell.Meta span={12}>
                     <Typography>
                         <Title {...props}>
                             {title}
                         </Title>
                     </Typography>
-                </Cell.Meta>
+                </LayoutGrid.Cell.Meta>
             );
         }
         return (
-            <Grid className={classNames(styles.section, className)} {...props}>
+            <LayoutGrid className={classNames(styles.section, className)} {...props}>
                 {titleEl}
                 {children}
-            </Grid >
+            </LayoutGrid>
         );
     }
 }
@@ -60,11 +61,11 @@ export class SectionTitle extends React.Component<{
         } = this.props;
         return (
             <Typography.Meta>
-                <Cell span={12} {...props}>
+                <LayoutGrid.Cell span={12} {...props}>
                     <Title>
                         {children}
                     </Title>
-                </Cell>
+                </LayoutGrid.Cell>
             </Typography.Meta>
         );
     }
@@ -87,12 +88,12 @@ export function SectionPanel(props: SectionPanelProps) {
     } = props;
     return (
         <Typography.Meta>
-            <Cell {...p}>
+            <LayoutGrid.Cell {...p}>
                 <Subheading2>
                     {title}
                 </Subheading2>
                 {children}
-            </Cell>
+            </LayoutGrid.Cell>
         </Typography.Meta>
     );
 }
@@ -110,11 +111,11 @@ export class SectionSubtitle extends React.Component<{
         } = this.props;
         return (
             <Typography.Meta>
-                <Cell span={12} {...props}>
+                <LayoutGrid.Cell span={12} {...props}>
                     <Subheading2>
                         {children}
                     </Subheading2>
-                </Cell>
+                </LayoutGrid.Cell>
             </Typography.Meta>
         );
     }
@@ -131,7 +132,7 @@ export class Demo extends React.Component<{ children?: React.ReactChild }, {}> {
         } = this.props;
         return (
             <Elevation.Meta zSpace={4}>
-                <Cell className={styles.demo} span={12} {...props}>
+                <LayoutGrid.Cell className={styles.demo} span={12} {...props}>
                     <Typography className={styles["demo-title"]}>
                         <SectionSubtitle>
                             Demo
@@ -141,7 +142,7 @@ export class Demo extends React.Component<{ children?: React.ReactChild }, {}> {
                     <div className={styles["demo-content"]}>
                         {children}
                     </div>
-                </Cell>
+                </LayoutGrid.Cell>
             </Elevation.Meta>
         );
     }

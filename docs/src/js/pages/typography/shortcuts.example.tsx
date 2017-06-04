@@ -1,5 +1,6 @@
 import * as React from "react";
 
+import Typography from "@react-mdc/typography";
 import {
     Body1,
     Body2,
@@ -12,8 +13,7 @@ import {
     Subheading1,
     Subheading2,
     Title,
-    Typography,
-} from "@react-mdc/typography";
+} from "@react-mdc/typography/lib/shortcuts";
 
 export default class Example extends React.Component<{}, {}> {
     public render() {

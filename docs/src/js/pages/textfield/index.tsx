@@ -1,17 +1,12 @@
 import * as React from "react";
 
-import { FormField } from "@react-mdc/form-field";
-import {
-    Container as TextFieldContainer,
-    default as Textfield,
-    Input,
-    Label,
-} from "@react-mdc/textfield";
+import FormField from "@react-mdc/form-field";
+import TextField from "@react-mdc/textfield";
 import {
     Body2,
     Display1,
     Title,
-} from "@react-mdc/typography";
+} from "@react-mdc/typography/lib/shortcuts";
 
 import Code from "app/js/components/code";
 import Lib from "app/js/components/lib";
@@ -42,46 +37,46 @@ function BasicDemo() {
             <FieldSet>
                 <legend>Basic</legend>
                 <FormField style={{ margin: 16 }}>
-                    <TextFieldContainer>
-                        <Input id="textfield1" autoComplete="email" />
-                        <Label htmlFor="textfield1">
+                    <TextField>
+                        <TextField.Input id="textfield1" autoComplete="email" />
+                        <TextField.Label htmlFor="textfield1">
                             Email Address
-                        </Label>
-                    </TextFieldContainer>
+                        </TextField.Label>
+                    </TextField>
                 </FormField>
             </FieldSet>
             <FieldSet>
                 <legend>Multiline</legend>
                 <FormField style={{ margin: 16 }}>
-                    <TextFieldContainer multiline>
-                        <Input.Meta>
+                    <TextField multiline>
+                        <TextField.Input.Meta>
                             <textarea
                                 id="textfield2"
                                 style={{ width: "100%" }}
                                 rows={8}
                                 cols={40} />
-                        </Input.Meta>
-                        <Label htmlFor="textfield2">
+                        </TextField.Input.Meta>
+                        <TextField.Label htmlFor="textfield2">
                             Comment
-                        </Label>
-                    </TextFieldContainer>
+                        </TextField.Label>
+                    </TextField>
                 </FormField>
             </FieldSet>
             <FieldSet>
                 <legend>Full Width</legend>
-                <Textfield
+                <TextField.Simple
                     inputId="textfield3"
                     placeholder="Title"
                     fullwidth />
-                <TextFieldContainer fullwidth multiline>
-                    <Input.Meta>
+                <TextField fullwidth multiline>
+                    <TextField.Input.Meta>
                         <textarea
                             rows={8}
                             cols={40}
                             id="textfield4"
                             placeholder="Content" />
-                    </Input.Meta>
-                </TextFieldContainer>
+                    </TextField.Input.Meta>
+                </TextField>
             </FieldSet>
         </div>
     );

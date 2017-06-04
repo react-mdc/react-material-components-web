@@ -1,7 +1,7 @@
 import * as React from "react";
 
 import * as classNames from "classnames";
-import { default as CodeMirror, Props as CodeMirrorProps } from "./code-mirror";
+import { default as CodeMirror, Props as CodeMirrorProps } from "./CodeMirror";
 
 import * as styles from "./styles.css";
 

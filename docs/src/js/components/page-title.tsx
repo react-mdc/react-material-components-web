@@ -1,7 +1,7 @@
 import * as React from "react";
 
-import { Themed } from "@react-mdc/theme";
-import { Display2, Typography } from "@react-mdc/typography";
+import Theme from "@react-mdc/theme";
+import Typography from "@react-mdc/typography";
 
 export default function PageTitle(props: { children?: React.ReactChild, [key: string]: any }) {
     const {
@@ -10,11 +10,11 @@ export default function PageTitle(props: { children?: React.ReactChild, [key: st
     } = props;
     return (
         <Typography.Meta>
-            <Themed color="primary" {...p}>
-                <Display2>
+            <Theme color="primary" {...p}>
+                <Typography.Display2>
                     {children}
-                </Display2>
-            </Themed>
+                </Typography.Display2>
+            </Theme>
         </Typography.Meta>
     );
 }

@@ -1,15 +1,12 @@
 import * as React from "react";
 
-import {
-    Cell,
-    Grid,
-} from "@react-mdc/layout-grid";
+import LayoutGrid from "@react-mdc/layout-grid";
+import Typography from "@react-mdc/typography";
 import {
     Body2,
     Display1,
     Title,
-    Typography,
-} from "@react-mdc/typography";
+} from "@react-mdc/typography/lib/shortcuts";
 
 import Code from "app/js/components/code";
 import Lib from "app/js/components/lib";
@@ -29,7 +26,7 @@ function DemoGrid(p) {
         background: "#9e9e9e",
         ...style,
     };
-    return (<Grid {...props} style={style} />);
+    return (<LayoutGrid {...props} style={style} />);
 }
 
 function DemoCell(p) {
@@ -47,9 +44,9 @@ function DemoCell(p) {
     };
 
     return (
-        <Cell {...props} style={style}>
+        <LayoutGrid.Cell {...props} style={style}>
             <Title>{props.children}</Title>
-        </Cell>
+        </LayoutGrid.Cell>
     );
 }
 

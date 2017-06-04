@@ -1,7 +1,7 @@
 import * as React from "react";
 
-import { Button } from "@react-mdc/button";
-import * as dialog from "@react-mdc/dialog";
+import Button from "@react-mdc/button";
+import Dialog from "@react-mdc/dialog";
 
 class BasicDemo extends React.Component<{}, {}> {
     public state: {
@@ -49,18 +49,18 @@ class BasicDemo extends React.Component<{}, {}> {
 
     private renderDialog() {
         return (
-            <dialog.Container open={this.state.open}
+            <Dialog open={this.state.open}
                 onAccept={this.handleAccept}
                 onCancel={this.handleCancel}
                 onOpen={this.handleOpen}
                 onClose={this.handleClose}>
-                <dialog.Surface>
-                    <dialog.header.Container>
-                        <dialog.header.Title>
-                            Title
-                        </dialog.header.Title>
-                    </dialog.header.Container>
-                    <dialog.Body>
+                <Dialog.Surface>
+                    <Dialog.Header>
+                        <Dialog.Header.Title>
+                            Dialog Title
+                        </Dialog.Header.Title>
+                    </Dialog.Header>
+                    <Dialog.Body>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                         sed do eiusmod tempor incididunt ut labore et dolore
                         magna aliqua. Ut enim ad minim veniam, quis nostrud
@@ -70,18 +70,18 @@ class BasicDemo extends React.Component<{}, {}> {
                         pariatur. Excepteur sint occaecat cupidatat non proident,
                         sunt in culpa qui officia deserunt mollit anim id est
                         laborum.
-                    </dialog.Body>
-                    <dialog.footer.Container>
-                        <dialog.footer.Button type="cancel">
+                    </Dialog.Body>
+                    <Dialog.Footer>
+                        <Dialog.Footer.Button type="cancel">
                             Decline
-                        </dialog.footer.Button>
-                        <dialog.footer.Button type="accept">
+                        </Dialog.Footer.Button>
+                        <Dialog.Footer.Button type="accept">
                             Accept
-                        </dialog.footer.Button>
-                    </dialog.footer.Container>
-                </dialog.Surface>
-                <dialog.Backdrop />
-            </dialog.Container>
+                        </Dialog.Footer.Button>
+                    </Dialog.Footer>
+                </Dialog.Surface>
+                <Dialog.Backdrop />
+            </Dialog>
         );
     }
 }

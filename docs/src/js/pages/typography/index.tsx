@@ -1,5 +1,6 @@
 import * as React from "react";
 
+import Typography from "@react-mdc/typography";
 import {
     Body1,
     Body2,
@@ -10,10 +11,8 @@ import {
     Display4,
     Headline,
     Subheading1,
-    Text,
     Title,
-    Typography,
-} from "@react-mdc/typography";
+} from "@react-mdc/typography/lib/shortcuts";
 
 import Code from "app/js/components/code";
 import PageContainer from "app/js/components/page-container";
@@ -85,7 +84,7 @@ export default function() {
             </Table>
 
             <Title>Text Styles</Title>
-            <Text.Meta textStyle="body2">
+            <Typography.Text.Meta textStyle="body2">
                 <ul>
                     <li><code>display4</code></li>
                     <li><code>display3</code></li>
@@ -99,21 +98,21 @@ export default function() {
                     <li><code>body1</code></li>
                     <li><code>caption</code></li>
                 </ul>
-            </Text.Meta>
+            </Typography.Text.Meta>
 
             <Title>Usage</Title>
             <Code value={stripIgnored(TextExampleCode)} />
             <Demo>
                 <Typography>
-                    <Text textStyle="title">
+                    <Typography.Text textStyle="title">
                         Title
-                    </Text>
-                    <Text textStyle="body2">
+                    </Typography.Text>
+                    <Typography.Text textStyle="body2">
                         Body Two
-                    </Text>
-                    <Text textStyle="display4" adjustMargin>
+                    </Typography.Text>
+                    <Typography.Text textStyle="display4" adjustMargin>
                         Adjust margin
-                    </Text>
+                    </Typography.Text>
                 </Typography>
             </Demo>
 

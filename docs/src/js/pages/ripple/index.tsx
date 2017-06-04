@@ -1,12 +1,12 @@
 import * as React from "react";
 
-import { Elevation } from "@react-mdc/elevation";
-import { Ripple } from "@react-mdc/ripple";
+import Elevation from "@react-mdc/elevation";
+import Ripple from "@react-mdc/ripple";
 import {
     Body2,
     Display1,
     Title,
-} from "@react-mdc/typography";
+} from "@react-mdc/typography/lib/shortcuts";
 
 import Code from "app/js/components/code";
 import Lib from "app/js/components/lib";

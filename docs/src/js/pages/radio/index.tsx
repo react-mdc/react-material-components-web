@@ -1,21 +1,14 @@
 import * as React from "react";
 
-import { FormField } from "@react-mdc/form-field";
-import {
-    Background,
-    Container as RadioContainer,
-    default as Radio,
-    InnerCircle,
-    NativeControl,
-    OuterCircle,
-} from "@react-mdc/radio";
+import FormField from "@react-mdc/form-field";
+import Radio from "@react-mdc/radio";
+import Typography from "@react-mdc/typography";
 import {
     Body2,
     Caption,
     Display1,
     Title,
-    Typography,
-} from "@react-mdc/typography";
+} from "@react-mdc/typography/lib/shortcuts";
 
 import Code from "app/js/components/code";
 import Lib from "app/js/components/lib";
@@ -54,28 +47,28 @@ class BasicDemo extends React.Component<{}, State> {
                 <FieldSet>
                     <legend>Radio</legend>
                     <FormField>
-                        <RadioContainer>
-                            <NativeControl id="group-1-radio-1"
+                        <Radio>
+                            <Radio.NativeControl id="group-1-radio-1"
                                 name="group-1"
                                 defaultChecked />
-                            <Background>
-                                <OuterCircle />
-                                <InnerCircle />
-                            </Background>
-                        </RadioContainer>
+                            <Radio.Background>
+                                <Radio.OuterCircle />
+                                <Radio.InnerCircle />
+                            </Radio.Background>
+                        </Radio>
                         <label htmlFor="group-1-radio-1">
                             Radio 1
                         </label>
                     </FormField>
                     <FormField>
-                        <RadioContainer>
-                            <NativeControl id="group-1-radio-2"
+                        <Radio>
+                            <Radio.NativeControl id="group-1-radio-2"
                                 name="group-1" />
-                            <Background>
-                                <OuterCircle />
-                                <InnerCircle />
-                            </Background>
-                        </RadioContainer>
+                            <Radio.Background>
+                                <Radio.OuterCircle />
+                                <Radio.InnerCircle />
+                            </Radio.Background>
+                        </Radio>
                         <label htmlFor="group-1-radio-2">
                             Radio 2
                         </label>
@@ -84,13 +77,13 @@ class BasicDemo extends React.Component<{}, State> {
                 <FieldSet>
                     <legend>Disabled Radio</legend>
                     <FormField>
-                        <Radio inputId="group-2-radio-1" name="group-2" disabled />
+                        <Radio.Simple inputId="group-2-radio-1" name="group-2" disabled />
                         <label htmlFor="group-2-radio-1">
                             Radio 1
                         </label>
                     </FormField>
                     <FormField>
-                        <Radio inputId="group-2-radio-2" name="group-2" checked disabled />
+                        <Radio.Simple inputId="group-2-radio-2" name="group-2" checked disabled />
                         <label htmlFor="group-2-radio-2">
                             Radio 2
                         </label>
@@ -104,7 +97,7 @@ class BasicDemo extends React.Component<{}, State> {
                         </Caption>
                     </Typography>
                     <FormField>
-                        <Radio
+                        <Radio.Simple
                             inputId="group-3-radio-1"
                             name="group-3"
                             value="radio-1"
@@ -115,7 +108,7 @@ class BasicDemo extends React.Component<{}, State> {
                         </label>
                     </FormField>
                     <FormField>
-                        <Radio
+                        <Radio.Simple
                             inputId="group-3-radio-2"
                             name="group-3"
                             value="radio-2"

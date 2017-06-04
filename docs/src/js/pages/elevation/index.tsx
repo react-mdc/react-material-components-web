@@ -1,12 +1,12 @@
 import * as React from "react";
 
 import Elevation from "@react-mdc/elevation";
-import { Cell, Grid } from "@react-mdc/layout-grid";
+import LayoutGrid from "@react-mdc/layout-grid";
 import {
     Body2,
     Display1,
     Title,
-} from "@react-mdc/typography";
+} from "@react-mdc/typography/lib/shortcuts";
 
 import Code from "app/js/components/code";
 import Lib from "app/js/components/lib";
@@ -37,9 +37,9 @@ function ElevationDemo(props) {
     };
 
     return (
-        <Cell.Meta span={3}>
+        <LayoutGrid.Cell.Meta span={3}>
             <Elevation {...p} style={style} />
-        </Cell.Meta>
+        </LayoutGrid.Cell.Meta>
     );
 }
 
@@ -79,7 +79,7 @@ class TransitionDemo extends React.Component<{}, State> {
 
 function BasicDemo() {
     return (
-        <Grid margin={40} gutter={40}>
+        <LayoutGrid margin={40} gutter={40}>
             <ElevationDemo zSpace={0}>
                 Elevation with 0 z-space
             </ElevationDemo>
@@ -158,7 +158,7 @@ function BasicDemo() {
             <TransitionDemo>
                 Move mouse cursor on me
             </TransitionDemo>
-        </Grid>
+        </LayoutGrid>
     );
 }
 

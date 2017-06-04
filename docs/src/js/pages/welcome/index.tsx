@@ -2,13 +2,13 @@ import * as React from "react";
 
 import { Link } from "react-router";
 
-import { Themed } from "@react-mdc/theme";
+import Theme from "@react-mdc/theme";
 import {
     Body2,
     Display2,
     Display3,
     Title,
-} from "@react-mdc/typography";
+} from "@react-mdc/typography/lib/shortcuts";
 
 import Code from "app/js/components/code";
 import PageContainer from "app/js/components/page-container";
@@ -17,11 +17,11 @@ export default class Welcome extends React.Component<{}, {}> {
     public render() {
         return (
             <PageContainer>
-                <Themed.Meta color="primary">
+                <Theme.Meta color="primary">
                     <Display3>
                         React Material Components Web
                     </Display3>
-                </Themed.Meta>
+                </Theme.Meta>
                 <Display2>
                     React Components for Material Components Web
                 </Display2>

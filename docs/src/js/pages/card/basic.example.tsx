@@ -1,14 +1,6 @@
 import * as React from "react";
 
-import {
-    actions,
-    Card,
-    HorizontalBlock,
-    Media,
-    MediaItem,
-    primary,
-    SupportingText,
-} from "@react-mdc/card";
+import Card from "@react-mdc/card";
 
 import * as Image1x1 from "app/images/1-1.jpg";
 import * as Image16x9 from "app/images/16-9.jpg";
@@ -31,47 +23,47 @@ function BasicDemo() {
     return (
         <div>
             <DemoCard style={{ maxWidth: 350 }}>
-                <Media
+                <Card.Media
                     style={{
                         backgroundImage: `url(${Image16x9})`,
                         backgroundSize: "cover",
                         backgroundRepeat: "no-repeat",
                         height: 167,
                     }} />
-                <SupportingText>
+                <Card.SupportingText>
                     Lorem ipsum dolor sit amet,
                     consectetur adipisicing elit,
                     sed do eiusmod tempor.
-                </SupportingText>
+                </Card.SupportingText>
             </DemoCard>
             <DemoCard style={{ maxWidth: 350 }}>
-                <primary.Primary>
-                    <primary.Title>
+                <Card.Primary>
+                    <Card.Title>
                         Title
-                    </primary.Title>
-                    <primary.Subtitle>
+                    </Card.Title>
+                    <Card.Subtitle>
                         Subhead
-                    </primary.Subtitle>
-                </primary.Primary>
-                <Media style={{
+                    </Card.Subtitle>
+                </Card.Primary>
+                <Card.Media style={{
                     backgroundImage: `url(${Image16x9})`,
                     backgroundSize: "cover",
                     backgroundRepeat: "no-repeat",
                     height: "12.313rem",
                 }} />
-                <SupportingText>
+                <Card.SupportingText>
                     Lorem ipsum dolor sit amet,
                     consectetur adipisicing elit,
                     sed do eiusmod tempor.
-                </SupportingText>
-                <actions.Actions>
-                    <actions.Action>
+                </Card.SupportingText>
+                <Card.Actions>
+                    <Card.Action>
                         ACTION 1
-                    </actions.Action>
-                    <actions.Action>
+                    </Card.Action>
+                    <Card.Action>
                         ACTION 2
-                    </actions.Action>
-                </actions.Actions>
+                    </Card.Action>
+                </Card.Actions>
             </DemoCard>
             <DemoCard style={{
                 backgroundImage: `url(${Image1x1})`,
@@ -80,54 +72,54 @@ function BasicDemo() {
                 height: 350,
                 maxWidth: 350,
             }} dark>
-                <primary.Primary style={{
+                <Card.Primary style={{
                     background: "rgba(0, 0, 0, 0.4)",
                 }}>
-                    <primary.Title>
+                    <Card.Title>
                         Title goes here
-                    </primary.Title>
-                    <primary.Subtitle>
+                    </Card.Title>
+                    <Card.Subtitle>
                         Subtitle here
-                    </primary.Subtitle>
-                </primary.Primary>
+                    </Card.Subtitle>
+                </Card.Primary>
             </DemoCard>
             <DemoCard style={{
                 maxWidth: 350,
             }}>
-                <HorizontalBlock>
-                    <primary.Primary>
-                        <primary.Title>
+                <Card.HorizontalBlock>
+                    <Card.Primary>
+                        <Card.Title>
                             Title goes here
-                        </primary.Title>
-                        <primary.Subtitle>
+                        </Card.Title>
+                        <Card.Subtitle>
                             Subtitle here
-                        </primary.Subtitle>
-                    </primary.Primary>
-                    <MediaItem src={Image1x1} />
-                </HorizontalBlock>
-                <actions.Actions>
-                    <actions.Action>
+                        </Card.Subtitle>
+                    </Card.Primary>
+                    <Card.MediaItem src={Image1x1} />
+                </Card.HorizontalBlock>
+                <Card.Actions>
+                    <Card.Action>
                         ACTION 1
-                    </actions.Action>
-                    <actions.Action>
+                    </Card.Action>
+                    <Card.Action>
                         ACTION 2
-                    </actions.Action>
-                </actions.Actions>
+                    </Card.Action>
+                </Card.Actions>
             </DemoCard>
             <DemoCard style={{
                 maxWidth: 350,
             }}>
-                <HorizontalBlock>
-                    <MediaItem src={Image1x1} size={3} />
-                    <actions.Actions vertical>
-                        <actions.Action>
+                <Card.HorizontalBlock>
+                    <Card.MediaItem src={Image1x1} size={3} />
+                    <Card.Actions vertical>
+                        <Card.Action>
                             A 1
-                        </actions.Action>
-                        <actions.Action>
+                        </Card.Action>
+                        <Card.Action>
                             A 2
-                        </actions.Action>
-                    </actions.Actions>
-                </HorizontalBlock>
+                        </Card.Action>
+                    </Card.Actions>
+                </Card.HorizontalBlock>
             </DemoCard>
         </div>
     );

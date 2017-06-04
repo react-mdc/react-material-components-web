@@ -1,12 +1,8 @@
 import * as React from "react";
 import { Link } from "react-router";
 
-import { Button } from "@react-mdc/button";
-import {
-    actions,
-    Card,
-    primary,
-} from "@react-mdc/card";
+import Button from "@react-mdc/button";
+import Card from "@react-mdc/card";
 
 import { CenterFullSize } from "app/js/components/full-size";
 
@@ -15,26 +11,26 @@ export default class NotFound extends React.Component<{}, {}> {
         return (
             <CenterFullSize>
                 <Card>
-                    <primary.Primary
+                    <Card.Primary
                         style={{
                             borderBottom: 1,
                         }}>
-                        <primary.Title large>
+                        <Card.Title large>
                             Sorry, but nothing in here
-                        </primary.Title>
-                        <primary.Subtitle>
+                        </Card.Title>
+                        <Card.Subtitle>
                             Please check your URL and try again.
-                        </primary.Subtitle>
-                    </primary.Primary>
-                    <actions.Actions>
-                        <actions.Action.Meta>
+                        </Card.Subtitle>
+                    </Card.Primary>
+                    <Card.Actions>
+                        <Card.Action.Meta>
                             <Button.Meta compact>
                                 <Link to="/">
                                     Go to main
                                 </Link>
                             </Button.Meta>
-                        </actions.Action.Meta>
-                    </actions.Actions>
+                        </Card.Action.Meta>
+                    </Card.Actions>
                 </Card>
             </CenterFullSize>
         );

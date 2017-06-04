@@ -1,7 +1,7 @@
 import * as React from "react";
 
-import { Elevation } from "@react-mdc/elevation";
-import { Ripple } from "@react-mdc/ripple";
+import Elevation from "@react-mdc/elevation";
+import Ripple from "@react-mdc/ripple";
 
 import { Pen } from "app/js/components/icon";
 

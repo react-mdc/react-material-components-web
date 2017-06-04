@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { Typography } from "@react-mdc/typography";
+import Typography from "@react-mdc/typography";
 
 import * as classNames from "classnames";
 
