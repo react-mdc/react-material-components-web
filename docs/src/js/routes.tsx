@@ -2,31 +2,31 @@ import * as React from "react";
 
 import { hashHistory, Route, Router } from "react-router";
 
-import Basics from "./pages/basics";
-import ButtonPage from "./pages/button";
-import CardPage from "./pages/card";
-import CheckboxPage from "./pages/checkbox";
-import DialogPage from "./pages/dialog";
-import ElevationPage from "./pages/elevation";
-import FabPage from "./pages/fab";
-import FormFieldPage from "./pages/form-field";
-import LayoutGridPage from "./pages/layout-grid";
-import RadioPage from "./pages/radio";
-import RipplePage from "./pages/ripple";
-import SwitchPage from "./pages/switch";
-import TextfieldPage from "./pages/textfield";
-import TypographyPage from "./pages/typography";
+import BasicsPage from "./pages/BasicsPage";
+import ButtonPage from "./pages/ButtonPage";
+import CardPage from "./pages/CardPage";
+import CheckboxPage from "./pages/CheckboxPage";
+import DialogPage from "./pages/DialogPage";
+import ElevationPage from "./pages/ElevationPage";
+import FabPage from "./pages/FabPage";
+import FormFieldPage from "./pages/FormFieldPage";
+import LayoutGridPage from "./pages/LayoutGridPage";
+import RadioPage from "./pages/RadioPage";
+import RipplePage from "./pages/RipplePage";
+import SwitchPage from "./pages/SwitchPage";
+import TextfieldPage from "./pages/TextfieldPage";
+import TypographyPage from "./pages/TypographyPage";
 
-import Container from "./container";
-import NotFound from "./pages/not-found";
-import Welcome from "./pages/welcome";
+import Container from "./Container";
+import NotFoundPage from "./pages/NotFoundPage";
+import WelcomePage from "./pages/WelcomePage";
 
 function MainContainer(props) {
     let {
         children,
         ...p,
     } = props;
-    children = children || <Welcome />;
+    children = children || <WelcomePage />;
     return <Container children={children} {...p} />;
 }
 
@@ -38,7 +38,7 @@ export default function MainRouter() {
     return (
         <Router onUpdate={scrollToTop} history={hashHistory}>
             <Route path="/" component={MainContainer}>
-                <Route path="basics" component={Basics} />
+                <Route path="basics" component={BasicsPage} />
                 <Route path="typography" component={TypographyPage} />
                 <Route path="elevation" component={ElevationPage} />
                 <Route path="button" component={ButtonPage} />
@@ -53,7 +53,7 @@ export default function MainRouter() {
                 <Route path="layout-grid" component={LayoutGridPage} />
                 <Route path="dialog" component={DialogPage} />
             </Route>
-            <Route path="*" component={NotFound} />
+            <Route path="*" component={NotFoundPage} />
         </Router>
     );
 }
