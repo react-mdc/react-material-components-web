@@ -28,20 +28,20 @@ describe("Container", () => {
         expect(wrapper.hasClass("mdc-list")).toBeTruthy();
         expect(wrapper.hasClass("mdc-list--two-line")).toBeTruthy();
 
-        wrapper = enzyme.mount(<Container avartarList />);
+        wrapper = enzyme.mount(<Container avatarList />);
         expect(wrapper.hasClass("mdc-list")).toBeTruthy();
-        expect(wrapper.hasClass("mdc-list--avartar-list")).toBeTruthy();
+        expect(wrapper.hasClass("mdc-list--avatar-list")).toBeTruthy();
 
-        wrapper = enzyme.mount(<Container dense twoLine avartarList />);
+        wrapper = enzyme.mount(<Container dense twoLine avatarList />);
         expect(wrapper.hasClass("mdc-list")).toBeTruthy();
         expect(wrapper.hasClass("mdc-list--dense")).toBeTruthy();
         expect(wrapper.hasClass("mdc-list--two-line")).toBeTruthy();
-        expect(wrapper.hasClass("mdc-list--avartar-list")).toBeTruthy();
+        expect(wrapper.hasClass("mdc-list--avatar-list")).toBeTruthy();
 
         wrapper = enzyme.mount(<Container />);
         expect(wrapper.hasClass("mdc-list")).toBeTruthy();
         expect(wrapper.hasClass("mdc-list--dense")).toBeFalsy();
         expect(wrapper.hasClass("mdc-list--two-line")).toBeFalsy();
-        expect(wrapper.hasClass("mdc-list--avartar-list")).toBeFalsy();
+        expect(wrapper.hasClass("mdc-list--avatar-list")).toBeFalsy();
     });
 });

@@ -11,6 +11,9 @@ lib/
 ### VS Code ###
 .vscode/
 
+### WebStorm ###
+.idea/
+
 ### Node ###
 # Logs
 logs
