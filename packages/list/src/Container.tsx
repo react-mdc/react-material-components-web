@@ -14,13 +14,13 @@ export const CLASS_NAME = BASE_CLASS_NAME;
 export const propertyClassNames = {
     DENSE: `${CLASS_NAME}--dense`,
     TWO_LINE: `${CLASS_NAME}--two-line`,
-    AVARTAR_LIST: `${CLASS_NAME}--avartar-list`,
+    AVATAR_LIST: `${CLASS_NAME}--avatar-list`,
 };
 
 export type MetaProps = {
     dense?: boolean,
     twoLine?: boolean,
-    avartarList?: boolean,
+    avatarList?: boolean,
 };
 
 export type ChildProps = {
@@ -39,7 +39,7 @@ export class Meta extends ClassNameMetaBase<ChildProps, MetaProps, {}> {
         return [{
             [propertyClassNames.DENSE]: this.props.dense,
             [propertyClassNames.TWO_LINE]: this.props.twoLine,
-            [propertyClassNames.AVARTAR_LIST]: this.props.avartarList,
+            [propertyClassNames.AVATAR_LIST]: this.props.avatarList,
         }];
     }
 }
@@ -55,7 +55,7 @@ export default class Container extends DefaultComponentBase<React.HTMLProps<HTML
         return [
             "dense",
             "twoLine",
-            "avartarList",
+            "avatarList",
         ];
     }
 
