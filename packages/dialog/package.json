@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@material/dialog": "^0.2.1",
-    "@react-mdc/base": "^0.1.7",
+    "@react-mdc/base": "^0.1.8",
     "@react-mdc/button": "^0.1.4",
     "@types/classnames": "0.0.32",
     "@types/prop-types": "^15.5.1",

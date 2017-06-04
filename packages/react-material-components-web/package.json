@@ -16,7 +16,7 @@
     "url": "https://github.com/react-mdc/react-material-components-web.git"
   },
   "dependencies": {
-    "@react-mdc/base": "^0.1.7",
+    "@react-mdc/base": "^0.1.8",
     "@react-mdc/button": "^0.1.4",
     "@react-mdc/card": "^0.1.5",
     "@react-mdc/checkbox": "^0.1.8",
