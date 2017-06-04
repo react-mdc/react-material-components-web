@@ -9,7 +9,7 @@ import {
 } from "@react-mdc/typography/lib/shortcuts";
 
 import Code from "app/js/components/code";
-import Lib from "app/js/components/lib";
+import Name from "app/js/components/Name";
 import PageContainer from "app/js/components/page-container";
 import PageTitle from "app/js/components/page-title";
 import {
@@ -98,9 +98,9 @@ export default function TextfieldPage() {
             </Body2>
 
             <Display1>Textfield</Display1>
-            <Lib>@react-mdc/textfield</Lib>
+            <Name>TextField.Simple</Name>
             <Body2>
-                Material textfield component. This component is default composition of textfield sub-components.
+                Material textfield component. This component is common composition of textfield sub-components.
                 You can customize textfield by composing your own sub-components.
             </Body2>
             <Body2>
@@ -158,7 +158,7 @@ export default function TextfieldPage() {
             </Table>
 
             <Display1>Container</Display1>
-            <Lib>@react-mdc/textfield/lib/container</Lib>
+            <Name>TextField</Name>
             <Body2>
                 Top-level container of textfield.
             </Body2>
@@ -196,13 +196,13 @@ export default function TextfieldPage() {
             </Table>
 
             <Display1>Input</Display1>
-            <Lib>@react-mdc/textfield/lib/input</Lib>
+            <Name>TextField.Input</Name>
             <Body2>
                 Input component.
             </Body2>
 
             <Display1>Label</Display1>
-            <Lib>@react-mdc/textfield/lib/label</Lib>
+            <Name>TextField.Label</Name>
             <Body2>
                 Label component.
             </Body2>

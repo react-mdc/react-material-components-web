@@ -15,6 +15,7 @@ import {
 } from "@react-mdc/typography/lib/shortcuts";
 
 import Code from "app/js/components/code";
+import Name from "app/js/components/Name";
 import PageContainer from "app/js/components/page-container";
 import PageTitle from "app/js/components/page-title";
 import {
@@ -40,6 +41,7 @@ export default function() {
             </Body2>
 
             <Display1>Container</Display1>
+            <Name>Typography</Name>
             <Body2>
                 Every typography text components should be located in container
                 component named <code>Typography</code>.
@@ -51,6 +53,7 @@ export default function() {
             </Body2>
 
             <Display1>Text</Display1>
+            <Name>Typography.Text</Name>
             <Body2>
                 <code>Text</code> renders typography text component.
             </Body2>

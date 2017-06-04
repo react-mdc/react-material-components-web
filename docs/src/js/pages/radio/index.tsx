@@ -11,7 +11,7 @@ import {
 } from "@react-mdc/typography/lib/shortcuts";
 
 import Code from "app/js/components/code";
-import Lib from "app/js/components/lib";
+import Name from "app/js/components/Name";
 import PageContainer from "app/js/components/page-container";
 import PageTitle from "app/js/components/page-title";
 import {
@@ -146,9 +146,9 @@ export default function RadioPage() {
             </Body2>
 
             <Display1>Radio</Display1>
-            <Lib>@react-mdc/radio</Lib>
+            <Name>Radio.Simple</Name>
             <Body2>
-                Material radio component. This component is default composition of radio sub-components.
+                Material radio component. This component is common composition of radio sub-components.
                 You can customize radio by composing your own sub-components.
             </Body2>
             <Body2>
@@ -212,7 +212,7 @@ export default function RadioPage() {
             </Table>
 
             <Display1>Container</Display1>
-            <Lib>@react-mdc/checkbox/lib/container</Lib>
+            <Name>Radio</Name>
             <Body2>
                 Top-level container of checkbox.
             </Body2>
@@ -250,25 +250,25 @@ export default function RadioPage() {
             </Table>
 
             <Display1>Background</Display1>
-            <Lib>@react-mdc/checkbox/lib/background</Lib>
+            <Name>Radio.Background</Name>
             <Body2>
                 Background component.
             </Body2>
 
             <Display1>Inner Circle</Display1>
-            <Lib>@react-mdc/checkbox/lib/inner-circle</Lib>
+            <Name>Radio.InnerCircle</Name>
             <Body2>
                 Inner circle component.
             </Body2>
 
             <Display1>Outer Circle</Display1>
-            <Lib>@react-mdc/checkbox/lib/outer-circle</Lib>
+            <Name>Radio.OuterCircle</Name>
             <Body2>
                 Outer circle component.
             </Body2>
 
             <Display1>Native Control</Display1>
-            <Lib>@react-mdc/checkbox/lib/native-control</Lib>
+            <Name>Radio.NativeControl</Name>
             <Body2>
                 Native control of checkbox. ex) <code>{`<input type="checkbox" />`}</code>
             </Body2>

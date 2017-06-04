@@ -10,7 +10,7 @@ import {
 } from "@react-mdc/typography/lib/shortcuts";
 
 import Code from "app/js/components/code";
-import Lib from "app/js/components/lib";
+import Name from "app/js/components/Name";
 import PageContainer from "app/js/components/page-container";
 import PageTitle from "app/js/components/page-title";
 import {
@@ -122,9 +122,9 @@ export default function CheckboxPage() {
             </Body2>
 
             <Display1>Checkbox</Display1>
-            <Lib>@react-mdc/checkbox</Lib>
+            <Name>Checkbox.Simple</Name>
             <Body2>
-                Material checkbox component. This component is default composition of checkbox sub-components.
+                Material checkbox component. This component is common composition of checkbox sub-components.
                 You can customize checkbox by composing your own sub-components.
             </Body2>
             <Body2>
@@ -194,7 +194,7 @@ export default function CheckboxPage() {
             </Table>
 
             <Display1>Container</Display1>
-            <Lib>@react-mdc/checkbox/lib/container</Lib>
+            <Name>Checkbox</Name>
             <Body2>
                 Top-level container of checkbox.
             </Body2>
@@ -232,25 +232,25 @@ export default function CheckboxPage() {
             </Table>
 
             <Display1>Background</Display1>
-            <Lib>@react-mdc/checkbox/lib/background</Lib>
+            <Name>Checkbox.Background</Name>
             <Body2>
                 Background component.
             </Body2>
 
             <Display1>Checkmark</Display1>
-            <Lib>@react-mdc/checkbox/lib/checkmark</Lib>
+            <Name>Checkbox.Checkmark</Name>
             <Body2>
                 Checkmark SVG component. It doesn't have meta component.
             </Body2>
 
             <Display1>Mixedmark</Display1>
-            <Lib>@react-mdc/checkbox/lib/mixedmark</Lib>
+            <Name>Checkbox.Mixedmark</Name>
             <Body2>
                 Mixedmark component.
             </Body2>
 
             <Display1>Native Control</Display1>
-            <Lib>@react-mdc/checkbox/lib/native-control</Lib>
+            <Name>Checkbox.NativeControl</Name>
             <Body2>
                 Native control of checkbox. ex) <code>{`<input type="checkbox" />`}</code>
             </Body2>

@@ -9,7 +9,7 @@ import {
 } from "@react-mdc/typography/lib/shortcuts";
 
 import Code from "app/js/components/code";
-import Lib from "app/js/components/lib";
+import Name from "app/js/components/Name";
 import PageContainer from "app/js/components/page-container";
 import PageTitle from "app/js/components/page-title";
 import {
@@ -156,7 +156,7 @@ export default function LayoutGridPage() {
             </Body2>
 
             <Display1>Container</Display1>
-            <Lib>@react-mdc/layout-grid/lib/container</Lib>
+            <Name>LayoutGrid</Name>
             <Body2>
                 Grid container component
             </Body2>
@@ -188,7 +188,7 @@ export default function LayoutGridPage() {
             </Table>
 
             <Display1>Cell</Display1>
-            <Lib>@react-mdc/layout-grid/lib/cell</Lib>
+            <Name>LayoutGrid.Cell</Name>
             <Body2>
                 Grid cell component
             </Body2>

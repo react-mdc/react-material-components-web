@@ -9,7 +9,7 @@ import {
 
 import Code from "app/js/components/code";
 import { MaterialIcon, Pen } from "app/js/components/icon";
-import Lib from "app/js/components/lib";
+import Name from "app/js/components/Name";
 import PageContainer from "app/js/components/page-container";
 import PageTitle from "app/js/components/page-title";
 import {
@@ -70,7 +70,7 @@ export default function ButtonPage() {
             </Body2>
 
             <Display1>Container</Display1>
-            <Lib>@react-mdc/fab/lib/container</Lib>
+            <Name>FAB</Name>
             <Body2>
                 FAB container component.
             </Body2>
@@ -101,8 +101,8 @@ export default function ButtonPage() {
                 </tbody>
             </Table>
 
-            <Display1>Container</Display1>
-            <Lib>@react-mdc/fab/lib/icon</Lib>
+            <Display1>Icon</Display1>
+            <Name>FAB.Icon</Name>
             <Body2>
                 FAB icon container. Render icon of FAB inside of this component.
             </Body2>

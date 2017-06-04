@@ -8,7 +8,7 @@ import {
 } from "@react-mdc/typography/lib/shortcuts";
 
 import Code from "app/js/components/code";
-import Lib from "app/js/components/lib";
+import Name from "app/js/components/Name";
 import PageContainer from "app/js/components/page-container";
 import PageTitle from "app/js/components/page-title";
 import {
@@ -158,7 +158,7 @@ export default function CardPage() {
             </Body2>
 
             <Display1>Container</Display1>
-            <Lib>@react-mdc/button/lib/container</Lib>
+            <Name>Card</Name>
             <Body2>
                 Top-level container of card component.
             </Body2>
@@ -184,31 +184,31 @@ export default function CardPage() {
             </Table>
 
             <Display1>Horizontal Block</Display1>
-            <Lib>@react-mdc/button/lib/horizontal-block</Lib>
+            <Name>Card.HorizontalBlock</Name>
             <Body2>
                 Horizontal block section component.
             </Body2>
 
             <Display1>Media Item</Display1>
-            <Lib>@react-mdc/button/lib/media-item</Lib>
+            <Name>Card.MediaItem</Name>
             <Body2>
                 Media item component.
             </Body2>
 
             <Display1>Media</Display1>
-            <Lib>@react-mdc/button/lib/media</Lib>
+            <Name>Card.Media</Name>
             <Body2>
                 Media section component.
             </Body2>
 
             <Display1>Supporting Text</Display1>
-            <Lib>@react-mdc/button/lib/supporting-text</Lib>
+            <Name>Card.SupportingText</Name>
             <Body2>
                 Supporting text section component.
             </Body2>
 
             <Display1>Actions</Display1>
-            <Lib>@react-mdc/button/lib/actions/container</Lib>
+            <Name>Card.Actions</Name>
             <Body2>
                 Actions section component.
             </Body2>
@@ -234,25 +234,19 @@ export default function CardPage() {
             </Table>
 
             <Display1>Action</Display1>
-            <Lib>@react-mdc/button/lib/actions/action</Lib>
+            <Name>Card.Action</Name>
             <Body2>
                 Card action component.
             </Body2>
 
             <Display1>Primary</Display1>
-            <Lib>@react-mdc/button/lib/actions/container</Lib>
-            <Body2>
-                Card primary text / title content block.
-            </Body2>
-
-            <Display1>Primary</Display1>
-            <Lib>@react-mdc/button/lib/primary/container</Lib>
+            <Name>Card.Primary</Name>
             <Body2>
                 Card primary text / title content block.
             </Body2>
 
             <Display1>Title</Display1>
-            <Lib>@react-mdc/button/lib/primary/title</Lib>
+            <Name>Card.Title</Name>
             <Body2>
                 Card title block
             </Body2>
@@ -278,7 +272,7 @@ export default function CardPage() {
             </Table>
 
             <Display1>Subtitle</Display1>
-            <Lib>@react-mdc/button/lib/primary/subtitle</Lib>
+            <Name>Card.Subtitle</Name>
             <Body2>
                 Card subtitle block
             </Body2>

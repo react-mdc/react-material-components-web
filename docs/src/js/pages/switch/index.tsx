@@ -11,7 +11,7 @@ import {
 } from "@react-mdc/typography/lib/shortcuts";
 
 import Code from "app/js/components/code";
-import Lib from "app/js/components/lib";
+import Name from "app/js/components/Name";
 import PageContainer from "app/js/components/page-container";
 import PageTitle from "app/js/components/page-title";
 import {
@@ -122,9 +122,9 @@ export default function SwitchPage() {
             </Body2>
 
             <Display1>Switch</Display1>
-            <Lib>@react-mdc/switch</Lib>
+            <Name>Switch.Simple</Name>
             <Body2>
-                Material switch component. This component is default composition of switch sub-components.
+                Material switch component. This component is common composition of switch sub-components.
                 You can customize switch by composing your own sub-components.
             </Body2>
             <Body2>
@@ -188,7 +188,7 @@ export default function SwitchPage() {
             </Table>
 
             <Display1>Container</Display1>
-            <Lib>@react-mdc/checkbox/lib/container</Lib>
+            <Name>Switch</Name>
             <Body2>
                 Top-level container of checkbox.
             </Body2>
@@ -226,19 +226,19 @@ export default function SwitchPage() {
             </Table>
 
             <Display1>Background</Display1>
-            <Lib>@react-mdc/checkbox/lib/background</Lib>
+            <Name>Switch.Background</Name>
             <Body2>
                 Background component.
             </Body2>
 
             <Display1>Knob</Display1>
-            <Lib>@react-mdc/checkbox/lib/knob</Lib>
+            <Name>Switch.Knob</Name>
             <Body2>
                 Knob component.
             </Body2>
 
             <Display1>Native Control</Display1>
-            <Lib>@react-mdc/checkbox/lib/native-control</Lib>
+            <Name>Switch.NativeControl</Name>
             <Body2>
                 Native control of checkbox. ex) <code>{`<input type="checkbox" />`}</code>
             </Body2>

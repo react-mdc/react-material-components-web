@@ -9,7 +9,7 @@ import {
 } from "@react-mdc/typography/lib/shortcuts";
 
 import Code from "app/js/components/code";
-import Lib from "app/js/components/lib";
+import Name from "app/js/components/Name";
 import PageContainer from "app/js/components/page-container";
 import PageTitle from "app/js/components/page-title";
 import {
@@ -119,7 +119,7 @@ export default function DialogPage() {
             </Body2>
 
             <Display1>Container</Display1>
-            <Lib>@react-mdc/dialog/lib/container</Lib>
+            <Name>Dialog</Name>
             <Body2>
                 Container is top-level component of dialog.
                 It contains top-level API such as event handler, open/close property.
@@ -178,13 +178,13 @@ export default function DialogPage() {
             <Display1>
                 Backdrop
             </Display1>
-            <Lib>@react-mdc/dialog/lib/bakcdrop</Lib>
+            <Name>Dialog.Backdrop</Name>
             <Body2>Dialog backdrop component.</Body2>
 
             <Display1>
                 Body
             </Display1>
-            <Lib>@react-mdc/dialog/lib/body</Lib>
+            <Name>Dialog.Body</Name>
             <Body2>Dialog body container.</Body2>
 
             <Title>Properties</Title>
@@ -210,25 +210,25 @@ export default function DialogPage() {
             <Display1>
                 Header
             </Display1>
-            <Lib>@react-mdc/dialog/lib/header/container</Lib>
+            <Name>Dialog.Header</Name>
             <Body2>Dialog header container.</Body2>
 
             <Display1>
                 Header Title
             </Display1>
-            <Lib>@react-mdc/dialog/lib/header/title</Lib>
+            <Name>Dialog.Header.Title</Name>
             <Body2>Dialog header title component.</Body2>
 
             <Display1>
                 Footer
             </Display1>
-            <Lib>@react-mdc/dialog/lib/footer/container</Lib>
+            <Name>Dialog.Footer</Name>
             <Body2>Dialog footer container.</Body2>
 
             <Display1>
                 Footer Button
             </Display1>
-            <Lib>@react-mdc/dialog/lib/footer/button</Lib>
+            <Name>Dialog.Button</Name>
             <Body2>Dialog footer button container.</Body2>
 
             <Title>Properties</Title>

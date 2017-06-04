@@ -9,7 +9,7 @@ import {
 } from "@react-mdc/typography/lib/shortcuts";
 
 import Code from "app/js/components/code";
-import Lib from "app/js/components/lib";
+import Name from "app/js/components/Name";
 import PageContainer from "app/js/components/page-container";
 import PageTitle from "app/js/components/page-title";
 import {
@@ -178,7 +178,7 @@ export default function ElevationPage() {
             </Body2>
 
             <Display1>Elevation</Display1>
-            <Lib>@react-mdc/elevation</Lib>
+            <Name>Elevation</Name>
             <Body2>
                 Material elevation component.
             </Body2>
