@@ -1,5 +1,13 @@
-export {default as Container, default as Toolbar} from "./container";
-export {default as Row} from "./row";
-export {default as Section} from "./section";
-export {default as Title} from "./title";
-export {default as FixedToolbarAdjusted} from "./fixed-toolbar-adjusted";
+import Container from "./Container";
+import FixedToolbarAdjusted from "./FixedToolbarAdjusted";
+import Row from "./Row";
+import Section from "./Section";
+import Title from "./Title";
+
+export default class Toolbar extends Container {
+    public static Container = Container;
+    public static FixedToolbarAdjusted = FixedToolbarAdjusted;
+    public static Row = Row;
+    public static Section = Section;
+    public static Title = Title;
+}

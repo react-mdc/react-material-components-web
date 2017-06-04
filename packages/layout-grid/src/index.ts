@@ -1,2 +1,6 @@
-export {default as Grid} from "./container";
-export {default as Cell} from "./cell";
+import Cell from "./Cell";
+import Container from "./Container";
+
+export default class LayoutGrid extends Container {
+    public static Cell = Cell;
+}

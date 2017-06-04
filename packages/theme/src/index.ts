@@ -1,1 +1,1 @@
-export { default as Themed } from "./themed";
+export { default } from "./Theme";

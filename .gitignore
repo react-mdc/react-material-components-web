@@ -3,6 +3,8 @@
 /docs/build/
 # Don't use yarn for library project
 yarn.lock
+# And also package-lock
+package-lock.json
 # Transpiled source directory
 lib/
 

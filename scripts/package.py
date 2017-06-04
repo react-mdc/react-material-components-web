@@ -41,10 +41,13 @@ def remove_value(package: collections.Mapping, keypath: str):
         if path not in target:
             return
         target = package[path]
-        assert isinstance(target, collections.Mapping), "Invalid keypath"
-    assert isinstance(target, collections.Mapping), "Invalid keypath"
+        if not isinstance(target, collections.Mapping):
+            return
+    if not isinstance(target, collections.Mapping):
+        return
     path = paths[-1]
-    del target[path]
+    if path in target:
+        del target[path]
 
 
 def get_package_json(packagedir: str):
