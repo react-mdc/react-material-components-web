@@ -1,7 +1,7 @@
 {
   "name": "@react-mdc/checkbox",
   "description": "React wrapper of @material/checkbox",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "license": "MIT",
   "main": "lib/index",
   "typings": "lib/index.d.ts",
@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@material/checkbox": "^0.3.2",
-    "@react-mdc/base": "^0.1.8",
+    "@react-mdc/base": "^0.1.9",
     "@types/classnames": "0.0.32",
     "@types/prop-types": "^15.5.1",
     "@types/react": "^15.0.18",
@@ -28,13 +28,13 @@
     "enzyme": "^2.8.2",
     "jest": "^20.0.1",
     "npm-run-all": "^4.0.2",
+    "react-test-renderer": "^15.5.4",
     "shelljs": "^0.7.7",
     "shx": "^0.2.2",
     "ts-jest": "^20.0.3",
     "tslint": "^5.2.0",
     "tslint-react": "^3.0.0",
-    "typescript": "^2.3.2",
-    "react-test-renderer": "^15.5.4"
+    "typescript": "^2.3.2"
   },
   "scripts": {
     "build": "npm-run-all build:ts lint",

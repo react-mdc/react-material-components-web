@@ -1,7 +1,7 @@
 {
   "name": "@react-mdc/base",
   "description": "Core library of @react-mdc components",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "license": "MIT",
   "main": "lib/index",
   "typings": "lib/index.d.ts",
@@ -28,13 +28,13 @@
     "jest": "^20.0.1",
     "jsdom": "^10.1.0",
     "npm-run-all": "^4.0.2",
+    "react-test-renderer": "^15.5.4",
     "shelljs": "^0.7.7",
     "shx": "^0.2.2",
     "ts-jest": "^20.0.3",
     "tslint": "^5.2.0",
     "tslint-react": "^3.0.0",
-    "typescript": "^2.3.2",
-    "react-test-renderer": "^15.5.4"
+    "typescript": "^2.3.2"
   },
   "scripts": {
     "build": "npm-run-all build:ts lint",
