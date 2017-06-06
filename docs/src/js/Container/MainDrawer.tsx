@@ -7,7 +7,7 @@ import Drawer from "@react-mdc/drawer";
 import { SELECTED_CLASS_NAME } from "@react-mdc/drawer/lib/Temporary/constants";
 import List from "@react-mdc/list";
 
-import * as styles from "./styles.css";
+import * as styles from "./styles.scss";
 
 function MenuItem(props) {
     return (

@@ -7,7 +7,7 @@ import Toolbar from "@react-mdc/toolbar";
 
 import { MaterialIcon } from "app/js/components/Icon";
 
-import * as styles from "./styles.css";
+import * as styles from "./styles.scss";
 
 export type Props = {
     className?: string,

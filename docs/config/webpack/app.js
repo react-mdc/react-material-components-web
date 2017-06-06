@@ -99,41 +99,52 @@ module.exports = {
                     fallback: "style-loader"
                 })
             },
+            /* SCSS */
             {
-                // css files in /src/style/ are global styles
-                test: /\.css$/,
-                include: /src\/style/,
-                loader: extractGlobalStyle.extract({
-                    use: [
-                        {
-                            loader: "css-loader",
-                            options: {
-                                importLoaders: 1
-                            }
-                        },
-                        "postcss-loader"
-                    ],
-                    // use style-loader in development
-                    fallback: "style-loader"
-                })
-            },
-            {
-                test: /\.css$/,
-                exclude: /src\/style|node_modules/,
+                test: /\.scss$/,
+                exclude: /src\/style/,
                 loader: extractLocalStyle.extract({
-                    use: [
-                        {
-                            loader: "css-loader",
+                    use: [{
+                            loader: 'css-loader',
                             options: {
                                 module: true,
-                                localIdentName: "[local]--[hash:base64:5]",
+                                localIdentName: '[local]--[hash:base64:5]',
                                 importLoaders: 1
                             }
                         },
-                        "postcss-loader"
+                        'postcss-loader',
+                        {
+                            loader: 'sass-loader',
+                            options: {
+                                includePaths: [path.resolve(DOCS_ROOT, 'node_modules')]
+                            }
+                        }
                     ],
                     // use style-loader in development
-                    fallback: "style-loader"
+                    fallback: 'style-loader'
+                })
+            },
+            // Global styles
+            {
+                test: /\.scss$/,
+                include: /src\/style/,
+                loader: extractGlobalStyle.extract({
+                    use: [{
+                            loader: 'css-loader',
+                            options: {
+                                importLoaders: 1
+                            }
+                        },
+                        'postcss-loader',
+                        {
+                            loader: 'sass-loader',
+                            options: {
+                                includePaths: [path.resolve(DOCS_ROOT, 'node_modules')]
+                            }
+                        }
+                    ],
+                    // use style-loader in development
+                    fallback: 'style-loader'
                 })
             },
             /* Assets */
@@ -142,6 +153,7 @@ module.exports = {
                     /\.html$/,
                     /\.(ts|tsx)$/,
                     /\.css$/,
+                    /\.scss$/,
                     /\.json$/,
                     /\.svg$/,
                     /\.js$/

@@ -5,7 +5,7 @@ import Toolbar from "@react-mdc/toolbar";
 import MainDrawer from "./MainDrawer";
 import MainToolbar from "./MainToolbar";
 
-import * as styles from "./styles.css";
+import * as styles from "./styles.scss";
 
 export default class Container extends React.Component<{ children?: React.ReactChild }, {}> {
     public render() {

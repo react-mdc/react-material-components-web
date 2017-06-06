@@ -2,7 +2,7 @@ import * as React from "react";
 
 import * as classNames from "classnames";
 
-import * as styles from "./styles.css";
+import * as styles from "./styles.scss";
 
 export function FullSize(props: React.HTMLProps<HTMLDivElement>) {
     return (

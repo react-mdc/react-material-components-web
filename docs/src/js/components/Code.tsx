@@ -3,7 +3,7 @@ import * as React from "react";
 import * as classNames from "classnames";
 import { default as CodeMirror, Props as CodeMirrorProps } from "./CodeMirror";
 
-import * as styles from "./styles.css";
+import * as styles from "./styles.scss";
 
 type Props = CodeMirrorProps & {
     className?: string,

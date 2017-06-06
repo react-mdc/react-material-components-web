@@ -10,7 +10,7 @@ import {
     Title,
 } from "@react-mdc/typography/lib/shortcuts";
 
-import * as styles from "./styles.css";
+import * as styles from "./styles.scss";
 
 /**
  * Section divider for each section

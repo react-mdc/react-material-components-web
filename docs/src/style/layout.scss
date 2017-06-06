@@ -1,9 +1,7 @@
-:global {
-    :root {
-        --mdc-theme-primary: #212121;
-        --mdc-theme-accent: #64DD17;
-    }
-}
+/* Google web fonts */
+@import url(https://fonts.googleapis.com/css?family=Roboto);
+@import url(https://fonts.googleapis.com/css?family=Roboto+Mono);
+@import url(https://fonts.googleapis.com/icon?family=Material+Icons);
 
 html, body {
     height: 100%;
