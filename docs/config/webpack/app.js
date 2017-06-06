@@ -3,7 +3,10 @@ const path = require("path");
 const webpack = require("webpack");
 
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
-const { TsConfigPathsPlugin, CheckerPlugin } = require("awesome-typescript-loader");
+const {
+    TsConfigPathsPlugin,
+    CheckerPlugin
+} = require("awesome-typescript-loader");
 
 const {
     DOCS_ROOT,
@@ -20,9 +23,6 @@ function loadManifest(name) {
 /* Configure plugins */
 const extractVendorStyle = new ExtractTextPlugin({
     filename: "vendor.css"
-});
-const extractGlobalStyle = new ExtractTextPlugin({
-    filename: "global.css"
 });
 const extractLocalStyle = new ExtractTextPlugin({
     filename: "local.css"
@@ -48,7 +48,6 @@ module.exports = {
     },
     plugins: [
         extractVendorStyle,
-        extractGlobalStyle,
         extractLocalStyle,
         new webpack.DllReferencePlugin({
             context: DOCS_ROOT,
@@ -102,12 +101,10 @@ module.exports = {
             /* SCSS */
             {
                 test: /\.scss$/,
-                exclude: /src\/style/,
                 loader: extractLocalStyle.extract({
                     use: [{
                             loader: 'css-loader',
                             options: {
-                                module: true,
                                 localIdentName: '[local]--[hash:base64:5]',
                                 importLoaders: 1
                             }
@@ -116,30 +113,10 @@ module.exports = {
                         {
                             loader: 'sass-loader',
                             options: {
-                                includePaths: [path.resolve(DOCS_ROOT, 'node_modules')]
-                            }
-                        }
-                    ],
-                    // use style-loader in development
-                    fallback: 'style-loader'
-                })
-            },
-            // Global styles
-            {
-                test: /\.scss$/,
-                include: /src\/style/,
-                loader: extractGlobalStyle.extract({
-                    use: [{
-                            loader: 'css-loader',
-                            options: {
-                                importLoaders: 1
-                            }
-                        },
-                        'postcss-loader',
-                        {
-                            loader: 'sass-loader',
-                            options: {
-                                includePaths: [path.resolve(DOCS_ROOT, 'node_modules')]
+                                includePaths: [
+                                    path.resolve(DOCS_ROOT, 'node_modules'),
+                                    path.resolve(DOCS_ROOT, 'src')
+                                ]
                             }
                         }
                     ],

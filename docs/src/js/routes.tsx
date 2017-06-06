@@ -21,6 +21,9 @@ import Container from "./Container";
 import NotFoundPage from "./pages/NotFoundPage";
 import WelcomePage from "./pages/WelcomePage";
 
+import NewContainer from "./NewContainer";
+import ComponentsPage from "./newPages/ComponentsPage";
+
 function MainContainer(props) {
     let {
         children,
@@ -37,6 +40,9 @@ function scrollToTop() {
 export default function MainRouter() {
     return (
         <Router onUpdate={scrollToTop} history={hashHistory}>
+            <Route path="/new/" component={NewContainer}>
+                <Route path="welcome" component={ComponentsPage} />
+            </Route>
             <Route path="/" component={MainContainer}>
                 <Route path="basics" component={BasicsPage} />
                 <Route path="typography" component={TypographyPage} />

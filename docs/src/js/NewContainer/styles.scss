@@ -1,0 +1,19 @@
+@import "style/vars/theme";
+:local {
+    .toolbar {
+        /* Codemirror has z-index > 3 */
+        z-index: calc(var(--app-drawer-z-index) + 1) !important;
+    }
+    .toolbar-title {
+        text-decoration: none;
+        @include mdc-theme-dark {
+            @include mdc-theme-prop(color, text-primary-on-dark);
+        }
+    }
+    .toolbar-icon {
+        padding-right: 16px;
+    }
+    .toolbar-title-text {
+        font-family: Roboto Mono;
+    }
+}
