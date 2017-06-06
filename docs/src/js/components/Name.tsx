@@ -1,17 +1,14 @@
 import * as React from "react";
 
-import Typography from "@react-mdc/typography";
+import Code from "./Code";
 
 export default function Name(props: React.HTMLProps<HTMLElement>) {
     const {
         children,
         ...p,
     } = props;
+    const value = React.Children.toArray(children).map((x) => x.toString()).join("");
     return (
-        <Typography.Text.Meta textStyle="caption">
-            <code {...p}>
-                Export: {children}
-            </code>
-        </Typography.Text.Meta>
+        <Code value={`<${value} />`} />
     );
 }

@@ -1,5 +1,9 @@
 @import "style/vars/theme";
+
 :local {
+    .container {
+        flex: 1;
+    }
     .toolbar {
         /* Codemirror has z-index > 3 */
         z-index: calc(var(--app-drawer-z-index) + 1) !important;

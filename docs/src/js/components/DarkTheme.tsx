@@ -2,10 +2,6 @@ import * as React from "react";
 
 import * as classNames from "classnames";
 
-import {
-    ClassNameMetaBase,
-    DefaultComponentBase,
-} from "@react-mdc/base";
 import Theme from "@react-mdc/theme";
 import {
     ChildProps as ThemeChildProps,

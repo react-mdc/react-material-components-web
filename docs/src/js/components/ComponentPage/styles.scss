@@ -1,0 +1,26 @@
+@import "style/vars/theme";
+
+:local {
+    .component-page {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+    }
+    .component-content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
+    .component-drawer {
+        border-right: none;
+    }
+    .component-showcase {
+        width: 100%;
+        padding: $app-showcase-padding;
+        background: $app-showcase-background;
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        flex-direction: column;
+    }
+}

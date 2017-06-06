@@ -2,6 +2,8 @@ import * as React from "react";
 
 import { hashHistory, Route, Router } from "react-router";
 
+import ComponentPage from "app/js/components/ComponentPage";
+
 import BasicsPage from "./pages/BasicsPage";
 import ButtonPage from "./pages/ButtonPage";
 import CardPage from "./pages/CardPage";
@@ -22,7 +24,9 @@ import NotFoundPage from "./pages/NotFoundPage";
 import WelcomePage from "./pages/WelcomePage";
 
 import NewContainer from "./NewContainer";
+import NewButtonPage from "./newPages/ButtonPage";
 import ComponentsPage from "./newPages/ComponentsPage";
+import NewWelcomePage from "./newPages/WelcomePage";
 
 function MainContainer(props) {
     let {
@@ -33,6 +37,15 @@ function MainContainer(props) {
     return <Container children={children} {...p} />;
 }
 
+function NewMainConteinr(props) {
+    let {
+        children,
+        ...p,
+    } = props;
+    children = children || <NewWelcomePage />;
+    return <NewContainer children={children} {...p} />;
+}
+
 function scrollToTop() {
     window.scrollTo(0, 0);
 }
@@ -40,8 +53,9 @@ function scrollToTop() {
 export default function MainRouter() {
     return (
         <Router onUpdate={scrollToTop} history={hashHistory}>
-            <Route path="/new/" component={NewContainer}>
-                <Route path="welcome" component={ComponentsPage} />
+            <Route path="/new/" component={NewMainConteinr}>
+                <Route path="components" component={ComponentsPage} />
+                <Route path="button" component={NewButtonPage} />
             </Route>
             <Route path="/" component={MainContainer}>
                 <Route path="basics" component={BasicsPage} />

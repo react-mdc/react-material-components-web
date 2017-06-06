@@ -80,6 +80,7 @@ export default class Text extends DefaultComponentBase<React.HTMLProps<HTMLEleme
     protected getMetaPropNames() {
         return [
             "textStyle",
+            "adjustMargin",
         ];
     }
 
