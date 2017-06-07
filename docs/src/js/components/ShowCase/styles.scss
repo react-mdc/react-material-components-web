@@ -2,12 +2,11 @@
 
 :local {
     .showcase {
-        flex: 1;
         padding: $app-showcase-padding;
         background: $app-showcase-background;
         display: flex;
         justify-content: center;
-        align-content: center;
+        align-items: center;
         flex-direction: row;
     }
     .showcase--large {

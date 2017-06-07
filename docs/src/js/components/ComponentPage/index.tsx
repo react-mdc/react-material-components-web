@@ -21,8 +21,8 @@ export default class ComponentPage extends React.Component<React.HTMLProps<HTMLD
         } = this.props;
 
         return (
-            <Page.Responsive.Meta>
-                <Page {...props}>
+            <Page {...props}>
+                <Page.Responsive>
                     <Page.Content className={styles["component-page"]}>
                         <Drawer.Permanent className={styles["component-drawer"]}>
                             <Drawer.Permanent.Content>
@@ -33,8 +33,9 @@ export default class ComponentPage extends React.Component<React.HTMLProps<HTMLD
                         </Drawer.Permanent>
                         {children}
                     </Page.Content>
-                </Page>
-            </Page.Responsive.Meta>
+                </Page.Responsive>
+                <Page.Footer />
+            </Page>
         );
     }
 }

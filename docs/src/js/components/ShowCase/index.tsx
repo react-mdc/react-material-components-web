@@ -13,14 +13,17 @@ export default class ShowCase extends React.Component<React.HTMLProps<HTMLDivEle
         let {
             className,
             large,
+            children,
             ...props,
         } = this.props;
         className = classNames(styles["showcase"], className, {
-            [styles["show-case--large"]]: large,
+            [styles["showcase--large"]]: large,
         });
 
         return (
-            <div className={className} {...props} />
+            <div className={className} {...props}>
+                {children}
+            </div>
         );
     }
 }
