@@ -57,3 +57,6 @@ tags
 
 ### Python ###
 *.pyc
+
+### Jest Generated Files ###
+/packages/**/jest_0
