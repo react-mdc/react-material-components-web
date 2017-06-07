@@ -10,7 +10,7 @@ import CardPage from "./pages/CardPage";
 import CheckboxPage from "./pages/CheckboxPage";
 import DialogPage from "./pages/DialogPage";
 import ElevationPage from "./pages/ElevationPage";
-import FabPage from "./pages/FabPage";
+import FabPage from "./pages/FABPage";
 import FormFieldPage from "./pages/FormFieldPage";
 import LayoutGridPage from "./pages/LayoutGridPage";
 import RadioPage from "./pages/RadioPage";
