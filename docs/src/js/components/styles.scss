@@ -48,6 +48,7 @@
     }
     .code {
         flex: 1;
+        background: $app-showcase-background;
         margin-top: 14px;
         margin-bottom: 14px;
          :global {
@@ -58,8 +59,8 @@
                 line-height: 1.6em;
             }
             .CodeMirror {
-                background: $app-showcase-background;
-                padding: $app-showcase-padding;
+                background: transparent;
+                margin: $app-showcase-padding;
                 pre {
                     font-family: Roboto Mono, monospace;
                 }
