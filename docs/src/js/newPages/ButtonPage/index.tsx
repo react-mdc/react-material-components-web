@@ -88,7 +88,7 @@ export default function ButtonPage() {
                 <Typography.Title>Button</Typography.Title>
                 <Typography.Subheading2>Name</Typography.Subheading2>
                 <Name>Button</Name>
-                <Typography.Subheading2>Button</Typography.Subheading2>
+                <Typography.Subheading2>Properties</Typography.Subheading2>
                 <Table>
                     <thead>
                         <tr>
