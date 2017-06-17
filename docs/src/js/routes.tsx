@@ -8,7 +8,6 @@ import Container from "./Container";
 import ButtonPage from "./pages/ButtonPage";
 import CardPage from "./pages/CardPage";
 import CheckboxPage from "./pages/CheckboxPage";
-import ComponentsPage from "./pages/ComponentsPage";
 import DialogPage from "./pages/DialogPage";
 import ElevationPage from "./pages/ElevationPage";
 import FABPage from "./pages/FABPage";
@@ -40,7 +39,6 @@ export default function MainRouter() {
     return (
         <Router onUpdate={scrollToTop} history={hashHistory}>
             <Route path="/" component={MainConteinr}>
-                <Route path="components" component={ComponentsPage} />
                 <Route path="button" component={ButtonPage} />
                 <Route path="card" component={CardPage} />
                 <Route path="checkbox" component={CheckboxPage} />

@@ -27,7 +27,7 @@ function Welcome() {
                             React wrapper of Google's Material Components for the Web
                         </Typography.Headline>
                         <Theme.Meta textColor="primary" onColor="dark">
-                            <Link to="/components" className={styles["welcome-link"]}>
+                            <Link to="/button" className={styles["welcome-link"]}>
                                 Components
                             </Link>
                         </Theme.Meta>
