@@ -66,7 +66,7 @@ export default function ElevationPage() {
                         <tr>
                             <td><code>zSpace</code></td>
                             <td><code>number (0 ~ 24)</code></td>
-                            <td>O</td>
+                            <td>&#10004;</td>
                             <td>z-space of elevation component</td>
                         </tr>
                         <tr>

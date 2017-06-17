@@ -4,6 +4,7 @@ import { Link } from "react-router";
 import * as classNames from "classnames";
 
 import Button from "@react-mdc/button";
+import Elevation from "@react-mdc/elevation";
 import Ripple from "@react-mdc/ripple";
 import Typography from "@react-mdc/typography";
 
@@ -27,18 +28,20 @@ export default function RipplePage() {
                         justifyContent: "center",
                         alignItems: "center",
                     }}>
-                        <Ripple style={{
-                            background: "white",
-                            maxWidth: 500,
-                            height: 300,
-                            cursor: "pointer",
-                            flex: 1,
-                            display: "flex",
-                            justifyContent: "center",
-                            alignItems: "center",
-                        }}>
-                            RIPPLE
-                        </Ripple>
+                        <Ripple.Meta>
+                            <Elevation zSpace={4}
+                                style={{
+                                    maxWidth: 500,
+                                    height: 300,
+                                    cursor: "pointer",
+                                    flex: 1,
+                                    display: "flex",
+                                    justifyContent: "center",
+                                    alignItems: "center",
+                                }}>
+                                RIPPLE
+                            </Elevation>
+                        </Ripple.Meta>
                     </ShowCase.Item>
                 </ShowCase>
                 <Typography.Body2>

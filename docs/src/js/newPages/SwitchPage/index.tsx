@@ -68,7 +68,7 @@ export default function SwitchPage() {
                     <ShowCase.Item>
                         {/* tslint:disable:jsx-no-lambda */}
                         <Switch>
-                            <Switch.NativeControl onChange={(e) => alert("On: " + e.target.value)} />
+                            <Switch.NativeControl onChange={(e) => alert("On: " + e.currentTarget.value)} />
                             <Switch.Background>
                                 <Switch.Knob />
                             </Switch.Background>

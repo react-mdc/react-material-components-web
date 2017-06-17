@@ -37,6 +37,7 @@ import NewRadioPage from "./newPages/RadioPage";
 import NewRipplePage from "./newPages/RipplePage";
 import NewSwitchPage from "./newPages/SwitchPage";
 import NewTextfieldPage from "./newPages/TextfieldPage";
+import NewTypographyPage from "./newPages/TypographyPage";
 import NewWelcomePage from "./newPages/WelcomePage";
 
 function MainContainer(props) {
@@ -78,6 +79,7 @@ export default function MainRouter() {
                 <Route path="ripple" component={NewRipplePage} />
                 <Route path="switch" component={NewSwitchPage} />
                 <Route path="textfield" component={NewTextfieldPage} />
+                <Route path="typography" component={NewTypographyPage} />
             </Route>
             <Route path="/" component={MainContainer}>
                 <Route path="basics" component={BasicsPage} />

@@ -280,7 +280,7 @@ class SimpleDialog extends React.Component<{}, {}> {
                         <tr>
                             <td><code>type</code></td>
                             <td><code>"accept" | "cancel"</code></td>
-                            <td>O</td>
+                            <td>&#10004;</td>
                             <td>Type of footer button.</td>
                         </tr>
                     </tbody>
