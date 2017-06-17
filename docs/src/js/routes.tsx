@@ -35,6 +35,7 @@ import NewFormFieldPage from "./newPages/FormFieldPage";
 import NewLayoutGridPage from "./newPages/LayoutGridPage";
 import NewRadioPage from "./newPages/RadioPage";
 import NewRipplePage from "./newPages/RipplePage";
+import NewSwitchPage from "./newPages/SwitchPage";
 import NewWelcomePage from "./newPages/WelcomePage";
 
 function MainContainer(props) {
@@ -74,6 +75,7 @@ export default function MainRouter() {
                 <Route path="layout-grid" component={NewLayoutGridPage} />
                 <Route path="radio" component={NewRadioPage} />
                 <Route path="ripple" component={NewRipplePage} />
+                <Route path="switch" component={NewSwitchPage} />
             </Route>
             <Route path="/" component={MainContainer}>
                 <Route path="basics" component={BasicsPage} />

@@ -3,8 +3,8 @@ import { Link } from "react-router";
 
 import * as classNames from "classnames";
 
-import Checkbox from "@react-mdc/checkbox";
 import FormField from "@react-mdc/form-field";
+import Switch from "@react-mdc/switch";
 import Typography from "@react-mdc/typography";
 
 import Code from "app/js/components/Code";
@@ -13,80 +13,78 @@ import Name from "app/js/components/Name";
 import ShowCase from "app/js/components/ShowCase";
 import Table from "app/js/components/Table";
 
-export default function CheckboxPage() {
+export default function SwitchPage() {
     return (
         <ComponentPage>
             <ComponentPage.Content>
                 <Typography.Display1 adjustMargin>
-                    Checkbox
+                    Switch
                 </Typography.Display1>
                 <ShowCase large>
                     <ShowCase.Item>
                         <FormField>
-                            <Checkbox.Simple inputId="showcase-checkbox" />
-                            <label htmlFor="showcase-checkbox">
-                                Check Me
-                            </label>
+                            <Switch.Simple inputId="showcase-switch" defaultChecked />
+                            <Switch.Label htmlFor="showcase-switch">
+                                Switch
+                            </Switch.Label>
                         </FormField>
                     </ShowCase.Item>
                 </ShowCase>
                 <Typography.Body2>
-                    Checkbox component is a React wrapper of mdc-checkbox component.
+                    Switch component is a React wrapper of mdc-switch component.
                 </Typography.Body2>
 
                 <Typography.Headline>
                     Installation
                 </Typography.Headline>
-                <Code value={`$ npm install --save @react-mdc/checkbox`} mode="shell" />
+                <Code value={`$ npm install --save @react-mdc/switch`} mode="shell" />
 
                 <Typography.Headline>
                     Usage
                 </Typography.Headline>
 
                 <Typography.Title>
-                    Simple Checkbox
+                    Simple Switch
                 </Typography.Title>
-                <Code value={`<Checkbox.Simple />`} />
+                <Code value={`<Switch.Simple />`} />
                 <ShowCase>
                     <ShowCase.Item>
-                        <Checkbox.Simple />
+                        <Switch.Simple />
                     </ShowCase.Item>
                 </ShowCase>
 
                 <Typography.Title>
-                    Cutomizable Checkbox
+                    Cutomizable Switch
                 </Typography.Title>
                 <Code value={`
-<Checkbox>
-    <Checkbox.NativeControl onChange={ (x) => alert("Changed: " + x) } />
-    <Checkbox.Background>
-        <Checkbox.Checkmark />
-        <Checkbox.Mixedmark />
-    </Checkbox.Background>
-</Checkbox>
+<Switch>
+    <Switch.NativeControl onChange={(e) => alert("On: " + e.target.value)} />
+    <Switch.Background>
+        <Switch.Knob />
+    </Switch.Background>
+</Switch>
 `} />
                 <ShowCase>
                     <ShowCase.Item>
                         {/* tslint:disable:jsx-no-lambda */}
-                        <Checkbox>
-                            <Checkbox.NativeControl onChange={(x) => alert("Changed: " + x.target.value)} />
-                            <Checkbox.Background>
-                                <Checkbox.Checkmark />
-                                <Checkbox.Mixedmark />
-                            </Checkbox.Background>
-                        </Checkbox>
+                        <Switch>
+                            <Switch.NativeControl onChange={(e) => alert("On: " + e.target.value)} />
+                            <Switch.Background>
+                                <Switch.Knob />
+                            </Switch.Background>
+                        </Switch>
                         {/* tslint:enable:jsx-no-lambda */}
                     </ShowCase.Item>
                 </ShowCase>
 
                 <Typography.Headline>Components</Typography.Headline>
 
-                <Typography.Title>Checkbox</Typography.Title>
+                <Typography.Title>Switch</Typography.Title>
                 <Typography.Subheading2>Name</Typography.Subheading2>
-                <Name>Checkbox</Name>
+                <Name>Switch</Name>
                 <Typography.Subheading2>Description</Typography.Subheading2>
                 <Typography.Body2>
-                    Top-level container of checkbox components.
+                    Top-level container of switch components.
                 </Typography.Body2>
                 <Typography.Subheading2>Properties</Typography.Subheading2>
                 <Table>
@@ -103,54 +101,53 @@ export default function CheckboxPage() {
                             <td><code>checked</code></td>
                             <td><code>boolean</code></td>
                             <td />
-                            <td>Render checked checkbox.</td>
+                            <td>Render checked switch.</td>
                         </tr>
                         <tr>
                             <td><code>disabled</code></td>
                             <td><code>boolean</code></td>
                             <td />
-                            <td>Render disabled checkbox.</td>
+                            <td>Render disabled switch.</td>
                         </tr>
                         <tr>
                             <td><code>indeterminate</code></td>
                             <td><code>boolean</code></td>
                             <td />
-                            <td>Render indeterminate state checkbox.</td>
+                            <td>Render indeterminate state switch.</td>
                         </tr>
                     </tbody>
                 </Table>
 
                 <Typography.Title>Background</Typography.Title>
                 <Typography.Subheading2>Name</Typography.Subheading2>
-                <Name>Checkbox.Background</Name>
+                <Name>Switch.Background</Name>
                 <Typography.Subheading2>Description</Typography.Subheading2>
                 <Typography.Body2>
-                    Background component of checkbox.
+                    Background component of switch.
                 </Typography.Body2>
 
-                <Typography.Title>Checkmark</Typography.Title>
+                <Typography.Title>Knob</Typography.Title>
                 <Typography.Subheading2>Name</Typography.Subheading2>
-                <Name>Checkbox.Checkmark</Name>
+                <Name>Switch.Knob</Name>
                 <Typography.Subheading2>Description</Typography.Subheading2>
                 <Typography.Body2>
-                    Checkmark component of checkbox. It's a just SVG component.
-                    So it doesn't have a meta component.
+                    Knob component of switch.
                 </Typography.Body2>
 
-                <Typography.Title>Mixedmark</Typography.Title>
+                <Typography.Title>Label</Typography.Title>
                 <Typography.Subheading2>Name</Typography.Subheading2>
-                <Name>Checkbox.Mixedmark</Name>
+                <Name>Switch.Label</Name>
                 <Typography.Subheading2>Description</Typography.Subheading2>
                 <Typography.Body2>
-                    Mixedmark component of checkbox.
+                    Switch label component
                 </Typography.Body2>
 
                 <Typography.Title>NativeControl</Typography.Title>
                 <Typography.Subheading2>Name</Typography.Subheading2>
-                <Name>Checkbox.NativeControl</Name>
+                <Name>Switch.NativeControl</Name>
                 <Typography.Subheading2>Description</Typography.Subheading2>
                 <Typography.Body2>
-                    Native control (actual input component) component of checkbox.
+                    Native control (actual input component) component of switch.
                 </Typography.Body2>
                 <Typography.Subheading2>Properties</Typography.Subheading2>
                 <Table>
@@ -174,10 +171,10 @@ export default function CheckboxPage() {
 
                 <Typography.Title>Simple</Typography.Title>
                 <Typography.Subheading2>Name</Typography.Subheading2>
-                <Name>Checkbox.Simple</Name>
+                <Name>Switch.Simple</Name>
                 <Typography.Subheading2>Description</Typography.Subheading2>
                 <Typography.Body2>
-                    Simpe, common composition of checkbox component
+                    Simpe, common composition of switch component
                 </Typography.Body2>
                 <Typography.Subheading2>Properties</Typography.Subheading2>
                 <Table>
@@ -218,25 +215,25 @@ export default function CheckboxPage() {
                             <td><code>checked</code></td>
                             <td><code>boolean</code></td>
                             <td />
-                            <td>Render checked checkbox.</td>
+                            <td>Render checked switch.</td>
                         </tr>
                         <tr>
                             <td><code>disabled</code></td>
                             <td><code>boolean</code></td>
                             <td />
-                            <td>Render disabled checkbox.</td>
+                            <td>Render disabled switch.</td>
                         </tr>
                         <tr>
                             <td><code>indeterminate</code></td>
                             <td><code>boolean</code></td>
                             <td />
-                            <td>Render indeterminate state checkbox.</td>
+                            <td>Render indeterminate state switch.</td>
                         </tr>
                         <tr>
                             <td><code>defaultChecked</code></td>
                             <td><code>boolean</code></td>
                             <td />
-                            <td>Default checked state of checkbox.</td>
+                            <td>Default checked state of switch.</td>
                         </tr>
                     </tbody>
                 </Table>
