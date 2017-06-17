@@ -29,6 +29,7 @@ import NewCardPage from "./newPages/CardPage";
 import NewCheckboxPage from "./newPages/CheckboxPage";
 import ComponentsPage from "./newPages/ComponentsPage";
 import NewDialogPage from "./newPages/DialogPage";
+import NewElevationPage from "./newPages/ElevationPage";
 import NewWelcomePage from "./newPages/WelcomePage";
 
 function MainContainer(props) {
@@ -62,6 +63,7 @@ export default function MainRouter() {
                 <Route path="card" component={NewCardPage} />
                 <Route path="checkbox" component={NewCheckboxPage} />
                 <Route path="dialog" component={NewDialogPage} />
+                <Route path="elevation" component={NewElevationPage} />
             </Route>
             <Route path="/" component={MainContainer}>
                 <Route path="basics" component={BasicsPage} />
