@@ -22,7 +22,7 @@ export function classNameForSize(size: Size): string {
         case 3:
             return `${CLASS_NAME}--3x`;
         default:
-            throw new TypeError("Invalid size type");
+            throw new TypeError(`Invalid size: ${size}`);
     }
 }
 

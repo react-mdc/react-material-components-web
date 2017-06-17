@@ -1,29 +1,28 @@
 /* Google web fonts */
-@import url(https://fonts.googleapis.com/css?family=Roboto);
-@import url(https://fonts.googleapis.com/css?family=Roboto+Mono);
-@import url(https://fonts.googleapis.com/icon?family=Material+Icons);
-
-html, body {
-    height: 100%;
-}
-
-body {
-    margin: 0;
-    font-family: Roboto, sans-serif;
-}
-
-#root {
-    display: flex;
-    flex-direction: row;
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-}
-
-code, pre {
-    font-family: Roboto Mono, monospace;
-}
-
-code {
-    color: #444444;
+:global {
+    @import url(https://fonts.googleapis.com/css?family=Roboto);
+    @import url(https://fonts.googleapis.com/css?family=Roboto+Mono);
+    @import url(https://fonts.googleapis.com/icon?family=Material+Icons);
+    html,
+    body {
+        height: 100%;
+    }
+    body {
+        margin: 0;
+        font-family: Roboto, sans-serif;
+    }
+    #root {
+        display: flex;
+        flex-direction: row;
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+    }
+    code,
+    pre {
+        font-family: Roboto Mono, monospace;
+    }
+    code {
+        color: #444444;
+    }
 }

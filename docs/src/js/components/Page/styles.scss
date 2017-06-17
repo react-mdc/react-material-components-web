@@ -1,0 +1,48 @@
+:local {
+    .page {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
+    .responsive {
+        max-width: 1312px;
+        padding-left: 16px;
+        padding-right: 16px;
+        @media (max-width: 1312px) and (min-width: 721px) {
+            max-width: 1400px;
+            padding-left: 60px;
+            padding-right: 60px;
+        }
+        @media (min-width: 1312px) {
+            margin-left: auto;
+            margin-right: auto;
+            width: 100%;
+        }
+    }
+    .content {
+        margin-top: 80px;
+    }
+    .footer {
+        margin-top: 144px;
+        background: #fafafa;
+    }
+    .footer-content {
+        overflow: hidden;
+        height: 192px;
+        padding-top: 32px;
+        padding-bottom: 32px;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    .footer-made-with {
+        text-align: right;
+        a {
+            text-decoration: none;
+        }
+    }
+    .badge {
+        margin-right: 4px;
+    }
+}

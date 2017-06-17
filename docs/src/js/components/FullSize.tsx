@@ -4,16 +4,18 @@ import * as classNames from "classnames";
 
 import * as styles from "./styles.scss";
 
-export function FullSize(props: React.HTMLProps<HTMLDivElement>) {
-    return (
-        <div {...props} className={classNames(props.className, styles.fullsize)} />
-    );
-}
-
-export function CenterFullSize(props: React.HTMLProps<HTMLDivElement>) {
+function Center(props: React.HTMLProps<HTMLDivElement>) {
     return (
         <div {...props} className={classNames(props.className, styles.fullsize, styles.center)} />
     );
 }
 
-export default FullSize;
+export default class FullSize extends React.Component<React.HTMLProps<HTMLDivElement>, {}> {
+    public static Center = Center;
+
+    public render() {
+        return (
+            <div {...this.props} className={classNames(this.props.className, styles.fullsize)} />
+        );
+    }
+}

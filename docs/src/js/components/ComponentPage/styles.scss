@@ -1,0 +1,56 @@
+@import "style/vars/theme";
+
+:local {
+    .component-page {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+    }
+    .component-content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
+    .component-drawer {
+        border-right: none;
+    }
+    .component-showcase {
+        width: 100%;
+        padding: $app-showcase-padding;
+        background: $app-showcase-background;
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        flex-direction: column;
+    }
+    .component-list {
+        list-style: none;
+        padding: 0;
+    }
+    .component-list-item {
+        width: 100%;
+        display: block;
+        margin-top: 8px;
+        margin-bottom: 8px;
+        color: lighten(black, 50);
+        a {
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            padding-top: 4px;
+            padding-bottom: 4px;
+        }
+
+        &:hover {
+            a {
+                border-bottom: solid 1px;
+                border-bottom-color: $mdc-theme-primary;
+            }
+        }
+    }
+    a.component-list-item--active {
+        color: black;
+        border-bottom: solid 1px;
+        border-bottom-color: $mdc-theme-primary;
+    }
+}

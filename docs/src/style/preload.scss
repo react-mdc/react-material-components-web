@@ -1,15 +1,17 @@
 /* Styles for before react */
-#preload-react {
-    position: fixed;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    font-family: "Roboto", "Helvetica", Sans-serif;
-    font-size: 1.5em;
-    color: #333333;
-    display: flex;
-    /* flex-direction: column;*/
-    align-items: center;
-    justify-content: center;
+:global {
+    #preload-react {
+        position: fixed;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        font-family: "Roboto", "Helvetica", Sans-serif;
+        font-size: 1.5em;
+        color: #333333;
+        display: flex;
+        /* flex-direction: column;*/
+        align-items: center;
+        justify-content: center;
+    }
 }

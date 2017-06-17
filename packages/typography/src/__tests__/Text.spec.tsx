@@ -50,4 +50,16 @@ describe("Text", () => {
         expect(wrapper.find(Text.defaultComponent("caption")).exists()).toBeTruthy();
 
     });
+
+    it("Should render property classnames", () => {
+        let wrapper;
+
+        wrapper = enzyme.mount(<Text textStyle="body1" adjustMargin />);
+        expect(wrapper.hasClass("mdc-typography--body1")).toBeTruthy();
+        expect(wrapper.hasClass("mdc-typography--adjust-margin")).toBeTruthy();
+
+        wrapper = enzyme.mount(<Text textStyle="body1" />);
+        expect(wrapper.hasClass("mdc-typography--body1")).toBeTruthy();
+        expect(wrapper.hasClass("mdc-typography--adjust-margin")).toBeFalsy();
+    });
 });

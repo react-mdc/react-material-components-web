@@ -1,8 +1,17 @@
-.welcome-box {
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
+@import "style/vars/theme";
+
+:local {
+    .flex {
+        flex: 1;
+    }
+
+    .welcome {
+        padding-bottom: 60px;
+    }
+    .welcome-link {
+        text-decoration: none;
+        border-bottom: solid 1px $mdc-theme-primary;
+        padding: 0.2em;
+        margin: 0.2em;
+    }
 }

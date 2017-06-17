@@ -1,0 +1,18 @@
+@import "style/vars/theme";
+
+:local {
+    .showcase {
+        padding: $app-showcase-padding;
+        background: $app-showcase-background;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: row;
+    }
+    .showcase--large {
+        height: 360px;
+    }
+    .showcase-item {
+        margin: 24px;
+    }
+}

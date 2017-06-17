@@ -1,134 +1,128 @@
 /* Material Icons */
+
+@import "style/vars/theme";
+@import "@material/theme/mdc-theme";
 :root {
     --app-section-margin: 16px;
     --app-section-padding: 16px;
     --app-api-table-border-color: #CCC;
 }
 
-.icon {
-    font-family: 'Material Icons';
-    font-weight: normal;
-    font-style: normal;
-    font-size: 24px;  // Preferred icon size
-    display: inline-block;
-    line-height: 1;
-    text-transform: none;
-    letter-spacing: normal;
-    word-wrap: normal;
-    white-space: nowrap;
-    direction: ltr;
-
-    // Support for all WebKit browsers.
-    -webkit-font-smoothing: antialiased;
-    // Support for Safari and Chrome.
-    text-rendering: optimizeLegibility;
-    // Support for Firefox.
-    -moz-osx-font-smoothing: grayscale;
-    // Support for IE.
-    font-feature-settings: 'liga';
-}
-
-.fullsize {
-    position: fixed;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-}
-
-.center {
-    display: flex;
-    text-align: center;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
-
-.section {
-}
-
-.code {
-    max-width: 850px;
-    margin-top: 14px;
-    margin-bottom: 14px;
-    :global {
-        .CodeMirror-gutter-wrapper {
-            font-family: Roboto Mono, monospace;
+:local {
+    .app--theme-dark {
+        background: $app-theme-dark-background;
+        @include mdc-theme-dark {
+            @include mdc-theme-prop(color, text-primary-on-dark);
         }
-        .CodeMirror-code {
-            line-height: 1.6em;
-        }
-        .CodeMirror {
-            pre {
+    }
+    .icon {
+        font-family: 'Material Icons';
+        font-weight: normal;
+        font-style: normal;
+        font-size: 24px; // Preferred icon size
+        display: inline-block;
+        line-height: 1;
+        text-transform: none;
+        letter-spacing: normal;
+        word-wrap: normal;
+        white-space: nowrap;
+        direction: ltr; // Support for all WebKit browsers.
+        -webkit-font-smoothing: antialiased; // Support for Safari and Chrome.
+        text-rendering: optimizeLegibility; // Support for Firefox.
+        -moz-osx-font-smoothing: grayscale; // Support for IE.
+        font-feature-settings: 'liga';
+    }
+    .fullsize {
+        position: fixed;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+    }
+    .center {
+        display: flex;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    .code {
+        flex: 1;
+        background: $app-showcase-background;
+        margin-top: 14px;
+        margin-bottom: 14px;
+         :global {
+            .CodeMirror-gutter-wrapper {
                 font-family: Roboto Mono, monospace;
             }
-            font-size: 0.8em;
-            height: auto;
+            .CodeMirror-code {
+                line-height: 1.6em;
+            }
+            .CodeMirror {
+                background: transparent;
+                margin: $app-showcase-padding;
+                pre {
+                    font-family: Roboto Mono, monospace;
+                }
+                font-size: 0.8em;
+                height: auto;
+            }
         }
     }
-}
-
-.page-container {
-    max-width: 1024px;
-    margin-left: auto;
-    margin-right: auto;
-    padding-bottom: 24px;
-}
-
-.demo {
-    margin-top: 24px;
-    margin-bottom: 24px;
-
-    hr {
-        display: block;
-        height: 1px;
-        border: 0;
-        border-top: 1px solid #eeeeee;
-        padding: 0;
+    .page-container {
+        max-width: 1024px;
+        margin-left: auto;
+        margin-right: auto;
+        padding-bottom: 24px;
     }
-}
-
-.demo-content {
-    padding: 16px;
-}
-
-.demo-title {
-    padding: 8px;
-    padding-bottom: 0;
-}
-
-.table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 0.8em;
-  text-align: left;
-  margin-top: 24px;
-  margin-bottom: 24px;
-
-  thead tr {
-    &:last-child {
-      border: 0;
-      border-bottom: 1px;
-      border-style: solid;
-      border-color: var(--app-api-table-border-color);
+    .demo {
+        margin-top: 24px;
+        margin-bottom: 24px;
+        hr {
+            display: block;
+            height: 1px;
+            border: 0;
+            border-top: 1px solid #eeeeee;
+            padding: 0;
+        }
     }
-  }
-
-  tbody tr {
-    border: 0;
-    border-bottom: 1px;
-    border-style: solid;
-    border-color: var(--app-api-table-border-color);
-
-    &:last-child {
-      border-bottom: 0;
+    .demo-content {
+        padding: 16px;
     }
-    &:hover {
-      background: #EEEEEE;
+    .demo-title {
+        padding: 8px;
+        padding-bottom: 0;
     }
-  }
-
-  td, th {
-    padding: 8px;
-  }
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 0.8em;
+        text-align: left;
+        margin-top: 24px;
+        margin-bottom: 24px;
+        thead tr {
+            &:last-child {
+                border: 0;
+                border-bottom: 1px;
+                border-style: solid;
+                border-color: var(--app-api-table-border-color);
+            }
+        }
+        tbody tr {
+            border: 0;
+            border-bottom: 1px;
+            border-style: solid;
+            border-color: var(--app-api-table-border-color);
+            &:last-child {
+                border-bottom: 0;
+            }
+            &:hover {
+                background: #EEEEEE;
+            }
+        }
+        td,
+        th {
+            padding: 8px;
+        }
+    }
 }
