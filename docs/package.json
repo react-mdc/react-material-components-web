@@ -63,7 +63,6 @@
   "scripts": {
     "clean": "shx rm -rf build/",
     "precompile": "npm run clean",
-    "postinstall": "npm run compile:vendor",
     "compile:vendor": "webpack --progress --config config/webpack/vendor.js",
     "compile:app": "webpack --progress --config config/webpack/app.js",
     "compile": "npm-run-all compile:vendor compile:app",
