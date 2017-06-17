@@ -17,7 +17,7 @@ import Table from "app/js/components/Table";
 import * as Image1x1 from "app/images/1-1.jpg";
 import * as Image16x9 from "app/images/16-9.jpg";
 
-export default function CardPage() {
+export default function CheckboxPage() {
     return (
         <ComponentPage>
             <ComponentPage.Content>
