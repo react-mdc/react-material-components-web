@@ -10,7 +10,6 @@ import Typography from "@react-mdc/typography";
 
 import Code from "app/js/components/Code";
 import ComponentPage from "app/js/components/ComponentPage";
-import DarkTheme from "app/js/components/DarkTheme";
 import Name from "app/js/components/Name";
 import ShowCase from "app/js/components/ShowCase";
 import Table from "app/js/components/Table";
