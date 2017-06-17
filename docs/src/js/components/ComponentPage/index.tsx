@@ -57,7 +57,7 @@ export default class ComponentPage extends React.Component<React.HTMLProps<HTMLD
                                         Elevation
                                     </NavItem>
                                     <NavItem to="/fab">
-                                        Fab
+                                        FAB
                                     </NavItem>
                                     <NavItem to="/form-field">
                                         Form Field

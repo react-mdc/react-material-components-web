@@ -6,7 +6,7 @@
     }
     .toolbar {
         /* Codemirror has z-index > 3 */
-        z-index: calc(var(--app-drawer-z-index) + 1) !important;
+        z-index: 4;
     }
     .toolbar-title {
         text-decoration: none;
