@@ -4,6 +4,7 @@ import { Link } from "react-router";
 import * as classNames from "classnames";
 
 import Drawer from "@react-mdc/drawer";
+import Typography from "@react-mdc/typography";
 
 import Page from "app/js/components/Page";
 
@@ -13,8 +14,12 @@ import * as styles from "./styles.scss";
 
 function NavItem(props) {
     return (
-        <li>
-            <Link {...props} />
+        <li className={styles["component-list-item"]}>
+            <Typography.Text.Meta textStyle="subheading2" adjustMargin>
+                <Link
+                    activeClassName={styles["component-list-item--active"]}
+                    {...props} />
+            </Typography.Text.Meta>
         </li>
     );
 }
@@ -35,7 +40,7 @@ export default class ComponentPage extends React.Component<React.HTMLProps<HTMLD
                     <Page.Content className={styles["component-page"]}>
                         <Drawer.Permanent className={styles["component-drawer"]}>
                             <Drawer.Permanent.Content>
-                                <ul>
+                                <ul className={styles["component-list"]}>
                                     <NavItem to="/new/button">
                                         Button
                                     </NavItem>
