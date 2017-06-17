@@ -3,7 +3,6 @@ import { Link } from "react-router";
 
 import * as classNames from "classnames";
 
-import Button from "@react-mdc/button";
 import Card from "@react-mdc/card";
 import Typography from "@react-mdc/typography";
 

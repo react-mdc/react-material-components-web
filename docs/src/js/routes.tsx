@@ -26,6 +26,7 @@ import WelcomePage from "./pages/WelcomePage";
 import NewContainer from "./NewContainer";
 import NewButtonPage from "./newPages/ButtonPage";
 import NewCardPage from "./newPages/CardPage";
+import NewCheckboxPage from "./newPages/CheckboxPage";
 import ComponentsPage from "./newPages/ComponentsPage";
 import NewWelcomePage from "./newPages/WelcomePage";
 
@@ -58,6 +59,7 @@ export default function MainRouter() {
                 <Route path="components" component={ComponentsPage} />
                 <Route path="button" component={NewButtonPage} />
                 <Route path="card" component={NewCardPage} />
+                <Route path="checkbox" component={NewCheckboxPage} />
             </Route>
             <Route path="/" component={MainContainer}>
                 <Route path="basics" component={BasicsPage} />
