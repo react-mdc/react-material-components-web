@@ -18,7 +18,7 @@ export default function CheckboxPage() {
         <ComponentPage>
             <ComponentPage.Content>
                 <Typography.Display1 adjustMargin>
-                    Checkbox
+                    FAB
                 </Typography.Display1>
                 <ShowCase large>
                     <ShowCase.Item>
