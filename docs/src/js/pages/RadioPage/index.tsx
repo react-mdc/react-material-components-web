@@ -145,12 +145,6 @@ export default function RadioPage() {
                             <td />
                             <td>Render disabled radio.</td>
                         </tr>
-                        <tr>
-                            <td><code>indeterminate</code></td>
-                            <td><code>boolean</code></td>
-                            <td />
-                            <td>Render indeterminate state radio.</td>
-                        </tr>
                     </tbody>
                 </Table>
 
@@ -258,12 +252,6 @@ export default function RadioPage() {
                             <td><code>boolean</code></td>
                             <td />
                             <td>Render disabled radio.</td>
-                        </tr>
-                        <tr>
-                            <td><code>indeterminate</code></td>
-                            <td><code>boolean</code></td>
-                            <td />
-                            <td>Render indeterminate state radio.</td>
                         </tr>
                         <tr>
                             <td><code>defaultChecked</code></td>

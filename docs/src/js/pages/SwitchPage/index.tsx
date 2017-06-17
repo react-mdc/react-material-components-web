@@ -109,12 +109,6 @@ export default function SwitchPage() {
                             <td />
                             <td>Render disabled switch.</td>
                         </tr>
-                        <tr>
-                            <td><code>indeterminate</code></td>
-                            <td><code>boolean</code></td>
-                            <td />
-                            <td>Render indeterminate state switch.</td>
-                        </tr>
                     </tbody>
                 </Table>
 
@@ -222,12 +216,6 @@ export default function SwitchPage() {
                             <td><code>boolean</code></td>
                             <td />
                             <td>Render disabled switch.</td>
-                        </tr>
-                        <tr>
-                            <td><code>indeterminate</code></td>
-                            <td><code>boolean</code></td>
-                            <td />
-                            <td>Render indeterminate state switch.</td>
                         </tr>
                         <tr>
                             <td><code>defaultChecked</code></td>
