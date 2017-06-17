@@ -35,7 +35,7 @@ function Content() {
                     Components
                 </Typography.Display1>
                 <LayoutGrid margin={0}>
-                    <ComponentItem to="/new/button">
+                    <ComponentItem to="/button">
                         <Typography.Headline adjustMargin>
                             Button
                         </Typography.Headline>
@@ -44,7 +44,7 @@ function Content() {
                         </Typography.Body2>
                     </ComponentItem>
 
-                    <ComponentItem to="/new/card">
+                    <ComponentItem to="/card">
                         <Typography.Headline adjustMargin>
                             Card
                         </Typography.Headline>
@@ -53,7 +53,7 @@ function Content() {
                         </Typography.Body2>
                     </ComponentItem>
 
-                    <ComponentItem to="/new/checkbox">
+                    <ComponentItem to="/checkbox">
                         <Typography.Headline adjustMargin>
                             Checkbox
                         </Typography.Headline>
@@ -62,7 +62,7 @@ function Content() {
                         </Typography.Body2>
                     </ComponentItem>
 
-                    <ComponentItem to="/new/dialog">
+                    <ComponentItem to="/dialog">
                         <Typography.Headline adjustMargin>
                             Dialog
                         </Typography.Headline>
@@ -71,7 +71,7 @@ function Content() {
                         </Typography.Body2>
                     </ComponentItem>
 
-                    <ComponentItem to="/new/elevation">
+                    <ComponentItem to="/elevation">
                         <Typography.Headline adjustMargin>
                             Elevation
                         </Typography.Headline>
@@ -80,7 +80,7 @@ function Content() {
                         </Typography.Body2>
                     </ComponentItem>
 
-                    <ComponentItem to="/new/fab">
+                    <ComponentItem to="/fab">
                         <Typography.Headline adjustMargin>
                             Fab
                         </Typography.Headline>
@@ -89,7 +89,7 @@ function Content() {
                         </Typography.Body2>
                     </ComponentItem>
 
-                    <ComponentItem to="/new/form-field">
+                    <ComponentItem to="/form-field">
                         <Typography.Headline adjustMargin>
                             Form Field
                         </Typography.Headline>
@@ -98,7 +98,7 @@ function Content() {
                         </Typography.Body2>
                     </ComponentItem>
 
-                    <ComponentItem to="/new/layout-grid">
+                    <ComponentItem to="/layout-grid">
                         <Typography.Headline adjustMargin>
                             Layout Grid
                         </Typography.Headline>
@@ -107,7 +107,7 @@ function Content() {
                         </Typography.Body2>
                     </ComponentItem>
 
-                    <ComponentItem to="/new/radio">
+                    <ComponentItem to="/radio">
                         <Typography.Headline adjustMargin>
                             Radio
                         </Typography.Headline>
@@ -116,7 +116,7 @@ function Content() {
                         </Typography.Body2>
                     </ComponentItem>
 
-                    <ComponentItem to="/new/ripple">
+                    <ComponentItem to="/ripple">
                         <Typography.Headline adjustMargin>
                             Ripple
                         </Typography.Headline>
@@ -125,7 +125,7 @@ function Content() {
                         </Typography.Body2>
                     </ComponentItem>
 
-                    <ComponentItem to="/new/switch">
+                    <ComponentItem to="/switch">
                         <Typography.Headline adjustMargin>
                             Switch
                         </Typography.Headline>
@@ -134,7 +134,7 @@ function Content() {
                         </Typography.Body2>
                     </ComponentItem>
 
-                    <ComponentItem to="/new/textfield">
+                    <ComponentItem to="/textfield">
                         <Typography.Headline adjustMargin>
                             Textfield
                         </Typography.Headline>
@@ -143,7 +143,7 @@ function Content() {
                         </Typography.Body2>
                     </ComponentItem>
 
-                    <ComponentItem to="/new/typography">
+                    <ComponentItem to="/typography">
                         <Typography.Headline adjustMargin>
                             Typography
                         </Typography.Headline>

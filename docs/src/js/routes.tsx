@@ -4,13 +4,14 @@ import { hashHistory, Route, Router } from "react-router";
 
 import ComponentPage from "app/js/components/ComponentPage";
 
-import BasicsPage from "./pages/BasicsPage";
+import Container from "./Container";
 import ButtonPage from "./pages/ButtonPage";
 import CardPage from "./pages/CardPage";
 import CheckboxPage from "./pages/CheckboxPage";
+import ComponentsPage from "./pages/ComponentsPage";
 import DialogPage from "./pages/DialogPage";
 import ElevationPage from "./pages/ElevationPage";
-import FabPage from "./pages/FABPage";
+import FABPage from "./pages/FABPage";
 import FormFieldPage from "./pages/FormFieldPage";
 import LayoutGridPage from "./pages/LayoutGridPage";
 import RadioPage from "./pages/RadioPage";
@@ -19,43 +20,16 @@ import SwitchPage from "./pages/SwitchPage";
 import TextfieldPage from "./pages/TextfieldPage";
 import TypographyPage from "./pages/TypographyPage";
 
-import Container from "./Container";
 import NotFoundPage from "./pages/NotFoundPage";
 import WelcomePage from "./pages/WelcomePage";
 
-import NewContainer from "./NewContainer";
-import NewButtonPage from "./newPages/ButtonPage";
-import NewCardPage from "./newPages/CardPage";
-import NewCheckboxPage from "./newPages/CheckboxPage";
-import ComponentsPage from "./newPages/ComponentsPage";
-import NewDialogPage from "./newPages/DialogPage";
-import NewElevationPage from "./newPages/ElevationPage";
-import NewFABPage from "./newPages/FABPage";
-import NewFormFieldPage from "./newPages/FormFieldPage";
-import NewLayoutGridPage from "./newPages/LayoutGridPage";
-import NewRadioPage from "./newPages/RadioPage";
-import NewRipplePage from "./newPages/RipplePage";
-import NewSwitchPage from "./newPages/SwitchPage";
-import NewTextfieldPage from "./newPages/TextfieldPage";
-import NewTypographyPage from "./newPages/TypographyPage";
-import NewWelcomePage from "./newPages/WelcomePage";
-
-function MainContainer(props) {
+function MainConteinr(props) {
     let {
         children,
         ...p,
     } = props;
     children = children || <WelcomePage />;
     return <Container children={children} {...p} />;
-}
-
-function NewMainConteinr(props) {
-    let {
-        children,
-        ...p,
-    } = props;
-    children = children || <NewWelcomePage />;
-    return <NewContainer children={children} {...p} />;
 }
 
 function scrollToTop() {
@@ -65,37 +39,21 @@ function scrollToTop() {
 export default function MainRouter() {
     return (
         <Router onUpdate={scrollToTop} history={hashHistory}>
-            <Route path="/new/" component={NewMainConteinr}>
+            <Route path="/" component={MainConteinr}>
                 <Route path="components" component={ComponentsPage} />
-                <Route path="button" component={NewButtonPage} />
-                <Route path="card" component={NewCardPage} />
-                <Route path="checkbox" component={NewCheckboxPage} />
-                <Route path="dialog" component={NewDialogPage} />
-                <Route path="elevation" component={NewElevationPage} />
-                <Route path="fab" component={NewFABPage} />
-                <Route path="form-field" component={NewFormFieldPage} />
-                <Route path="layout-grid" component={NewLayoutGridPage} />
-                <Route path="radio" component={NewRadioPage} />
-                <Route path="ripple" component={NewRipplePage} />
-                <Route path="switch" component={NewSwitchPage} />
-                <Route path="textfield" component={NewTextfieldPage} />
-                <Route path="typography" component={NewTypographyPage} />
-            </Route>
-            <Route path="/" component={MainContainer}>
-                <Route path="basics" component={BasicsPage} />
-                <Route path="typography" component={TypographyPage} />
-                <Route path="elevation" component={ElevationPage} />
                 <Route path="button" component={ButtonPage} />
-                <Route path="fab" component={FabPage} />
                 <Route path="card" component={CardPage} />
+                <Route path="checkbox" component={CheckboxPage} />
+                <Route path="dialog" component={DialogPage} />
+                <Route path="elevation" component={ElevationPage} />
+                <Route path="fab" component={FABPage} />
                 <Route path="form-field" component={FormFieldPage} />
+                <Route path="layout-grid" component={LayoutGridPage} />
                 <Route path="radio" component={RadioPage} />
                 <Route path="ripple" component={RipplePage} />
-                <Route path="checkbox" component={CheckboxPage} />
                 <Route path="switch" component={SwitchPage} />
                 <Route path="textfield" component={TextfieldPage} />
-                <Route path="layout-grid" component={LayoutGridPage} />
-                <Route path="dialog" component={DialogPage} />
+                <Route path="typography" component={TypographyPage} />
             </Route>
             <Route path="*" component={NotFoundPage} />
         </Router>

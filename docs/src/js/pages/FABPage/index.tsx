@@ -1,117 +1,110 @@
 import * as React from "react";
+import { Link } from "react-router";
+
+import * as classNames from "classnames";
 
 import FAB from "@react-mdc/fab";
-import {
-    Body2,
-    Display1,
-    Title,
-} from "@react-mdc/typography/lib/shortcuts";
+import Typography from "@react-mdc/typography";
 
 import Code from "app/js/components/Code";
-import { MaterialIcon, Pen } from "app/js/components/Icon";
+import ComponentPage from "app/js/components/ComponentPage";
+import { MaterialIcon } from "app/js/components/Icon";
 import Name from "app/js/components/Name";
-import PageContainer from "app/js/components/PageContainer";
-import PageTitle from "app/js/components/PageTitle";
-import {
-    Demo,
-} from "app/js/components/sections";
+import ShowCase from "app/js/components/ShowCase";
 import Table from "app/js/components/Table";
-import { stripIgnored } from "app/js/utils/code";
 
-import * as BasicDemoCode from "raw-loader!./basic.example.tsx";
-
-function FieldSet(props) {
-    let { style } = props;
-    style = {
-        ...style,
-        margin: 16,
-    };
+export default function CheckboxPage() {
     return (
-        <fieldset {...props} style={style} />
-    );
-}
+        <ComponentPage>
+            <ComponentPage.Content>
+                <Typography.Display1 adjustMargin>
+                    Checkbox
+                </Typography.Display1>
+                <ShowCase large>
+                    <ShowCase.Item>
+                        <FAB>
+                            <FAB.Icon>
+                                <MaterialIcon>edit</MaterialIcon>
+                            </FAB.Icon>
+                        </FAB>
+                    </ShowCase.Item>
+                </ShowCase>
+                <Typography.Body2>
+                    FAB component is a React wrapper of mdc-fab (Float Action Button) component.
+                </Typography.Body2>
 
-function BasicDemo() {
-    return (
-        <div>
-            <FieldSet>
-                <legend>FAB</legend>
-                <FAB><FAB.Icon><Pen /></FAB.Icon></FAB>
-            </FieldSet>
-            <FieldSet>
-                <legend>Mini FAB</legend>
-                <FAB mini><FAB.Icon><Pen /></FAB.Icon></FAB>
-            </FieldSet>
-            <FieldSet>
-                <legend>Plain FAB</legend>
-                <FAB plain><FAB.Icon><MaterialIcon>face</MaterialIcon></FAB.Icon></FAB>
-            </FieldSet>
-            <FieldSet>
-                <legend>Plain mini FAB</legend>
-                <FAB plain mini><FAB.Icon><MaterialIcon>face</MaterialIcon></FAB.Icon></FAB>
-            </FieldSet>
-        </div>
-    );
-}
+                <Typography.Headline>
+                    Installation
+                </Typography.Headline>
+                <Code value={`$ npm install --save @react-mdc/fab`} mode="shell" />
 
-export default function ButtonPage() {
-    return (
-        <PageContainer>
-            <PageTitle>
-                FAB Component
-            </PageTitle>
-            <Body2>
-                {/* tslint:disable:max-line-length */}
-                <a href="https://github.com/material-components/material-components-web/tree/master/packages/mdc-fab"
-                    target="_blank>">
-                    {/* tslint:enable:max-line-length */}
-                    MDC FAB
-                </a> (Floating Action Button) Component
-            </Body2>
+                <Typography.Headline>
+                    Usage
+                </Typography.Headline>
 
-            <Display1>Container</Display1>
-            <Name>FAB</Name>
-            <Body2>
-                FAB container component.
-            </Body2>
+                <Typography.Title>
+                    Simple FAB
+                </Typography.Title>
+                <Code value={`
+<FAB>
+    <FAB.Icon>
+        <MaterialIcon>add</MaterialIcon>
+    </FAB.Icon>
+</FAB>
+`} />
+                <ShowCase>
+                    <ShowCase.Item>
+                        <FAB>
+                            <FAB.Icon>
+                                <MaterialIcon>add</MaterialIcon>
+                            </FAB.Icon>
+                        </FAB>
+                    </ShowCase.Item>
+                </ShowCase>
 
-            <Title>Properties</Title>
-            <Table>
-                <thead>
-                    <tr>
-                        <th>Property</th>
-                        <th>Type</th>
-                        <th>Required</th>
-                        <th>Description</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><code>mini</code></td>
-                        <td><code>boolean</code></td>
-                        <td />
-                        <td>Render mini FAB.</td>
-                    </tr>
-                    <tr>
-                        <td><code>plain</code></td>
-                        <td><code>boolean</code></td>
-                        <td />
-                        <td>Render plain FAB.</td>
-                    </tr>
-                </tbody>
-            </Table>
+                <Typography.Headline>Components</Typography.Headline>
 
-            <Display1>Icon</Display1>
-            <Name>FAB.Icon</Name>
-            <Body2>
-                FAB icon container. Render icon of FAB inside of this component.
-            </Body2>
+                <Typography.Title>FAB</Typography.Title>
+                <Typography.Subheading2>Name</Typography.Subheading2>
+                <Name>FAB</Name>
+                <Typography.Subheading2>Description</Typography.Subheading2>
+                <Typography.Body2>
+                    Top-level container of FAB components.
+                </Typography.Body2>
+                <Typography.Subheading2>Properties</Typography.Subheading2>
+                <Table>
+                    <thead>
+                        <tr>
+                            <th>Property</th>
+                            <th>Type</th>
+                            <th>Required</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>mini</code></td>
+                            <td><code>boolean</code></td>
+                            <td />
+                            <td>Render mini FAB.</td>
+                        </tr>
+                        <tr>
+                            <td><code>plain</code></td>
+                            <td><code>boolean</code></td>
+                            <td />
+                            <td>Render plain FAB.</td>
+                        </tr>
+                    </tbody>
+                </Table>
 
-            <Title>Usage</Title>
-            <Code value={stripIgnored(BasicDemoCode)} />
-            <Demo>
-                <BasicDemo />
-            </Demo>
-        </PageContainer>
+                <Typography.Title>Icon</Typography.Title>
+                <Typography.Subheading2>Name</Typography.Subheading2>
+                <Name>FAB.Icon</Name>
+                <Typography.Subheading2>Description</Typography.Subheading2>
+                <Typography.Body2>
+                    FAB icon component.
+                </Typography.Body2>
+            </ComponentPage.Content>
+        </ComponentPage>
     );
 }

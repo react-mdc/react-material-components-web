@@ -1,261 +1,307 @@
 import * as React from "react";
+import { Link } from "react-router";
+
+import * as classNames from "classnames";
 
 import Button from "@react-mdc/button";
 import Dialog from "@react-mdc/dialog";
-import {
-    Body2,
-    Display1,
-    Title,
-} from "@react-mdc/typography/lib/shortcuts";
+import FormField from "@react-mdc/form-field";
+import Typography from "@react-mdc/typography";
 
 import Code from "app/js/components/Code";
+import ComponentPage from "app/js/components/ComponentPage";
 import Name from "app/js/components/Name";
-import PageContainer from "app/js/components/PageContainer";
-import PageTitle from "app/js/components/PageTitle";
-import {
-    Demo,
-} from "app/js/components/sections";
+import ShowCase from "app/js/components/ShowCase";
 import Table from "app/js/components/Table";
-import { stripIgnored } from "app/js/utils/code";
 
-import * as BasicDemoCode from "raw-loader!./basic.example.tsx";
-
-class BasicDemo extends React.Component<{}, {}> {
-    public state: {
-        open: boolean,
-    } = { open: false };
+class SimpleDialog extends React.Component<{}, {}> {
+    public state = {
+        open: false,
+    };
 
     public render() {
         return (
             <div>
-                <Button raised primary onClick={this.handleButtonClick}>
+                <Button raised onClick={this.handleOpen}>
                     Open Dialog
                 </Button>
-                {this.renderDialog()}
+                <Dialog open={this.state.open}
+                    onOpen={this.handleOpen}
+                    onClose={this.handleClose}>
+                    <Dialog.Surface>
+                        <Dialog.Header>
+                            <Dialog.Header.Title>
+                                Dialog Title
+                            </Dialog.Header.Title>
+                        </Dialog.Header>
+                        <Dialog.Body>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                            sed do eiusmod tempor incididunt ut labore et dolore
+                            magna aliqua. Ut enim ad minim veniam, quis nostrud
+                            exercitation ullamco laboris nisi ut aliquip ex ea
+                            commodo consequat. Duis aute irure dolor in reprehenderit
+                            in voluptate velit esse cillum dolore eu fugiat nulla
+                            pariatur. Excepteur sint occaecat cupidatat non proident,
+                            sunt in culpa qui officia deserunt mollit anim id est
+                            laborum.
+                        </Dialog.Body>
+                        <Dialog.Footer>
+                            <Dialog.Footer.Button type="cancel">
+                                Decline
+                            </Dialog.Footer.Button>
+                            <Dialog.Footer.Button type="accept">
+                                Accept
+                            </Dialog.Footer.Button>
+                        </Dialog.Footer>
+                    </Dialog.Surface>
+                    <Dialog.Backdrop />
+                </Dialog>
             </div>
         );
     }
 
-    private handleButtonClick = () => {
-        this.setOpen(true);
-    }
-
-    private handleAccept = () => {
-        // tslint:disable:no-console
-        console.log("Accept");
-        // tslint:enable:no-console
-    }
-
-    private handleCancel = () => {
-        // tslint:disable:no-console
-        console.log("Decline");
-        // tslint:enable:no-console
-    }
-
-    private handleOpen = () => {
-        this.setOpen(true);
-    }
-
-    private handleClose = () => {
-        this.setOpen(false);
-    }
-
-    private setOpen(open: boolean) {
-        this.setState({ open });
-    }
-
-    private renderDialog() {
-        return (
-            <Dialog open={this.state.open}
-                onAccept={this.handleAccept}
-                onCancel={this.handleCancel}
-                onOpen={this.handleOpen}
-                onClose={this.handleClose}>
-                <Dialog.Surface>
-                    <Dialog.Header>
-                        <Dialog.Header.Title>
-                            Dialog Title
-                        </Dialog.Header.Title>
-                    </Dialog.Header>
-                    <Dialog.Body>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                        sed do eiusmod tempor incididunt ut labore et dolore
-                        magna aliqua. Ut enim ad minim veniam, quis nostrud
-                        exercitation ullamco laboris nisi ut aliquip ex ea
-                        commodo consequat. Duis aute irure dolor in reprehenderit
-                        in voluptate velit esse cillum dolore eu fugiat nulla
-                        pariatur. Excepteur sint occaecat cupidatat non proident,
-                        sunt in culpa qui officia deserunt mollit anim id est
-                        laborum.
-                    </Dialog.Body>
-                    <Dialog.Footer>
-                        <Dialog.Footer.Button type="cancel">
-                            Decline
-                        </Dialog.Footer.Button>
-                        <Dialog.Footer.Button type="accept">
-                            Accept
-                        </Dialog.Footer.Button>
-                    </Dialog.Footer>
-                </Dialog.Surface>
-                <Dialog.Backdrop />
-            </Dialog>
-        );
-    }
+    private handleOpen = () => this.setState({ open: true });
+    private handleClose = () => this.setState({ open: false });
 }
 
 export default function DialogPage() {
     return (
-        <PageContainer>
-            <PageTitle>
-                Dialog Component
-            </PageTitle>
-            <Body2>
-                {/* tslint:disable:max-line-length */}
-                <a href="https://github.com/material-components/material-components-web/tree/master/packages/mdc-dialog"
-                    target="_blank>">
-                    {/* tslint:enable:max-line-length */}
-                    MDC Dialog
-                </a> Component
-            </Body2>
+        <ComponentPage>
+            <ComponentPage.Content>
+                <Typography.Display1 adjustMargin>
+                    Dialog
+                </Typography.Display1>
+                <ShowCase large>
+                    <ShowCase.Item>
+                        <SimpleDialog />
+                    </ShowCase.Item>
+                </ShowCase>
+                <Typography.Body2>
+                    Dialog component is a React wrapper of mdc-dialog component.
+                </Typography.Body2>
 
-            <Display1>Container</Display1>
-            <Name>Dialog</Name>
-            <Body2>
-                Container is top-level component of dialog.
-                It contains top-level API such as event handler, open/close property.
-            </Body2>
+                <Typography.Headline>
+                    Installation
+                </Typography.Headline>
+                <Code value={`$ npm install --save @react-mdc/dialog`} mode="shell" />
 
-            <Title>Properties</Title>
-            <Table>
-                <thead>
-                    <tr>
-                        <th>Property</th>
-                        <th>Type</th>
-                        <th>Required</th>
-                        <th>Description</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><code>dark</code></td>
-                        <td><code>boolean</code></td>
-                        <td />
-                        <td>Enable dark mode.</td>
-                    </tr>
-                    <tr>
-                        <td><code>open</code></td>
-                        <td><code>boolean</code></td>
-                        <td />
-                        <td>Open/Close dialog.</td>
-                    </tr>
-                    <tr>
-                        <td><code>onAccept</code></td>
-                        <td><code>(Container.Meta) => void</code></td>
-                        <td />
-                        <td>Acception event handler.</td>
-                    </tr>
-                    <tr>
-                        <td><code>onOpen</code></td>
-                        <td><code>(Container.Meta) => void</code></td>
-                        <td />
-                        <td>Opening event handler.</td>
-                    </tr>
-                    <tr>
-                        <td><code>onCancel</code></td>
-                        <td><code>(Container.Meta) => void</code></td>
-                        <td />
-                        <td>Cancellation event handler.</td>
-                    </tr>
-                    <tr>
-                        <td><code>onClose</code></td>
-                        <td><code>(Container.Meta) => void</code></td>
-                        <td />
-                        <td>Closing event handler.</td>
-                    </tr>
-                </tbody>
-            </Table>
+                <Typography.Headline>
+                    Usage
+                </Typography.Headline>
 
-            <Display1>
-                Backdrop
-            </Display1>
-            <Name>Dialog.Backdrop</Name>
-            <Body2>Dialog backdrop component.</Body2>
+                <Typography.Title>
+                    Simple Dialog
+                </Typography.Title>
+                <Code value={`
+class SimpleDialog extends React.Component<{}, {}> {
+    public state = {
+        open: false,
+    };
 
-            <Display1>
-                Body
-            </Display1>
-            <Name>Dialog.Body</Name>
-            <Body2>Dialog body container.</Body2>
+    public render() {
+        return (
+            <div>
+                <Button raised onClick={this.handleOpen}>
+                    Open Dialog
+                </Button>
+                <Dialog open={this.state.open}
+                    onOpen={this.handleOpen}
+                    onClose={this.handleClose}>
+                    <Dialog.Surface>
+                        <Dialog.Header>
+                            <Dialog.Header.Title>
+                                Dialog Title
+                            </Dialog.Header.Title>
+                        </Dialog.Header>
+                        <Dialog.Body>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                            sed do eiusmod tempor incididunt ut labore et dolore
+                            magna aliqua. Ut enim ad minim veniam, quis nostrud
+                            exercitation ullamco laboris nisi ut aliquip ex ea
+                            commodo consequat. Duis aute irure dolor in reprehenderit
+                            in voluptate velit esse cillum dolore eu fugiat nulla
+                            pariatur. Excepteur sint occaecat cupidatat non proident,
+                            sunt in culpa qui officia deserunt mollit anim id est
+                            laborum.
+                        </Dialog.Body>
+                        <Dialog.Footer>
+                            <Dialog.Footer.Button type="cancel">
+                                Decline
+                            </Dialog.Footer.Button>
+                            <Dialog.Footer.Button type="accept">
+                                Accept
+                            </Dialog.Footer.Button>
+                        </Dialog.Footer>
+                    </Dialog.Surface>
+                    <Dialog.Backdrop />
+                </Dialog>
+            </div>
+        );
+    }
 
-            <Title>Properties</Title>
-            <Table>
-                <thead>
-                    <tr>
-                        <th>Property</th>
-                        <th>Type</th>
-                        <th>Required</th>
-                        <th>Description</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><code>scrollable</code></td>
-                        <td><code>boolean</code></td>
-                        <td />
-                        <td>Enable scroll.</td>
-                    </tr>
-                </tbody>
-            </Table>
+    private handleOpen = () => this.setState({ open: true });
+    private handleClose = () => this.setState({ open: false });
+}
+`} />
+                <ShowCase>
+                    <ShowCase.Item>
+                        <SimpleDialog />
+                    </ShowCase.Item>
+                </ShowCase>
 
-            <Display1>
-                Header
-            </Display1>
-            <Name>Dialog.Header</Name>
-            <Body2>Dialog header container.</Body2>
+                <Typography.Headline>Components</Typography.Headline>
 
-            <Display1>
-                Header Title
-            </Display1>
-            <Name>Dialog.Header.Title</Name>
-            <Body2>Dialog header title component.</Body2>
+                <Typography.Title>Dialog</Typography.Title>
+                <Typography.Subheading2>Name</Typography.Subheading2>
+                <Name>Dialog</Name>
+                <Typography.Subheading2>Description</Typography.Subheading2>
+                <Typography.Body2>
+                    Top-level container of dialog components.
+                </Typography.Body2>
+                <Typography.Subheading2>Properties</Typography.Subheading2>
+                <Table>
+                    <thead>
+                        <tr>
+                            <th>Property</th>
+                            <th>Type</th>
+                            <th>Required</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>dark</code></td>
+                            <td><code>boolean</code></td>
+                            <td />
+                            <td>Render dark dialog.</td>
+                        </tr>
+                        <tr>
+                            <td><code>open</code></td>
+                            <td><code>boolean</code></td>
+                            <td />
+                            <td>Render open dialog.</td>
+                        </tr>
+                        <tr>
+                            <td><code>onAccept</code></td>
+                            <td><code>(meta) => void</code></td>
+                            <td />
+                            <td>Handler for accept event.</td>
+                        </tr>
+                        <tr>
+                            <td><code>onOpen</code></td>
+                            <td><code>(meta) => void</code></td>
+                            <td />
+                            <td>Handler for open event.</td>
+                        </tr>
+                        <tr>
+                            <td><code>onCancel</code></td>
+                            <td><code>(meta) => void</code></td>
+                            <td />
+                            <td>Handler for cancel event.</td>
+                        </tr>
+                        <tr>
+                            <td><code>onClose</code></td>
+                            <td><code>(meta) => void</code></td>
+                            <td />
+                            <td>Handler for close event.</td>
+                        </tr>
+                    </tbody>
+                </Table>
 
-            <Display1>
-                Footer
-            </Display1>
-            <Name>Dialog.Footer</Name>
-            <Body2>Dialog footer container.</Body2>
+                <Typography.Title>Backdrop</Typography.Title>
+                <Typography.Subheading2>Name</Typography.Subheading2>
+                <Name>Dialog.Backdrop</Name>
+                <Typography.Subheading2>Description</Typography.Subheading2>
+                <Typography.Body2>
+                    Dialog backdrop component.
+                </Typography.Body2>
 
-            <Display1>
-                Footer Button
-            </Display1>
-            <Name>Dialog.Button</Name>
-            <Body2>Dialog footer button container.</Body2>
+                <Typography.Title>Body</Typography.Title>
+                <Typography.Subheading2>Name</Typography.Subheading2>
+                <Name>Dialog.Body</Name>
+                <Typography.Subheading2>Description</Typography.Subheading2>
+                <Typography.Body2>
+                    Dialog body section.
+                </Typography.Body2>
+                <Typography.Subheading2>Properties</Typography.Subheading2>
+                <Table>
+                    <thead>
+                        <tr>
+                            <th>Property</th>
+                            <th>Type</th>
+                            <th>Required</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>scrollable</code></td>
+                            <td><code>boolean</code></td>
+                            <td />
+                            <td>Render scrollable long dialog body.</td>
+                        </tr>
+                    </tbody>
+                </Table>
 
-            <Title>Properties</Title>
-            <Table>
-                <thead>
-                    <tr>
-                        <th>Property</th>
-                        <th>Type</th>
-                        <th>Required</th>
-                        <th>Description</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><code>type</code></td>
-                        <td><code>"accept" | "cancel"</code></td>
-                        <td>&#10004;</td>
-                        <td>Type of footer button.</td>
-                    </tr>
-                </tbody>
-            </Table>
+                <Typography.Title>Surface</Typography.Title>
+                <Typography.Subheading2>Name</Typography.Subheading2>
+                <Name>Dialog.Surface</Name>
+                <Typography.Subheading2>Description</Typography.Subheading2>
+                <Typography.Body2>
+                    Dialog surface component.
+                </Typography.Body2>
 
-            <Title>Usage</Title>
-            <Code value={stripIgnored(BasicDemoCode)} />
-            <Demo>
-                <BasicDemo />
-            </Demo>
-        </PageContainer>
+                <Typography.Title>Footer</Typography.Title>
+                <Typography.Subheading2>Name</Typography.Subheading2>
+                <Name>Dialog.Footer</Name>
+                <Typography.Subheading2>Description</Typography.Subheading2>
+                <Typography.Body2>
+                    Dialog footer section.
+                </Typography.Body2>
+
+                <Typography.Title>Footer Button</Typography.Title>
+                <Typography.Subheading2>Name</Typography.Subheading2>
+                <Name>Dialog.Footer.Button</Name>
+                <Typography.Subheading2>Description</Typography.Subheading2>
+                <Typography.Body2>
+                    Dialog footer button component.
+                </Typography.Body2>
+                <Typography.Subheading2>Properties</Typography.Subheading2>
+                <Table>
+                    <thead>
+                        <tr>
+                            <th>Property</th>
+                            <th>Type</th>
+                            <th>Required</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>type</code></td>
+                            <td><code>"accept" | "cancel"</code></td>
+                            <td>&#10004;</td>
+                            <td>Type of footer button.</td>
+                        </tr>
+                    </tbody>
+                </Table>
+
+                <Typography.Title>Header</Typography.Title>
+                <Typography.Subheading2>Name</Typography.Subheading2>
+                <Name>Dialog.Header</Name>
+                <Typography.Subheading2>Description</Typography.Subheading2>
+                <Typography.Body2>
+                    Dialog header section.
+                </Typography.Body2>
+
+                <Typography.Title>Header Title</Typography.Title>
+                <Typography.Subheading2>Name</Typography.Subheading2>
+                <Name>Dialog.Header.Title</Name>
+                <Typography.Subheading2>Description</Typography.Subheading2>
+                <Typography.Body2>
+                    Dialog header title component.
+                </Typography.Body2>
+            </ComponentPage.Content>
+        </ComponentPage>
     );
 }

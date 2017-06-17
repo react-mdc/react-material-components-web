@@ -41,43 +41,43 @@ export default class ComponentPage extends React.Component<React.HTMLProps<HTMLD
                         <Drawer.Permanent className={styles["component-drawer"]}>
                             <Drawer.Permanent.Content>
                                 <ul className={styles["component-list"]}>
-                                    <NavItem to="/new/button">
+                                    <NavItem to="/button">
                                         Button
                                     </NavItem>
-                                    <NavItem to="/new/card">
+                                    <NavItem to="/card">
                                         Card
                                     </NavItem>
-                                    <NavItem to="/new/checkbox">
+                                    <NavItem to="/checkbox">
                                         Checkbox
                                     </NavItem>
-                                    <NavItem to="/new/dialog">
+                                    <NavItem to="/dialog">
                                         Dialog
                                     </NavItem>
-                                    <NavItem to="/new/elevation">
+                                    <NavItem to="/elevation">
                                         Elevation
                                     </NavItem>
-                                    <NavItem to="/new/fab">
+                                    <NavItem to="/fab">
                                         Fab
                                     </NavItem>
-                                    <NavItem to="/new/form-field">
+                                    <NavItem to="/form-field">
                                         Form Field
                                     </NavItem>
-                                    <NavItem to="/new/layout-grid">
+                                    <NavItem to="/layout-grid">
                                         Layout Grid
                                     </NavItem>
-                                    <NavItem to="/new/radio">
+                                    <NavItem to="/radio">
                                         Radio
                                     </NavItem>
-                                    <NavItem to="/new/ripple">
+                                    <NavItem to="/ripple">
                                         Ripple
                                     </NavItem>
-                                    <NavItem to="/new/switch">
+                                    <NavItem to="/switch">
                                         Switch
                                     </NavItem>
-                                    <NavItem to="/new/textfield">
+                                    <NavItem to="/textfield">
                                         Textfield
                                     </NavItem>
-                                    <NavItem to="/new/typography">
+                                    <NavItem to="/typography">
                                         Typography
                                     </NavItem>
                                 </ul>

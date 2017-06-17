@@ -1,217 +1,179 @@
 import * as React from "react";
+import { Link } from "react-router";
 
-import FormField from "@react-mdc/form-field";
-import TextField from "@react-mdc/textfield";
-import {
-    Body2,
-    Display1,
-    Title,
-} from "@react-mdc/typography/lib/shortcuts";
+import * as classNames from "classnames";
+
+import Textfield from "@react-mdc/textfield";
+import Typography from "@react-mdc/typography";
 
 import Code from "app/js/components/Code";
+import ComponentPage from "app/js/components/ComponentPage";
 import Name from "app/js/components/Name";
-import PageContainer from "app/js/components/PageContainer";
-import PageTitle from "app/js/components/PageTitle";
-import {
-    Demo,
-} from "app/js/components/sections";
+import ShowCase from "app/js/components/ShowCase";
 import Table from "app/js/components/Table";
-import { stripIgnored } from "app/js/utils/code";
-
-import * as BasicDemoCode from "raw-loader!./basic.example.tsx";
-
-function FieldSet(props) {
-    let { style } = props;
-    style = {
-        ...style,
-        margin: 16,
-    };
-    return (
-        <fieldset {...props} style={style} />
-    );
-}
-
-function BasicDemo() {
-    return (
-        <div>
-            <FieldSet>
-                <legend>Basic</legend>
-                <FormField style={{ margin: 16 }}>
-                    <TextField>
-                        <TextField.Input id="textfield1" autoComplete="email" />
-                        <TextField.Label htmlFor="textfield1">
-                            Email Address
-                        </TextField.Label>
-                    </TextField>
-                </FormField>
-            </FieldSet>
-            <FieldSet>
-                <legend>Multiline</legend>
-                <FormField style={{ margin: 16 }}>
-                    <TextField multiline>
-                        <TextField.Input.Meta>
-                            <textarea
-                                id="textfield2"
-                                style={{ width: "100%" }}
-                                rows={8}
-                                cols={40} />
-                        </TextField.Input.Meta>
-                        <TextField.Label htmlFor="textfield2">
-                            Comment
-                        </TextField.Label>
-                    </TextField>
-                </FormField>
-            </FieldSet>
-            <FieldSet>
-                <legend>Full Width</legend>
-                <TextField.Simple
-                    inputId="textfield3"
-                    placeholder="Title"
-                    fullwidth />
-                <TextField fullwidth multiline>
-                    <TextField.Input.Meta>
-                        <textarea
-                            rows={8}
-                            cols={40}
-                            id="textfield4"
-                            placeholder="Content" />
-                    </TextField.Input.Meta>
-                </TextField>
-            </FieldSet>
-        </div>
-    );
-}
 
 export default function TextfieldPage() {
     return (
-        <PageContainer>
-            <PageTitle>
-                Textfield Component
-            </PageTitle>
-            <Body2>
-                {/* tslint:disable:max-line-length */}
-                <a href="https://github.com/material-components/material-components-web/tree/master/packages/mdc-textfield"
-                    target="_blank>">
-                    {/* tslint:enable:max-line-length */}
-                    MDC Textfield
-                </a> Component
-            </Body2>
+        <ComponentPage>
+            <ComponentPage.Content>
+                <Typography.Display1 adjustMargin>
+                    Textfield
+                </Typography.Display1>
+                <ShowCase large>
+                    <ShowCase.Item>
+                        <Textfield.Simple placeholder="Type Here..." />
+                    </ShowCase.Item>
+                </ShowCase>
+                <Typography.Body2>
+                    Textfield component is a React wrapper of mdc-textfield component.
+                </Typography.Body2>
 
-            <Display1>Textfield</Display1>
-            <Name>TextField.Simple</Name>
-            <Body2>
-                Material textfield component. This component is common composition of textfield sub-components.
-                You can customize textfield by composing your own sub-components.
-            </Body2>
-            <Body2>
-                It has no Meta component since it is just a composition.
-            </Body2>
+                <Typography.Headline>
+                    Installation
+                </Typography.Headline>
+                <Code value={`$ npm install --save @react-mdc/textfield`} mode="shell" />
 
-            <Title>Properties</Title>
-            <Table>
-                <thead>
-                    <tr>
-                        <th>Property</th>
-                        <th>Type</th>
-                        <th>Required</th>
-                        <th>Description</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><code>inputId</code></td>
-                        <td><code>string</code></td>
-                        <td />
-                        <td>id property of Input component.</td>
-                    </tr>
-                    <tr>
-                        <td><code>name</code></td>
-                        <td><code>string</code></td>
-                        <td />
-                        <td>name property of Input component.</td>
-                    </tr>
-                    <tr>
-                        <td><code>value</code></td>
-                        <td><code>string</code></td>
-                        <td />
-                        <td>value property of Input component.</td>
-                    </tr>
-                    <tr>
-                        <td><code>onChange</code></td>
-                        <td><code>(event) => void</code></td>
-                        <td />
-                        <td>On change event handler.</td>
-                    </tr>
-                    <tr>
-                        <td><code>placeholder</code></td>
-                        <td><code>string</code></td>
-                        <td />
-                        <td>Placeholder text</td>
-                    </tr>
-                    <tr>
-                        <td><code>disabled</code></td>
-                        <td><code>boolean</code></td>
-                        <td />
-                        <td>Disalbed state.</td>
-                    </tr>
-                </tbody>
-            </Table>
+                <Typography.Headline>
+                    Usage
+                </Typography.Headline>
 
-            <Display1>Container</Display1>
-            <Name>TextField</Name>
-            <Body2>
-                Top-level container of textfield.
-            </Body2>
+                <Typography.Title>
+                    Simple Textfield
+                </Typography.Title>
+                <Code value={`<Textfield.Simple />`} />
+                <ShowCase>
+                    <ShowCase.Item>
+                        <Textfield.Simple />
+                    </ShowCase.Item>
+                </ShowCase>
 
-            <Title>Properties</Title>
-            <Table>
-                <thead>
-                    <tr>
-                        <th>Property</th>
-                        <th>Type</th>
-                        <th>Required</th>
-                        <th>Description</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><code>disabled</code></td>
-                        <td><code>boolean</code></td>
-                        <td />
-                        <td>Disabled state.</td>
-                    </tr>
-                    <tr>
-                        <td><code>multiline</code></td>
-                        <td><code>boolean</code></td>
-                        <td />
-                        <td>Enable multiline</td>
-                    </tr>
-                    <tr>
-                        <td><code>fullwidth</code></td>
-                        <td><code>boolean</code></td>
-                        <td />
-                        <td>Render full width textfield</td>
-                    </tr>
-                </tbody>
-            </Table>
+                <Typography.Title>
+                    Labeled
+                </Typography.Title>
+                <Code value={`
+<Textfield>
+    <Textfield.Input id="usage-1" autoComplete="email" />
+    <Textfield.Label htmlFor="usage-1">
+        Email Address
+    </Textfield.Label>
+</Textfield>
+`} />
+                <ShowCase>
+                    <ShowCase.Item>
+                        <Textfield>
+                            <Textfield.Input id="usage-1" autoComplete="email" />
+                            <Textfield.Label htmlFor="usage-1">
+                                Email Address
+                            </Textfield.Label>
+                        </Textfield>
+                    </ShowCase.Item>
+                </ShowCase>
 
-            <Display1>Input</Display1>
-            <Name>TextField.Input</Name>
-            <Body2>
-                Input component.
-            </Body2>
+                <Typography.Title>
+                    Multiline
+                </Typography.Title>
+                <Code value={`
+<Textfield multiline>
+    <Textfield.Input.Meta>
+        <textarea
+            id="usage-2"
+            style={{ width: "100%" }}
+            rows={8}
+            cols={40} />
+    </Textfield.Input.Meta>
+    <Textfield.Label htmlFor="usage-2">
+        Comment
+    </Textfield.Label>
+</Textfield>
+`} />
+                <ShowCase>
+                    <ShowCase.Item>
+                        <Textfield multiline>
+                            <Textfield.Input.Meta>
+                                <textarea
+                                    id="usage-2"
+                                    style={{ width: "100%" }}
+                                    rows={8}
+                                    cols={40} />
+                            </Textfield.Input.Meta>
+                            <Textfield.Label htmlFor="usage-2">
+                                Comment
+                            </Textfield.Label>
+                        </Textfield>
+                    </ShowCase.Item>
+                </ShowCase>
 
-            <Display1>Label</Display1>
-            <Name>TextField.Label</Name>
-            <Body2>
-                Label component.
-            </Body2>
+                <Typography.Title>
+                    Full Width
+                </Typography.Title>
+                <Code value={`
+<ShowCase.Item style={{ width: "100%" }}>
+    <Textfield.Simple fullwidth placeholder="Full Width" />
+</ShowCase.Item>
+`} />
+                <ShowCase>
+                    <ShowCase.Item style={{ width: "100%" }}>
+                        <Textfield.Simple fullwidth placeholder="Full Width" />
+                    </ShowCase.Item>
+                </ShowCase>
 
-            <Title>Usage</Title>
-            <Code value={stripIgnored(BasicDemoCode)} />
-            <Demo>
-                <BasicDemo />
-            </Demo>
-        </PageContainer>
+                <Typography.Headline>Components</Typography.Headline>
+
+                <Typography.Title>Textfield</Typography.Title>
+                <Typography.Subheading2>Name</Typography.Subheading2>
+                <Name>Textfield</Name>
+                <Typography.Subheading2>Description</Typography.Subheading2>
+                <Typography.Body2>
+                    Top-level container of textfield components.
+                </Typography.Body2>
+                <Typography.Subheading2>Properties</Typography.Subheading2>
+                <Table>
+                    <thead>
+                        <tr>
+                            <th>Property</th>
+                            <th>Type</th>
+                            <th>Required</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>disabled</code></td>
+                            <td><code>boolean</code></td>
+                            <td />
+                            <td>Disabled state.</td>
+                        </tr>
+                        <tr>
+                            <td><code>multiline</code></td>
+                            <td><code>boolean</code></td>
+                            <td />
+                            <td>Enable multiline</td>
+                        </tr>
+                        <tr>
+                            <td><code>fullwidth</code></td>
+                            <td><code>boolean</code></td>
+                            <td />
+                            <td>Render full width textfield</td>
+                        </tr>
+                    </tbody>
+                </Table>
+
+                <Typography.Title>Input</Typography.Title>
+                <Typography.Subheading2>Name</Typography.Subheading2>
+                <Name>Textfield.Input</Name>
+                <Typography.Subheading2>Description</Typography.Subheading2>
+                <Typography.Body2>
+                    Input component of textfield.
+                </Typography.Body2>
+
+                <Typography.Title>Label</Typography.Title>
+                <Typography.Subheading2>Name</Typography.Subheading2>
+                <Name>Text.field.Label</Name>
+                <Typography.Subheading2>Description</Typography.Subheading2>
+                <Typography.Body2>
+                    Textfield label
+                </Typography.Body2>
+            </ComponentPage.Content>
+        </ComponentPage>
     );
 }
