@@ -32,6 +32,7 @@ import NewDialogPage from "./newPages/DialogPage";
 import NewElevationPage from "./newPages/ElevationPage";
 import NewFABPage from "./newPages/FABPage";
 import NewFormFieldPage from "./newPages/FormFieldPage";
+import NewLayoutGridPage from "./newPages/LayoutGridPage";
 import NewWelcomePage from "./newPages/WelcomePage";
 
 function MainContainer(props) {
@@ -68,6 +69,7 @@ export default function MainRouter() {
                 <Route path="elevation" component={NewElevationPage} />
                 <Route path="fab" component={NewFABPage} />
                 <Route path="form-field" component={NewFormFieldPage} />
+                <Route path="layout-grid" component={NewLayoutGridPage} />
             </Route>
             <Route path="/" component={MainContainer}>
                 <Route path="basics" component={BasicsPage} />
