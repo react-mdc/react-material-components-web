@@ -53,7 +53,7 @@ $ npm install --save @react-mdc/typography
 Import stylesheet
 
 ``` html
-<link type="text/css" href="/build/materialmaterial-components-web.min.css" rel="stylesheet" />
+<link type="text/css" href="node_modules/material-components-web/dist/material-components-web.min.css" rel="stylesheet" />
 
 ```
 
