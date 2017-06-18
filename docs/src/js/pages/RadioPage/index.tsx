@@ -23,11 +23,11 @@ export default function RadioPage() {
                 <ShowCase large>
                     <ShowCase.Item>
                         <FormField>
-                            <Radio.Simple name="be" inputId="showcase-radio-to-be" defaultChecked />
+                            <Radio.Default name="be" inputId="showcase-radio-to-be" defaultChecked />
                             <label htmlFor="showcase-radio-to-be">
                                 To Be
                             </label>
-                            <Radio.Simple name="be" inputId="showcase-radio-not-to-be" />
+                            <Radio.Default name="be" inputId="showcase-radio-not-to-be" />
                             <label htmlFor="showcase-radio-not-to-be">
                                 Not To Be
                             </label>
@@ -51,13 +51,13 @@ export default function RadioPage() {
                     Simple Radio
                 </Typography.Title>
                 <Code value={`
-<Radio.Simple name="usage-1" defaultChecked />
-<Radio.Simple name="usage-1" />
+<Radio.Default name="usage-1" defaultChecked />
+<Radio.Default name="usage-1" />
 `} />
                 <ShowCase>
                     <ShowCase.Item>
-                        <Radio.Simple name="usage-1" defaultChecked />
-                        <Radio.Simple name="usage-1" />
+                        <Radio.Default name="usage-1" defaultChecked />
+                        <Radio.Default name="usage-1" />
                     </ShowCase.Item>
                 </ShowCase>
 
@@ -199,9 +199,9 @@ export default function RadioPage() {
                     OuterCircle component of radio.
                 </Typography.Body2>
 
-                <Typography.Title>Simple</Typography.Title>
+                <Typography.Title>Default</Typography.Title>
                 <Typography.Subheading2>Name</Typography.Subheading2>
-                <Name>Radio.Simple</Name>
+                <Name>Radio.Default</Name>
                 <Typography.Subheading2>Description</Typography.Subheading2>
                 <Typography.Body2>
                     Simpe, common composition of radio component

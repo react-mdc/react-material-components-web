@@ -53,7 +53,7 @@ export type Props = ContainerProps & {
 /**
  * Textfield simple common composed component
  */
-export default class Simple extends React.Component<Props, {}> {
+export default class Default extends React.Component<Props, {}> {
     public render() {
         const {
             inputId,

@@ -19,7 +19,7 @@ export type Props = {
 /**
  * Radio default composed component
  */
-export default class Simple extends React.Component<Props, {}> {
+export default class Default extends React.Component<Props, {}> {
     public render() {
         const {
             inputId,

@@ -23,7 +23,7 @@ export default function CheckboxPage() {
                 <ShowCase large>
                     <ShowCase.Item>
                         <FormField>
-                            <Checkbox.Simple inputId="showcase-checkbox" />
+                            <Checkbox.Default inputId="showcase-checkbox" />
                             <label htmlFor="showcase-checkbox">
                                 Check Me
                             </label>
@@ -46,10 +46,10 @@ export default function CheckboxPage() {
                 <Typography.Title>
                     Simple Checkbox
                 </Typography.Title>
-                <Code value={`<Checkbox.Simple />`} />
+                <Code value={`<Checkbox.Default />`} />
                 <ShowCase>
                     <ShowCase.Item>
-                        <Checkbox.Simple />
+                        <Checkbox.Default />
                     </ShowCase.Item>
                 </ShowCase>
 
@@ -172,12 +172,12 @@ export default function CheckboxPage() {
                     </tbody>
                 </Table>
 
-                <Typography.Title>Simple</Typography.Title>
+                <Typography.Title>Default</Typography.Title>
                 <Typography.Subheading2>Name</Typography.Subheading2>
-                <Name>Checkbox.Simple</Name>
+                <Name>Checkbox.Default</Name>
                 <Typography.Subheading2>Description</Typography.Subheading2>
                 <Typography.Body2>
-                    Simpe, common composition of checkbox component
+                    Default composition of checkbox component
                 </Typography.Body2>
                 <Typography.Subheading2>Properties</Typography.Subheading2>
                 <Table>

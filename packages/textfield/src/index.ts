@@ -1,10 +1,10 @@
 import Container from "./Container";
+import Default from "./Default";
 import Input from "./Input";
 import Label from "./Label";
-import Simple from "./Simple";
 
 export default class Textfield extends Container {
+    public static Default = Default;
     public static Input = Input;
     public static Label = Label;
-    public static Simple = Simple;
 }

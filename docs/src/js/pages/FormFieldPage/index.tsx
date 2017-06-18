@@ -23,7 +23,7 @@ export default function FormFieldPage() {
                 <ShowCase large>
                     <ShowCase.Item>
                         <FormField>
-                            <Checkbox.Simple inputId="showcase-checkbox" />
+                            <Checkbox.Default inputId="showcase-checkbox" />
                             <label htmlFor="showcase-checkbox">
                                 FormField Demo
                             </label>

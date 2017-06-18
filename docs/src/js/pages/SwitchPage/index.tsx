@@ -23,7 +23,7 @@ export default function SwitchPage() {
                 <ShowCase large>
                     <ShowCase.Item>
                         <FormField>
-                            <Switch.Simple inputId="showcase-switch" defaultChecked />
+                            <Switch.Default inputId="showcase-switch" defaultChecked />
                             <Switch.Label htmlFor="showcase-switch">
                                 Switch
                             </Switch.Label>
@@ -46,10 +46,10 @@ export default function SwitchPage() {
                 <Typography.Title>
                     Simple Switch
                 </Typography.Title>
-                <Code value={`<Switch.Simple />`} />
+                <Code value={`<Switch.Default />`} />
                 <ShowCase>
                     <ShowCase.Item>
-                        <Switch.Simple />
+                        <Switch.Default />
                     </ShowCase.Item>
                 </ShowCase>
 
@@ -163,9 +163,9 @@ export default function SwitchPage() {
                     </tbody>
                 </Table>
 
-                <Typography.Title>Simple</Typography.Title>
+                <Typography.Title>Default</Typography.Title>
                 <Typography.Subheading2>Name</Typography.Subheading2>
-                <Name>Switch.Simple</Name>
+                <Name>Switch.Default</Name>
                 <Typography.Subheading2>Description</Typography.Subheading2>
                 <Typography.Body2>
                     Simpe, common composition of switch component

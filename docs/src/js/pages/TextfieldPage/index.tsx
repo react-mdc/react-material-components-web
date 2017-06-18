@@ -21,7 +21,7 @@ export default function TextfieldPage() {
                 </Typography.Display1>
                 <ShowCase large>
                     <ShowCase.Item>
-                        <Textfield.Simple placeholder="Type Here..." />
+                        <Textfield.Default placeholder="Type Here..." />
                     </ShowCase.Item>
                 </ShowCase>
                 <Typography.Body2>
@@ -40,10 +40,10 @@ export default function TextfieldPage() {
                 <Typography.Title>
                     Simple Textfield
                 </Typography.Title>
-                <Code value={`<Textfield.Simple />`} />
+                <Code value={`<Textfield.Default />`} />
                 <ShowCase>
                     <ShowCase.Item>
-                        <Textfield.Simple />
+                        <Textfield.Default />
                     </ShowCase.Item>
                 </ShowCase>
 
@@ -108,12 +108,12 @@ export default function TextfieldPage() {
                 </Typography.Title>
                 <Code value={`
 <ShowCase.Item style={{ width: "100%" }}>
-    <Textfield.Simple fullwidth placeholder="Full Width" />
+    <Textfield.Default fullwidth placeholder="Full Width" />
 </ShowCase.Item>
 `} />
                 <ShowCase>
                     <ShowCase.Item style={{ width: "100%" }}>
-                        <Textfield.Simple fullwidth placeholder="Full Width" />
+                        <Textfield.Default fullwidth placeholder="Full Width" />
                     </ShowCase.Item>
                 </ShowCase>
 

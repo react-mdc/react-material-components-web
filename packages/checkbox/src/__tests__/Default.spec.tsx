@@ -5,17 +5,19 @@ import * as React from "react";
 import * as enzyme from "enzyme";
 
 import Background from "../Background";
+import Checkmark from "../Checkmark";
 import Container from "../Container";
-import Knob from "../Knob";
+import Default from "../Default";
+import Mixedmark from "../Mixedmark";
 import NativeControl from "../NativeControl";
-import Simple from "../Simple";
 
-describe("Simple", () => {
+describe("Default", () => {
     it("Should render common component composition", () => {
-        const wrapper = enzyme.shallow(<Simple />);
+        const wrapper = enzyme.shallow(<Default />);
         expect(wrapper.find(Background).exists()).toBeTruthy();
+        expect(wrapper.find(Checkmark).exists()).toBeTruthy();
         expect(wrapper.find(Container).exists()).toBeTruthy();
-        expect(wrapper.find(Knob).exists()).toBeTruthy();
+        expect(wrapper.find(Mixedmark).exists()).toBeTruthy();
         expect(wrapper.find(NativeControl).exists()).toBeTruthy();
     });
 });
