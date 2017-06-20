@@ -37,7 +37,7 @@ function MainContainer(props) {
     return <Container children={children} {...p} />;
 }
 
-function NewMainConteinr(props) {
+function NewMainContainer(props) {
     let {
         children,
         ...p,
@@ -53,7 +53,7 @@ function scrollToTop() {
 export default function MainRouter() {
     return (
         <Router onUpdate={scrollToTop} history={hashHistory}>
-            <Route path="/new/" component={NewMainConteinr}>
+            <Route path="/new/" component={NewMainContainer}>
                 <Route path="components" component={ComponentsPage} />
                 <Route path="button" component={NewButtonPage} />
             </Route>

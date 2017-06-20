@@ -1,5 +1,5 @@
 /**
- * Compatability
+ * Compatibility
  */
 
 // ES2017 Polyfills
