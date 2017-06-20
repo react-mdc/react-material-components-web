@@ -1,4 +1,4 @@
-require('react');
-require('react-dom');
-require('codemirror');
-require('fbjs');
+require("react");
+require("react-dom");
+require("codemirror");
+require("fbjs");

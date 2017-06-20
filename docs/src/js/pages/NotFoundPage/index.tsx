@@ -4,12 +4,12 @@ import { Link } from "react-router";
 import Button from "@react-mdc/button";
 import Card from "@react-mdc/card";
 
-import { CenterFullSize } from "app/js/components/FullSize";
+import FullSize from "app/js/components/FullSize";
 
 export default class NotFound extends React.Component<{}, {}> {
     public render() {
         return (
-            <CenterFullSize>
+            <FullSize.Center>
                 <Card>
                     <Card.Primary
                         style={{
@@ -32,7 +32,7 @@ export default class NotFound extends React.Component<{}, {}> {
                         </Card.Action.Meta>
                     </Card.Actions>
                 </Card>
-            </CenterFullSize>
+            </FullSize.Center>
         );
     }
 }

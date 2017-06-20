@@ -1,38 +1,18 @@
 @import "style/vars/theme";
-:root {
-    --app-drawer-z-index: 10;
-    --app-toolbar-height: 64px;
-    --app-content-padding: 16px;
-    --app-drawer-width: 240px;
-}
 
 :local {
-    .layout {
-        width: 100%;
+    .container {
+        flex: 1;
     }
-    .content-layout {
-        display: flex;
-        flex-direction: row;
-    }
-    .drawer-layout {
-        flex-shrink: 0;
-        z-index: var(--app-drawer-z-index);
-        height: auto;
-    }
-    .inner-layout {
-        width: 100%;
-        min-width: 512px;
-        padding-left: var(--app-content-padding);
-        padding-right: var(--app-content-padding);
-    }
-    .drawer {}
     .toolbar {
         /* Codemirror has z-index > 3 */
-        z-index: calc(var(--app-drawer-z-index) + 1) !important;
-        background: $app-theme-dark-background;
+        z-index: 4;
     }
     .toolbar-title {
         text-decoration: none;
+        @include mdc-theme-dark {
+            @include mdc-theme-prop(color, text-primary-on-dark);
+        }
     }
     .toolbar-icon {
         padding-right: 16px;
@@ -40,9 +20,4 @@
     .toolbar-title-text {
         font-family: Roboto Mono;
     }
-}
-
-.mdc-dialog--open {
-    /* Codemirror has z-index > 3 */
-    z-index: calc(var(--app-drawer-z-index) + 2) !important;
 }

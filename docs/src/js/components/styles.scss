@@ -2,11 +2,8 @@
 
 @import "style/vars/theme";
 @import "@material/theme/mdc-theme";
-:root {
-    --app-section-margin: 16px;
-    --app-section-padding: 16px;
-    --app-api-table-border-color: #CCC;
-}
+
+$app-table-border-color: #CCC;
 
 :local {
     .app--theme-dark {
@@ -105,14 +102,14 @@
                 border: 0;
                 border-bottom: 1px;
                 border-style: solid;
-                border-color: var(--app-api-table-border-color);
+                border-color: $app-table-border-color;
             }
         }
         tbody tr {
             border: 0;
             border-bottom: 1px;
             border-style: solid;
-            border-color: var(--app-api-table-border-color);
+            border-color: $app-table-border-color;
             &:last-child {
                 border-bottom: 0;
             }

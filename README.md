@@ -2,7 +2,7 @@ React Material Components Web
 =============================
 
 [![License: MIT](https://img.shields.io/github/license/mashape/apistatus.svg)](https://opensource.org/licenses/MIT)
-[![npm version](https://badge.fury.io/js/react-material-components-web.svg)](https://badge.fury.io/js/react-material-components-web)
+[![npm version](https://badge.fury.io/js/react-material-components-web.svg)](https://www.npmjs.com/package/react-material-components-web)
 [![Build Status](https://img.shields.io/travis/react-mdc/react-material-components-web.svg)](https://travis-ci.org/react-mdc/react-material-components-web)
 
 
@@ -53,7 +53,7 @@ $ npm install --save @react-mdc/typography
 Import stylesheet
 
 ``` html
-<link type="text/css" href="/build/materialmaterial-components-web.min.css" rel="stylesheet" />
+<link type="text/css" href="/static/material-components-web.min.css" rel="stylesheet" />
 
 ```
 

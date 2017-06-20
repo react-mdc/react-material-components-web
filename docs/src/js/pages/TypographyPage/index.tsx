@@ -1,134 +1,173 @@
 import * as React from "react";
+import { Link } from "react-router";
+
+import * as classNames from "classnames";
 
 import Typography from "@react-mdc/typography";
-import {
-    Body1,
-    Body2,
-    Caption,
-    Display1,
-    Display2,
-    Display3,
-    Display4,
-    Headline,
-    Subheading1,
-    Title,
-} from "@react-mdc/typography/lib/shortcuts";
 
 import Code from "app/js/components/Code";
+import ComponentPage from "app/js/components/ComponentPage";
+import { MaterialIcon } from "app/js/components/Icon";
 import Name from "app/js/components/Name";
-import PageContainer from "app/js/components/PageContainer";
-import PageTitle from "app/js/components/PageTitle";
-import {
-    Demo,
-} from "app/js/components/sections";
+import ShowCase from "app/js/components/ShowCase";
 import Table from "app/js/components/Table";
-import { stripIgnored } from "app/js/utils/code";
 
-import * as TextExampleCode from "raw-loader!./text.example.tsx";
-
-import * as ShortcutsExampleCode from "raw-loader!./shortcuts.example.tsx";
-
-export default function() {
+export default function CheckboxPage() {
     return (
-        <PageContainer>
-            <PageTitle>
-                Typography Component
-            </PageTitle>
+        <ComponentPage>
+            <ComponentPage.Content>
+                <Typography.Display1 adjustMargin>
+                    Typography
+                </Typography.Display1>
+                <ShowCase large>
+                    <ShowCase.Item>
+                        <Typography>
+                            <Typography.Display4>
+                                Aa 가
+                            </Typography.Display4>
+                        </Typography>
+                    </ShowCase.Item>
+                </ShowCase>
+                <Typography.Body2>
+                    Typography component is a React wrapper of mdc-typography component.
+                </Typography.Body2>
 
-            <Display1>Basic Usage</Display1>
-            <Body2>
-                You can use <code>Text</code> components within <code>Typography</code> component.
-            </Body2>
+                <Typography.Headline>
+                    Installation
+                </Typography.Headline>
+                <Code value={`$ npm install --save @react-mdc/typography`} mode="shell" />
 
-            <Display1>Container</Display1>
-            <Name>Typography</Name>
-            <Body2>
-                Every typography text components should be located in container
-                component named <code>Typography</code>.
-            </Body2>
+                <Typography.Headline>
+                    Usage
+                </Typography.Headline>
 
-            <Title>Properties</Title>
-            <Body2>
-                It does not have any properties.
-            </Body2>
+                <Typography.Title>
+                    Title
+                </Typography.Title>
+                <Code value={`
+<Typography>
+    <Typography.Title>
+        This is a Title
+    </Typography.Title>
+</Typography>
+`} />
+                <ShowCase>
+                    <ShowCase.Item>
+                        <Typography>
+                            <Typography.Title>
+                                This is a Title
+                            </Typography.Title>
+                        </Typography>
+                    </ShowCase.Item>
+                </ShowCase>
 
-            <Display1>Text</Display1>
-            <Name>Typography.Text</Name>
-            <Body2>
-                <code>Text</code> renders typography text component.
-            </Body2>
+                <Typography.Title>
+                    Meta
+                </Typography.Title>
+                <Code value={`
+<Typography>
+    <Typography.Text.Meta textStyle="caption">
+        <p>
+            This is a caption paragraph.
+        </p>
+    </Typography.Text.Meta>
+</Typography>
+`} />
+                <ShowCase>
+                    <ShowCase.Item>
+                        <Typography>
+                            <Typography.Text.Meta textStyle="caption">
+                                <p>
+                                  This is a caption paragraph.
+                                </p>
+                            </Typography.Text.Meta>
+                        </Typography>
+                    </ShowCase.Item>
+                </ShowCase>
 
-            <Title>Properties</Title>
-            <Table>
-                <thead>
-                    <tr>
-                        <th>Property</th>
-                        <th>Type</th>
-                        <th>Required</th>
-                        <th>Description</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><code>textStyle</code></td>
-                        <td>String value of below list</td>
-                        <td>&#10004;</td>
-                        <td>Style of text component.</td>
-                    </tr>
-                    <tr>
-                        <td><code>adjustMargin</code></td>
-                        <td><code>boolean</code></td>
-                        <td />
-                        <td>
-                            Enable adjustment of component's margin.
-                        </td>
-                    </tr>
-                </tbody>
-            </Table>
+                <Typography.Headline>Components</Typography.Headline>
 
-            <Title>Text Styles</Title>
-            <Typography.Text.Meta textStyle="body2">
-                <ul>
-                    <li><code>display4</code></li>
-                    <li><code>display3</code></li>
-                    <li><code>display2</code></li>
-                    <li><code>display1</code></li>
-                    <li><code>headline</code></li>
-                    <li><code>title</code></li>
-                    <li><code>subheading2</code></li>
-                    <li><code>subheading1</code></li>
-                    <li><code>body2</code></li>
-                    <li><code>body1</code></li>
-                    <li><code>caption</code></li>
-                </ul>
-            </Typography.Text.Meta>
+                <Typography.Title>Typography</Typography.Title>
+                <Typography.Subheading2>Name</Typography.Subheading2>
+                <Name>Typography</Name>
+                <Typography.Subheading2>Description</Typography.Subheading2>
+                <Typography.Body2>
+                    Top-level container of typography components.
+                    Every typography texts should be included in this component.
+                </Typography.Body2>
 
-            <Title>Usage</Title>
-            <Code value={stripIgnored(TextExampleCode)} />
-            <Demo>
-                <Typography>
-                    <Typography.Text textStyle="title">
-                        Title
-                    </Typography.Text>
-                    <Typography.Text textStyle="body2">
-                        Body Two
-                    </Typography.Text>
-                    <Typography.Text textStyle="display4" adjustMargin>
-                        Adjust margin
-                    </Typography.Text>
-                </Typography>
-            </Demo>
+                <Typography.Title>Text</Typography.Title>
+                <Typography.Subheading2>Name</Typography.Subheading2>
+                <Name>Typography.Text</Name>
+                <Typography.Subheading2>Description</Typography.Subheading2>
+                <Typography.Body2>
+                    Text component of typography.
+                </Typography.Body2>
+                <Typography.Subheading2>Properties</Typography.Subheading2>
+                <Table>
+                    <thead>
+                        <tr>
+                            <th>Property</th>
+                            <th>Type</th>
+                            <th>Required</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>textStyle</code></td>
+                            <td>String value of list at below</td>
+                            <td>&#10004;</td>
+                            <td>Style of text component.</td>
+                        </tr>
+                        <tr>
+                            <td><code>adjustMargin</code></td>
+                            <td><code>boolean</code></td>
+                            <td />
+                            <td>
+                                Enable adjustment of component's margin.
+                            </td>
+                        </tr>
+                    </tbody>
+                </Table>
+                <Typography.Subheading2>Text Styles</Typography.Subheading2>
+                <Typography.Text.Meta textStyle="body2">
+                    <ul>
+                        <li><code>display4</code></li>
+                        <li><code>display3</code></li>
+                        <li><code>display2</code></li>
+                        <li><code>display1</code></li>
+                        <li><code>headline</code></li>
+                        <li><code>title</code></li>
+                        <li><code>subheading2</code></li>
+                        <li><code>subheading1</code></li>
+                        <li><code>body2</code></li>
+                        <li><code>body1</code></li>
+                        <li><code>caption</code></li>
+                    </ul>
+                </Typography.Text.Meta>
 
-            <Display1>Shortcuts</Display1>
-            <Body2>
+            <Typography.Title>Shortcuts</Typography.Title>
+            <Typography.Subheading2>Name</Typography.Subheading2>
+            <Name>Typography.Display4</Name>
+            <Name>Typography.Display3</Name>
+            <Name>Typography.Display2</Name>
+            <Name>Typography.Display1</Name>
+            <Name>Typography.Headline</Name>
+            <Name>Typography.Title</Name>
+            <Name>Typography.Subheading2</Name>
+            <Name>Typography.Subheading1</Name>
+            <Name>Typography.Body2</Name>
+            <Name>Typography.Body1</Name>
+            <Name>Typography.Caption</Name>
+            <Typography.Subheading2>Description</Typography.Subheading2>
+            <Typography.Body2>
                 There are coresponding shortcut components for each text styles.
-            </Body2>
-            <Caption>
                 Shorcuts don't have meta components. Use <code>Text.Meta</code>
-                instead.
-            </Caption>
+                instead if you want a meta component.
+            </Typography.Body2>
 
-            <Title>Properties</Title>
+            <Typography.Subheading2>Properties</Typography.Subheading2>
             <Table>
                 <thead>
                     <tr>
@@ -149,49 +188,7 @@ export default function() {
                     </tr>
                 </tbody>
             </Table>
-
-            <Body2>
-                You can find a list of shortcuts from following example
-            </Body2>
-            <Title>Usage</Title>
-            <Code value={stripIgnored(ShortcutsExampleCode)} />
-            <Demo>
-                <Typography>
-                    <Display4>
-                        Display 4
-                    </Display4>
-                    <Display3>
-                        Display 3
-                    </Display3>
-                    <Display2>
-                        Display 2
-                    </Display2>
-                    <Display1>
-                        Display 1
-                    </Display1>
-                    <Headline>
-                        Headline
-                    </Headline>
-                    <Display1>
-                        Title
-                    </Display1>
-                    <Title>
-                        Subheading 2
-                    </Title>
-                    <Subheading1>
-                        Subheading 1
-                    </Subheading1>
-                    <Body2>
-                        Body 2
-                    </Body2>
-                    <Body1>
-                        Body 1
-                    </Body1>
-                    <Caption>
-                        Caption
-                    </Caption>
-                </Typography>
-            </Demo>
-        </PageContainer>
+            </ComponentPage.Content>
+        </ComponentPage>
     );
 }
