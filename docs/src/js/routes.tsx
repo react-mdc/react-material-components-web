@@ -22,7 +22,7 @@ import TypographyPage from "./pages/TypographyPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import WelcomePage from "./pages/WelcomePage";
 
-function MainConteinr(props) {
+function MainContainer(props) {
     let {
         children = <WelcomePage />,
         ...p,
