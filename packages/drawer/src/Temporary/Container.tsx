@@ -14,7 +14,7 @@ import {
     ClassNameMetaBase,
     DefaultComponentBase,
 } from "@react-mdc/base";
-import { eventHandlerDecorator, includes } from "@react-mdc/base/lib/util";
+import { includes } from "@react-mdc/base/lib/util";
 
 import { ContainerAdapter, FoundationAdapter } from "./adapter";
 import { BASE_CLASS_NAME } from "./constants";

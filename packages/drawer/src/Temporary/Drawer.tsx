@@ -13,7 +13,6 @@ import {
     ClassNameMetaBase,
     DefaultComponentBase,
 } from "@react-mdc/base";
-import { eventHandlerDecorator } from "@react-mdc/base/lib/util";
 
 import { DrawerAdapter, FoundationAdapter } from "./adapter";
 import { BASE_CLASS_NAME } from "./constants";
