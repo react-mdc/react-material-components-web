@@ -5,6 +5,8 @@ import * as forEach from "lodash.foreach";
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 
+import { EVENT_MAP } from "./event";
+
 export type EventListeners = {
     [eventType: string]: EventListener[],
 };
@@ -21,7 +23,7 @@ export type Props = {
     cssVariables?: CSSVariables,
     eventListeners?: EventListeners,
     attributes?: Attributes,
-    children?: React.ReactElement<any>,
+    children: React.ReactElement<any>,
 };
 
 type InternalProps = {
@@ -45,43 +47,26 @@ export default class NativeDOMAdapter extends React.Component<Props, {}> {
     public props: Props;
 
     // Last known DOM node
-    private lastDOMNode: HTMLElement;
+    private lastDOMNode: HTMLElement | null;
 
     public render() {
-        return this.props.children || null;
+        const child = this.props.children;
+        const reactConvertibles = this.filterReactEventConvertibles(this.props.eventListeners || {});
+        const merged = this.mergeEvents(reactConvertibles, child.props);
+        return React.cloneElement(child, {
+            ref: this.handleRef,
+            ...merged,
+        });
     }
 
     public componentDidMount() {
-        const props = this.internalProps(this.props);
-
-        this.lastDOMNode = this.getDOMNode();
-        this.addCssVariables(this.lastDOMNode, props.cssVariables);
-        this.addEventListeners(this.lastDOMNode, props.eventListeners);
-        this.addAttributes(this.lastDOMNode, props.attributes);
+        this.lastDOMNode = ReactDOM.findDOMNode<HTMLElement>(this);
     }
 
     public componentDidUpdate(origPrevProps: Props) {
         const props = this.internalProps(this.props);
         const prevProps = this.internalProps(origPrevProps);
-
-        const node = this.getDOMNode();
-        if (node !== this.lastDOMNode) {
-            // Remove from previous DOM node
-            this.removeCssVariables(this.lastDOMNode, prevProps.cssVariables);
-            this.removeEventListeners(this.lastDOMNode, prevProps.eventListeners);
-            this.removeAttributes(this.lastDOMNode, props.attributes);
-            // Add to new DOM node
-            this.addCssVariables(node, props.cssVariables);
-            this.addEventListeners(node, props.eventListeners);
-            this.addAttributes(node, props.attributes);
-            // Update current DOM node
-            this.lastDOMNode = node;
-        } else {
-            // Update
-            this.updateCssVariables(node, prevProps.cssVariables, props.cssVariables);
-            this.updateEventListeners(node, prevProps.eventListeners, props.eventListeners);
-            this.updateAttributes(node, prevProps.attributes, props.attributes);
-        }
+        this.updateNode(this.lastDOMNode, ReactDOM.findDOMNode<HTMLElement>(this), prevProps, props);
     }
 
     private internalProps(props: Props): InternalProps {
@@ -89,13 +74,47 @@ export default class NativeDOMAdapter extends React.Component<Props, {}> {
             cssVariables: (props.cssVariables as CSSVariables),
             eventListeners: (props.eventListeners as EventListeners),
             attributes: (props.attributes as Attributes),
-            children: (props.children as React.ReactElement<any>),
+            children: props.children,
         };
     }
 
-    // Get root DOM node of element
-    private getDOMNode(): HTMLElement {
-        return ReactDOM.findDOMNode<HTMLElement>(this);
+    private mergeEvents(eventListeners: EventListeners, props: any) {
+        const merged = { ...props };
+        forEach(eventListeners, (listeners: EventListener[], eventType: string) => {
+            const eventProp = EVENT_MAP[eventType];
+            if (eventProp == null) {
+                return;
+            }
+            let givenEvent;
+            if (eventProp in merged) {
+                givenEvent = merged[eventProp];
+            } else {
+                givenEvent = () => { };
+            }
+            const listener = (event: React.SyntheticEvent<any>) => {
+                const nativeEvent = event.nativeEvent;
+                const proxiedEvent: any = {};
+                for (const key in nativeEvent) {
+                    if (key.slice(0, 1) !== "_") {
+                        proxiedEvent[key] = nativeEvent[key];
+                    }
+                }
+                proxiedEvent.stopPropagation = () => {
+                    event.stopPropagation();
+                    nativeEvent.stopPropagation();
+                };
+                givenEvent(event);
+                if (event.defaultPrevented) {
+                    return;
+                }
+                listeners.every((nativeListener) => {
+                    nativeListener(proxiedEvent);
+                    return !nativeEvent.defaultPrevented;
+                });
+            };
+            merged[eventProp] = listener;
+        });
+        return merged;
     }
 
     // Manage CSS variables
@@ -133,8 +152,28 @@ export default class NativeDOMAdapter extends React.Component<Props, {}> {
     }
 
     // Manage event listeners
+    private filterReactEventConvertibles(eventListeners: EventListeners): EventListeners {
+        const nativeListeners: EventListeners = {};
+        forEach(eventListeners, (listeners, eventType) => {
+            if (eventType in EVENT_MAP) {
+                nativeListeners[eventType] = listeners;
+            }
+        });
+        return nativeListeners;
+    }
+
+    private filterNativeEvents(eventListeners: EventListeners): EventListeners {
+        const nativeListeners: EventListeners = {};
+        forEach(eventListeners, (listeners, eventType) => {
+            if (!(eventType in EVENT_MAP)) {
+                nativeListeners[eventType] = listeners;
+            }
+        });
+        return nativeListeners;
+    }
+
     private removeEventListeners(dom: HTMLElement, toRemove: EventListeners) {
-        forEach(toRemove, (listeners: EventListener[], event: string) => {
+        forEach(this.filterNativeEvents(toRemove), (listeners: EventListener[], event: string) => {
             listeners.forEach((listener) => {
                 dom.removeEventListener(event, listener);
             });
@@ -142,7 +181,7 @@ export default class NativeDOMAdapter extends React.Component<Props, {}> {
     }
 
     private addEventListeners(dom: HTMLElement, toAdd: EventListeners) {
-        forEach(toAdd, (listeners: EventListener[], event: string) => {
+        forEach(this.filterNativeEvents(toAdd), (listeners: EventListener[], event: string) => {
             listeners.forEach((listener) => {
                 dom.addEventListener(event, listener);
             });
@@ -222,5 +261,36 @@ export default class NativeDOMAdapter extends React.Component<Props, {}> {
         });
         this.removeAttributes(dom, toRemove);
         this.addAttributes(dom, toAdd);
+    }
+
+    private updateNode(
+        prevNode: HTMLElement | null, nextNode: HTMLElement,
+        prevProps: InternalProps, props: InternalProps) {
+        if (prevNode === nextNode) {
+            // Update
+            this.updateCssVariables(nextNode, prevProps.cssVariables, props.cssVariables);
+            this.updateEventListeners(nextNode, prevProps.eventListeners, props.eventListeners);
+            this.updateAttributes(nextNode, prevProps.attributes, props.attributes);
+        } else {
+            if (prevNode != null) {
+                // Remove from previous DOM node
+                this.removeCssVariables(prevNode, props.cssVariables);
+                this.removeEventListeners(prevNode, props.eventListeners);
+                this.removeAttributes(prevNode, props.attributes);
+            }
+            // Add to new DOM node
+            this.addCssVariables(nextNode, props.cssVariables);
+            this.addEventListeners(nextNode, props.eventListeners);
+            this.addAttributes(nextNode, props.attributes);
+        }
+    }
+
+    private handleRef = (ref: React.ReactInstance) => {
+        const props = this.internalProps(this.props);
+        const prevNode = this.lastDOMNode;
+        const nextNode = ReactDOM.findDOMNode<HTMLElement>(ref);
+
+        this.updateNode(prevNode, nextNode, props, props);
+        this.lastDOMNode = nextNode;
     }
 }
