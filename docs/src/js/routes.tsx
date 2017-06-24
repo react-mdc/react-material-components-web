@@ -22,7 +22,7 @@ import TypographyPage from "./pages/TypographyPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import WelcomePage from "./pages/WelcomePage";
 
-function MainConteinr(props) {
+function MainContainer(props) {
     let {
         children,
         ...p,
@@ -38,7 +38,7 @@ function scrollToTop() {
 export default function MainRouter() {
     return (
         <Router onUpdate={scrollToTop} history={hashHistory}>
-            <Route path="/" component={MainConteinr}>
+            <Route path="/" component={MainContainer}>
                 <Route path="button" component={ButtonPage} />
                 <Route path="card" component={CardPage} />
                 <Route path="checkbox" component={CheckboxPage} />
