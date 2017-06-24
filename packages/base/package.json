@@ -1,7 +1,7 @@
 {
   "name": "@react-mdc/base",
   "description": "Core library of @react-mdc components",
-  "version": "0.1.10",
+  "version": "0.1.11",
   "license": "MIT",
   "main": "lib/index",
   "typings": "lib/index.d.ts",
