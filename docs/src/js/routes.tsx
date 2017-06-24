@@ -24,10 +24,9 @@ import WelcomePage from "./pages/WelcomePage";
 
 function MainContainer(props) {
     let {
-        children,
+        children = <WelcomePage />,
         ...p,
     } = props;
-    children = children || <WelcomePage />;
     return <Container children={children} {...p} />;
 }
 
