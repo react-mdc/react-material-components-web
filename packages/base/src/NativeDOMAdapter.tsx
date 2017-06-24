@@ -59,14 +59,10 @@ export default class NativeDOMAdapter extends React.Component<Props, {}> {
         });
     }
 
-    public componentDidMount() {
-        this.lastDOMNode = ReactDOM.findDOMNode<HTMLElement>(this);
-    }
-
     public componentDidUpdate(origPrevProps: Props) {
         const props = this.internalProps(this.props);
         const prevProps = this.internalProps(origPrevProps);
-        this.updateNode(this.lastDOMNode, ReactDOM.findDOMNode<HTMLElement>(this), prevProps, props);
+        this.updateNode(this.lastDOMNode, this.lastDOMNode, prevProps, props);
     }
 
     private internalProps(props: Props): InternalProps {
@@ -264,13 +260,15 @@ export default class NativeDOMAdapter extends React.Component<Props, {}> {
     }
 
     private updateNode(
-        prevNode: HTMLElement | null, nextNode: HTMLElement,
+        prevNode: HTMLElement | null, nextNode: HTMLElement | null,
         prevProps: InternalProps, props: InternalProps) {
         if (prevNode === nextNode) {
-            // Update
-            this.updateCssVariables(nextNode, prevProps.cssVariables, props.cssVariables);
-            this.updateEventListeners(nextNode, prevProps.eventListeners, props.eventListeners);
-            this.updateAttributes(nextNode, prevProps.attributes, props.attributes);
+            if (nextNode != null) {
+                // Update
+                this.updateCssVariables(nextNode, prevProps.cssVariables, props.cssVariables);
+                this.updateEventListeners(nextNode, prevProps.eventListeners, props.eventListeners);
+                this.updateAttributes(nextNode, prevProps.attributes, props.attributes);
+            }
         } else {
             if (prevNode != null) {
                 // Remove from previous DOM node
@@ -278,17 +276,22 @@ export default class NativeDOMAdapter extends React.Component<Props, {}> {
                 this.removeEventListeners(prevNode, props.eventListeners);
                 this.removeAttributes(prevNode, props.attributes);
             }
-            // Add to new DOM node
-            this.addCssVariables(nextNode, props.cssVariables);
-            this.addEventListeners(nextNode, props.eventListeners);
-            this.addAttributes(nextNode, props.attributes);
+            if (nextNode != null) {
+                // Add to new DOM node
+                this.addCssVariables(nextNode, props.cssVariables);
+                this.addEventListeners(nextNode, props.eventListeners);
+                this.addAttributes(nextNode, props.attributes);
+            }
         }
     }
 
-    private handleRef = (ref: React.ReactInstance) => {
+    private handleRef = (ref: React.ReactInstance | null) => {
         const props = this.internalProps(this.props);
         const prevNode = this.lastDOMNode;
-        const nextNode = ReactDOM.findDOMNode<HTMLElement>(ref);
+        let nextNode: HTMLElement | null = null;
+        if (ref != null) {
+            nextNode = ReactDOM.findDOMNode<HTMLElement>(ref);
+        }
 
         this.updateNode(prevNode, nextNode, props, props);
         this.lastDOMNode = nextNode;
