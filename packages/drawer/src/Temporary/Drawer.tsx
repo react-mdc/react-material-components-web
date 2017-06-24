@@ -28,12 +28,10 @@ const {
 } = MDCTemporaryDrawerFoundation;
 
 export type MetaProps = {
-    onClick?: React.MouseEventHandler<any>,
 };
 
 export type ChildProps = {
     className?: string,
-    onClick?: React.MouseEventHandler<any>,
 };
 
 export type State = {
@@ -75,23 +73,6 @@ export class Meta extends ClassNameMetaBase<ChildProps, MetaProps, State> {
     protected renderBaseClassName() {
         return CLASS_NAME;
     }
-
-    protected renderProps(childProps: ChildProps) {
-        const {
-            onClick,
-        } = this.props;
-
-        return {
-            ...super.renderProps(childProps),
-            onClick: (eventHandlerDecorator(this.handleClick)(onClick || null) as React.ReactEventHandler<any>),
-        };
-    }
-
-    private handleClick: React.ReactEventHandler<any> = (evt: React.SyntheticEvent<any>) => {
-        // Don't use click event handler of MDCTemporaryDrawerFoundation
-        // See `TemporaryDrawer.handleClick()` for more detail.
-        evt.stopPropagation();
-    }
 }
 
 class DrawerAdapterImpl extends DrawerAdapter {
@@ -103,11 +84,6 @@ class DrawerAdapterImpl extends DrawerAdapter {
     }
 
     public registerDrawerInteractionHandler(evt: string, handler: EventListener) {
-        // Don't use click event handler of MDCTemporaryDrawerFoundation
-        // See `TemporaryDrawer.handleClick()` for more detail.
-        if (evt === "click") {
-            return;
-        }
         this.element.setState((state) => ({
             foundationEventListeners: state.foundationEventListeners.update(
                 drawerUtil.remapEvent(evt, window),
@@ -118,11 +94,6 @@ class DrawerAdapterImpl extends DrawerAdapter {
     }
 
     public deregisterDrawerInteractionHandler(evt: string, handler: EventListener) {
-        // Don't use click event handler of MDCTemporaryDrawerFoundation
-        // See `TemporaryDrawer.handleClick()` for more detail.
-        if (evt === "click") {
-            return;
-        }
         this.element.setState((state) => ({
             foundationEventListeners: state.foundationEventListeners.update(
                 drawerUtil.remapEvent(evt, window),

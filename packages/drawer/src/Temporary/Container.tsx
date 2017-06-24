@@ -28,12 +28,10 @@ export type MetaProps = {
     style?: { [name: string]: any },
     onOpenDrawer?: (meta: Meta) => void,
     onCloseDrawer?: (meta: Meta) => void,
-    onClick?: React.MouseEventHandler<any>,
 };
 
 export type ChildProps = {
     className?: string,
-    onClick?: React.MouseEventHandler<any>,
 };
 
 export type State = {
@@ -118,17 +116,6 @@ export class Meta extends ClassNameMetaBase<ChildProps, MetaProps, State> {
         );
     }
 
-    protected renderProps(childProps: ChildProps) {
-        const {
-            onClick,
-        } = this.props;
-
-        return {
-            ...super.renderProps(childProps),
-            onClick: (eventHandlerDecorator(this.handleClick)(onClick || null) as React.MouseEventHandler<any>),
-        };
-    }
-
     protected renderNativeDOMProps() {
         return {
             cssVariables: this.state.foundationCssVars.toJS(),
@@ -142,15 +129,6 @@ export class Meta extends ClassNameMetaBase<ChildProps, MetaProps, State> {
 
     protected renderClassValues() {
         return [this.getClassName(this.props, this.state)];
-    }
-
-    // Custom event handler
-    private handleClick = (_evt: React.SyntheticEvent<any>) => {
-        // Cannot handle properly click event because of react bug
-        // We implement react event handler with same functionally of this one
-        // https://github.com/material-components/material-components-web/issues/225
-        // https://github.com/facebook/react/issues/8693
-        this.foundation.close();
     }
 }
 
@@ -199,11 +177,6 @@ class ContainerAdapterImpl extends ContainerAdapter {
             className);
     }
     public registerInteractionHandler(evt: string, handler: EventListener) {
-        // Don't use click event handler of MDCTemporaryDrawerFoundation
-        // See `handleClick()` for more detail.
-        if (evt === "click") {
-            return;
-        }
         this.element.setState((state) => ({
             foundationEventListeners: state.foundationEventListeners.update(
                 drawerUtil.remapEvent(evt, window),
@@ -213,11 +186,6 @@ class ContainerAdapterImpl extends ContainerAdapter {
         }));
     }
     public deregisterInteractionHandler(evt: string, handler: EventListener) {
-        // Don't use click event handler of MDCTemporaryDrawerFoundation
-        // See `handleClick()` for more detail.
-        if (evt === "click") {
-            return;
-        }
         this.element.setState((state) => ({
             foundationEventListeners: state.foundationEventListeners.update(
                 drawerUtil.remapEvent(evt, window),
@@ -273,7 +241,6 @@ export default class Container extends DefaultComponentBase<React.HTMLProps<HTML
         "style",
         "onOpenDrawer",
         "onCloseDrawer",
-        "onClick",
         ];
     }
 
