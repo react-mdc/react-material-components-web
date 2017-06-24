@@ -1,7 +1,7 @@
 {
   "name": "@react-mdc/dialog",
   "description": "React wrapper of @material/dialog",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "license": "MIT",
   "main": "lib/index",
   "typings": "lib/index.d.ts",
@@ -11,8 +11,8 @@
   },
   "dependencies": {
     "@material/dialog": "^0.2.1",
-    "@react-mdc/base": "^0.1.9",
-    "@react-mdc/button": "^0.1.5",
+    "@react-mdc/base": "^0.1.10",
+    "@react-mdc/button": "^0.1.6",
     "@types/classnames": "0.0.32",
     "@types/prop-types": "^15.5.1",
     "@types/react": "^15.0.18",
