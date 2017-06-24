@@ -115,7 +115,7 @@ describe("NativeDOMAdapter", () => {
 
         const wrapper = enzyme.mount(
             <NativeDOMAdapter eventListeners={{
-                click: [first, second],
+                foo: [first, second],
             }}>
                 <div />
             </NativeDOMAdapter>,
@@ -123,11 +123,75 @@ describe("NativeDOMAdapter", () => {
 
         const node = wrapper.getDOMNode() as HTMLDivElement;
 
-        const event = new MouseEvent("click");
+        const event = new MouseEvent("foo");
         node.dispatchEvent(event);
     });
 
     it("should remove removed native event listeners from node", (done) => {
+        let firstCalled = false;
+        let secondCalled = false;
+        const first = () => {
+            if (firstCalled) {
+                fail("First should not be called twice!");
+            }
+            firstCalled = true;
+        };
+        const second = () => {
+            if (!firstCalled) {
+                fail("First listener not called!");
+            }
+            if (secondCalled) {
+                done();
+            }
+            secondCalled = true;
+        };
+
+        const wrapper = enzyme.mount(
+            <NativeDOMAdapter eventListeners={{
+                foo: [first, second],
+            }}>
+                <div />
+            </NativeDOMAdapter>,
+        );
+
+        const node = wrapper.getDOMNode() as HTMLDivElement;
+
+        node.dispatchEvent(new MouseEvent("foo"));
+
+        wrapper.setProps({
+            eventListeners: {
+                foo: [second],
+            },
+        });
+
+        node.dispatchEvent(new MouseEvent("foo"));
+    });
+
+    it("should add known react event listeners by order using props", (done) => {
+        let firstCalled = false;
+        const first = () => {
+            firstCalled = true;
+        };
+        const second = () => {
+            if (!firstCalled) {
+                fail("First listener not called!");
+            } else {
+                done();
+            }
+        };
+
+        const wrapper = enzyme.mount(
+            <NativeDOMAdapter eventListeners={{
+                click: [first, second],
+            }}>
+                <div />
+            </NativeDOMAdapter>,
+        );
+
+        wrapper.simulate("click");
+    });
+
+    it("should remove removed known react event listeners from props", (done) => {
         let firstCalled = false;
         let secondCalled = false;
         const first = () => {
@@ -154,9 +218,7 @@ describe("NativeDOMAdapter", () => {
             </NativeDOMAdapter>,
         );
 
-        const node = wrapper.getDOMNode() as HTMLDivElement;
-
-        node.dispatchEvent(new MouseEvent("click"));
+        wrapper.simulate("click");
 
         wrapper.setProps({
             eventListeners: {
@@ -164,6 +226,6 @@ describe("NativeDOMAdapter", () => {
             },
         });
 
-        node.dispatchEvent(new MouseEvent("click"));
+        wrapper.simulate("click");
     });
 });
