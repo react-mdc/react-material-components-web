@@ -74,6 +74,7 @@ export default class Default extends React.Component<Props, {}> {
             value,
             onChange,
             placeholder,
+            disabled,
         };
         return (
             <TextFieldInternal containerProps={containerProps} inputProps={inputProps} />
