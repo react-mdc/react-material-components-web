@@ -1,7 +1,7 @@
 {
   "name": "@react-mdc/textfield",
   "description": "React wrapper of @material/textfield",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "license": "MIT",
   "main": "lib/index",
   "typings": "lib/index.d.ts",
