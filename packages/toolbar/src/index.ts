@@ -3,6 +3,7 @@ import FixedToolbarAdjusted from "./FixedToolbarAdjusted";
 import Row from "./Row";
 import Section from "./Section";
 import Title from "./Title";
+import Icon from "./Icon";
 
 export default class Toolbar extends Container {
     public static Container = Container;
@@ -10,4 +11,5 @@ export default class Toolbar extends Container {
     public static Row = Row;
     public static Section = Section;
     public static Title = Title;
+    public static Icon = Icon;
 }
