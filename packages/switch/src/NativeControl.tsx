@@ -12,6 +12,7 @@ import {
 export const CLASS_NAME = `${BASE_CLASS_NAME}__native-control`;
 
 export type MetaProps = {
+    className?: string,
 };
 
 export type ChildProps = {
@@ -44,7 +45,9 @@ export default class NativeControl extends DefaultComponentBase<React.HTMLProps<
     }
 
     protected getMetaPropNames() {
-        return [];
+        return [
+            "className",
+        ];
     }
 
     protected getChildComponent(): React.SFC<React.HTMLProps<HTMLInputElement>> {

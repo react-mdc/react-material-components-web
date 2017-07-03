@@ -13,6 +13,7 @@ export const CLASS_NAME = SECTION_BASE_CLASS_NAME;
 
 export type MetaProps = {
     align?: Alignment,
+    className?: string,
 };
 
 export type ChildProps = {
@@ -48,6 +49,7 @@ export default class Section extends DefaultComponentBase<React.HTMLProps<HTMLEl
 
     protected getMetaPropNames() {
         return [
+            "className",
             "align",
         ];
     }

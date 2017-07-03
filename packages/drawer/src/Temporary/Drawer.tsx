@@ -27,6 +27,7 @@ const {
 } = MDCTemporaryDrawerFoundation;
 
 export type MetaProps = {
+    className?: string,
 };
 
 export type ChildProps = {
@@ -139,7 +140,9 @@ export default class Drawer extends DefaultComponentBase<React.HTMLProps<HTMLEle
     }
 
     protected getMetaPropNames() {
-        return [];
+        return [
+            "className",
+        ];
     }
 
     protected getChildComponent() {

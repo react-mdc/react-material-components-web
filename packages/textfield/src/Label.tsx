@@ -88,7 +88,9 @@ export default class Label extends DefaultComponentBase<React.HTMLProps<HTMLLabe
     }
 
     protected getMetaPropNames() {
-        return [];
+        return [
+            "className",
+        ];
     }
 
     protected getChildComponent() {

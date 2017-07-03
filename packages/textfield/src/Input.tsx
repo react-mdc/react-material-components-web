@@ -23,6 +23,7 @@ export type ChildProps = {
 };
 
 export type MetaProps = {
+    className?: string,
 };
 
 export type State = {
@@ -138,7 +139,9 @@ export default class Input extends DefaultComponentBase<React.HTMLProps<HTMLInpu
     }
 
     protected getMetaPropNames() {
-        return [];
+        return [
+            "className",
+        ];
     }
 
     protected getChildComponent(): React.SFC<React.HTMLProps<HTMLInputElement>> {

@@ -12,6 +12,7 @@ import {
 export const CLASS_NAME = `${BASE_CLASS_NAME}__background`;
 
 export type MetaProps = {
+    className?: string,
 };
 
 export type ChildProps = {
@@ -32,7 +33,9 @@ export default class Background extends DefaultComponentBase<React.HTMLProps<HTM
     }
 
     protected getMetaPropNames() {
-        return [];
+        return [
+            "className",
+        ];
     }
 
     protected getChildComponent() {

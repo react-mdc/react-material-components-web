@@ -18,6 +18,7 @@ export const propertyClassNames = {
 
 export type MetaProps = {
     disabled?: boolean,
+    className?: string,
 };
 
 export type ChildProps = {
@@ -48,6 +49,7 @@ export default class Container extends DefaultComponentBase<React.HTMLProps<HTML
 
     protected getMetaPropNames() {
         return [
+            "className",
             "disabled",
         ];
     }

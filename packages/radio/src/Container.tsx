@@ -24,6 +24,7 @@ export type ChildProps = {
 export type MetaProps = {
     checked?: boolean,
     disabled?: boolean,
+    className?: string,
 };
 
 export type State = {
@@ -143,8 +144,9 @@ export default class Container extends DefaultComponentBase<React.HTMLProps<HTML
 
     protected getMetaPropNames() {
         return [
-        "checked",
-        "disabled",
+            "className",
+            "checked",
+            "disabled",
         ];
     }
 

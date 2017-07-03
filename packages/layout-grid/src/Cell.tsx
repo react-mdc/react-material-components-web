@@ -18,6 +18,7 @@ export type MetaProps = {
     spanPhone?: GridNumber,
     order?: GridNumber,
     align?: Alignment,
+    className?: string,
 };
 
 export type ChildProps = {
@@ -73,6 +74,7 @@ export default class Cell extends DefaultComponentBase<React.HTMLProps<HTMLDivEl
     }
     protected getMetaPropNames() {
         return [
+            "className",
             "span",
             "spanDesktop",
             "spanTablet",

@@ -12,6 +12,7 @@ import {
 export const CLASS_NAME = `${BASE_CLASS_NAME}__subheader`;
 
 export type MetaProps = {
+    className?: string,
 };
 
 export type ChildProps = {
@@ -32,7 +33,9 @@ export default class Subheader extends DefaultComponentBase<React.HTMLProps<HTML
     }
 
     protected getMetaPropNames() {
-        return [];
+        return [
+            "className",
+        ];
     }
 
     protected getChildComponent() {

@@ -38,7 +38,7 @@ describe("NativeDOMAdapter", () => {
             }}>
                 <a />
             </NativeDOMAdapter>,
-            rootNode,
+            { attachTo: rootNode },
         );
 
         const node = wrapper.getDOMNode();

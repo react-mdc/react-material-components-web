@@ -18,6 +18,7 @@ export const CLASS_NAME = BASE_CLASS_NAME;
 export type MetaProps = {
     margin?: Margin,
     gutter?: Gutter,
+    className?: string,
 };
 
 export type ChildProps = {
@@ -52,6 +53,7 @@ export default class Container extends DefaultComponentBase<React.HTMLProps<HTML
     }
     protected getMetaPropNames() {
         return [
+            "className",
             "margin",
             "gutter",
         ];

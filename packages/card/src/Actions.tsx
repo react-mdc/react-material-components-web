@@ -17,6 +17,7 @@ export const propertyClassNames = {
 
 export type MetaProps = {
     vertical?: boolean,
+    className?: string,
 };
 
 export type ChildProps = {
@@ -44,6 +45,7 @@ export default class Actions extends DefaultComponentBase<React.HTMLProps<HTMLEl
 
     protected getMetaPropNames() {
         return [
+            "className",
             "vertical",
         ];
     }

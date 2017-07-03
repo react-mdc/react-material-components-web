@@ -12,6 +12,7 @@ import {
 export const CLASS_NAME = `${BASE_CLASS_NAME}__horizontal-block`;
 
 export type MetaProps = {
+    className?: string,
 };
 
 export type ChildProps = {
@@ -37,7 +38,9 @@ export default class HorizontalBlock extends DefaultComponentBase<React.HTMLProp
     }
 
     protected getMetaPropNames() {
-        return [];
+        return [
+            "className",
+        ];
     }
 
     protected getChildComponent() {

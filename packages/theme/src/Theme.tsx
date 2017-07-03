@@ -17,6 +17,7 @@ export type MetaProps = {
     backgroundColor?: BackgroundColor,
     textColor?: TextColor,
     onColor?: OnColor,
+    className?: string,
 };
 
 export class Meta extends ClassNameMetaBase<ChildProps, MetaProps, {}> {
@@ -56,6 +57,7 @@ export default class Theme extends DefaultComponentBase<React.HTMLProps<HTMLDivE
 
     protected getMetaPropNames() {
         return [
+            "className",
             "color",
             "backgroundColor",
             "textColor",

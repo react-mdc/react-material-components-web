@@ -41,6 +41,7 @@ export type MetaProps = {
     onOpen?: (element: Meta) => void,
     onCancel?: (element: Meta) => void,
     onClose?: (element: Meta) => void,
+    className?: string,
 };
 
 export type ChildProps = {
@@ -234,6 +235,7 @@ export default class Container extends DefaultComponentBase<React.HTMLProps<HTML
 
     protected getMetaPropNames() {
         return [
+            "className",
             "dark",
             "open",
             "onAccept",

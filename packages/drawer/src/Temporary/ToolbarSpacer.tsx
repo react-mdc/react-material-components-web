@@ -12,6 +12,7 @@ import {
 export const CLASS_NAME = `${BASE_CLASS_NAME}__toolbar-spacer`;
 
 export type MetaProps = {
+    className?: string,
 };
 
 export type ChildProps = {
@@ -32,7 +33,9 @@ export default class ToolbarSpacer extends DefaultComponentBase<React.HTMLProps<
     }
 
     protected getMetaPropNames() {
-        return [];
+        return [
+            "className",
+        ];
     }
 
     protected getChildComponent() {
