@@ -1,7 +1,7 @@
 {
   "name": "@react-mdc/textfield",
   "description": "React wrapper of @material/textfield",
-  "version": "0.1.10",
+  "version": "0.1.11",
   "license": "MIT",
   "main": "lib/index",
   "typings": "lib/index.d.ts",
@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@material/textfield": "^0.2.0",
-    "@react-mdc/base": "^0.1.11",
+    "@react-mdc/base": "^0.1.12",
     "@types/classnames": "0.0.32",
     "@types/prop-types": "^15.5.1",
     "@types/react": "^15.0.18",
