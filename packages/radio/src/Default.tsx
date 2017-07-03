@@ -1,7 +1,7 @@
 import * as React from "react";
 
 import Background from "./Background";
-import { ChildProps as ContainerChildProps, default as Container } from "./Container";
+import Container from "./Container";
 import InnerCircle from "./InnerCircle";
 import NativeControl from "./NativeControl";
 import OuterCircle from "./OuterCircle";
@@ -10,7 +10,7 @@ export type Props = {
     inputId?: string,
     name?: string,
     value?: any,
-    onChange?: (evt: React.ChangeEvent<ContainerChildProps>) => void,
+    onChange?: (evt: React.ChangeEvent<React.HTMLProps<HTMLInputElement>>) => void,
     checked?: boolean,
     disabled?: boolean,
     defaultChecked?: boolean,

@@ -10,7 +10,7 @@ export type Props = {
     inputId?: string,
     name?: string,
     value?: any,
-    onChange?: (evt: React.ChangeEvent<any>) => void,
+    onChange?: (evt: React.ChangeEvent<React.HTMLProps<HTMLInputElement>>) => void,
     checked?: boolean,
     disabled?: boolean,
     indeterminate?: boolean,

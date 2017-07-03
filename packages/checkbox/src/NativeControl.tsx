@@ -21,7 +21,7 @@ import { BASE_CLASS_NAME } from "./constants";
 export const CLASS_NAME = `${BASE_CLASS_NAME}__native-control`;
 
 export type MetaProps = {
-    onChange?: React.ChangeEventHandler<any>,
+    onChange?: React.ChangeEventHandler<ChildProps>,
 };
 
 export type ChildProps = {
