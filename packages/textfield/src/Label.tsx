@@ -19,7 +19,7 @@ export const CLASS_NAME = `${BASE_CLASS_NAME}__label`;
 export type MetaProps = {};
 
 export type ChildProps = {
-    classNames?: string,
+    className?: string,
 };
 
 export type State = {

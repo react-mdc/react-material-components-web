@@ -31,6 +31,7 @@ export type MetaProps = {
     disabled?: boolean,
     multiline?: boolean,
     fullwidth?: boolean,
+    className?: string
 };
 
 export type State = {
