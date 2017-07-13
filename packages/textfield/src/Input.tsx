@@ -124,7 +124,7 @@ class InputAdapterImpl extends InputAdapter {
     }
 }
 
-// Input with type="checkbox" as default
+// Input with type="text" as default
 function TextInput(props: React.HTMLProps<HTMLInputElement>) {
     return (
         <input type="text" {...props} />
