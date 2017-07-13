@@ -15,6 +15,7 @@ export const propertyClassNames = {
 
 export type MetaProps = {
     menu?: boolean,
+    className?: string,
 };
 
 export type ChildProps = {
