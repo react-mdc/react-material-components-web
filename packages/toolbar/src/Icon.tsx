@@ -43,7 +43,7 @@ export default class Icon extends DefaultComponentBase<React.HTMLProps<HTMLDivEl
 
     protected getMetaPropNames() {
         return [
-          "menu"
+          "menu",
         ];
     }
 
