@@ -9,7 +9,7 @@ import DefaultComponentBase from "../DefaultComponentBase";
 
 describe("DefaultComponentBase", () => {
     it("Should render default component with meta", () => {
-        class MetaImpl extends ClassNameMetaBase<{}, { bar?: boolean }, {}> {
+        class MetaImpl extends ClassNameMetaBase<{}, { bar?: boolean, className?: string }, {}> {
             protected renderBaseClassName() {
                 return "foo";
             }

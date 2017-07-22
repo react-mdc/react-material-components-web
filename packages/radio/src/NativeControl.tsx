@@ -20,10 +20,11 @@ export const propertyClassNames = {
 
 // Maybe related to this
 // https://github.com/Microsoft/TypeScript/issues/5938
-export type ChangeEventHandler = React.EventHandler<React.SyntheticEvent<ChildProps>>;
+export type ChangeEventHandler = React.FormEventHandler<ChildProps>;
 
 export type MetaProps = {
     onChange?: ChangeEventHandler,
+    className?: string,
 };
 
 export type ChildProps = {
@@ -106,6 +107,7 @@ export default class NativeControl extends DefaultComponentBase<React.HTMLProps<
 
     protected getMetaPropNames() {
         return [
+            "className",
             "onChange",
         ];
     }

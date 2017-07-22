@@ -28,6 +28,7 @@ export function classNameForSize(size: Size): string {
 
 export type MetaProps = {
     size?: Size,
+    className?: string,
 };
 
 export type ChildProps = {
@@ -58,6 +59,7 @@ export default class MediaItem extends DefaultComponentBase<React.HTMLProps<HTML
 
     protected getMetaPropNames() {
         return [
+            "className",
             "size",
         ];
     }

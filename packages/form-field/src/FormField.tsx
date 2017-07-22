@@ -15,6 +15,7 @@ export const propertyClassNames = {
 
 export type MetaProps = {
     alignEnd?: boolean,
+    className?: string,
 };
 
 export type ChildProps = {
@@ -45,6 +46,7 @@ export default class FormField extends DefaultComponentBase<React.HTMLProps<HTML
 
     protected getMetaPropNames() {
         return [
+            "className",
             "alignEnd",
         ];
     }

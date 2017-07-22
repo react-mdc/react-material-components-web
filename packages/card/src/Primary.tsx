@@ -12,6 +12,7 @@ import {
 export const CLASS_NAME = `${BASE_CLASS_NAME}__primary`;
 
 export type MetaProps = {
+    className?: string,
 };
 
 export type ChildProps = {
@@ -35,7 +36,9 @@ export default class Primary extends DefaultComponentBase<React.HTMLProps<HTMLEl
     }
 
     protected getMetaPropNames() {
-        return [];
+        return [
+            "className",
+        ];
     }
 
     protected getChildComponent() {

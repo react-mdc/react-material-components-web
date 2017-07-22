@@ -28,6 +28,7 @@ export type MetaProps = {
     style?: { [name: string]: any },
     onOpenDrawer?: (meta: Meta) => void,
     onCloseDrawer?: (meta: Meta) => void,
+    className?: string,
 };
 
 export type ChildProps = {
@@ -236,11 +237,12 @@ export default class Container extends DefaultComponentBase<React.HTMLProps<HTML
 
     protected getMetaPropNames() {
         return [
-        "open",
-        "rtl",
-        "style",
-        "onOpenDrawer",
-        "onCloseDrawer",
+            "className",
+            "open",
+            "rtl",
+            "style",
+            "onOpenDrawer",
+            "onCloseDrawer",
         ];
     }
 

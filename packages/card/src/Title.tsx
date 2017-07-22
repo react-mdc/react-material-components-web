@@ -17,6 +17,7 @@ export const propertyClassNames = {
 
 export type MetaProps = {
     large?: boolean,
+    className?: string,
 };
 
 export type ChildProps = {
@@ -51,6 +52,7 @@ export default class Title extends DefaultComponentBase<React.HTMLProps<HTMLHead
 
     protected getMetaPropNames() {
         return [
+            "className",
             "large",
         ];
     }

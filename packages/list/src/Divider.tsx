@@ -17,6 +17,7 @@ export const propertyClassNames = {
 
 export type MetaProps = {
     inset?: boolean,
+    className?: string,
 };
 
 export type ChildProps = {
@@ -51,6 +52,7 @@ export default class Divider extends DefaultComponentBase<React.HTMLProps<HTMLLI
 
     protected getMetaPropNames() {
         return [
+            "className",
             "inset",
         ];
     }

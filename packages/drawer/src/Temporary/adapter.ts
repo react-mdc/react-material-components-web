@@ -3,10 +3,11 @@
  */
 
 function createEmptyNodeList(): NodeListOf<Element> {
+    const item: (index: number) => Element = () => { throw new Error("This is an empty node list"); };
     return {
         ...([]),
-        item: () => { throw new Error("This is an empty node list"); },
-    };
+        item,
+    } as NodeListOf<Element>;
 }
 
 /**

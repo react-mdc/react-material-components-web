@@ -16,6 +16,7 @@ import {
 export const CLASS_NAME = `${BASE_CLASS_NAME}__action`;
 
 export type MetaProps = {
+    className?: string,
 };
 
 export type ChildProps = {
@@ -45,7 +46,9 @@ export default class Action
     }
 
     protected getMetaPropNames() {
-        return [];
+        return [
+            "className",
+        ];
     }
 
     protected getChildComponent(): React.SFC<React.HTMLProps<HTMLButtonElement> & ButtonMetaProps> {

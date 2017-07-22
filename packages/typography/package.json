@@ -1,7 +1,7 @@
 {
   "name": "@react-mdc/typography",
   "description": "React wrapper of @material/typography",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "license": "MIT",
   "main": "lib/index",
   "typings": "lib/index.d.ts",
@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@material/typography": "^0.2.1",
-    "@react-mdc/base": "^0.1.11",
+    "@react-mdc/base": "^0.1.12",
     "@types/classnames": "0.0.32",
     "@types/react": "^15.0.18",
     "classnames": "^2.2.5",
@@ -30,7 +30,7 @@
     "ts-jest": "^20.0.3",
     "tslint": "^5.2.0",
     "tslint-react": "^3.0.0",
-    "typescript": "^2.3.4"
+    "typescript": "^2.4.1"
   },
   "scripts": {
     "build": "npm-run-all build:ts lint",

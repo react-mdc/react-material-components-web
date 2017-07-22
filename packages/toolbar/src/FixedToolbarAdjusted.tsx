@@ -10,6 +10,7 @@ import { BASE_CLASS_NAME } from "./constants";
 export const CLASS_NAME = `${BASE_CLASS_NAME}-fixed-adjust`;
 
 export type MetaProps = {
+    className?: string,
 };
 
 export type ChildProps = {
@@ -33,7 +34,9 @@ export default class FixedToolbarAdjusted extends DefaultComponentBase<React.HTM
     }
 
     protected getMetaPropNames() {
-        return [];
+        return [
+            "className",
+        ];
     }
 
     protected getChildComponent() {

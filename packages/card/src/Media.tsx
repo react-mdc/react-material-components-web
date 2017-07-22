@@ -12,6 +12,7 @@ import {
 export const CLASS_NAME = `${BASE_CLASS_NAME}__media`;
 
 export type MetaProps = {
+    className?: string,
 };
 
 export type ChildProps = {
@@ -35,7 +36,9 @@ export default class Media extends DefaultComponentBase<React.HTMLProps<HTMLElem
     }
 
     protected getMetaPropNames() {
-        return [];
+        return [
+            "className",
+        ];
     }
 
     protected getChildComponent() {

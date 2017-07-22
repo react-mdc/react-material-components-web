@@ -26,6 +26,7 @@ export type MetaProps = {
     compact?: boolean,
     primary?: boolean,
     accent?: boolean,
+    className?: string,
 };
 
 export type ChildProps = {

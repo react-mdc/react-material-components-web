@@ -32,6 +32,7 @@ export const CLASS_NAME = SURFACE_BASE_CLASS_NAME;
 export type MetaProps = {
     unbounded?: boolean,
     color?: Color,
+    className?: string,
 };
 
 export type ChildProps = {
@@ -191,6 +192,7 @@ export default class Ripple extends DefaultComponentBase<React.HTMLProps<HTMLDiv
 
     protected getMetaPropNames() {
         return [
+            "className",
             "unbounded",
             "color",
         ];

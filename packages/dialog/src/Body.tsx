@@ -13,6 +13,7 @@ export const CLASS_NAME = `${BASE_CLASS_NAME}__body`;
 
 export type MetaProps = {
     scrollable?: boolean,
+    className?: string,
 };
 
 export type ChildProps = {
@@ -47,6 +48,7 @@ export default class Body extends DefaultComponentBase<React.HTMLProps<HTMLEleme
 
     protected getMetaPropNames() {
         return [
+            "className",
             "scrollable",
         ];
     }

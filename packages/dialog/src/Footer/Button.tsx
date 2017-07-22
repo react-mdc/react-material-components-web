@@ -14,6 +14,7 @@ export const CLASS_NAME = `${BASE_CLASS_NAME}__button`;
 
 export type MetaProps = {
     type: "accept" | "cancel",
+    className?: string,
 };
 
 export type ChildProps = {
@@ -52,6 +53,7 @@ export default class Button
     protected getMetaPropNames() {
         return [
             "type",
+            "className",
         ];
     }
 

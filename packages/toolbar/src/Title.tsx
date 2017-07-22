@@ -10,6 +10,7 @@ import { BASE_CLASS_NAME } from "./constants";
 export const CLASS_NAME = `${BASE_CLASS_NAME}__title`;
 
 export type MetaProps = {
+    className?: string,
 };
 
 export type ChildProps = {
@@ -30,7 +31,9 @@ export default class Title extends DefaultComponentBase<React.HTMLProps<HTMLSpan
     }
 
     protected getMetaPropNames() {
-        return [];
+        return [
+            "className",
+        ];
     }
 
     protected getChildComponent() {

@@ -21,7 +21,8 @@ import { BASE_CLASS_NAME } from "./constants";
 export const CLASS_NAME = `${BASE_CLASS_NAME}__native-control`;
 
 export type MetaProps = {
-    onChange?: React.ChangeEventHandler<any>,
+    onChange?: React.FormEventHandler<ChildProps>,
+    className?: string,
 };
 
 export type ChildProps = {
@@ -140,6 +141,7 @@ export default class NativeControl extends DefaultComponentBase<React.HTMLProps<
 
     protected getMetaPropNames() {
         return [
+            "className",
             "onChange",
         ];
     }

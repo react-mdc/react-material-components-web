@@ -21,6 +21,7 @@ export type MetaProps = {
     dense?: boolean,
     twoLine?: boolean,
     avatarList?: boolean,
+    className?: string,
 };
 
 export type ChildProps = {
@@ -53,6 +54,7 @@ export default class Container extends DefaultComponentBase<React.HTMLProps<HTML
 
     protected getMetaPropNames() {
         return [
+            "className",
             "dense",
             "twoLine",
             "avatarList",
