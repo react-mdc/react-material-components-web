@@ -16,29 +16,29 @@ The project is under active development.
 
 Every updates can contain breaking changes before 0.2.0.
 
-We **do not** recommend you to use this library for product now.
+We **do not** recommend you to use this library for produciton applications at this time.
 
 Documentation
 -------------
 
-You can find a document with live demo from https://react-mdc.github.io/
+You can find documentation with live demo at https://react-mdc.github.io/
 
 Features
 --------
 
 *  Typed strictly with [TypeScript](http://typescriptlang.org)
 
-   You can get a typing support with TypeScript
+   You can access typing support by also using TypeScript
 
 *  Stylesheet independent
 
    Since *Material Components Web* can be customized with scss,
-   It does not depend on specific stylesheet.
-   You can load your own stylesheet or default one.
+   it does not depend on specific stylesheet.
+   You can load your own stylesheet or a default one.
 
-*  Packaged each components individually
+*  Each component packaged individually
 
-   Like *Material Components Web*, You can get all components individually,
+   Like *Material Components Web*, You can access all components individually,
    under [@react-mdc npm scope](https://www.npmjs.com/%7Ereact-mdc).
 
 Getting Start
@@ -50,7 +50,7 @@ Install the library
 $ npm install --save @react-mdc/typography
 ```
 
-Import stylesheet
+Import the stylesheet
 
 ``` html
 <link type="text/css" href="/static/material-components-web.min.css" rel="stylesheet" />
@@ -83,7 +83,7 @@ ReactDOM.render(<Main />, document.getElementById('root'));
 
 ```
 
-And import *@react-mdc* then try it.
+And import *@react-mdc* then give it a shot.
 
 `main.js`
 ``` typescript
